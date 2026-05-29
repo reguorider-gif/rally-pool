@@ -40,3 +40,4 @@ git push -u origin main
 - `GET /api/match/{id}/predictions` - Match predictions
 - `GET /api/seat/{id}` - Seat detail + loans
 - `GET /api/daily-logs` - Daily settlement logs
+# trigger redeploy Fri May 29 18:23:46 UTC 2026
