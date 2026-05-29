@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 *.db
+*.db-journal
+*.bak
 .env
 node_modules/
 .vercel/
