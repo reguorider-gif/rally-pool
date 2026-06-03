@@ -1,0 +1,42 @@
+{
+  "version": "p11.1",
+  "round_id": "run-5",
+  "attempt_no": 2,
+  "ingested_at": "2026-06-03T15:43:27.518183+00:00",
+  "input_dir": "data/pool/model_outputs/raw_rerun/run-5/attempt-2",
+  "outputs_total": 5,
+  "outputs_found": 0,
+  "outputs_missing": 5,
+  "outputs": [
+    {
+      "model_account": "chatgpt",
+      "raw_output_path": "model_outputs/raw_rerun/run-5/attempt-2/chatgpt.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "wenxin",
+      "raw_output_path": "model_outputs/raw_rerun/run-5/attempt-2/wenxin.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "kimi",
+      "raw_output_path": "model_outputs/raw_rerun/run-5/attempt-2/kimi.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "xai",
+      "raw_output_path": "model_outputs/raw_rerun/run-5/attempt-2/xai.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "minimax",
+      "raw_output_path": "model_outputs/raw_rerun/run-5/attempt-2/minimax.txt",
+      "found": false,
+      "bytes": 0
+    }
+  ]
+}

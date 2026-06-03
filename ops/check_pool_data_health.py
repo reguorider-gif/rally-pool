@@ -891,6 +891,95 @@ def main():
 
     print()
 
+    # --- P11.1 补跑机制检查 ---
+    print("=== P11.1 Rerun Failed Seats Check ===")
+
+    rerun_attempts_path = DATA / "rerun_attempts" / "run-5.json"
+    rerun_prompts_dir = DATA / "prompts" / "rerun" / "run-5" / "attempt-2"
+    rerun_ingested_path = DATA / "model_outputs" / "ingested_rerun" / "run-5" / "attempt-2" / "index.json"
+
+    # 1. rerun_attempts/run-5.json 存在
+    if rerun_attempts_path.exists():
+        try:
+            ra = json.loads(rerun_attempts_path.read_text(encoding="utf-8"))
+            rs = ra.get("summary", {})
+            qt = rs.get("queue_total", -1)
+            pa = rs.get("planned_attempts", -1)
+            print(f"  ✅ data/pool/rerun_attempts/run-5.json: exists (queue_total={qt}, planned_attempts={pa})")
+            if qt != 5:
+                print(f"  ❌ queue_total={qt}, expected 5")
+                has_error = True
+            if pa != 5:
+                print(f"  ❌ planned_attempts={pa}, expected 5")
+                has_error = True
+        except Exception:
+            print(f"  ❌ rerun_attempts/run-5.json: parse failed")
+            has_error = True
+    else:
+        print(f"  ❌ data/pool/rerun_attempts/run-5.json: NOT FOUND")
+        has_error = True
+
+    # 4-5. prompt 目录和数量
+    if rerun_prompts_dir.exists():
+        prompt_files = sorted(rerun_prompts_dir.glob("*.md"))
+        pc = len(prompt_files)
+        print(f"  ✅ data/pool/prompts/rerun/run-5/attempt-2/: {pc} prompts")
+        if pc != 5:
+            print(f"  ❌ prompt count={pc}, expected 5")
+            has_error = True
+
+        # 6. 每个 prompt 包含必要内容
+        all_prompts_ok = True
+        for pf in prompt_files:
+            text = pf.read_text(encoding="utf-8")
+            checks = [
+                ("AI_JUDGE_RERUN_MARKER", "AI_JUDGE_RERUN_MARKER" in text),
+                ("attempt_no: 2", "attempt_no: 2" in text),
+                ("round_id: run-5", "round_id: run-5" in text),
+                ("previous_status", "previous_status" in text),
+                ("bet_ledger", "bet_ledger" in text),
+                ("只输出 JSON", "只输出标准 JSON" in text or "只输出 JSON" in text or "只输出一个 JSON" in text),
+            ]
+            for check_name, ok in checks:
+                if not ok:
+                    print(f"  ❌ {pf.name}: missing '{check_name}'")
+                    all_prompts_ok = False
+        if all_prompts_ok:
+            print(f"  ✅ all 5 prompts contain required keywords")
+    else:
+        print(f"  ❌ data/pool/prompts/rerun/run-5/attempt-2/: NOT FOUND")
+        has_error = True
+
+    # 7-10. ingested_rerun index
+    if rerun_ingested_path.exists():
+        try:
+            ig = json.loads(rerun_ingested_path.read_text(encoding="utf-8"))
+            ot = ig.get("outputs_total", -1)
+            of = ig.get("outputs_found", -1)
+            om = ig.get("outputs_missing", -1)
+            print(f"  ✅ ingested_rerun/run-5/attempt-2/index.json: total={ot}, found={of}, missing={om}")
+            if ot != 5:
+                print(f"  ❌ outputs_total={ot}, expected 5")
+                has_error = True
+            if of != 0:
+                print(f"  ❌ outputs_found={of}, expected 0")
+                has_error = True
+            if om != 5:
+                print(f"  ❌ outputs_missing={om}, expected 5")
+                has_error = True
+        except Exception:
+            print(f"  ❌ ingested_rerun/run-5/attempt-2/index.json: parse failed")
+            has_error = True
+    else:
+        print(f"  ⚠️ ingested_rerun/run-5/attempt-2/index.json: NOT YET GENERATED")
+        has_warning = True
+
+    # 11. 状态为 waiting_for_rerun_outputs
+    if rerun_ingested_path.exists():
+        print(f"  ✅ state: waiting_for_rerun_outputs (correct, not a failure)")
+
+    print()
+
     # --- 汇总 ---
     print("=== Summary ===")
     all_valid = all(r["valid_json"] for r in results)

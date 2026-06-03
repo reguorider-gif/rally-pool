@@ -629,6 +629,119 @@ def get_ingested_outputs(round_id: str = None):
         }
 
 
+# ---------- P11.1 补跑机制 ----------
+
+def get_rerun_attempts(round_id: str = None):
+    """
+    P11.1 新增：返回补跑 attempt ledger 索引。
+    - round_id=None → 返回所有 rerun_attempts 摘要
+    - round_id 指定 → 返回该 round 的 attempt ledger
+    """
+    if round_id is None:
+        ra_dir = DATA_DIR / "rerun_attempts"
+        rounds = []
+        if ra_dir.exists():
+            for json_file in sorted(ra_dir.glob("*.json")):
+                try:
+                    data = json.loads(json_file.read_text(encoding="utf-8"))
+                    s = data.get("summary", {})
+                    rounds.append({
+                        "round_id": data.get("round_id", json_file.stem),
+                        "queue_total": s.get("queue_total", 0),
+                        "planned_attempts": s.get("planned_attempts", 0),
+                        "state": s.get("state", "unknown"),
+                    })
+                except Exception:
+                    rounds.append({"round_id": json_file.stem, "error": "parse failed"})
+        return {"version": "p11.1", "rounds": rounds}
+
+    data = _read_json(f"rerun_attempts/{round_id}.json", default=None)
+    if data:
+        return data
+    return {
+        "version": "p11.1",
+        "round_id": round_id,
+        "missing": True,
+        "error": "rerun attempt ledger not found",
+        "summary": {"queue_total": 0, "planned_attempts": 0, "state": "missing"},
+        "attempts": [],
+    }
+
+
+def get_rerun_attempt(round_id: str = None):
+    """
+    P11.1 新增：等价于 get_rerun_attempts(round_id)，提供别名。
+    """
+    return get_rerun_attempts(round_id=round_id)
+
+
+def get_ingested_rerun_outputs(round_id: str = None, attempt_no: int = None):
+    """
+    P11.1 新增：返回补跑 ingest 后的标准化输出索引。
+    - round_id=None → 返回所有 round 索引
+    - round_id + attempt_no → 返回具体 attempt 的 index
+    """
+    if round_id is None:
+        ingested_base = DATA_DIR / "model_outputs" / "ingested_rerun"
+        rounds = []
+        if ingested_base.exists():
+            for rd in sorted(ingested_base.iterdir()):
+                if rd.is_dir():
+                    for att_dir in sorted(rd.iterdir()):
+                        if att_dir.is_dir() and att_dir.name.startswith("attempt-"):
+                            index_file = att_dir / "index.json"
+                            if index_file.exists():
+                                try:
+                                    data = json.loads(index_file.read_text(encoding="utf-8"))
+                                    rounds.append({
+                                        "round_id": rd.name,
+                                        "attempt_no": data.get("attempt_no", 0),
+                                        "outputs_total": data.get("outputs_total", 0),
+                                        "outputs_found": data.get("outputs_found", 0),
+                                    })
+                                except Exception:
+                                    rounds.append({"round_id": rd.name, "attempt_no": att_dir.name, "error": "parse failed"})
+        return {"version": "p11.1", "rounds": rounds}
+
+    if attempt_no is None:
+        # 返回该 round 下所有 attempt
+        ingested_base = DATA_DIR / "model_outputs" / "ingested_rerun" / round_id
+        attempts_list = []
+        if ingested_base.exists():
+            for att_dir in sorted(ingested_base.iterdir()):
+                if att_dir.is_dir() and att_dir.name.startswith("attempt-"):
+                    index_file = att_dir / "index.json"
+                    if index_file.exists():
+                        try:
+                            data = json.loads(index_file.read_text(encoding="utf-8"))
+                            attempts_list.append({
+                                "attempt_no": data.get("attempt_no", 0),
+                                "outputs_total": data.get("outputs_total", 0),
+                                "outputs_found": data.get("outputs_found", 0),
+                            })
+                        except Exception:
+                            attempts_list.append({"attempt_no": att_dir.name, "error": "parse failed"})
+        return {"version": "p11.1", "round_id": round_id, "attempts": attempts_list}
+
+    # round_id + attempt_no
+    try:
+        index_path = DATA_DIR / "model_outputs" / "ingested_rerun" / round_id / f"attempt-{attempt_no}" / "index.json"
+        data = json.loads(index_path.read_text(encoding="utf-8"))
+        return data
+    except Exception:
+        return {
+            "version": "p11.1",
+            "round_id": round_id,
+            "attempt_no": attempt_no,
+            "missing": True,
+            "error": "ingested rerun outputs not found",
+            "outputs_total": 0,
+            "outputs_found": 0,
+            "outputs_missing": 0,
+            "outputs": [],
+        }
+
+
 # ---------- 数据健康检查（供 ops/check_pool_data_health.py 调用） ----------
 
 def check_data_health():

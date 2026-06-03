@@ -30,6 +30,7 @@ try:
         get_bet_receipts, get_bet_receipt, get_bet_rejections,
         get_settlements, get_settlement,
         get_run_manifests, get_run_manifest, get_ingested_outputs,
+        get_rerun_attempts, get_rerun_attempt, get_ingested_rerun_outputs,
         check_data_health,
     )
     _HAS_POOL_API = True
@@ -346,6 +347,44 @@ async def api_pool_ingested_outputs(round_id: str):
         except Exception as e:
             print(f"[api_pool_ingested_outputs] pool_data failed: {e}", file=sys.stderr)
     return {"round_id": round_id, "missing": True, "warning": "pool_data unavailable"}
+
+
+# --- P11.1 补跑机制 API ---
+
+@app.get("/api/pool/rerun-attempts")
+async def api_pool_rerun_attempts():
+    """返回所有补跑 attempt ledger 索引（P11.1 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_rerun_attempts()
+        except Exception as e:
+            print(f"[api_pool_rerun_attempts] pool_data failed: {e}", file=sys.stderr)
+    return {"version": "p11.1", "rounds": []}
+
+
+@app.get("/api/pool/rerun-attempts/{round_id}")
+async def api_pool_rerun_attempts_by_round(round_id: str):
+    """返回单个 round 的补跑 attempt ledger（P11.1 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_rerun_attempt(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_rerun_attempts_by_round] pool_data failed: {e}", file=sys.stderr)
+    return {"round_id": round_id, "missing": True, "warning": "pool_data unavailable"}
+
+
+@app.get("/api/pool/ingested-rerun-outputs/{round_id}/{attempt_no}")
+async def api_pool_ingested_rerun_outputs(round_id: str, attempt_no: int):
+    """返回补跑 ingest 后的标准化输出索引（P11.1 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_ingested_rerun_outputs(round_id=round_id, attempt_no=attempt_no)
+        except Exception as e:
+            print(f"[api_pool_ingested_rerun_outputs] pool_data failed: {e}", file=sys.stderr)
+    return {"round_id": round_id, "attempt_no": attempt_no, "missing": True, "warning": "pool_data unavailable"}
 
 
 @app.get("/api/pool/daily-reports")
