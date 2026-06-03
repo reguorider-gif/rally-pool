@@ -908,3 +908,165 @@ def get_latest_daily_report():
         "error": "no valid daily reports found",
         "latest": None,
     }
+
+
+# ───────── P12.2 Ops Readiness ─────────────────────────────────────────────
+
+def get_ops_readiness():
+    """
+    P12.2 新增：读取 data/pool/ops_readiness/latest.json。
+    文件不存在时返回 missing 结构，不崩溃。
+    """
+    data = _read_json("ops_readiness/latest.json", default=None)
+    if data:
+        return data
+    return {
+        "version":         "p12.2",
+        "generated_at":     "",
+        "overall_status":   "missing",
+        "missing":          True,
+        "error":            "ops_readiness/latest.json not found — run ops/check_ops_readiness.py",
+        "checks":           [],
+        "warnings":         [],
+        "blockers":         [],
+        "next_actions":     [],
+    }
+
+
+# ───────── P13.0 Provider & Odds ───────────────────────────────────────────
+
+def get_provider_status():
+    """
+    P13.0 新增：读取 data/pool/provider_status/latest.json。
+    文件不存在时返回 missing 结构，不崩溃。
+    """
+    data = _read_json("provider_status/latest.json", default=None)
+    if data:
+        return data
+    return {
+        "version":       "p13.0",
+        "generated_at":   "",
+        "overall":        "missing",
+        "missing":        True,
+        "error":          "provider_status/latest.json not found — run ops/check_provider_config.py",
+        "providers":      [],
+        "blockers":       [],
+        "warnings":       [],
+    }
+
+
+def get_odds_snapshots(date=None, snapshot_label=None, provider=None):
+    """
+    P10.1/P13.0：返回赔率快照摘要列表。
+    - 无参数：返回 index.json 中所有快照摘要
+    - 传 provider：优先读 provider-specific 文件
+    - 向后兼容：无 provider 时读旧的 {date}_{label}.json
+    """
+    # 如果指定了 provider，尝试读 provider-specific 文件
+    if date and snapshot_label and provider:
+        specific_path = DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}_{provider}.json"
+        if specific_path.exists():
+            try:
+                d = json.loads(specific_path.read_text(encoding="utf-8"))
+                summary = d.get("summary", {})
+                return {
+                    "version":          "p13.0",
+                    "provider_match":    True,
+                    "snapshots": [{
+                        "date":                  date,
+                        "snapshot_label":        snapshot_label,
+                        "provider":              provider,
+                        "path":                  f"data/pool/odds_snapshots/{date}_{snapshot_label}_{provider}.json",
+                        "valid_odds_rows":       summary.get("valid_odds_rows", 0),
+                        "coverage_status":        _odds_coverage_status(summary),
+                        "missing_market_coverage": summary.get("missing_market_coverage", 0),
+                        "provider_unavailable":   summary.get("provider_unavailable", False),
+                    }],
+                }
+            except Exception:
+                pass  # fall through to index
+
+    # 向后兼容：读 index.json
+    index_path = DATA_DIR / "odds_snapshots" / "index.json"
+    if index_path.exists():
+        try:
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            snapshots = index.get("snapshots", [])
+            # 过滤条件
+            if date:
+                snapshots = [s for s in snapshots if s.get("date") == date]
+            if snapshot_label:
+                snapshots = [s for s in snapshots if s.get("snapshot_label") == snapshot_label]
+            if provider:
+                snapshots = [s for s in snapshots if s.get("provider") == provider]
+            return {
+                "version":       "p13.0",
+                "provider_match": False,
+                "snapshots":     snapshots,
+            }
+        except Exception:
+            pass
+
+    return {
+        "version":   "p13.0",
+        "missing":    True,
+        "snapshots": [],
+        "error":      "no odds snapshots found",
+    }
+
+
+def get_odds_snapshot(date=None, snapshot_label=None, provider=None):
+    """
+    P13.0 新增：返回单个赔率快照完整数据。
+    优先级：
+      1. provider-specific 文件
+      2. index.json 中匹配的记录
+      3. 旧版 {date}_{label}.json（向后兼容）
+    """
+    # 1. provider-specific
+    if date and snapshot_label and provider:
+        specific_path = DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}_{provider}.json"
+        if specific_path.exists():
+            try:
+                return {
+                    "version": "p13.0",
+                    "source":  "provider_specific",
+                    "data":   json.loads(specific_path.read_text(encoding="utf-8")),
+                }
+            except Exception:
+                pass
+
+    # 2. 旧版文件（向后兼容 manual_stub）
+    if date and snapshot_label:
+        old_path = DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}.json"
+        if old_path.exists():
+            try:
+                return {
+                    "version": "p13.0",
+                    "source":  "legacy_file",
+                    "data":   json.loads(old_path.read_text(encoding="utf-8")),
+                }
+            except Exception:
+                pass
+
+    return {
+        "version": "p13.0",
+        "missing": True,
+        "error":   f"odds snapshot not found for date={date}, label={snapshot_label}, provider={provider}",
+        "data":   None,
+    }
+
+
+def _odds_coverage_status(summary: dict) -> str:
+    """根据 summary 判断 coverage_status。"""
+    provider_unavail = summary.get("provider_unavailable", False)
+    valid = summary.get("valid_odds_rows", 0)
+    total = summary.get("odds_rows", 0)
+
+    if provider_unavail:
+        return "provider_not_configured"
+    if total > 0 and valid == 0:
+        return "provider_responded_but_no_match_coverage"
+    if valid > 0:
+        return "provider_covered_internal_matches"
+    return "unknown"

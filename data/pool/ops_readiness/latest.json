@@ -1,0 +1,70 @@
+{
+  "version": "p12.2",
+  "generated_at": "2026-06-03T16:53:17.998428+00:00",
+  "overall_status": "ready",
+  "checks": [
+    {
+      "id": "gh_workflow_exists",
+      "description": "GitHub Actions workflow file exists",
+      "status": "pass",
+      "detail": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/.github/workflows/daily-pool-pipeline.yml"
+    },
+    {
+      "id": "vercel_cron_config_exists",
+      "description": "Vercel cron config (vercel.json) exists",
+      "status": "pass",
+      "detail": "exists, crons=present"
+    },
+    {
+      "id": "prod_docs_exist",
+      "description": "Production docs (runbook/alerting/incident/checklist) exist",
+      "status": "pass",
+      "detail": "4/4 docs present"
+    },
+    {
+      "id": "latest_pipeline_exists",
+      "description": "Latest pipeline run file exists",
+      "status": "pass",
+      "detail": "2026-06-03_run-6.json"
+    },
+    {
+      "id": "pipeline_final_status_ok",
+      "description": "Latest pipeline final_status in allowed states",
+      "status": "pass",
+      "detail": "pass_with_warnings"
+    },
+    {
+      "id": "latest_daily_report_exists",
+      "description": "Latest daily report file exists",
+      "status": "pass",
+      "detail": "2026-06-03_run-6.json"
+    },
+    {
+      "id": "health_check_can_pass",
+      "description": "check_pool_data_health.py can PASS",
+      "status": "pass",
+      "detail": "exit_code=0"
+    },
+    {
+      "id": "known_residuals_documented",
+      "description": "Known residuals (remote 404 / waiting / manual_stub) documented",
+      "status": "pass",
+      "detail": "documented: ['GitHub remote 404', 'waiting_for_manual_ingest', 'manual_stub']"
+    },
+    {
+      "id": "frontend_has_scheduler",
+      "description": "Frontend has /api/cron/pipeline-status reference",
+      "status": "pass",
+      "detail": "found"
+    },
+    {
+      "id": "alerting_docs_exist",
+      "description": "Alerting policy + incident playbook exist",
+      "status": "pass",
+      "detail": "alerting=ok, incident=ok"
+    }
+  ],
+  "warnings": [],
+  "blockers": [],
+  "next_actions": []
+}

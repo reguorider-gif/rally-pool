@@ -1,0 +1,29 @@
+{
+  "version": "p13.0",
+  "generated_at": "2026-06-03T16:49:50.266130+00:00",
+  "round_id": "run-6",
+  "outputs_expected": 13,
+  "outputs_found": 0,
+  "outputs_missing": 13,
+  "found_files": [],
+  "missing_files": [
+    "chatgpt",
+    "claude",
+    "deepseek",
+    "doubao",
+    "gemini",
+    "kimi",
+    "meta",
+    "mimo",
+    "minimax",
+    "qwen",
+    "wenxin",
+    "xai",
+    "yuanbao"
+  ],
+  "empty_files": [],
+  "mismatched_files": [],
+  "status": "waiting_for_manual_ingest",
+  "message": "No model outputs found. Drop raw model outputs as <model_account>.txt into the raw dir.",
+  "next_action": "# drop model output .txt files into data/pool/model_outputs/raw/run-6/"
+}

@@ -106,7 +106,7 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
     gaps = []
     # 必需文件缺失（已在调用处处理，这里检测内容缺口）
     # 可选文件缺失 → data_gaps
-    # 赔率快照三态检测（P10.1）
+    # 赔率快照五态检测（P10.1 / P13.0）
     odds_snap_paths = optional_data.get("odds_snapshots", [])
     if not odds_snap_paths:
         gaps.append({
@@ -121,11 +121,14 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
         snap_paths = [Path(p) for p in odds_snap_paths]
         latest_snap_path = max(snap_paths, key=lambda p: p.stat().st_mtime) if snap_paths else None
         valid_odds_rows = 0
+        coverage_status = "unknown"
+        provider_unavailable = False
         if latest_snap_path:
             snap = load_json(latest_snap_path, default={}, verbose=False)
             summary = snap.get("summary", {})
             # 优先用 summary.valid_odds_rows
             valid_odds_rows = summary.get("valid_odds_rows")
+            provider_unavailable = summary.get("provider_unavailable", False)
             if valid_odds_rows is None:
                 # 回退：逐行计算
                 odds_rows = snap.get("odds", [])
@@ -139,22 +142,52 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
                                                "match_mapping_failed",
                                                "manual_review")):
                         valid_odds_rows += 1
+            # 判断 coverage_status
+            provider_name = snap.get("provider", "manual_stub")
+            if provider_unavailable or (not os.environ.get("THE_ODDS_API_KEY")):
+                coverage_status = "real_odds_provider_not_configured"
+            elif valid_odds_rows <= 0:
+                if provider_name == "manual_stub":
+                    coverage_status = "odds_snapshots_present_but_missing_market_coverage"
+                else:
+                    coverage_status = "real_odds_provider_responded_but_no_match_coverage"
+            else:
+                coverage_status = "real_odds_provider_has_valid_odds"
 
-        if valid_odds_rows <= 0:
+        # 根据 coverage_status 写 gap
+        if coverage_status == "missing_odds_snapshots":
+            pass  # already handled above
+        elif coverage_status == "real_odds_provider_not_configured":
+            gaps.append({
+                "gap": "real_odds_provider_not_configured",
+                "severity": "medium",
+                "blocking": False,
+                "stage": "P13.0A",
+                "detail": "Real odds provider API key is not configured. Set THE_ODDS_API_KEY to enable.",
+            })
+        elif coverage_status == "odds_snapshots_present_but_missing_market_coverage":
             gaps.append({
                 "gap": "odds_snapshots_present_but_missing_market_coverage",
                 "severity": "medium",
                 "blocking": False,
                 "stage": "P10.1",
-                "detail": "Odds snapshot exists, but no valid odds rows available. Provider may be manual_stub or missing market coverage.",
+                "detail": "Odds snapshot exists (manual_stub), but no valid odds rows available.",
             })
-        else:
+        elif coverage_status == "real_odds_provider_responded_but_no_match_coverage":
             gaps.append({
-                "gap": "odds_snapshots_present",
+                "gap": "real_odds_provider_responded_but_no_match_coverage",
+                "severity": "medium",
+                "blocking": False,
+                "stage": "P13.0A",
+                "detail": "Real odds provider responded but no internal matches were covered. Check match mapping.",
+            })
+        elif coverage_status == "real_odds_provider_has_valid_odds":
+            gaps.append({
+                "gap": "real_odds_provider_has_valid_odds",
                 "severity": "info",
                 "blocking": False,
-                "stage": "P10.1",
-                "detail": f"Odds snapshot exists with {valid_odds_rows} valid odds rows.",
+                "stage": "P13.0A",
+                "detail": f"Real odds provider snapshot has {valid_odds_rows} valid odds rows.",
             })
     # P10.3 四态 settlement gap detection
     if not optional_data.get("settlements"):

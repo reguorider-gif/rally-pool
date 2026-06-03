@@ -19,6 +19,10 @@ import re
 # 定位项目根目录
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "pool"
+DOCS_DIR = ROOT / "docs"
+OPS_DIR = ROOT / "ops"
+HTML_FILE = ROOT / "html" / "index.html"
+APP_FILE = ROOT / "app.py"
 
 
 def check_file(relative_path, expect_count_fn=None, warn_on_count=None):
@@ -1234,6 +1238,244 @@ def main():
         else:
             print(f"  ❌ workflow does not use --skip-browser")
             has_error = True
+
+    # ── P12.2 Production Ops Checks ────────────────────────────────────
+    print("=== P12.2 Production Ops Check ===")
+
+    # 1. docs/PRODUCTION_RUNBOOK.md 存在
+    pr_doc = DOCS_DIR / "PRODUCTION_RUNBOOK.md"
+    if pr_doc.exists():
+        print(f"  ✅ docs/PRODUCTION_RUNBOOK.md: exists")
+    else:
+        print(f"  ❌ docs/PRODUCTION_RUNBOOK.md: NOT FOUND")
+        has_error = True
+
+    # 2. docs/ALERTING_POLICY.md 存在
+    ap_doc = DOCS_DIR / "ALERTING_POLICY.md"
+    if ap_doc.exists():
+        print(f"  ✅ docs/ALERTING_POLICY.md: exists")
+    else:
+        print(f"  ❌ docs/ALERTING_POLICY.md: NOT FOUND")
+        has_error = True
+
+    # 3. docs/INCIDENT_PLAYBOOK.md 存在
+    ip_doc = DOCS_DIR / "INCIDENT_PLAYBOOK.md"
+    if ip_doc.exists():
+        print(f"  ✅ docs/INCIDENT_PLAYBOOK.md: exists")
+    else:
+        print(f"  ❌ docs/INCIDENT_PLAYBOOK.md: NOT FOUND")
+        has_error = True
+
+    # 4. docs/OPERATIONS_CHECKLIST.md 存在
+    oc_doc = DOCS_DIR / "OPERATIONS_CHECKLIST.md"
+    if oc_doc.exists():
+        print(f"  ✅ docs/OPERATIONS_CHECKLIST.md: exists")
+    else:
+        print(f"  ❌ docs/OPERATIONS_CHECKLIST.md: NOT FOUND")
+        has_error = True
+
+    # 5. ops/check_ops_readiness.py 存在
+    cor_path = OPS_DIR / "check_ops_readiness.py"
+    if cor_path.exists():
+        print(f"  ✅ ops/check_ops_readiness.py: exists")
+    else:
+        print(f"  ❌ ops/check_ops_readiness.py: NOT FOUND")
+        has_error = True
+
+    # 6. data/pool/ops_readiness/latest.json 存在
+    or_json = DATA / "ops_readiness" / "latest.json"
+    or_exists = or_json.exists()
+    if or_exists:
+        print(f"  ✅ data/pool/ops_readiness/latest.json: exists")
+    else:
+        print(f"  ⚠️  data/pool/ops_readiness/latest.json: NOT FOUND (run ops/check_ops_readiness.py to generate)")
+        has_warning = True
+
+    # 7. ops readiness JSON 可解析
+    if or_exists:
+        try:
+            or_data = json.loads(or_json.read_text(encoding="utf-8"))
+            print(f"  ✅ ops readiness JSON 可解析 (overall_status={or_data.get('overall_status', 'N/A')})")
+        except Exception as e:
+            print(f"  ❌ ops readiness JSON parse error: {e}")
+            has_error = True
+
+    # 8. overall_status in allowed states
+    if or_exists:
+        try:
+            or_data2 = json.loads(or_json.read_text(encoding="utf-8"))
+            os_val = or_data2.get("overall_status", "")
+            if os_val in ("ready", "ready_with_warnings", "blocked", "missing"):
+                print(f"  ✅ overall_status = {os_val} (allowed)")
+            else:
+                print(f"  ❌ overall_status = {os_val} (NOT allowed)")
+                has_error = True
+        except Exception:
+            pass  # already reported above
+
+    # 9. app.py 包含 /api/pool/ops-readiness
+    if APP_FILE.exists():
+        appy2_text = APP_FILE.read_text(encoding="utf-8")
+        if "/api/pool/ops-readiness" in appy2_text:
+            print(f"  ✅ app.py contains /api/pool/ops-readiness")
+        else:
+            print(f"  ❌ app.py missing /api/pool/ops-readiness")
+            has_error = True
+    else:
+        print(f"  ⚠️  app.py not found (should not happen)")
+        has_warning = True
+
+    # 10. html/index.html 包含 /api/pool/ops-readiness
+    if HTML_FILE.exists():
+        html2_text = HTML_FILE.read_text(encoding="utf-8")
+        if "/api/pool/ops-readiness" in html2_text:
+            print(f"  ✅ html/index.html contains /api/pool/ops-readiness")
+        else:
+            print(f"  ❌ html/index.html missing /api/pool/ops-readiness")
+            has_error = True
+    else:
+        print(f"  ⚠️  html/index.html not found")
+        has_warning = True
+
+    # 11. Alerting docs 包含 waiting_for_manual_ingest
+    if ap_doc.exists():
+        ap_text = ap_doc.read_text(encoding="utf-8")
+        if "waiting_for_manual_ingest" in ap_text:
+            print(f"  ✅ ALERTING_POLICY.md contains waiting_for_manual_ingest")
+        else:
+            print(f"  ⚠️  ALERTING_POLICY.md missing waiting_for_manual_ingest (recommended)")
+            has_warning = True
+
+    # 12. Incident playbook 包含 GitHub remote 404
+    if ip_doc.exists():
+        ip_text = ip_doc.read_text(encoding="utf-8")
+        if "GitHub remote 404" in ip_text or "remote 404" in ip_text.lower():
+            print(f"  ✅ INCIDENT_PLAYBOOK.md covers GitHub remote 404")
+        else:
+            print(f"  ⚠️  INCIDENT_PLAYBOOK.md does not cover GitHub remote 404")
+            has_warning = True
+
+    # ── P13.0 Real Provider / Model Output Checks ──────────────
+    print("=== P13.0 Real Provider / Model Output Check ===")
+
+    # 1. ops/check_provider_config.py 存在
+    cpc_path = ROOT / "ops" / "check_provider_config.py"
+    if cpc_path.exists():
+        print(f"  ✅ ops/check_provider_config.py: exists")
+    else:
+        print(f"  ❌ ops/check_provider_config.py: NOT FOUND")
+        has_error = True
+
+    # 2. data/pool/provider_status/latest.json 存在
+    ps_json = DATA / "provider_status" / "latest.json"
+    ps_exists = ps_json.exists()
+    if ps_exists:
+        print(f"  ✅ data/pool/provider_status/latest.json: exists")
+    else:
+        print(f"  ⚠️  data/pool/provider_status/latest.json: NOT FOUND (run check_provider_config.py to generate)")
+        has_warning = True
+
+    # 3. ops/check_model_output_dropbox.py 存在
+    cmod_path = ROOT / "ops" / "check_model_output_dropbox.py"
+    if cmod_path.exists():
+        print(f"  ✅ ops/check_model_output_dropbox.py: exists")
+    else:
+        print(f"  ❌ ops/check_model_output_dropbox.py: NOT FOUND")
+        has_error = True
+
+    # 4. data/pool/model_outputs/raw/run-6/README.md 存在
+    readme_path = DATA / "model_outputs" / "raw" / "run-6" / "README.md"
+    if readme_path.exists():
+        print(f"  ✅ data/pool/model_outputs/raw/run-6/README.md: exists")
+    else:
+        print(f"  ⚠️  README.md not found (optional but recommended)")
+        has_warning = True
+
+    # 5. data/pool/model_outputs/raw/run-6/dropbox_check.json 存在
+    dbc_json = DATA / "model_outputs" / "raw" / "run-6" / "dropbox_check.json"
+    dbc_exists = dbc_json.exists()
+    if dbc_exists:
+        print(f"  ✅ dropbox_check.json: exists")
+    else:
+        print(f"  ⚠️  dropbox_check.json: NOT FOUND (run check_model_output_dropbox.py to generate)")
+        has_warning = True
+
+    # 6. dropbox status 合法
+    if dbc_exists:
+        try:
+            dbc_data = json.loads(dbc_json.read_text(encoding="utf-8"))
+            dbc_status = dbc_data.get("status", "")
+            if dbc_status in ("waiting_for_manual_ingest", "partial_outputs_found", "ready_for_ingest"):
+                print(f"  ✅ dropbox status = {dbc_status} (allowed)")
+            else:
+                print(f"  ❌ dropbox status = {dbc_status} (NOT allowed)")
+                has_error = True
+        except Exception as e:
+            print(f"  ❌ dropbox_check.json parse error: {e}")
+            has_error = True
+
+    # 7. app.py 包含 /api/pool/provider-status
+    if APP_FILE.exists():
+        app_text = APP_FILE.read_text(encoding="utf-8")
+        if "/api/pool/provider-status" in app_text:
+            print(f"  ✅ app.py contains /api/pool/provider-status")
+        else:
+            print(f"  ❌ app.py missing /api/pool/provider-status")
+            has_error = True
+
+    # 8. app.py 包含 provider-specific odds snapshot route
+    if APP_FILE.exists():
+        app_text2 = APP_FILE.read_text(encoding="utf-8")
+        if "/api/pool/odds-snapshots" in app_text2 and "provider" in app_text2:
+            print(f"  ✅ app.py contains provider-specific odds snapshot route")
+        else:
+            print(f"  ⚠️  app.py may be missing provider-specific odds route")
+            has_warning = True
+
+    # 9. No API keys in repo
+    git_files = []
+    try:
+        result = subprocess.run(
+            ["git", "ls-files"],
+            capture_output=True, text=True, cwd=str(ROOT)
+        )
+        git_files = result.stdout.strip().splitlines()
+    except Exception:
+        pass
+
+    key_patterns = ["THE_ODDS_API_KEY=", "sk_live_", "api_key", "secret_key"]
+    found_keys = []
+    for fname in git_files:
+        fpath = ROOT / fname
+        if not fpath.exists():
+            continue
+        if fpath.suffix in (".png", ".jpg", ".jpeg", ".gif", ".ico", ".pdf"):
+            continue
+        try:
+            content = fpath.read_text(encoding="utf-8", errors="ignore")
+            for pat in key_patterns:
+                if pat in content and "os.environ.get" not in content:
+                    found_keys.append(f"{fname}: contains '{pat}'")
+        except Exception:
+            continue
+
+    if found_keys:
+        print(f"  ❌ Potential API keys found in repo:")
+        for fk in found_keys[:5]:
+            print(f"       {fk}")
+        has_error = True
+    else:
+        print(f"  ✅ No API keys detected in tracked files")
+
+    # 10. Provider not configured = warning (not system failure)
+    if ps_exists:
+        try:
+            ps_data = json.loads(ps_json.read_text(encoding="utf-8"))
+            for p in ps_data.get("providers", []):
+                if not p.get("configured"):
+                    print(f"  ✅ provider {p.get('provider')} not configured — recorded as warning (not system failure)")
+        except Exception:
+            pass
 
     print()
 

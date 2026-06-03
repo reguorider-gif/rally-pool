@@ -328,6 +328,11 @@ main{padding:24px 28px;min-width:0}
     <div id="healthPipeline"></div>
     <div class="pool-section-hdr">Scheduler / Deployment</div>
     <div id="healthSchedulerDeploy"></div>
+    <div class="pool-section-hdr">Operations Readiness</div>
+    <div id="healthOpsReadiness"></div>
+    <div class="pool-section-hdr">Real Provider / Model Output Ingest</div>
+    <div id="healthProviderStatus"></div>
+    <div id="healthModelDropbox"></div>
   </div>
 
   <!-- ===== 旧版内容（保留，可通过切换访问） ===== -->
@@ -1437,7 +1442,9 @@ async function renderSystemHealth() {
     '/api/pool/run-manifests/run-6',
     '/api/pool/rerun-attempts/run-5',
     '/api/pool/daily-reports/2026-06-03/run-5',
-    '/api/cron/pipeline-status'
+    '/api/cron/pipeline-status',
+    '/api/pool/ops-readiness',
+    '/api/pool/provider-status'
   ];
 
   apiEl.innerHTML = '<div class="health-grid">' + healthEndpoints.map(function(ep) {
@@ -1588,7 +1595,9 @@ async function renderSystemHealth() {
     fetchJson('/api/pool/model-runs/run-5'),
     fetchJson('/api/pool/pipeline-runs'),
     fetchJson('/api/pool/pipeline-runs/2026-06-03/run-6'),
-    fetchJson('/api/cron/pipeline-status')
+    fetchJson('/api/cron/pipeline-status'),
+    fetchJson('/api/pool/ops-readiness'),
+    fetchJson('/api/pool/provider-status')
   ]);
 
   PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -1606,7 +1615,73 @@ async function renderSystemHealth() {
   if (results[12].status === 'fulfilled') PoolData.modelRuns['run-5'] = results[12].value;
   PoolData.pipelineRuns = results[13].status === 'fulfilled' ? results[13].value : null;
   PoolData.pipelineRun = results[14].status === 'fulfilled' ? results[14].value : null;
+  PoolData.opsReadiness = results[16].status === 'fulfilled' ? results[16].value : null;
   PoolData.cronStatus = results[15].status === 'fulfilled' ? results[15].value : null;
+  PoolData.providerStatus = results[17] && results[17].status === 'fulfilled' ? results[17].value : null;
+
+  // Render Ops Readiness block
+  var opsEl = document.getElementById('healthOpsReadiness');
+  if (opsEl && PoolData.opsReadiness) {
+    var o = PoolData.opsReadiness;
+    var cls = o.overall_status === 'ready' ? 'green' : o.overall_status === 'ready_with_warnings' ? 'gold' : 'red';
+    var icon = o.overall_status === 'ready' ? '✅' : o.overall_status === 'ready_with_warnings' ? '⚠️' : '❌';
+    opsEl.innerHTML =
+      '<div class="health-grid">' +
+      '<div class="health-item ' + cls + '"><span class="h-path">' + icon + ' overall_status: ' + o.overall_status + '</span><span class="h-status h-ok">' + (o.checks ? o.checks.length : 0) + ' checks</span></div>' +
+      (o.blockers && o.blockers.length ? '<div class="gap-row" style="color:var(--err)">Blockers: ' + o.blockers.join(', ') + '</div>' : '') +
+      (o.warnings && o.warnings.length ? '<div class="gap-row" style="color:#b8860b">Warnings: ' + o.warnings.join(', ') + '</div>' : '') +
+      (o.next_actions && o.next_actions.length ? '<div style="font-size:11px;color:var(--dim)">' + o.next_actions.map(function(a){return '→ '+a}).join('<br>') + '</div>' : '') +
+      '</div>';
+  } else if (opsEl) {
+    opsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">ops readiness unavailable</span></div>';
+  }
+
+  // ── Real Provider / Model Output Ingest (P13.0) ──────
+  function renderProviderStatus(data) {
+    var el = document.getElementById('healthProviderStatus');
+    if (!el) return;
+    if (!data || data.missing) {
+      el.innerHTML = '<div class="pool-hint">provider status unavailable</div>';
+      return;
+    }
+    var providers = data.providers || [];
+    var html = '';
+    providers.forEach(function(p) {
+      var icon = p.configured ? '✅' : '⚠️';
+      var keyInfo = p.secret_masked ? 'key: ' + p.secret_masked : '(not set)';
+      html += '<div style="margin:4px 0;"><b>' + icon + ' ' + p.provider + '</b>: ' + p.status + ' — ' + keyInfo + '</div>';
+    });
+    html += '<div style="color:#888;font-size:12px;margin-top:6px;">overall: ' + (data.overall || 'unknown') + '</div>';
+    if (data.warnings && data.warnings.length > 0) {
+      html += '<div style="color:#e67e22;margin-top:4px;">Warnings: ' + data.warnings.length + '</div>';
+    }
+    el.innerHTML = html;
+  }
+
+  function renderModelDropbox(data) {
+    var el = document.getElementById('healthModelDropbox');
+    if (!el) return;
+    if (!data) {
+      el.innerHTML = '<div class="pool-hint">model output dropbox unavailable</div>';
+      return;
+    }
+    var icon = data.status === 'ready_for_ingest' ? '✅' : (data.status === 'partial_outputs_found' ? '⚠️' : '🔴');
+    var html = '<div style="margin:4px 0;"><b>' + icon + ' run-6 dropbox</b>: ' + data.status + '</div>';
+    html += '<div>expected: ' + data.outputs_expected + ', found: ' + data.outputs_found + ', missing: ' + data.outputs_missing + '</div>';
+    if (data.next_action) {
+      html += '<pre style="background:#f5f5f5;padding:6px;border-radius:6px;overflow-x:auto;font-size:11px;">' + data.next_action + '</pre>';
+    }
+    el.innerHTML = html;
+  }
+
+  var provEl = document.getElementById('healthProviderStatus');
+  if (provEl && PoolData.providerStatus) {
+    renderProviderStatus(PoolData.providerStatus);
+  }
+  var dropEl = document.getElementById('healthModelDropbox');
+  if (dropEl && PoolData.modelDropbox) {
+    renderModelDropbox(PoolData.modelDropbox);
+  }
 
   // Render default view (dashboard)
   renderDashboard();

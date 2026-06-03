@@ -34,6 +34,8 @@ try:
         check_data_health,
         get_pipeline_runs, get_pipeline_run,
         get_latest_pipeline_run, get_latest_daily_report,
+        get_ops_readiness,
+        get_provider_status, get_odds_snapshots as pd_get_odds_snapshots, get_odds_snapshot as pd_get_odds_snapshot,
     )
     _HAS_POOL_API = True
     print("[app.py] pool_data loaded successfully")
@@ -241,15 +243,51 @@ async def api_pool_odds_snapshots_by_date(date: str):
 
 
 @app.get("/api/pool/odds-snapshots/{date}/{snapshot_label}")
-async def api_pool_odds_snapshot(date: str, snapshot_label: str):
-    """返回单个赔率快照（P10.1 新增）"""
+async def api_pool_odds_snapshot(date: str, snapshot_label: str, provider: str = None):
+    """返回单个赔率快照（P10.1 新增，P13.0 增强支持 provider）"""
     ensure_init()
     if _HAS_POOL_API:
         try:
-            return get_odds_snapshot(date=date, snapshot_label=snapshot_label)
+            return get_odds_snapshot(date=date, snapshot_label=snapshot_label, provider=provider)
         except Exception as e:
             print(f"[api_pool_odds_snapshot] pool_data failed: {e}", file=sys.stderr)
     return {"date": date, "snapshot_label": snapshot_label, "odds": [], "warning": "pool_data unavailable"}
+
+
+# --- P13.0 Provider-specific Odds Snapshot API ---
+
+@app.get("/api/pool/odds-snapshots/{date}/{snapshot_label}/{provider}")
+async def api_pool_odds_snapshot_by_provider(date: str, snapshot_label: str, provider: str):
+    """返回指定 provider 的赔率快照（P13.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_odds_snapshot(date=date, snapshot_label=snapshot_label, provider=provider)
+        except Exception as e:
+            print(f"[api_pool_odds_snapshot_by_provider] pool_data failed: {e}", file=sys.stderr)
+    return {"date": date, "snapshot_label": snapshot_label, "provider": provider,
+            "odds": [], "warning": "pool_data unavailable"}
+
+
+# --- P13.0 Provider Status API ---
+
+@app.get("/api/pool/provider-status")
+async def api_pool_provider_status():
+    """返回赔率供应商配置状态（P13.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_provider_status()
+        except Exception as e:
+            print(f"[api_pool_provider_status] pool_data failed: {e}", file=sys.stderr)
+    return {
+        "version":       "p13.0",
+        "generated_at":   datetime.now(timezone.utc).isoformat(),
+        "overall":        "unavailable",
+        "providers":     [],
+        "blockers":      [],
+        "warnings":      ["pool_data unavailable"],
+    }
 
 
 # ── P10.2 Bet Receipts API ──────────────────────────────────────────────────
@@ -473,6 +511,29 @@ def api_pool_data_health():
         except Exception as e:
             return {"status": "error", "message": str(e)}
     return {"status": "pool_data_unavailable"}
+
+
+# --- P12.2 Ops Readiness API ---
+
+@app.get("/api/pool/ops-readiness")
+def api_pool_ops_readiness():
+    """返回运维就绪状态检查（P12.2 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_ops_readiness()
+        except Exception as e:
+            print(f"[api_pool_ops_readiness] pool_data failed: {e}", file=sys.stderr)
+    return {
+        "version": "p12.2",
+        "overall_status": "unavailable",
+        "missing": True,
+        "error": "pool_data unavailable",
+        "checks": [],
+        "warnings": [],
+        "blockers": [],
+        "next_actions": [],
+    }
 
 
 @app.get("/api/pool/models")
