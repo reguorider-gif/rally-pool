@@ -164,7 +164,7 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
             pass  # already handled above
         elif coverage_status == "real_odds_provider_not_configured":
             gaps.append({
-                "gap": "real_odds_provider_not_configured",
+                "gap": "real_provider_smoke_blocked_not_configured",
                 "severity": "medium",
                 "blocking": False,
                 "stage": "P13.0A",
@@ -172,15 +172,15 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
             })
         elif coverage_status == "odds_snapshots_present_but_missing_market_coverage":
             gaps.append({
-                "gap": "odds_snapshots_present_but_missing_market_coverage",
+                "gap": "real_provider_smoke_no_match_coverage",
                 "severity": "medium",
                 "blocking": False,
-                "stage": "P10.1",
-                "detail": "Odds snapshot exists (manual_stub), but no valid odds rows available.",
+                "stage": "P13.0A",
+                "detail": "Odds snapshot exists but no valid odds rows available (manual_stub or no match coverage).",
             })
         elif coverage_status == "real_odds_provider_responded_but_no_match_coverage":
             gaps.append({
-                "gap": "real_odds_provider_responded_but_no_match_coverage",
+                "gap": "real_provider_smoke_no_match_coverage",
                 "severity": "medium",
                 "blocking": False,
                 "stage": "P13.0A",
@@ -188,7 +188,7 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
             })
         elif coverage_status == "real_odds_provider_has_valid_odds":
             gaps.append({
-                "gap": "real_odds_provider_has_valid_odds",
+                "gap": "real_provider_smoke_has_valid_odds",
                 "severity": "info",
                 "blocking": False,
                 "stage": "P13.0A",

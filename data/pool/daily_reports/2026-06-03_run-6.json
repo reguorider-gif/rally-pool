@@ -2,7 +2,7 @@
   "version": "p9.4",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-03T21:53:55Z",
+  "generated_at": "2026-06-03T22:14:21Z",
   "summary": {
     "headline": "run-6 Daily Report — 0 valid outputs, 0 models need rerun, 4 data gaps",
     "status": "report_generated",
@@ -38,7 +38,7 @@
   },
   "data_gaps": [
     {
-      "gap": "real_odds_provider_not_configured",
+      "gap": "real_provider_smoke_blocked_not_configured",
       "severity": "medium",
       "blocking": false,
       "stage": "P13.0A",
