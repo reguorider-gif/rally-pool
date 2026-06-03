@@ -32,6 +32,7 @@ try:
         get_run_manifests, get_run_manifest, get_ingested_outputs,
         get_rerun_attempts, get_rerun_attempt, get_ingested_rerun_outputs,
         check_data_health,
+        get_pipeline_runs, get_pipeline_run,
     )
     _HAS_POOL_API = True
     print("[app.py] pool_data loaded successfully")
@@ -497,6 +498,32 @@ def api_pool_frontend_archives():
         except Exception as e:
             print(f"[api_pool_frontend_archives] pool_data failed: {e}", file=sys.stderr)
     return {"version": "p9.2", "round_results": [], "run4_model_archive": [], "run5_model_archive": [], "run4_source_tasks": [], "ucl_bets": []}
+
+
+# --- P12.0 Pipeline Runs API ---
+
+@app.get("/api/pool/pipeline-runs")
+async def api_pool_pipeline_runs():
+    """返回 pipeline run 摘要列表（P12.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_pipeline_runs()
+        except Exception as e:
+            print(f"[api_pool_pipeline_runs] pool_data failed: {e}", file=sys.stderr)
+    return {"version": "p12.0", "updated_at": "", "pipeline_runs": []}
+
+
+@app.get("/api/pool/pipeline-runs/{date}/{round_id}")
+async def api_pool_pipeline_run(date: str, round_id: str):
+    """返回单个 pipeline run 完整数据（P12.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_pipeline_run(date=date, round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_pipeline_run] pool_data failed: {e}", file=sys.stderr)
+    return {"version": "p12.0", "date": date, "round_id": round_id, "missing": True, "pipeline_run": None, "warning": "pool_data unavailable"}
 
 
 # === 前端页面 ===

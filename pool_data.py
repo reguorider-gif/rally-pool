@@ -773,3 +773,66 @@ def check_data_health():
                 item["warning"] = "count function failed"
         results.append(item)
     return results
+
+
+# ────────── P12.0 Pipeline Runs ──────────────────────────────────────────────
+
+def get_pipeline_runs():
+    """
+    P12.0 新增：返回 data/pool/pipeline_runs/*.json 摘要列表。
+    目录不存在或空 → 返回空结构。
+    """
+    pr_dir = DATA_DIR / "pipeline_runs"
+    if not pr_dir.exists():
+        return {"version": "p12.0", "updated_at": _now_iso(), "pipeline_runs": []}
+
+    runs = []
+    for f in sorted(pr_dir.glob("*.json"), reverse=True):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+            runs.append({
+                "date":          d.get("date", ""),
+                "round_id":      d.get("round_id", ""),
+                "generated_at":  d.get("generated_at", ""),
+                "final_status":  d.get("final_status", ""),
+                "summary":       d.get("summary", {}),
+                "blockers_count": len(d.get("blockers", [])),
+                "warnings_count": len(d.get("warnings", [])),
+                "file":          f.name,
+            })
+        except Exception:
+            runs.append({"date": "", "round_id": f.stem, "file": f.name, "error": "parse_failed"})
+    return {"version": "p12.0", "updated_at": _now_iso(), "pipeline_runs": runs}
+
+
+def get_pipeline_run(date=None, round_id=None):
+    """
+    P12.0 新增：返回单个 pipeline run 完整数据。
+    - 传 date + round_id → 读取 data/pool/pipeline_runs/{date}_{round_id}.json
+    - 文件不存在 → 返回 missing 结构，不崩溃
+    """
+    if not date or not round_id:
+        return {
+            "version":      "p12.0",
+            "missing":      True,
+            "error":        "date and round_id required",
+            "pipeline_run": None,
+        }
+
+    filename = f"{date}_{round_id}.json"
+    data = _read_json(f"pipeline_runs/{filename}", default=None)
+    if data:
+        return {
+            "version":      "p12.0",
+            "missing":      False,
+            "pipeline_run": data,
+        }
+
+    return {
+        "version":      "p12.0",
+        "date":         date,
+        "round_id":     round_id,
+        "missing":      True,
+        "error":        "pipeline run not found",
+        "pipeline_run": None,
+    }

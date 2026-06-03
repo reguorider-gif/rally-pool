@@ -1046,6 +1046,99 @@ def main():
 
     print()
 
+    # ── P12.0 Pipeline Check ──────────────────────────────────────────────────
+    print("=== P12.0 Pipeline Check ===")
+
+    # 1. ops/run_daily_pool_pipeline.py 存在
+    pipeline_script = ROOT / "ops" / "run_daily_pool_pipeline.py"
+    if pipeline_script.exists():
+        print(f"  ✅ ops/run_daily_pool_pipeline.py: exists")
+    else:
+        print(f"  ❌ ops/run_daily_pool_pipeline.py: NOT FOUND")
+        has_error = True
+
+    # 2-3. pipeline_runs JSON & MD
+    pipeline_json = DATA / "pipeline_runs" / "2026-06-03_run-6.json"
+    pipeline_md = DATA / "pipeline_runs" / "2026-06-03_run-6.md"
+
+    json_exists = pipeline_json.exists()
+    md_exists = pipeline_md.exists()
+
+    if json_exists:
+        print(f"  ✅ data/pool/pipeline_runs/2026-06-03_run-6.json: exists")
+    else:
+        print(f"  ⚠️  data/pool/pipeline_runs/2026-06-03_run-6.json: NOT YET GENERATED (run pipeline)")
+        has_warning = True
+
+    if md_exists:
+        print(f"  ✅ data/pool/pipeline_runs/2026-06-03_run-6.md: exists")
+    else:
+        print(f"  ⚠️  data/pool/pipeline_runs/2026-06-03_run-6.md: NOT YET GENERATED (run pipeline)")
+        has_warning = True
+
+    # 4. JSON 可解析
+    if json_exists:
+        try:
+            pdata = json.loads(pipeline_json.read_text(encoding="utf-8"))
+            print(f"  ✅ Pipeline JSON 可解析")
+
+            # 5. final_status 在合法值中
+            valid_statuses = {"pass", "pass_with_warnings", "blocked", "failed"}
+            fs = pdata.get("final_status", "")
+            if fs in valid_statuses:
+                print(f"  ✅ final_status = {fs} (in {valid_statuses})")
+            else:
+                print(f"  ❌ final_status = {fs} (not in {valid_statuses})")
+                has_error = True
+
+            # 6. steps 数量 > 0
+            steps = pdata.get("steps", [])
+            if len(steps) > 0:
+                print(f"  ✅ steps count = {len(steps)} > 0")
+            else:
+                print(f"  ❌ steps count = {len(steps)} (expected > 0)")
+                has_error = True
+
+            # 7. run-6 waiting_for_manual_ingest 不算 hard failure
+            has_waiting = any(
+                "waiting_for_manual_ingest" in str(s.get("reason", "")).lower() or
+                "waiting_for_manual_ingest" in str(s.get("warnings", "")).lower()
+                for s in steps
+            )
+            if has_waiting:
+                print(f"  ✅ run-6 waiting_for_manual_ingest marked (not a hard failure)")
+            # (no error even if not present — might be pass)
+
+            # Check for real blockers (not waiting_for_manual_ingest)
+            real_blockers = [
+                s for s in steps
+                if s.get("status") in ("blocked", "failed") and
+                "waiting_for_manual_ingest" not in str(s.get("reason", "")).lower() and
+                "waiting_for_manual_ingest" not in str(s.get("warnings", "")).lower()
+            ]
+            if real_blockers:
+                print(f"  ⚠️  {len(real_blockers)} real blockers found (not waiting_for_manual_ingest)")
+                has_warning = True
+
+        except Exception as e:
+            print(f"  ❌ Pipeline JSON parse failed: {e}")
+            has_error = True
+
+    # 8. html/index.html 包含 /api/pool/pipeline-runs
+    html_path_check = ROOT / "html" / "index.html"
+    if html_path_check.exists():
+        html_content_check = html_path_check.read_text(encoding="utf-8")
+        if "/api/pool/pipeline-runs" in html_content_check:
+            print(f"  ✅ html/index.html contains /api/pool/pipeline-runs")
+        else:
+            print(f"  ❌ html/index.html missing /api/pool/pipeline-runs")
+            has_error = True
+    else:
+        print(f"  ⚠️  html/index.html not found")
+        has_warning = True
+
+    print()
+
     # --- 汇总 ---
     print("=== Summary ===")
     all_valid = all(r["valid_json"] for r in results)

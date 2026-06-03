@@ -324,6 +324,8 @@ main{padding:24px 28px;min-width:0}
     <div id="healthDataFile"></div>
     <div class="pool-section-hdr">API 连通性检查</div>
     <div id="healthApiPing"></div>
+    <div class="pool-section-hdr">Pipeline Runs</div>
+    <div id="healthPipeline"></div>
   </div>
 
   <!-- ===== 旧版内容（保留，可通过切换访问） ===== -->
@@ -1463,6 +1465,50 @@ async function renderSystemHealth() {
       statusEl.className = 'h-status h-err';
     });
   });
+
+  // Pipeline runs
+  var plEl = document.getElementById('healthPipeline');
+  var prData = PoolData.pipelineRun;
+  if (prData && !prData.missing && prData.pipeline_run) {
+    var pr = prData.pipeline_run;
+    var s = pr.summary || {};
+    var finalStatus = pr.final_status || 'unknown';
+    var statusCls = finalStatus === 'pass' ? 'green' : finalStatus === 'pass_with_warnings' ? 'gold' : 'red';
+    var statusIcon = finalStatus === 'pass' ? '✅' : finalStatus === 'pass_with_warnings' ? '⚠️' : '❌';
+
+    plEl.innerHTML =
+      '<div class="kpi-grid">' +
+      '<div class="kpi-card ' + statusCls + '"><div class="kpi-label">Pipeline 状态</div><div class="kpi-val">' + statusIcon + '</div><div class="kpi-sub">' + finalStatus + '</div></div>' +
+      '<div class="kpi-card blue"><div class="kpi-label">通过</div><div class="kpi-val">' + (s.steps_passed || 0) + '</div><div class="kpi-sub">步骤</div></div>' +
+      '<div class="kpi-card ' + ((s.steps_skipped || 0) > 0 ? 'gold' : 'green') + '"><div class="kpi-label">跳过</div><div class="kpi-val">' + (s.steps_skipped || 0) + '</div><div class="kpi-sub">步骤</div></div>' +
+      '<div class="kpi-card ' + ((s.blockers || 0) > 0 ? 'red' : 'green') + '"><div class="kpi-label">Blockers</div><div class="kpi-val">' + (s.blockers || 0) + '</div><div class="kpi-sub">' + ((s.blockers || 0) > 0 ? '有阻断' : '无阻断') + '</div></div>' +
+      '<div class="kpi-card ' + ((s.warnings || 0) > 0 ? 'gold' : 'green') + '"><div class="kpi-label">Warnings</div><div class="kpi-val">' + (s.warnings || 0) + '</div><div class="kpi-sub">' + ((s.warnings || 0) > 0 ? '有警告' : '无警告') + '</div></div>' +
+      '</div>';
+
+    // Pipeline steps detail
+    if (pr.steps && pr.steps.length > 0) {
+      plEl.innerHTML += '<div class="health-grid" style="margin-top:8px">' + pr.steps.map(function(st) {
+        var sIcon = st.status === 'pass' ? '✅' : st.status === 'skipped' ? '⏭️' : st.status === 'failed' ? '❌' : st.status === 'blocked' ? '🚫' : '⚠️';
+        var sCls = st.status === 'pass' ? 'h-ok' : st.status === 'skipped' ? 'h-warn' : st.status === 'failed' ? 'h-err' : 'h-warn';
+        return '<div class="health-item"><span class="h-path">' + sIcon + ' ' + st.step + '</span><span class="h-status ' + sCls + '">' + st.status + '</span></div>';
+      }).join('') + '</div>';
+    }
+
+    // Next actions
+    if (pr.next_actions && pr.next_actions.length > 0) {
+      plEl.innerHTML += '<div style="margin-top:8px;font-size:11px;color:var(--dim)">' + pr.next_actions.map(function(a) { return '→ ' + a; }).join('<br>') + '</div>';
+    }
+  } else if (PoolData.pipelineRuns && PoolData.pipelineRuns.pipeline_runs && PoolData.pipelineRuns.pipeline_runs.length > 0) {
+    // Show from list
+    var runs = PoolData.pipelineRuns.pipeline_runs;
+    plEl.innerHTML = '<div class="health-grid" style="margin-top:8px">' + runs.map(function(r) {
+      var icon = r.final_status === 'pass' ? '✅' : r.final_status === 'pass_with_warnings' ? '⚠️' : '❓';
+      var cls = r.final_status === 'pass' ? 'h-ok' : 'h-warn';
+      return '<div class="health-item"><span class="h-path">' + icon + ' ' + r.date + ' / ' + r.round_id + '</span><span class="h-status ' + cls + '">' + r.final_status + '</span></div>';
+    }).join('') + '</div>';
+  } else {
+    plEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">pipeline data unavailable — 运行 ops/run_daily_pool_pipeline.py 生成</span></div>';
+  }
 }
 
 // --- 初始化 ---
@@ -1481,7 +1527,9 @@ async function renderSystemHealth() {
     fetchJson('/api/pool/ingested-outputs/run-6'),
     fetchJson('/api/pool/rerun-attempts/run-5'),
     fetchJson('/api/pool/data-health'),
-    fetchJson('/api/pool/model-runs/run-5')
+    fetchJson('/api/pool/model-runs/run-5'),
+    fetchJson('/api/pool/pipeline-runs'),
+    fetchJson('/api/pool/pipeline-runs/2026-06-03/run-6')
   ]);
 
   PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -1497,6 +1545,8 @@ async function renderSystemHealth() {
   PoolData.rerunAttempts = results[10].status === 'fulfilled' ? results[10].value : null;
   PoolData.dataHealth = results[11].status === 'fulfilled' ? results[11].value : null;
   if (results[12].status === 'fulfilled') PoolData.modelRuns['run-5'] = results[12].value;
+  PoolData.pipelineRuns = results[13].status === 'fulfilled' ? results[13].value : null;
+  PoolData.pipelineRun = results[14].status === 'fulfilled' ? results[14].value : null;
 
   // Render default view (dashboard)
   renderDashboard();
