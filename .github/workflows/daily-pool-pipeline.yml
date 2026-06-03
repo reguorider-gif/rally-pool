@@ -1,0 +1,102 @@
+name: AI Judge Daily Pool Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Pipeline date, e.g. 2026-06-03"
+        required: true
+        default: "2026-06-03"
+      round:
+        description: "Round id, e.g. run-6"
+        required: true
+        default: "run-6"
+      deploy:
+        description: "Deploy to Vercel after committing generated files"
+        required: true
+        default: "false"
+  schedule:
+    - cron: "15 9 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIPELINE_DATE: ${{ github.event.inputs.date || '2026-06-03' }}
+      PIPELINE_ROUND: ${{ github.event.inputs.round || 'run-6' }}
+      SHOULD_DEPLOY: ${{ github.event.inputs.deploy || 'false' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Preflight compile
+        run: |
+          python3 -m py_compile \
+            server.py \
+            app.py \
+            pool_data.py \
+            ops/check_pool_data_health.py \
+            ops/run_daily_pool_pipeline.py
+
+      - name: Validate baseline
+        run: |
+          python3 ops/validate_pool_schemas.py
+          python3 ops/check_pool_data_health.py
+
+      - name: Run daily pipeline
+        run: |
+          python3 ops/run_daily_pool_pipeline.py \
+            --date "$PIPELINE_DATE" \
+            --round "$PIPELINE_ROUND" \
+            --skip-browser \
+            --continue-on-warning
+
+      - name: Validate after pipeline
+        run: |
+          python3 ops/validate_pool_schemas.py
+          python3 ops/check_pool_data_health.py
+
+      - name: Show pipeline summary
+        run: |
+          cat "data/pool/pipeline_runs/${PIPELINE_DATE}_${PIPELINE_ROUND}.md" || true
+
+      - name: Commit generated files
+        run: |
+          git config user.name "ai-judge-pipeline-bot"
+          git config user.email "ai-judge-pipeline-bot@example.local"
+          git add data/pool
+          if git diff --cached --quiet; then
+            echo "No generated file changes to commit."
+          else
+            git commit -m "Daily pool pipeline ${PIPELINE_DATE} ${PIPELINE_ROUND}"
+          fi
+
+      - name: Push generated files
+        run: |
+          git push
+
+      - name: Install Vercel CLI
+        if: env.SHOULD_DEPLOY == 'true'
+        run: |
+          npm install -g vercel
+
+      - name: Deploy to Vercel
+        if: env.SHOULD_DEPLOY == 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel deploy --prod --token="$VERCEL_TOKEN" --yes

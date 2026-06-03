@@ -1139,6 +1139,104 @@ def main():
 
     print()
 
+    # ── P12.1 Scheduling / Deployment Check ────────────────────────────────────
+    print("=== P12.1 Scheduling / Deployment Check ===")
+
+    # 1. .github/workflows/daily-pool-pipeline.yml 存在
+    workflow_path = ROOT / ".github" / "workflows" / "daily-pool-pipeline.yml"
+    if workflow_path.exists():
+        print(f"  ✅ .github/workflows/daily-pool-pipeline.yml: exists")
+    else:
+        print(f"  ❌ .github/workflows/daily-pool-pipeline.yml: NOT FOUND")
+        has_error = True
+
+    # 2. workflow 包含关键元素
+    if workflow_path.exists():
+        wf_text = workflow_path.read_text(encoding="utf-8")
+        checks = {
+            "workflow_dispatch": "workflow_dispatch" in wf_text,
+            "schedule": "schedule:" in wf_text,
+            "run_daily_pool_pipeline.py": "run_daily_pool_pipeline.py" in wf_text,
+            "--skip-browser": "--skip-browser" in wf_text,
+            "--continue-on-warning": "--continue-on-warning" in wf_text,
+        }
+        for key, ok in checks.items():
+            if ok:
+                print(f"  ✅ workflow contains {key}")
+            else:
+                print(f"  ❌ workflow missing {key}")
+                has_error = True
+
+    # 3. docs/P12.1_SCHEDULING.md 存在
+    docs_path = ROOT / "docs" / "P12.1_SCHEDULING.md"
+    if docs_path.exists():
+        print(f"  ✅ docs/P12.1_SCHEDULING.md: exists")
+    else:
+        print(f"  ❌ docs/P12.1_SCHEDULING.md: NOT FOUND")
+        has_error = True
+
+    # 4. vercel.json 存在
+    vercel_json = ROOT / "vercel.json"
+    if vercel_json.exists():
+        print(f"  ✅ vercel.json: exists")
+    else:
+        print(f"  ❌ vercel.json: NOT FOUND")
+        has_error = True
+
+    # 5. vercel.json 包含 /api/cron/pipeline-status
+    if vercel_json.exists():
+        vj_text = vercel_json.read_text(encoding="utf-8")
+        if "/api/cron/pipeline-status" in vj_text:
+            print(f"  ✅ vercel.json contains /api/cron/pipeline-status")
+        else:
+            print(f"  ❌ vercel.json missing /api/cron/pipeline-status")
+            has_error = True
+
+    # 6. app.py 包含 /api/cron/pipeline-status
+    appy_path = ROOT / "app.py"
+    if appy_path.exists():
+        appy_text = appy_path.read_text(encoding="utf-8")
+        if "/api/cron/pipeline-status" in appy_text:
+            print(f"  ✅ app.py contains /api/cron/pipeline-status")
+        else:
+            print(f"  ❌ app.py missing /api/cron/pipeline-status")
+            has_error = True
+    else:
+        print(f"  ⚠️  app.py not found")
+        has_warning = True
+
+    # 7. html/index.html 包含 /api/cron/pipeline-status
+    html_path_p121 = ROOT / "html" / "index.html"
+    if html_path_p121.exists():
+        html_content_p121 = html_path_p121.read_text(encoding="utf-8")
+        if "/api/cron/pipeline-status" in html_content_p121:
+            print(f"  ✅ html/index.html contains /api/cron/pipeline-status")
+        else:
+            print(f"  ❌ html/index.html missing /api/cron/pipeline-status")
+            has_error = True
+    else:
+        print(f"  ⚠️  html/index.html not found")
+        has_warning = True
+
+    # 8. 当前 pipeline run JSON 仍可读取
+    if json_exists:
+        try:
+            pdata2 = json.loads(pipeline_json.read_text(encoding="utf-8"))
+            print(f"  ✅ Pipeline JSON still readable (final_status={pdata2.get('final_status')})")
+        except Exception as e:
+            print(f"  ❌ Pipeline JSON re-read failed: {e}")
+            has_error = True
+
+    # 9. workflow 不默认调用浏览器（已由 --skip-browser 保证）
+    if workflow_path.exists():
+        if "--skip-browser" in wf_text:
+            print(f"  ✅ workflow uses --skip-browser (no browser call by default)")
+        else:
+            print(f"  ❌ workflow does not use --skip-browser")
+            has_error = True
+
+    print()
+
     # --- 汇总 ---
     print("=== Summary ===")
     all_valid = all(r["valid_json"] for r in results)

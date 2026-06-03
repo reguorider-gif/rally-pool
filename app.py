@@ -33,6 +33,7 @@ try:
         get_rerun_attempts, get_rerun_attempt, get_ingested_rerun_outputs,
         check_data_health,
         get_pipeline_runs, get_pipeline_run,
+        get_latest_pipeline_run, get_latest_daily_report,
     )
     _HAS_POOL_API = True
     print("[app.py] pool_data loaded successfully")
@@ -524,6 +525,53 @@ async def api_pool_pipeline_run(date: str, round_id: str):
         except Exception as e:
             print(f"[api_pool_pipeline_run] pool_data failed: {e}", file=sys.stderr)
     return {"version": "p12.0", "date": date, "round_id": round_id, "missing": True, "pipeline_run": None, "warning": "pool_data unavailable"}
+
+
+# --- P12.1 Vercel Cron Status Probe ---
+
+@app.get("/api/cron/pipeline-status")
+async def api_cron_pipeline_status():
+    """
+    Vercel Cron 轻量探针（P12.1 新增）。
+    - 只读，不写任何文件
+    - 不触发 pipeline
+    - 不部署
+    - 即使无 pipeline 也返回 ok=true
+    """
+    ensure_init()
+    warnings_list = []
+
+    latest_pipeline = {}
+    if _HAS_POOL_API:
+        try:
+            latest_pipeline = get_latest_pipeline_run()
+        except Exception as e:
+            latest_pipeline = {"missing": True, "error": str(e)}
+            warnings_list.append(f"get_latest_pipeline_run failed: {e}")
+    else:
+        latest_pipeline = {"missing": True, "error": "pool_data unavailable"}
+        warnings_list.append("pool_data unavailable")
+
+    latest_daily_report = {}
+    if _HAS_POOL_API:
+        try:
+            latest_daily_report = get_latest_daily_report()
+        except Exception as e:
+            latest_daily_report = {"missing": True, "error": str(e)}
+            warnings_list.append(f"get_latest_daily_report failed: {e}")
+    else:
+        latest_daily_report = {"missing": True, "error": "pool_data unavailable"}
+
+    return {
+        "ok": True,
+        "service": "ai-judge-pool",
+        "cron": "pipeline-status",
+        "generated_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
+        "latest_pipeline": latest_pipeline,
+        "latest_daily_report": latest_daily_report,
+        "warnings": warnings_list,
+        "note": "Vercel Cron is a lightweight status probe. GitHub Actions remains the state-mutating scheduler.",
+    }
 
 
 # === 前端页面 ===

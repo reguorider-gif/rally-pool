@@ -836,3 +836,75 @@ def get_pipeline_run(date=None, round_id=None):
         "error":        "pipeline run not found",
         "pipeline_run": None,
     }
+
+
+def get_latest_pipeline_run():
+    """
+    P12.1 新增：返回最新的 pipeline run 摘要。
+    按 generated_at 或 filename 排序，最新的在前。
+    找不到时返回 missing 结构。
+    """
+    runs = get_pipeline_runs()
+    pr_list = runs.get("pipeline_runs", [])
+    if not pr_list:
+        return {
+            "version": "p12.1",
+            "missing": True,
+            "error": "no pipeline runs found",
+            "latest": None,
+        }
+    # runs are already sorted reverse by filename; take the first valid one
+    for r in pr_list:
+        if r.get("date") and r.get("final_status"):
+            return {
+                "version": "p12.1",
+                "missing": False,
+                "latest": r,
+            }
+    return {
+        "version": "p12.1",
+        "missing": True,
+        "error": "no valid pipeline run",
+        "latest": None,
+    }
+
+
+def get_latest_daily_report():
+    """
+    P12.1 新增：返回最新的 daily report 摘要。
+    扫描 data/pool/daily_reports/*.json，按 filename 排序。
+    找不到时返回 missing 结构。
+    """
+    dr_dir = DATA_DIR / "daily_reports"
+    if not dr_dir.exists():
+        return {
+            "version": "p12.1",
+            "missing": True,
+            "error": "daily_reports dir not found",
+            "latest": None,
+        }
+
+    json_files = sorted(dr_dir.glob("*.json"), reverse=True)
+    for f in json_files:
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+            return {
+                "version": "p12.1",
+                "missing": False,
+                "latest": {
+                    "file": f.name,
+                    "date": d.get("date", ""),
+                    "round_id": d.get("round_id", ""),
+                    "generated_at": d.get("generated_at", ""),
+                    "summary": d.get("summary", {}),
+                },
+            }
+        except Exception:
+            continue
+
+    return {
+        "version": "p12.1",
+        "missing": True,
+        "error": "no valid daily reports found",
+        "latest": None,
+    }
