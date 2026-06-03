@@ -1,0 +1,19 @@
+{
+  "version": "p13.0",
+  "round_id": "run-6",
+  "date": "2026-06-03",
+  "status": "BLOCKED_PROVIDER_NOT_CONFIGURED",
+  "summary": {
+    "provider": "the_odds_api",
+    "configured": false,
+    "provider_responded": null,
+    "matched_internal_matches": 0,
+    "valid_odds_rows": 0,
+    "coverage_status": "real_odds_provider_not_configured"
+  },
+  "blocks": [],
+  "warnings": [
+    "THE_ODDS_API_KEY is not set"
+  ],
+  "generated_at": "2026-06-03T22:17:41.887822+00:00"
+}

@@ -1,6 +1,6 @@
 {
-  "version": "p10.1",
-  "updated_at": "2026-06-03T16:10:28Z",
+  "version": "p13.0",
+  "updated_at": "2026-06-03T22:17:50Z",
   "snapshots": [
     {
       "date": "2026-06-03",
@@ -9,7 +9,11 @@
       "path": "data/pool/odds_snapshots/2026-06-03_T-1h.json",
       "odds_rows": 147,
       "valid_odds_rows": 0,
-      "missing_market_coverage": 63
+      "missing_market_coverage": 63,
+      "coverage_status": "odds_snapshots_present_but_missing_market_coverage",
+      "provider_unavailable": false,
+      "provider_responded": false,
+      "matched_internal_matches": 21
     }
   ]
 }
