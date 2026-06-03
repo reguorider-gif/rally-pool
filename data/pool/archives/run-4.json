@@ -1,0 +1,43 @@
+{
+  "version": "p9.2",
+  "updated_at": "2026-06-03T19:07:00Z",
+  "round_id": "run-4",
+  "title": "Run #4 post-match archive",
+  "status": "settlement_review_ready_12_of_13",
+  "recovery": {
+    "method": "chrome_cdp_page_text",
+    "recovered": 12,
+    "missing": ["xai"],
+    "missing_reason": "Grok free limit reached"
+  },
+  "settled_results": [
+    {"match_id": "UCL-001", "result": "PSG 1-1 Arsenal, PSG won on penalties", "status": "settled", "source": "UEFA post-match record"},
+    {"match_id": "WARM-002", "result": "Brazil 6-2 Panama", "status": "verified_score_pending_odds", "source": "FIFA / CBF match report"},
+    {"match_id": "WARM-003", "result": "USA 3-2 Senegal", "status": "verified_score_pending_odds", "source": "U.S. Soccer match report"},
+    {"match_id": "WARM-004", "result": "Germany 4-0 Finland", "status": "verified_score_pending_odds", "source": "DFB match report"}
+  ],
+  "rules": {
+    "development_loan": "300GP / 10%",
+    "emergency_loan": "500GP / 20%",
+    "high_risk_expansion_loan": "800GP / 30%",
+    "top_rewards": {"rank_1": 300, "rank_2": 200, "rank_3": 100},
+    "most_improved": 150,
+    "best_source_contribution": 100,
+    "comeback_bonus": 200
+  },
+  "model_records": {
+    "deepseek": {"status": "recovered", "loan": "declined", "bets": "Finland +2.5 heavy; USA vs Senegal Under 2.5; Brazil -1.5 light", "risk": "Stop at -350GP; void Finland +2.5 if Germany starts full strength.", "source": "travel fatigue, Germany rotation, odds API, lineup confirmation", "settlement_signal": "Brazil -1.5 hit; Finland +2.5 and USA-Senegal Under 2.5 missed. Lower small-ball weight for Run #5.", "eligible_for_consensus": true, "needs_rerun": false},
+    "gemini": {"status": "recovered", "loan": "300GP development loan", "bets": "Norway win 300; Belgium-Croatia draw 400; France-CIV Under 2.5 500; Spain -1.5 300", "risk": "Stop after -600GP day; cancel if lineup overlap below 70%.", "source": "friendly starter minutes, Sweden rebuild, France hidden-strength pattern", "settlement_signal": "No direct 5/31 settlement signal; carry Run #4 context into Run #5.", "eligible_for_consensus": true, "needs_rerun": false},
+    "chatgpt": {"status": "recovered", "loan": "declined", "bets": "Brazil -1.5 50; Senegal +0.5 35; Germany -1.5 55; Norway DNB 40; Belgium-Croatia Under 3 35; France -1 45; Spain -2 45; Spain futures 30", "risk": "Single-match cap 55GP; cancel below odds threshold or on heavy rotation.", "source": "FIFA/Reuters/NBC, injuries, odds thresholds", "settlement_signal": "Brazil -1.5 and Germany -1.5 hit; Senegal +0.5 missed. Small-stake discipline held.", "eligible_for_consensus": true, "needs_rerun": false},
+    "claude": {"status": "recovered", "loan": "300GP development loan", "bets": "Germany win + Over 2.5 200; Norway-Sweden draw 150; France win + Over 1.5 200; Spain -1.5 80; Belgium win 100", "risk": "Freeze at -350GP; cancel France if Mbappe absent; add Belgium if Modric absent.", "source": "injury board, Germany test XI, Spain rotation, travel fatigue", "settlement_signal": "Germany win + Over 2.5 hit. Development-loan strategy remains eligible for another run.", "eligible_for_consensus": true, "needs_rerun": false},
+    "yuanbao": {"status": "recovered", "loan": "declined", "bets": "Brazil -2.5 150; USA-Senegal Under 2.5 120; Norway-Sweden draw 100; Belgium -0.5 130; France -1.5 140; Spain -2.5 160", "risk": "Cancel if lineup differs by 2+ starters; add 20% on favorable odds move >=0.2.", "source": "injury reports, odds movement, travel, locker room", "settlement_signal": "Brazil -2.5 hit; USA-Senegal Under 2.5 missed. Add high-scoring friendly correction.", "eligible_for_consensus": true, "needs_rerun": false},
+    "wenxin": {"status": "recovered", "loan": "800GP high-risk expansion loan", "bets": "Norway-Sweden draw 200; Belgium-Croatia Under 2.25 300; France -1.5 600; Spain -2.5 820", "risk": "Main risk is favorite friendly under-effort; cancel Spain handicap without core midfield.", "source": "Belgium/Croatia fatigue, favorite rotation, Spain injuries", "settlement_signal": "No direct 5/31 settlement signal; carry Run #4 context into Run #5.", "eligible_for_consensus": true, "needs_rerun": false},
+    "qwen": {"status": "recovered", "loan": "300GP development loan", "bets": "USA-Senegal BTTS & Under 2.5 150; Sweden DNB 200; Croatia +0.5 & Over 2.5 180; France -0.5 & Over 2.5 250; Spain -1 170", "risk": "Stop-loss 300GP; cancel if >3 key starters rested.", "source": "injuries, market consensus, pressing data, travel/timezone", "settlement_signal": "No direct 5/31 settlement signal; carry Run #4 context into Run #5.", "eligible_for_consensus": true, "needs_rerun": false},
+    "kimi": {"status": "recovered", "loan": "declined", "bets": "Brazil -2.5 150; Over 3.5 100; Senegal X2 120; USA-Senegal Under 2.5 80; Germany -1.5 100; Norway win 100; group-stage preview 150", "risk": "Stop at 80% single-match loss; halve Brazil stake on rotation.", "source": "Yahoo Sports, RotoWire, 1xBet, Group I tactical notes", "settlement_signal": "Brazil -2.5, Brazil Over 3.5 and Germany -1.5 hit; Senegal X2 and USA Under missed.", "eligible_for_consensus": true, "needs_rerun": false},
+    "mimo": {"status": "recovered", "loan": "declined", "bets": "USA win 100 conditional; Norway win 150 conditional; Croatia DNB/+0.5 150; Belgium-Croatia draw 50; France-CIV Over 2.5 100", "risk": "Total stop 500GP; cancel on core absence; add if odds rise >10%.", "source": "FIFA ranking, tournament history, live odds, starters/injuries", "settlement_signal": "No direct 5/31 settlement signal; carry Run #4 context into Run #5.", "eligible_for_consensus": true, "needs_rerun": false},
+    "minimax": {"status": "recovered", "loan": "declined", "bets": "Brazil -2.5/O2.5 120; USA-Senegal draw/U2.5 80; Germany -1.5/O2.5 100; Sweden DNB/draw 100; Belgium +0.25/O2.5 150; France -1.5/O2.5 200", "risk": "Max loss 750GP; avoid one-team ML below 1.5.", "source": "injury reports, training observations, odds movement, weather, travel fatigue", "settlement_signal": "Brazil -2.5/O2.5 and Germany -1.5/O2.5 hit; USA draw/Under missed.", "eligible_for_consensus": true, "needs_rerun": false},
+    "doubao": {"status": "recovered", "loan": "declined; if bottom 3 then 800GP high-risk loan", "bets": "Brazil -1.5 1200; France-CIV Over 2.5 1500; group-stage Spain win 1000", "risk": "Downgrade if human-supplied injury/window definitions are missing.", "source": "official pressers, FIFA/team social, Bet365, weather, tactical pressers", "settlement_signal": "Brazil -1.5 heavy direction hit; require odds, repayment path and stop-loss before exact GP settlement.", "eligible_for_consensus": true, "needs_rerun": false},
+    "meta": {"status": "recovered", "loan": "not specified; rule-lock first", "bets": "No bet table; recommends locking 13-seat account snapshot and pending-settlement flags first.", "risk": "Loan seats must target 2.5x principal+interest; no-source heavy bet -100GP.", "source": "exclusive-source share, starters, weather, travel, locker-room credibility", "settlement_signal": "No bet table; its warning against premature ROI settlement was correct.", "eligible_for_consensus": true, "needs_rerun": false},
+    "xai": {"status": "missing_limit", "loan": "not submitted", "bets": "not submitted", "risk": "Grok returned free limit reached; not counted in consensus.", "source": "none", "settlement_signal": "No settlement because Grok did not submit a usable answer.", "eligible_for_consensus": false, "needs_rerun": false}
+  }
+}

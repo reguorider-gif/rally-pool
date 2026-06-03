@@ -1,0 +1,36 @@
+{
+  "model_account": "deepseek",
+  "round_id": "run-6",
+  "loan_decision": {
+    "amount": 300,
+    "reason": "Identifying value in handicap markets for underdogs."
+  },
+  "bet_ledger": [
+    {
+      "match_id": "WARM-002",
+      "market": "handicap",
+      "selection": "Brazil -1.5",
+      "stake": 200,
+      "odds": 1.85,
+      "confidence": 0.68,
+      "reason": "Brazil likely to win by 2+ at home.",
+      "cancel_if": "core starters rested"
+    },
+    {
+      "match_id": "WARM-005",
+      "market": "moneyline",
+      "selection": "France",
+      "stake": 150,
+      "odds": 2.10,
+      "confidence": 0.55,
+      "reason": "France solid form, good value.",
+      "cancel_if": ""
+    }
+  ],
+  "risk_rules": {
+    "max_loss": 500,
+    "stop_after_losses": 2
+  },
+  "source_cards": [],
+  "betting_thought": "Focusing on strong home teams with handicap value. Loan justified by multiple value spots."
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/match_result.schema.json",
+  "title": "Match Result",
+  "description": "Final result of a completed match with source provenance.",
+  "type": "object",
+  "required": ["match_id", "status", "provider", "fetched_at"],
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "References match_id from match schema."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["scheduled", "live", "finished", "postponed", "cancelled", "unknown"],
+      "description": "Final match status."
+    },
+    "home_score": {
+      "type": ["integer", "null"],
+      "description": "Home team final score. Must be null if match is not finished."
+    },
+    "away_score": {
+      "type": ["integer", "null"],
+      "description": "Away team final score. Must be null if match is not finished."
+    },
+    "halftime_score": {
+      "type": ["object", "null"],
+      "description": "Half-time score if available.",
+      "properties": {
+        "home": { "type": ["integer", "null"] },
+        "away": { "type": ["integer", "null"] }
+      }
+    },
+    "red_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "team": { "type": "string" },
+          "player": { "type": "string" },
+          "minute": { "type": ["integer", "null"] }
+        }
+      },
+      "description": "Red cards issued during the match."
+    },
+    "injury_notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Notable injuries that may affect betting settlement."
+    },
+    "provider": {
+      "type": "string",
+      "description": "Result data provider."
+    },
+    "source_url": {
+      "type": "string",
+      "description": "URL to the official result source."
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when result was fetched."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in result accuracy."
+    },
+    "extra_time": {
+      "type": ["object", "null"],
+      "description": "Extra time score if applicable.",
+      "properties": {
+        "home": { "type": ["integer", "null"] },
+        "away": { "type": ["integer", "null"] }
+      }
+    },
+    "penalties": {
+      "type": ["object", "null"],
+      "description": "Penalty shootout score if applicable.",
+      "properties": {
+        "home": { "type": ["integer", "null"] },
+        "away": { "type": ["integer", "null"] }
+      }
+    }
+  },
+  "additionalProperties": false
+}

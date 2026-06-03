@@ -1,0 +1,53 @@
+{
+  "version": "p9.3",
+  "round_id": "run-5",
+  "generated_at": "2026-06-03T12:17:22Z",
+  "max_attempts": 3,
+  "queue": [
+    {
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "current_status": "context_polluted",
+      "reason": "Detected legacy/werewolf context pollution",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "high"
+    },
+    {
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "current_status": "placeholder_only",
+      "reason": "Output is placeholder only",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "medium"
+    },
+    {
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "current_status": "placeholder_only",
+      "reason": "Output is placeholder only",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "medium"
+    },
+    {
+      "model_account": "xai",
+      "seat_id": "xai",
+      "current_status": "quota_blocked",
+      "reason": "Quota/rate limit blocked",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "high"
+    },
+    {
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "current_status": "placeholder_only",
+      "reason": "Output is placeholder only",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "medium"
+    }
+  ]
+}

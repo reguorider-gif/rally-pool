@@ -1,0 +1,73 @@
+{
+  "date": "2026-06-03",
+  "round_id": "run-6",
+  "summary": "Run #6 completed with 8/14 valid receipts. 3 models need rerun, 2 excluded due to context pollution, 1 quota blocked.",
+  "model_status_counts": {
+    "valid_receipt": 8,
+    "needs_rerun": 3,
+    "context_polluted": 2,
+    "quota_blocked": 1,
+    "placeholder_only": 0,
+    "auth_blocked": 0,
+    "timeout": 0,
+    "parse_error": 0,
+    "risk_refusal": 0,
+    "excluded_from_consensus": 0,
+    "total_seats": 14
+  },
+  "risk_summary": {
+    "total_stake": 4200,
+    "max_single_risk": 500,
+    "total_loans_issued": 600,
+    "models_with_stop_loss": 6,
+    "models_exceeding_max_loss": 0
+  },
+  "data_gaps": [
+    {
+      "gap_type": "missing_odds",
+      "match_id": "WARM-008",
+      "model_account": null,
+      "description": "No T-1h odds snapshot for WARM-008."
+    },
+    {
+      "gap_type": "missing_result",
+      "match_id": "WARM-010",
+      "model_account": null,
+      "description": "WARM-010 finished but result not yet synced."
+    },
+    {
+      "gap_type": "missing_model_output",
+      "match_id": null,
+      "model_account": "gemini",
+      "description": "Gemini output not collected (auth_blocked)."
+    }
+  ],
+  "next_actions": [
+    {
+      "action": "rerun_model",
+      "target": "claude,perplexity,qwen",
+      "priority": "high",
+      "reason": "3 models returned placeholder_only or parse_error."
+    },
+    {
+      "action": "wait_for_settlement",
+      "target": "WARM-010,WARM-011",
+      "priority": "medium",
+      "reason": "Matches finished, awaiting result sync."
+    },
+    {
+      "action": "manual_review",
+      "target": "WARM-008 odds",
+      "priority": "low",
+      "reason": "Missing odds snapshot, manual entry needed."
+    }
+  ],
+  "generated_files": [
+    "data/pool/bet_receipts/run-6.json",
+    "data/pool/model_runs/run-6.json",
+    "data/pool/settlements/run-6.json",
+    "data/pool/daily_reports/2026-06-03_run-6.json",
+    "data/pool/daily_reports/2026-06-03_run-6.md"
+  ],
+  "created_at": "2026-06-03T23:30:00Z"
+}

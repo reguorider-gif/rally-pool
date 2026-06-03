@@ -1,0 +1,15 @@
+{
+  "version": "p10.1",
+  "updated_at": "2026-06-03T14:26:50Z",
+  "snapshots": [
+    {
+      "date": "2026-06-03",
+      "snapshot_label": "T-1h",
+      "provider": "manual_stub",
+      "path": "data/pool/odds_snapshots/2026-06-03_T-1h.json",
+      "odds_rows": 147,
+      "valid_odds_rows": 0,
+      "missing_market_coverage": 63
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/daily_report.schema.json",
+  "title": "Daily Report",
+  "description": "Automated daily report summarizing pool activity, model status, risk exposure, and data gaps.",
+  "type": "object",
+  "required": ["date", "round_id", "model_status_counts", "risk_summary", "data_gaps", "next_actions", "created_at"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Report date in YYYY-MM-DD format."
+    },
+    "round_id": {
+      "type": "string",
+      "description": "Round identifier this report covers."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Human-readable summary of the day's activity."
+    },
+    "model_status_counts": {
+      "type": "object",
+      "required": ["valid_receipt", "needs_rerun", "context_polluted", "quota_blocked", "placeholder_only", "auth_blocked", "timeout", "parse_error", "risk_refusal", "excluded_from_consensus"],
+      "properties": {
+        "valid_receipt": { "type": "integer", "minimum": 0, "description": "Models with valid receipts." },
+        "needs_rerun": { "type": "integer", "minimum": 0, "description": "Models pending rerun." },
+        "context_polluted": { "type": "integer", "minimum": 0, "description": "Models with context pollution." },
+        "quota_blocked": { "type": "integer", "minimum": 0, "description": "Models blocked by quota." },
+        "placeholder_only": { "type": "integer", "minimum": 0, "description": "Models returning only placeholder text." },
+        "auth_blocked": { "type": "integer", "minimum": 0, "description": "Models with auth failures." },
+        "timeout": { "type": "integer", "minimum": 0, "description": "Models that timed out." },
+        "parse_error": { "type": "integer", "minimum": 0, "description": "Models with parse errors." },
+        "risk_refusal": { "type": "integer", "minimum": 0, "description": "Models that refused but provided audit output." },
+        "excluded_from_consensus": { "type": "integer", "minimum": 0, "description": "Models excluded from consensus." },
+        "total_seats": { "type": "integer", "minimum": 0, "description": "Total number of seats in the pool." }
+      },
+      "description": "Counts of models by run status."
+    },
+    "risk_summary": {
+      "type": "object",
+      "properties": {
+        "total_stake": { "type": "integer", "minimum": 0, "description": "Total GP staked across all valid receipts." },
+        "max_single_risk": { "type": "integer", "minimum": 0, "description": "Largest single bet stake in GP." },
+        "total_loans_issued": { "type": "integer", "description": "Total GP in loans issued this round." },
+        "models_with_stop_loss": { "type": "integer", "minimum": 0, "description": "Models that defined stop-loss rules." },
+        "models_exceeding_max_loss": { "type": "integer", "minimum": 0, "description": "Models whose total stake exceeds their max_loss." }
+      },
+      "description": "Risk exposure summary."
+    },
+    "data_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gap_type": {
+            "type": "string",
+            "enum": ["missing_odds", "missing_result", "missing_source", "missing_model_output", "missing_schedule"],
+            "description": "Type of data gap."
+          },
+          "match_id": { "type": "string", "description": "Related match if applicable." },
+          "model_account": { "type": "string", "description": "Related model if applicable." },
+          "description": { "type": "string", "description": "Human-readable description of the gap." }
+        }
+      },
+      "description": "List of data gaps requiring attention."
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": { "type": "string", "description": "Action to take, e.g. 'rerun_model', 'wait_for_settlement', 'manual_review'." },
+          "target": { "type": "string", "description": "Target of the action (model name, match_id, etc.)." },
+          "priority": { "type": "string", "enum": ["high", "medium", "low"], "description": "Action priority." },
+          "reason": { "type": "string", "description": "Why this action is needed." }
+        }
+      },
+      "description": "Recommended next actions."
+    },
+    "generated_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of files generated during the daily pipeline run."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when report was generated."
+    }
+  },
+  "additionalProperties": false
+}

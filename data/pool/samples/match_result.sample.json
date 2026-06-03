@@ -1,0 +1,15 @@
+{
+  "match_id": "WARM-002",
+  "status": "finished",
+  "home_score": 6,
+  "away_score": 2,
+  "halftime_score": { "home": 3, "away": 1 },
+  "red_cards": [],
+  "injury_notes": [],
+  "provider": "manual",
+  "source_url": "https://example.com/match/WARM-002",
+  "fetched_at": "2026-06-03T22:15:00Z",
+  "confidence": 0.9,
+  "extra_time": null,
+  "penalties": null
+}

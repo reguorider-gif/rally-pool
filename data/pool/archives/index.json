@@ -1,0 +1,8 @@
+{
+  "version": "p9.2",
+  "updated_at": "2026-06-03T19:07:00Z",
+  "rounds": [
+    {"round_id": "run-4", "title": "Run #4 post-match archive", "status": "settlement_review_ready_12_of_13", "file": "run-4.json"},
+    {"round_id": "run-5", "title": "Run #5 recovered model betting archive", "status": "recovered_7_of_13_plus_1_audit", "file": "run-5.json"}
+  ]
+}

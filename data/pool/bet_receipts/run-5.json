@@ -1,0 +1,27 @@
+{
+  "version": "p10.2",
+  "round_id": "run-5",
+  "date": "2026-06-03",
+  "snapshot_label": "T-1h",
+  "generated_at": "2026-06-03T14:44:31Z",
+  "summary": {
+    "models_total": 13,
+    "models_eligible": 7,
+    "models_ineligible": 6,
+    "models_with_structured_receipts": 0,
+    "candidate_bets": 0,
+    "accepted_bets": 0,
+    "manual_review_bets": 0,
+    "rejected_bets": 13,
+    "valid_for_settlement": false
+  },
+  "accepted_receipts": [],
+  "manual_review_receipts": [],
+  "source_files": [
+    "data/pool/model_runs/run-5.json",
+    "data/pool/model_outputs/run-5.json",
+    "data/pool/odds_snapshots/2026-06-03_T-1h.json",
+    "data/pool/matches/current.json",
+    "data/pool/leaderboard/current.json"
+  ]
+}

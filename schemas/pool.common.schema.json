@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/pool.common.schema.json",
+  "title": "AI Judge Pool Common Enumerations",
+  "description": "Shared enumerations used across all pool data schemas.",
+  "type": "object",
+  "$defs": {
+    "model_run_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "valid_receipt",
+        "placeholder_only",
+        "context_polluted",
+        "quota_blocked",
+        "auth_blocked",
+        "timeout",
+        "parse_error",
+        "risk_refusal",
+        "needs_rerun",
+        "excluded_from_consensus"
+      ],
+      "description": "Status of a model run in a given round. Only 'valid_receipt' and 'risk_refusal' are audit-eligible; others are failures or intermediates."
+    },
+    "match_status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "live",
+        "finished",
+        "postponed",
+        "cancelled",
+        "unknown"
+      ],
+      "description": "Current status of a match."
+    },
+    "settlement_status": {
+      "type": "string",
+      "enum": [
+        "unsettled",
+        "settled",
+        "push",
+        "void",
+        "manual_review",
+        "error"
+      ],
+      "description": "Settlement status of a bet receipt after match conclusion."
+    },
+    "market_type": {
+      "type": "string",
+      "enum": [
+        "moneyline",
+        "handicap",
+        "total_goals",
+        "btts",
+        "double_chance",
+        "manual_review"
+      ],
+      "description": "Type of betting market. 'manual_review' means the market type is not auto-settleable."
+    },
+    "bet_outcome": {
+      "type": "string",
+      "enum": [
+        "win",
+        "loss",
+        "push",
+        "void",
+        "manual_review",
+        "unsettled",
+        "error"
+      ],
+      "description": "Outcome of a single bet after settlement."
+    },
+    "snapshot_label": {
+      "type": "string",
+      "enum": [
+        "T-24h",
+        "T-6h",
+        "T-1h",
+        "T-15m",
+        "manual"
+      ],
+      "description": "Label for when an odds snapshot was taken relative to kickoff."
+    }
+  }
+}

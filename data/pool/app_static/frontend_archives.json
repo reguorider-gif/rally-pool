@@ -1,0 +1,423 @@
+{
+  "version": "p9.2.1",
+  "updated_at": "2026-06-03T00:00:00Z",
+  "round_results": [
+    {
+      "code": "UCL-001",
+      "match": "PSG 1-1 Arsenal · 巴黎点球胜",
+      "status": "已结算",
+      "cls": "status-ok",
+      "note": "Run #3 欧冠前哨；13 席口径完成补齐，DeepSeek 三线命中。"
+    },
+    {
+      "code": "WARM-002",
+      "match": "Brazil 6-2 Panama",
+      "status": "已核验",
+      "cls": "status-ok",
+      "note": "高比分打穿小球共识；Brazil -1.5/-2.5 与大球方向命中，精确 GP 待赔率口径。"
+    },
+    {
+      "code": "WARM-003",
+      "match": "USA 3-2 Senegal",
+      "status": "已核验",
+      "cls": "status-ok",
+      "note": "USA 胜命中，Senegal 受让与小球方向失误；赛后写入主场强度与防线波动。"
+    },
+    {
+      "code": "WARM-004",
+      "match": "Germany 4-0 Finland",
+      "status": "已核验",
+      "cls": "status-ok",
+      "note": "Germany -1.5、胜+大2.5 命中；Finland +2.5 和低比分假设失败。"
+    },
+    {
+      "code": "RUN4",
+      "match": "AI Judge Run #4 模型下注",
+      "status": "进入复盘",
+      "cls": "status-run",
+      "note": "12 席真实发言已回收；Grok 因额度限制缺席。"
+    },
+    {
+      "code": "RUN5",
+      "match": "AI Judge Run #5 模型下注",
+      "status": "7 策略 + 1 审计",
+      "cls": "status-wait",
+      "note": "DeepSeek / Gemini / 通义 / 豆包 / 元宝 / MiMo / Meta 有效；Claude 为风险审计；ChatGPT/Kimi/文心/MiniMax/xAI 待补跑或额度恢复。"
+    }
+  ],
+  "run4_source_tasks": [
+    {
+      "title": "赛事结果链",
+      "body": "5/31 三场已补入比分：Brazil 6-2 Panama、USA 3-2 Senegal、Germany 4-0 Finland；下一步补红黄牌、首发、xG、伤停和收盘值。"
+    },
+    {
+      "title": "投注比例链",
+      "body": "记录开赛前模型投注比例、GP 分布、贷款资金占比和观望席位理由；已先标记方向性命中/失误，精确返还待赔率口径。"
+    },
+    {
+      "title": "模型情报链",
+      "body": "Run #5 前要求每个模型解释自己在 5/31 的误差：低估强队进攻、错判小球、还是首发/战意信源不足。"
+    },
+    {
+      "title": "收益复盘链",
+      "body": "赛后归档返还、净收益、盈收比、奖金、贷款利息、还款状态和是否触发惩罚；不允许无赔率凭空结算 GP。"
+    }
+  ],
+  "ucl_bets": [
+    [
+      "DeepSeek",
+      "PSG 冠军 / 小2.5 / 平局",
+      "960",
+      "1810",
+      "三线命中，补齐结果"
+    ],
+    [
+      "MiMo",
+      "PSG 冠军 + 小球",
+      "1000",
+      "1600",
+      "路径判断正确"
+    ],
+    [
+      "ChatGPT",
+      "PSG 不败 + 小2.5",
+      "900",
+      "1450",
+      "稳健盈利"
+    ],
+    [
+      "MiniMax",
+      "PSG 冠军",
+      "900",
+      "1400",
+      "跟随热门成功"
+    ],
+    [
+      "元宝",
+      "PSG 冠军",
+      "800",
+      "1200",
+      "中等收益"
+    ],
+    [
+      "Claude",
+      "小球 / 平局保护",
+      "700",
+      "1150",
+      "审慎命中"
+    ],
+    [
+      "Meta AI",
+      "PSG 方向",
+      "700",
+      "1100",
+      "新席位收益"
+    ],
+    [
+      "通义",
+      "冠军盘",
+      "700",
+      "1100",
+      "集中仓位有效"
+    ],
+    [
+      "文心",
+      "小球",
+      "700",
+      "1100",
+      "保守盈利"
+    ],
+    [
+      "豆包",
+      "PSG + 平局",
+      "700",
+      "1100",
+      "高波动命中"
+    ],
+    [
+      "Gemini",
+      "保守小球",
+      "650",
+      "850",
+      "小幅回撤"
+    ],
+    [
+      "xAI",
+      "阿森纳高赔反打",
+      "700",
+      "400",
+      "触发贷款资格"
+    ],
+    [
+      "Kimi",
+      "阿森纳方向",
+      "800",
+      "200",
+      "濒临出局"
+    ]
+  ],
+  "run4_model_archive": [
+    {
+      "seat": "DeepSeek",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "Finland +2.5 重仓；USA vs Senegal 小2.5；Brazil -1.5 轻仓",
+      "thought": "赛后：Brazil -1.5 命中，但 Finland +2.5 与 USA-Senegal 小2.5 均被大比分打穿，守榜逻辑需要降权小球模型。",
+      "sources": "旅行疲劳、德国轮换、赔率 API、赛前首发确认",
+      "risk": "总亏损 ≥350GP 停止；Run #5 必须解释为何低估德国/美国进攻。"
+    },
+    {
+      "seat": "Gemini",
+      "status": "已回收",
+      "loan": "300GP 发展贷款",
+      "bets": "Norway 胜 300；Belgium-Croatia 平 400；France-CIV 小2.5 500；Spain -1.5 300",
+      "thought": "落后席位需要方差追赶，避开低赔胜负，转向平局、小球和让球。",
+      "sources": "热身赛主力出场时间、瑞典换血、法国隐藏实力",
+      "risk": "单日亏损超过 600GP 停止；首发重合低于 70% 撤单。"
+    },
+    {
+      "seat": "ChatGPT",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "Brazil -1.5 50；Senegal +0.5 35；Germany -1.5 55；Norway DNB 40；Belgium-Croatia 小3 35；France -1 45；Spain -2 45",
+      "thought": "赛后：Brazil -1.5 与 Germany -1.5 命中，Senegal +0.5 失误；小仓纪律有效，Run #5 可提高强队让球权重。",
+      "sources": "FIFA/Reuters/NBC、美国伤停、巴西阵容、赔率阈值",
+      "risk": "单场不超过 55GP；低于赔率阈值或首发轮换即撤。"
+    },
+    {
+      "seat": "Claude",
+      "status": "已回收",
+      "loan": "300GP 发展贷款",
+      "bets": "Germany 胜+大2.5 200；Norway-Sweden 平 150；France 胜+大1.5 200；Spain -1.5 80；Belgium 胜 100",
+      "thought": "赛后：Germany 胜+大2.5 命中，是 Run #4 最关键的反小球样本；发展贷款策略获得继续试运行资格。",
+      "sources": "伤停、德国测试阵容、西班牙轮换、法国旅行疲劳",
+      "risk": "总亏损 >350GP 冻结；姆巴佩缺席撤 France；莫德里奇缺席加 Belgium。"
+    },
+    {
+      "seat": "元宝",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "Brazil -2.5 150；USA-Senegal 小2.5 120；Norway-Sweden 平 100；Belgium -0.5 130；France -1.5 140；Spain -2.5 160",
+      "thought": "赛后：Brazil -2.5 命中，但 USA-Senegal 小2.5 失误；Run #5 需把强队/主场热身赛进攻意愿加入权重。",
+      "sources": "伤停、赔率走势、旅行数据、更衣室新闻",
+      "risk": "首发偏差 ≥2 名主力全额撤单；赔率有利移动 ≥0.2 加注 20%。"
+    },
+    {
+      "seat": "文心",
+      "status": "已回收",
+      "loan": "800GP 高风险扩张贷款",
+      "bets": "Norway-Sweden 平 200；Belgium-Croatia 小2.25 300；France -1.5 600；Spain -2.5 820",
+      "thought": "利用强弱对话窗口做非线性追赶，不预支 5/31 待确认收益。",
+      "sources": "比利时/克罗地亚消耗、强队轮换、西班牙伤停",
+      "risk": "强队热身赛小胜风险最大；西班牙无主力中场则撤让球。"
+    },
+    {
+      "seat": "通义",
+      "status": "已回收",
+      "loan": "300GP 发展贷款",
+      "bets": "USA-Senegal BTTS&小2.5 150；Sweden DNB 200；Croatia +0.5&大2.5 180；France -0.5&大2.5 250；Spain -1 170",
+      "thought": "从结果胜率转向过程盘口，使用旅行疲劳和赔率偏差做扩仓。",
+      "sources": "伤停、赔率共识、压迫数据、旅行/时差、热身赛动机",
+      "risk": "止损 300GP；关键首发休息 >3 人取消。"
+    },
+    {
+      "seat": "Kimi",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "Brazil -2.5 150；Over 3.5 100；Senegal X2 120；USA-Senegal 小2.5 80；Germany -1.5 100；Norway 胜 100；小组赛前瞻 150",
+      "thought": "赛后：Brazil -2.5、Brazil 大3.5、Germany -1.5 命中，Senegal X2 与 USA 小球失误；属于高方差但有信息优势的样本。",
+      "sources": "Yahoo Sports、RotoWire、1xBet、Group I 战术拆解",
+      "risk": "单赛亏损 80% 即停；巴西首发轮换则减半。"
+    },
+    {
+      "seat": "MiMo",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "USA 胜 100 条件单；Norway 胜 150 条件单；Croatia DNB/+0.5 150；Belgium-Croatia 平 50；France-CIV 大2.5 100",
+      "thought": "热身赛信号噪声比低，保留贷款额度到小组赛，主攻信息不对称。",
+      "sources": "FIFA Ranking、历史大赛表现、实时赔率、首发/伤停、轮换规律",
+      "risk": "总止损 500GP；核心球员缺席撤；赔率上升 >10% 加注。"
+    },
+    {
+      "seat": "MiniMax",
+      "status": "已回收",
+      "loan": "不申请贷款",
+      "bets": "Brazil -2.5/O2.5 120；USA-Senegal 平/小2.5 80；Germany -1.5/O2.5 100；Sweden DNB/平 100；Belgium +0.25/O2.5 150；France -1.5/O2.5 200",
+      "thought": "赛后：Brazil -2.5/O2.5 与 Germany -1.5/O2.5 命中，USA-Senegal 平/小2.5 失误；组合盘方向优于纯小球。",
+      "sources": "伤病、训练观察、赔率移动、天气、旅行疲劳",
+      "risk": "最大亏损 750GP；低于 1.5 的单队独赢全部回避。"
+    },
+    {
+      "seat": "豆包",
+      "status": "已回收",
+      "loan": "不申请；若后 3 则申请 800GP",
+      "bets": "Brazil -1.5 1200；France-CIV 大2.5 1500；小组赛 Spain 胜 1000",
+      "thought": "赛后：Brazil -1.5 大额方向命中，但仓位极重；Run #5 继续允许冒险，必须附赔率、还款路径和止损。",
+      "sources": "官方新闻发布会、FIFA/球队官推、Bet365、天气、战术发布会",
+      "risk": "信息缺口未补则降级；重仓必须注明已验证/假设信息。"
+    },
+    {
+      "seat": "Meta AI",
+      "status": "已回收",
+      "loan": "未给下注表，要求先锁规则",
+      "bets": "建议先锁 13 席上下文、账户快照和 5/31 待结算标记",
+      "thought": "赛后：Meta 对“不要未完赛写 ROI”的约束正确；现在比分可写入，但金额结算仍需赔率与盘口规则。",
+      "sources": "独家信源占比、赛前首发、天气、旅途、更衣室可信度",
+      "risk": "贷款席位须达到本息 2.5 倍；无信源重仓扣 100GP。"
+    },
+    {
+      "seat": "xAI",
+      "status": "缺席",
+      "loan": "未提交",
+      "bets": "未提交",
+      "thought": "Grok 页面显示 Free limit reached，只保留提示词和缺席原因。",
+      "sources": "无",
+      "risk": "下一轮需先确认额度/登录，再允许参审；本轮不计入共识。"
+    }
+  ],
+  "run5_model_archive": [
+    {
+      "seat": "DeepSeek",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 1000GP 发展贷款 · 10% 利率",
+      "stake": "约 2810GP 可用池",
+      "bets": "转向强队让球与大球：Norway/Sweden 大球、France / Spain / Brazil / Germany 方向组合",
+      "thought": "Run #4 的 Finland +2.5 与 USA 小球被打穿，明确下调热身赛小球权重；榜首位置仍允许用贷款放大信息优势。",
+      "sources": "Run #4 赛果、FIFA 日程、首发/伤停待确认、盘口待人类补全",
+      "risk": "没有实际盘口不结算 GP；首发轮换或盘口下跌触发降仓。"
+    },
+    {
+      "seat": "Gemini",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 1000GP 投资贷款 · 总资金 1850GP",
+      "stake": "1850GP",
+      "bets": "Norway-Sweden 大2.5 300；Spain -2.5 400；Brazil -1.5 400；Germany -1.0 350；France -2.0 400",
+      "thought": "承认热身赛小球/净胜衰减模型失效，把 xG 基线从 2.2 上调到 2.8，主攻强队让球与大球。",
+      "sources": "FIFA 赛程、Run #4 已核验比分、强队名单/发布会待复核",
+      "risk": "德国轮换、盘口线升到大3.0、西班牙全替补时撤单。"
+    },
+    {
+      "seat": "通义",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 400GP 发展贷款",
+      "stake": "1500GP",
+      "bets": "Norway/Sweden 大2.5+Sweden -0.25 250；Belgium 胜+大2.5 300；France -1.5+大2.5 300；Spain -2.5+大3.5 250；Brazil -1.5+大2.5 250；Germany 胜+大2.5 150",
+      "thought": "用贷款追赶中游，方向与已核验的强队让球、大球趋势一致，但要求赛前首发与赔率二次确认。",
+      "sources": "Run #4 赛后样本、赛程表、伤停/首发/盘口待补",
+      "risk": "组合盘增加方差；若盘口低于目标赔率或核心轮休则降仓。"
+    },
+    {
+      "seat": "豆包",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 300GP 发展贷款 · 总资金 1400GP",
+      "stake": "1400GP",
+      "bets": "Norway-Sweden 大2.5 200；Belgium -0.5+大2.5 250；France -1.5+大2.5 300；Spain -2.5+大2.5 250；USA-Germany 大3.0 200；Brazil -1.5+大2.5 200",
+      "thought": "上轮 Brazil -1.5 重仓方向命中，但有效投注数量不足；本轮用贷款提高覆盖面，继续押热身赛进攻释放。",
+      "sources": "模型自报 PP 体育/微博/7M/Goal/虎扑/FotMob/搜狐 等，需人类复核可信度",
+      "risk": "来源质量参差，必须进入信源板并标记可靠度；无赔率不做 GP 返还。"
+    },
+    {
+      "seat": "ChatGPT",
+      "status": "待补跑",
+      "cls": "warn",
+      "loan": "未回收",
+      "stake": "0",
+      "bets": "回收内容是旧狼人杀上下文「我竞选警长」，判定会话污染",
+      "thought": "不写入投注共识，只保留异常记录。",
+      "sources": "CDP 回收文本",
+      "risk": "需新建干净会话后补跑。"
+    },
+    {
+      "seat": "Claude",
+      "status": "风险审计",
+      "cls": "warn",
+      "loan": "拒绝贷款下注",
+      "stake": "0",
+      "bets": "不输出仓位表或 JSON 下注回执",
+      "thought": "指出“虚拟 GP + 贷款奖励”会激励模型制造看似有信源支撑的预测，建议将其作为产品风险反馈。",
+      "sources": "模型自述能力边界、赛程观察窗口",
+      "risk": "不计入投注共识，可写入产品风险和合规审计。"
+    },
+    {
+      "seat": "元宝",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 500GP 投资贷款 · 10%/轮",
+      "stake": "约 1500GP",
+      "bets": "Brazil -1.5 300；Argentina 半场小1.5 200；France 独赢 250；Netherlands -1 150；Türkiye 独赢 100",
+      "thought": "跟随强队方向，但在对手过度集中处寻找半场小球或受让分歧，目标冲击前三。",
+      "sources": "FIFA 热身赛日程、欧洲主流体育媒体、赔率/伤停待复核",
+      "risk": "连续两场 ROI 未达 1.3 即暂停新增仓位，优先偿还贷款。"
+    },
+    {
+      "seat": "Kimi",
+      "status": "待补跑",
+      "cls": "warn",
+      "loan": "未回收",
+      "stake": "0",
+      "bets": "占位输出「你的最终答案」",
+      "thought": "Kimi 是低 GP 翻盘席位，必须补跑贷款和高赔率计划。",
+      "sources": "CDP 回收文本",
+      "risk": "补跑时强制输出 JSON 回执。"
+    },
+    {
+      "seat": "文心",
+      "status": "待补跑",
+      "cls": "warn",
+      "loan": "未回收",
+      "stake": "0",
+      "bets": "占位输出「你的最终答案」",
+      "thought": "没有有效投注表。",
+      "sources": "CDP 回收文本",
+      "risk": "补跑时降低上下文长度。"
+    },
+    {
+      "seat": "MiniMax",
+      "status": "待补跑",
+      "cls": "warn",
+      "loan": "未回收",
+      "stake": "0",
+      "bets": "占位输出「你的最终答案」",
+      "thought": "没有有效投注表。",
+      "sources": "CDP 回收文本",
+      "risk": "补跑时确认 Agent 页面进入 chat 状态。"
+    },
+    {
+      "seat": "MiMo",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 300GP 投资贷款 · 10%/轮",
+      "stake": "1200GP 投注 / 700GP 缓冲",
+      "bets": "Mexico 胜 300；USA-Germany 方向仓位；另覆盖 5 场旅行/轮换/主场模型优势赛事",
+      "thought": "用高原主场、长途旅行、轮换压力做信息差，目标从 #2 反超 DeepSeek。",
+      "sources": "FIFA 赛程、主场/旅行距离、教练轮换信号、首发待确认",
+      "risk": "5 场中 3 场命中即可覆盖 330GP 本息；若大面积轮换则降仓。"
+    },
+    {
+      "seat": "Meta AI",
+      "status": "有效回收",
+      "cls": "good",
+      "loan": "申请 800GP 高风险扩张额度 · 30%",
+      "stake": "1400PTS 配置 / 500PTS 缓冲",
+      "bets": "Canada -0.5；Norway-Sweden 小2.5；Côte d'Ivoire +1.5；另覆盖 8 场主场叙事/旅途疲劳方向",
+      "thought": "利用新席位的高频小额和社交语境优势，反向对冲 DeepSeek/Gemini 的数据窄路径。",
+      "sources": "FIFA 赛程、主场叙事、旅途疲劳、首发/场地待确认",
+      "risk": "借贷需回报 ≥1040PTS；首发轮休或场地变化立即撤单。"
+    },
+    {
+      "seat": "xAI",
+      "status": "额度阻断",
+      "cls": "bad",
+      "loan": "未回收",
+      "stake": "0",
+      "bets": "Grok Free limit reached",
+      "thought": "额度恢复前不能补跑。",
+      "sources": "Grok 页面提示",
+      "risk": "先确认额度/登录；否则不计入共识。"
+    }
+  ]
+}

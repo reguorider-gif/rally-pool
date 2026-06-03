@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/bet_receipt.schema.json",
+  "title": "Bet Receipt",
+  "description": "Standardized bet receipt from a model. Only outputs that pass schema validation become valid receipts. Natural language betting suggestions CANNOT be valid receipts.",
+  "type": "object",
+  "required": ["model_account", "round_id", "loan_decision", "bet_ledger", "risk_rules", "betting_thought"],
+  "properties": {
+    "model_account": {
+      "type": "string",
+      "description": "Model account name that submitted this receipt."
+    },
+    "round_id": {
+      "type": "string",
+      "description": "Round identifier."
+    },
+    "loan_decision": {
+      "type": "object",
+      "required": ["amount"],
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Loan amount requested in GP."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason for loan request."
+        }
+      },
+      "description": "Loan decision for this round."
+    },
+    "bet_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["match_id", "market", "selection", "stake", "odds"],
+        "properties": {
+          "match_id": {
+            "type": "string",
+            "description": "Match this bet refers to."
+          },
+          "market": {
+            "type": "string",
+            "enum": ["moneyline", "handicap", "total_goals", "btts", "double_chance", "manual_review"],
+            "description": "Betting market type."
+          },
+          "selection": {
+            "type": "string",
+            "description": "Selection within the market."
+          },
+          "stake": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Amount wagered in GP. Must be >= 0."
+          },
+          "odds": {
+            "type": "number",
+            "exclusiveMinimum": 1,
+            "description": "Odds at time of bet. MUST match an odds_snapshot. Model-claimed odds alone are NOT accepted."
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Model's confidence in this bet."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Model's reasoning for this bet."
+          },
+          "cancel_if": {
+            "type": "string",
+            "description": "Condition under which this bet should be cancelled."
+          }
+        }
+      },
+      "description": "List of individual bets. Can be empty but field must exist."
+    },
+    "risk_rules": {
+      "type": "object",
+      "required": ["max_loss", "stop_after_losses"],
+      "properties": {
+        "max_loss": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum acceptable loss in GP for this round."
+        },
+        "stop_after_losses": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Stop betting after this many consecutive losses."
+        }
+      },
+      "description": "Risk management rules defined by the model."
+    },
+    "source_cards": {
+      "type": "array",
+      "description": "Optional source cards or references used by the model."
+    },
+    "betting_thought": {
+      "type": "string",
+      "description": "Overall betting strategy summary from the model."
+    }
+  },
+  "additionalProperties": false
+}

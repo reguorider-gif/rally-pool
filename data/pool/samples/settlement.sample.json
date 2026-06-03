@@ -1,0 +1,18 @@
+{
+  "round_id": "run-6",
+  "model_account": "chatgpt",
+  "match_id": "WARM-002",
+  "market": "moneyline",
+  "selection": "Brazil",
+  "stake": 200,
+  "odds": 1.85,
+  "outcome": "win",
+  "payout": 370,
+  "profit": 170,
+  "roi": 0.85,
+  "settlement_status": "settled",
+  "settled_at": "2026-06-03T23:00:00Z",
+  "notes": "",
+  "odds_snapshot_id": "WARM-002_T-1h_001",
+  "match_result_source": "https://example.com/match/WARM-002"
+}

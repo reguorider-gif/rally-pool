@@ -1,0 +1,163 @@
+{
+  "version": "p9.3",
+  "round_id": "run-5",
+  "generated_at": "2026-06-03T12:17:22Z",
+  "outputs": [
+    {
+      "round_id": "run-5",
+      "model_account": "gemini",
+      "seat_id": "gemini",
+      "raw_text": "Norway-Sweden over 2.5 300; Spain -2.5 400; Brazil -1.5 400; Germany -1.0 350; France -2.0 400. Admits the small-ball/net-goal-decay model failed and raises warm-up xG baseline from 2.2 to 2.8. FIFA schedule, Run #4 verified scores, favorites' lineup and press conference checks Cancel or reduce if Germany rotates, over line reaches 3.0, or Spain uses a full reserve XI. 1000GP investment loan; total pool 1850GP 1850GP",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "raw_text": "Recovered text was old werewolf context: '我竞选警长'. Do not count in betting consensus; retain as contamination evidence. CDP page text Rerun in a clean conversation.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Detected legacy/werewolf context pollution"],
+      "pollution_signals": [{"signal_type": "context_pollution", "matched_text": "警长", "confidence": 0.9}],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "claude",
+      "seat_id": "claude",
+      "raw_text": "Flags the virtual-GP loan/reward mechanic as a product risk because it may incentivize unsupported predictions. model self-reported capability boundary and schedule-observation feedback Keep as risk/compliance audit, not betting consensus.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Risk/compliance refusal — audit only"],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "yuanbao",
+      "seat_id": "yuanbao",
+      "raw_text": "Brazil -1.5 300; Argentina first-half under 1.5 200; France ML 250; Netherlands -1 150; Türkiye ML 100. Follows favorites where evidence is dense, but looks for half-time under or contrarian angles where opponents crowd the same match. FIFA friendly schedule, European sports media, odds/injuries pending review Pause new positions after two matches below ROI 1.3 and prioritize loan repayment. 500GP investment loan at 10% about 1500GP",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "raw_text": "No valid bet table. CDP page text Use shorter context on rerun.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Output is placeholder only"],
+      "pollution_signals": [{"signal_type": "placeholder_text", "matched_text": "你的最终答案", "confidence": 0.9}],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "deepseek",
+      "seat_id": "deepseek",
+      "raw_text": "Shift to favorites/overs: Norway-Sweden over, France/Spain/Brazil/Germany handicap and over combinations. Run #4 punished Finland +2.5 and USA-Senegal under; lower warm-up small-ball weight while using the lead to borrow for information-backed upside. Run #4 verified scores, FIFA schedule, starters/injuries pending, odds pending human confirmation No exact GP settlement without odds and handicap rules; reduce stake on rotation or line drop. 1000GP development loan at 10% about 2810GP usable pool",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "mimo",
+      "seat_id": "mimo",
+      "raw_text": "Mexico ML 300 and four additional travel/rotation/home-field edge positions including USA-Germany. Uses travel fatigue, altitude home field, and rotation pressure to attack factors pure probability models may underprice. FIFA schedule, home/travel distance, coach rotation signals, starters pending confirmation Three of five hits should cover 330GP principal+interest; reduce on heavy rotation. 300GP investment loan at 10% 1200GP planned bets / 700GP buffer",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "raw_text": "Low-GP comeback seat still needs loan/high-odds plan. CDP page text Force JSON receipt on rerun.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Output is placeholder only"],
+      "pollution_signals": [{"signal_type": "placeholder_text", "matched_text": "你的最终答案", "confidence": 0.9}],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "qwen",
+      "seat_id": "qwen",
+      "raw_text": "Norway-Sweden over 2.5 + Sweden -0.25 250; Belgium win + over 2.5 300; France -1.5 + over 2.5 300; Spain -2.5 + over 3.5 250; Brazil -1.5 + over 2.5 250; Germany win + over 2.5 150. Uses leverage to chase from mid-table, aligned with the verified favorite-handicap and over trend. Run #4 post-match sample, schedule, starters/injuries/odds pending Combo markets add variance; reduce if odds fall below target or core players rest. 400GP development loan 1500GP",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "xai",
+      "seat_id": "xai",
+      "raw_text": "Grok free limit reached. Cannot rerun until quota/login is restored. Grok page notice Exclude from consensus until available.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Quota/rate limit blocked"],
+      "pollution_signals": [{"signal_type": "quota_blocked", "matched_text": "quota", "confidence": 0.9}, {"signal_type": "auth_blocked", "matched_text": "login", "confidence": 0.9}],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "raw_text": "No valid bet table. CDP page text Confirm Agent page is in chat state.",
+      "parsed_json": null,
+      "schema_valid": false,
+      "parse_errors": ["Output is placeholder only"],
+      "pollution_signals": [{"signal_type": "placeholder_text", "matched_text": "你的最终答案", "confidence": 0.9}],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "doubao",
+      "seat_id": "doubao",
+      "raw_text": "Norway-Sweden over 2.5 200; Belgium -0.5 + over 2.5 250; France -1.5 + over 2.5 300; Spain -2.5 + over 2.5 250; USA-Germany over 3.0 200; Brazil -1.5 + over 2.5 200. Brazil -1.5 heavy direction hit in Run #4, but bet count was too low; borrows to broaden coverage while keeping the warm-up over thesis. Self-reported PP Sports, Weibo, 7M, Goal, Hupu, FotMob, Sohu; requires human reliability review Sources have mixed reliability; exact GP settlement waits for odds and source review. 300GP development loan; total pool 1400GP 1400GP",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    },
+    {
+      "round_id": "run-5",
+      "model_account": "meta",
+      "seat_id": "meta",
+      "raw_text": "Canada -0.5; Norway-Sweden under 2.5; Côte d'Ivoire +1.5; plus five more small high-frequency positions. Leans into social-context and home/travel narratives to counter narrow data-model paths. FIFA schedule, home narrative, travel fatigue, starters/venue pending confirmation Loan requires at least 1040PTS return; cancel on lineup or venue changes. 800GP high-risk expansion credit at 30% 1400PTS allocation / 500PTS buffer",
+      "parsed_json": null,
+      "schema_valid": true,
+      "parse_errors": [],
+      "pollution_signals": [],
+      "source_path": "data/pool/archives/run-5.json",
+      "created_at": "2026-06-03T12:17:22Z"
+    }
+  ]
+}

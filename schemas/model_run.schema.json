@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/model_run.schema.json",
+  "title": "Model Run",
+  "description": "Record of a single model's execution in a given round. Tracks status, attempts, and file references.",
+  "type": "object",
+  "required": ["round_id", "model_account", "seat_id", "status", "eligible_for_consensus", "needs_rerun", "attempt_no", "created_at"],
+  "properties": {
+    "round_id": {
+      "type": "string",
+      "description": "Round identifier, e.g. run-6."
+    },
+    "model_account": {
+      "type": "string",
+      "description": "Model account name, e.g. chatgpt, deepseek, kimi."
+    },
+    "seat_id": {
+      "type": "string",
+      "description": "Seat identifier in the pool, usually matches model_account."
+    },
+    "run_marker": {
+      "type": "string",
+      "description": "Unique run marker injected into the prompt. Outputs without matching marker MUST NOT enter consensus. Format: AI_JUDGE_RUN_MARKER:<LABEL>_<ROUND>_<DATE>."
+    },
+    "attempt_no": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Attempt number. Starts at 1. Reruns increment this."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "valid_receipt",
+        "placeholder_only",
+        "context_polluted",
+        "quota_blocked",
+        "auth_blocked",
+        "timeout",
+        "parse_error",
+        "risk_refusal",
+        "needs_rerun",
+        "excluded_from_consensus"
+      ],
+      "description": "Current run status."
+    },
+    "eligible_for_consensus": {
+      "type": "boolean",
+      "description": "Whether this run's output can be included in consensus calculations."
+    },
+    "needs_rerun": {
+      "type": "boolean",
+      "description": "Whether this model needs to be rerun."
+    },
+    "failure_reason": {
+      "type": "string",
+      "description": "Human-readable reason if status is a failure state."
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Identifier for tracing the model execution (e.g. browser session ID, API call ID)."
+    },
+    "prompt_path": {
+      "type": "string",
+      "description": "File path to the prompt used for this run."
+    },
+    "raw_output_path": {
+      "type": "string",
+      "description": "File path to the raw model output."
+    },
+    "parsed_output_path": {
+      "type": "string",
+      "description": "File path to the parsed/validated output."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this run was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this run was last updated."
+    }
+  },
+  "additionalProperties": false
+}

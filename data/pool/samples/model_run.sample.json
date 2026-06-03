@@ -1,0 +1,17 @@
+{
+  "round_id": "run-6",
+  "model_account": "chatgpt",
+  "seat_id": "chatgpt",
+  "run_marker": "AI_JUDGE_RUN_MARKER:WORLD_CUP_RUN6_20260603",
+  "attempt_no": 1,
+  "status": "valid_receipt",
+  "eligible_for_consensus": true,
+  "needs_rerun": false,
+  "failure_reason": "",
+  "trace_id": "trace-chatgpt-run6-001",
+  "prompt_path": "data/pool/prompts/run-6/chatgpt_prompt.json",
+  "raw_output_path": "data/pool/model_outputs/run-6/chatgpt_raw.txt",
+  "parsed_output_path": "data/pool/bet_receipts/run-6/chatgpt.json",
+  "created_at": "2026-06-03T12:00:00Z",
+  "updated_at": "2026-06-03T12:05:00Z"
+}

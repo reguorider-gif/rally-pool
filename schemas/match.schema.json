@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/match.schema.json",
+  "title": "Match",
+  "description": "A single match in the prediction pool schedule.",
+  "type": "object",
+  "required": ["match_id", "home_team", "away_team", "competition", "status", "kickoff_at"],
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "Unique identifier for the match, e.g. WARM-002, GRP-A1."
+    },
+    "kickoff_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 kickoff time in UTC."
+    },
+    "home_team": {
+      "type": "string",
+      "description": "Home team name."
+    },
+    "away_team": {
+      "type": "string",
+      "description": "Away team name."
+    },
+    "competition": {
+      "type": "string",
+      "description": "Competition name, e.g. 'Friendly', 'World Cup Group A'."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["scheduled", "live", "finished", "postponed", "cancelled", "unknown"],
+      "description": "Current match status."
+    },
+    "provider": {
+      "type": "string",
+      "description": "Data provider name, e.g. 'football-data.org', 'manual'."
+    },
+    "source_url": {
+      "type": "string",
+      "description": "URL to the source data. If empty, confidence should not exceed 0.5."
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this data was fetched."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in data accuracy. If source_url is empty, should not exceed 0.5."
+    },
+    "group": {
+      "type": "string",
+      "description": "Tournament group, e.g. 'A', 'B'. Optional."
+    },
+    "stage": {
+      "type": "string",
+      "description": "Tournament stage, e.g. 'group', 'round_of_16', 'quarter_final'. Optional."
+    },
+    "venue": {
+      "type": "string",
+      "description": "Stadium or venue name. Optional."
+    }
+  },
+  "additionalProperties": false
+}

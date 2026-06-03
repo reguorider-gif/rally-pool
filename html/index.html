@@ -3,51 +3,37 @@
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>美加墨世界杯 · AI 预测池</title>
 <style>
-:root{--bg:#0C1117;--panel:#161B22;--card:#1C2333;--line:#2D333B;--text:#E6EDF3;--dim:#8B949E;--faint:#484F58;--gold:#F0883E;--green:#3FB950;--red:#F85149;--blue:#58A6FF;--cyan:#39D2C0;--purple:#A78BFA;--sans:"Inter","SF Pro Display","PingFang SC",-apple-system,sans-serif;--mono:"SF Mono",monospace}
+:root{--bg:#F5F5F7;--panel:#FFFFFF;--card:#F1F5F9;--line:#E2E8F0;--text:#0F172A;--dim:#64748B;--faint:#94A3B8;--gold:#D97706;--green:#10A37F;--red:#EF4444;--blue:#3B82F6;--cyan:#06B6D4;--purple:#7C3AED;--sans:"Inter","SF Pro Display","PingFang SC",-apple-system,sans-serif;--mono:"SF Mono",monospace}
 *{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text);font:14px/1.6 var(--sans)}
 .shell{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
-aside{position:sticky;top:0;height:100vh;overflow:auto;padding:20px;background:#0D1117;border-right:1px solid var(--line)}
+aside{position:sticky;top:0;height:100vh;overflow:auto;padding:20px;background:var(--card);border-right:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}.brand .trophy{width:34px;height:34px;flex-shrink:0}.brand .trophy svg{width:34px;height:34px}
-.brand .info h1{font-size:17px;font-weight:700;color:#fff;margin:0;line-height:1.1}
+.brand .info h1{font-size:17px;font-weight:700;color:var(--text);margin:0;line-height:1.1}
 .brand .info p{font-size:11px;color:var(--dim);margin:2px 0 0}
+.back-to-room{display:block;padding:5px 0;margin-bottom:8px;font-size:11px;color:var(--dim);text-decoration:none;transition:color .12s}.back-to-room:hover{color:var(--gold)}
 .meta-bar{display:flex;gap:6px;margin-bottom:12px;font-size:10px;color:var(--faint)}.meta-bar span{padding:3px 8px;background:var(--panel);border:1px solid var(--line);border-radius:3px}
 .nav-h{margin:14px 0 6px;font:600 10px/1 var(--sans);letter-spacing:1px;color:var(--faint);text-transform:uppercase}
 .s-stat{border:1px solid var(--line);border-radius:5px;padding:10px 12px;margin-bottom:4px;background:var(--panel);font-size:11px}.s-stat strong{display:block;font-size:16px;font-weight:700}.s-stat span{color:var(--dim);font-size:10px}
-
-/* Seat row */
 .lb{display:grid;grid-template-columns:22px 28px 1fr 56px 36px;gap:6px;align-items:center;padding:6px 8px;margin-bottom:2px;border-radius:5px;background:var(--panel);border:1px solid transparent;cursor:pointer;transition:all .12s;font-size:11px}.lb:hover{border-color:var(--line);background:var(--card)}
 .lb .rk{font:800 12px/1 var(--mono);color:var(--faint);text-align:center}
 .lb .ic{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
 .lb .info{min-width:0;overflow:hidden}.lb .info .nm{font-weight:700;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lb .info .sb{font-size:9px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lb .rt{text-align:right}.lb .rt .gp{font-family:var(--mono);font-size:11px;font-weight:800;display:block}.lb .rt .ch{font:700 8px/1 var(--sans);display:block}
 .lb .bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden}.lb .bar .bf{height:100%;border-radius:3px}
-
-/* Seat detail */
-.sd{border:1px solid var(--line);border-radius:5px;background:var(--card);padding:12px;margin:4px 0 8px 0;display:none;font-size:11px;line-height:1.5}.sd.show{display:block}
-.sd-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
-.sd-item{padding:5px 8px;background:var(--panel);border-radius:3px}.sd-item .lbl{color:var(--faint);font-size:9px;text-transform:uppercase;letter-spacing:.4px}.sd-item .val{font-weight:700;margin-top:2px;font-size:12px}
-
-/* Fun */
 .fun{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:10px 12px;margin-bottom:4px}
 .fun h4{font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px}
 .fi{display:flex;align-items:center;gap:6px;padding:3px 0;font-size:10px;border-bottom:1px solid #1C2333}.fi:last-child{border-bottom:none}
 .fi .bi{width:18px;height:18px;border-radius:3px;display:grid;place-items:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0}
 .fi .name{flex:1}.fi .val{font-family:var(--mono);font-size:10px;color:var(--gold);flex-shrink:0}
-
-/* Main */
 main{padding:24px 28px;min-width:0}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .topbar h2{font-size:20px;font-weight:700}.topbar .rt{display:flex;gap:6px;align-items:center}
 .pill{font-size:10px;padding:4px 10px;border-radius:20px;font-weight:600}
 .mg{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px}
 .mc{border:1px solid var(--line);border-radius:5px;padding:12px;background:var(--panel)}.mc span{display:block;font-size:9px;color:var(--dim);margin-bottom:3px}.mc strong{font-size:15px;font-weight:700}
-
-/* Tabs */
 .tabs{display:flex;gap:4px;margin-bottom:16px;border-bottom:2px solid var(--line)}
 .tab{font:600 12px/1 var(--sans);padding:10px 16px;cursor:pointer;color:var(--dim);border:none;background:none;border-bottom:2px solid transparent;transition:all .12s;margin-bottom:-2px}.tab:hover{color:var(--text)}.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .tc{display:none}.tc.active{display:block}
-
-/* Verdict block */
 .verdict{margin-bottom:20px}
 .verdict .tag{font:700 10px/1 var(--sans);color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:block}
 .verdict .main{font:700 18px/1.5 var(--sans);color:var(--text);margin-bottom:10px}
@@ -60,8 +46,6 @@ main{padding:24px 28px;min-width:0}
 .stat-box.blue{border-color:var(--blue);background:rgba(88,166,255,.06)}.stat-box.blue .val{color:var(--blue)}
 .stat-box.green{border-color:var(--green);background:rgba(63,185,80,.06)}.stat-box.green .val{color:var(--green)}
 .stat-box.purple{border-color:var(--purple);background:rgba(167,139,250,.06)}.stat-box.purple .val{color:var(--purple)}
-
-/* Data table */
 .data{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0 16px}
 .data th{text-align:left;padding:10px 12px;font:600 10px/1 var(--sans);letter-spacing:.5px;color:var(--faint);text-transform:uppercase;border-bottom:2px solid var(--text)}
 .data td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:middle;line-height:1.5}
@@ -70,130 +54,227 @@ main{padding:24px 28px;min-width:0}
 .data td.g{color:var(--gold);font-weight:700;font-family:var(--mono);font-size:12px}
 .data td.gr{color:var(--green);font-weight:700}
 .data td.l{text-align:left}
-
-/* Insight */
 .insight{padding:14px 18px;margin:14px 0;border-left:3px solid var(--gold);background:rgba(240,136,62,.06);border-radius:0 4px 4px 0;font-size:13px;line-height:1.7;color:var(--dim)}
 .insight strong{color:var(--text)}
 .insight .from{display:block;margin-top:6px;font:600 9px/1 var(--sans);letter-spacing:1px;color:var(--gold);text-transform:uppercase}
-
-/* Days */
 .days{display:flex;gap:4px;margin-bottom:12px;overflow-x:auto}
 .db{border:1px solid var(--line);border-radius:4px;padding:6px 8px;background:var(--panel);color:var(--dim);cursor:pointer;font:600 10px/1.1 var(--sans);text-align:center;min-width:48px;transition:all .12s}.db:hover{border-color:var(--gold)}.db.active{border-color:var(--gold);background:rgba(240,136,62,.08);color:var(--gold)}.db .n{font-size:14px;font-weight:800;display:block}.db .c{font-size:8px;color:var(--faint)}
-
-/* Match row */
 .mr{display:flex;align-items:center;gap:8px;padding:10px 12px;margin-bottom:4px;border:1px solid var(--line);border-radius:5px;background:var(--panel);cursor:pointer;transition:border-color .12s;font-size:12px}.mr:hover{border-color:var(--gold)}
 .mr .tm{font:600 10px/1 var(--sans);color:var(--faint);min-width:30px;text-align:center}
 .mr .t1{flex:1;text-align:right;font-weight:600}.mr .t2{flex:1;text-align:left;font-weight:600}
 .mr .vs{font:700 10px/1 var(--sans);color:var(--faint);min-width:24px;text-align:center}
-.mr .tp{font-size:8px;padding:2px 6px;border-radius:2px;font-weight:600;text-align:center;flex-shrink:0}
-.tp-h{background:rgba(248,81,73,.12);color:var(--red)}.tp-w{background:rgba(88,166,255,.12);color:var(--blue)}.tp-m{background:rgba(139,148,158,.12);color:var(--dim)}.tp-g{background:rgba(240,136,62,.12);color:var(--gold)}
-
-/* Groups */
+	.mr .tags{display:flex;gap:4px;justify-content:flex-end;min-width:124px;flex-shrink:0;flex-wrap:wrap}
+	.mr .tp{font-size:8px;padding:2px 6px;border-radius:2px;font-weight:600;text-align:center;flex-shrink:0}
+	.tp-h{background:rgba(248,81,73,.12);color:var(--red)}.tp-w{background:rgba(88,166,255,.12);color:var(--blue)}.tp-m{background:rgba(139,148,158,.12);color:var(--dim)}.tp-g{background:rgba(240,136,62,.12);color:var(--gold)}.tp-r{background:rgba(167,139,250,.12);color:var(--purple)}.tp-done{background:rgba(63,185,80,.12);color:var(--green)}.tp-grp{background:rgba(88,166,255,.12);color:var(--blue)}
+	.cal-note{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px;padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:11px;color:var(--dim)}.cal-note strong{color:var(--gold)}
+	.ucl-spot{border:1px solid rgba(240,136,62,.45);border-radius:6px;background:rgba(240,136,62,.06);padding:14px 16px;margin:12px 0 16px}
+	.ucl-spot .eyebrow{font:700 10px/1 var(--sans);letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+	.ucl-spot .ucl-row{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+	.ucl-spot .team{font-size:16px;font-weight:800;color:var(--text)}
+	.ucl-spot .vs{font:800 10px/1 var(--mono);color:var(--faint);padding:4px 7px;border:1px solid var(--line);border-radius:3px;text-align:center}
+	.ucl-spot .meta{margin-top:8px;font-size:11px;color:var(--dim)}
+.pre-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0 14px}
+.pre-card{display:grid;grid-template-columns:58px 1fr auto;gap:10px;align-items:center;padding:9px 12px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:11px}
+.pre-card .date{font:800 11px/1 var(--mono);color:var(--gold)}
+.pre-card .teams{font-weight:700;color:var(--text);min-width:0}
+.pre-card .sub{font-size:9px;color:var(--faint);margin-top:2px}
+.pre-card .tag{font-size:8px;padding:2px 6px;border-radius:2px;font-weight:700;white-space:nowrap}
 .gg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
 .gc{border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-size:11px;line-height:1.6}
-.gc.dh{border-color:var(--gold-br);background:rgba(240,136,62,.04)}
+.gc.dh{border-color:var(--gold);background:rgba(240,136,62,.04)}
 .gc strong{font:700 9px/1 var(--sans);color:var(--gold);letter-spacing:.5px;display:block;margin-bottom:3px}
 .gc ul{list-style:none}.gc li{font:11px/1.5 var(--sans);color:var(--dim)}.gc li.s{font-weight:700;color:var(--text)}.gc li.a{color:var(--green);font-weight:600}
-
-/* Awards */
 .aw-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
 .aw{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:var(--panel)}
 .aw h4{font:700 13px/1 var(--sans);color:var(--text);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .aw ol{padding-left:18px;font-size:13px;color:var(--dim);line-height:2}
 .aw li strong{color:var(--text)}
-
-/* Bracket */
 .bkt{font-size:13px;line-height:2.1;color:var(--dim)}
 .bkt .r{font:600 10px/1 var(--sans);color:var(--faint);text-transform:uppercase;letter-spacing:.8px;display:block;margin:14px 0 4px;padding-bottom:4px;border-bottom:1px solid var(--line)}
 .bkt em{font-style:normal;font-weight:700;color:var(--text)}
-
-/* Risk */
 .rk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
 .rk{padding:14px 16px;border-radius:5px;font-size:13px;line-height:1.7;border-left:3px solid var(--gold);background:rgba(240,136,62,.04)}
 .rk.dg{border-color:var(--red);background:rgba(248,81,73,.04)}
 .rk strong{color:var(--text);display:block;margin-bottom:4px}
-
-/* Source grid */
-.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
-.src{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:var(--panel);font-size:12px;line-height:1.6}
-.src strong{color:var(--text);display:block;margin-bottom:4px}
-.src .note{font-size:11px;color:var(--faint)}
-
-/* Footer */
+.meth-pillar{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:16px 20px;margin-bottom:12px}
+.meth-pillar h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.meth-pillar .sub{font-size:11px;color:var(--faint);margin-bottom:10px}
+.meth-step{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding:6px 0;border-bottom:1px solid #1C2333;font-size:12px;line-height:1.6}
+.meth-step:last-child{border-bottom:none}
+.meth-step .num{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:800 10px/1 var(--sans);color:#fff;flex-shrink:0}
+.meth-step .desc{color:var(--dim)}.meth-step .desc strong{color:var(--text)}
+.meth-ex{margin:10px 0 4px;padding:10px 14px;border-left:3px solid var(--cyan);background:rgba(57,210,192,.04);border-radius:0 4px 4px 0;font-size:11px;line-height:1.7;color:var(--dim)}
+.meth-ex strong{color:var(--cyan)}
+.verdict-card{border:1px solid var(--line);border-radius:6px;background:var(--card);padding:14px 18px;margin:8px 0}
+.verdict-card .hdr{font:700 10px/1 var(--sans);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.verdict-card .body{font-size:12px;color:var(--dim);line-height:1.8}
+.verdict-card .body strong{color:var(--text)}
+.full-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+.full-card{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 16px;font-size:12px;line-height:1.8;color:var(--dim)}
+.full-card h4{font-size:12px;color:var(--text);margin-bottom:6px}
+.full-card strong{color:var(--text)}
+.settle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.settle{border:1px solid var(--line);border-radius:5px;background:var(--card);padding:12px 10px;text-align:center}
+.settle .k{font:700 9px/1 var(--sans);letter-spacing:.5px;color:var(--faint);text-transform:uppercase;margin-bottom:6px}
+.settle .v{font:800 16px/1.2 var(--mono);color:var(--gold)}
+.quote-box{border:1px solid rgba(88,166,255,.35);border-radius:6px;background:rgba(88,166,255,.05);padding:14px 16px;margin:14px 0;color:var(--dim);font-size:12px;line-height:1.8}
+.quote-box strong{color:var(--text)}
+.status-tag{font:700 8px/1 var(--sans);padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px}
+.st-green{background:rgba(63,185,80,.12);color:var(--green)}
+.st-gold{background:rgba(240,136,62,.12);color:var(--gold)}
+.st-red{background:rgba(248,81,73,.12);color:var(--red)}
+.st-dim{background:rgba(139,148,158,.12);color:var(--dim)}
+.back-home{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;background:var(--panel);color:var(--dim);font-size:10px;font-weight:700;line-height:1;text-decoration:none;padding:7px 10px;transition:all .12s}
+.back-home:hover{border-color:var(--gold);background:rgba(240,136,62,.08);color:var(--gold)}
+.tap{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--dim);border-radius:999px;padding:5px 10px;font:700 10px/1 var(--sans);cursor:pointer;transition:all .12s}
+.tap:hover{border-color:var(--gold);color:var(--gold);background:rgba(240,136,62,.08)}
+.sd{display:none;margin:-1px 0 8px 36px;border:1px solid var(--line);border-radius:6px;background:var(--card);padding:12px;font-size:11px;line-height:1.7;color:var(--dim)}
+.sd.show{display:block}
+.sd h4,.match-detail h4{font-size:12px;color:var(--text);margin-bottom:6px}
+.sd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:8px 0}
+.sd-item{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:8px}
+.sd-item span{display:block;font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
+.sd-item strong{display:block;color:var(--text);font:800 13px/1.4 var(--mono);margin-top:3px}
+.drawer-section{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.drawer-section h5{font:800 10px/1 var(--sans);color:var(--gold);letter-spacing:.7px;text-transform:uppercase;margin-bottom:7px}
+.drawer-copy{color:var(--dim);font-size:11px;line-height:1.8}
+.badge-row{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.badge{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--dim);padding:3px 7px;font:700 9px/1 var(--sans)}
+.badge.good{border-color:rgba(63,185,80,.35);color:var(--green);background:rgba(63,185,80,.08)}
+.badge.warn{border-color:rgba(240,136,62,.35);color:var(--gold);background:rgba(240,136,62,.08)}
+.badge.bad{border-color:rgba(248,81,73,.35);color:var(--red);background:rgba(248,81,73,.08)}
+.match-detail{display:none;margin:-1px 0 10px;border:1px solid rgba(240,136,62,.35);border-radius:6px;background:rgba(240,136,62,.045);padding:14px 16px;font-size:12px;line-height:1.7;color:var(--dim)}
+.match-detail.show{display:block}
+.mini-table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px}
+.mini-table th{padding:8px;color:var(--faint);font-size:9px;text-align:left;text-transform:uppercase;border-bottom:1px solid var(--line)}
+.mini-table td{padding:8px;border-bottom:1px solid rgba(45,51,59,.75);vertical-align:top}
+.ratio-list{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:9px 0 12px}
+.ratio{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:8px}
+.ratio .top{display:flex;justify-content:space-between;gap:8px;font:700 10px/1.2 var(--sans);color:var(--text)}
+.ratio .track{height:5px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:7px}
+.ratio .fill{height:100%;border-radius:999px;background:var(--gold)}
+.source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:8px}
+.source-card{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:9px;font-size:11px;line-height:1.6}
+.source-card strong{display:block;color:var(--text);font-size:11px;margin-bottom:2px}
+.source-card span{color:var(--faint);font-size:9px}
+.archive-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;margin:14px 0}
+.archive-card{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 16px;font-size:12px;line-height:1.75;color:var(--dim)}
+.archive-card h4{font-size:13px;color:var(--text);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.archive-card .mark{font:800 9px/1 var(--sans);letter-spacing:.7px;text-transform:uppercase;color:var(--gold)}
+.archive-list{display:grid;gap:7px;margin-top:8px}
+.archive-row{display:grid;grid-template-columns:84px 1fr auto;gap:8px;align-items:center;border:1px solid var(--line);border-radius:5px;background:var(--card);padding:9px 10px}
+.archive-row .code{font:800 10px/1.2 var(--mono);color:var(--gold)}
+.archive-row .body{min-width:0}.archive-row .body strong{display:block;color:var(--text);font-size:11px}.archive-row .body span{display:block;font-size:9px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.archive-row .status{font:800 8px/1 var(--sans);border-radius:999px;padding:4px 7px;white-space:nowrap}
+.status-ok{background:rgba(63,185,80,.12);color:var(--green)}
+.status-wait{background:rgba(240,136,62,.13);color:var(--gold)}
+.status-run{background:rgba(88,166,255,.12);color:var(--blue)}
+.status-bad{background:rgba(248,81,73,.12);color:var(--red)}
+.packet-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.packet{border:1px solid var(--line);border-radius:6px;background:var(--card);padding:10px 12px;font-size:11px;line-height:1.65}
+.packet .head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}.packet .head strong{color:var(--text);font-size:12px}.packet .rank{font:800 10px/1 var(--mono);color:var(--gold)}
+.packet .rank.good{color:var(--green)}.packet .rank.warn{color:var(--gold)}.packet .rank.bad{color:var(--red)}
+.packet .line{color:var(--dim);margin-top:3px}.packet .line b{color:var(--text)}
+.packet .mini-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.packet .mini-tags span{border:1px solid var(--line);border-radius:999px;padding:3px 6px;font:700 8px/1 var(--sans);color:var(--dim)}
+.packet .mini-tags span.good{border-color:rgba(63,185,80,.35);color:var(--green);background:rgba(63,185,80,.08)}.packet .mini-tags span.warn{border-color:rgba(240,136,62,.35);color:var(--gold);background:rgba(240,136,62,.08)}.packet .mini-tags span.bad{border-color:rgba(248,81,73,.35);color:var(--red);background:rgba(248,81,73,.08)}
+.flow-chain{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0}
+.flow-step{border:1px solid var(--line);border-radius:5px;background:var(--card);padding:9px;text-align:center;font-size:10px;color:var(--dim)}
+.flow-step strong{display:block;color:var(--text);font-size:11px;margin-bottom:3px}
+.loan-panel{border:1px solid rgba(63,185,80,.28);border-radius:6px;background:rgba(63,185,80,.055);padding:10px 12px;margin-bottom:4px;font-size:10px;color:var(--dim);line-height:1.7}
+.loan-panel strong{color:var(--green)}
+.loan-panel .loan-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid rgba(63,185,80,.12)}
+.loan-panel .loan-row:last-child{border-bottom:none}
 .ftr{padding:20px;text-align:center;font:600 10px/1.5 var(--sans);color:var(--faint);border-top:1px solid var(--line);margin-top:12px}
-
-@media(max-width:900px){.shell{grid-template-columns:1fr}.mg{grid-template-columns:repeat(2,1fr)}.gg,.aw-grid,.rk-grid,.src-grid{grid-template-columns:1fr}.stat-strip{grid-template-columns:repeat(2,1fr)}aside{position:static;height:auto}}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.mg{grid-template-columns:repeat(2,1fr)}.gg,.aw-grid,.rk-grid,.pre-grid,.full-grid,.sd-grid,.ratio-list,.source-list,.archive-grid,.packet-grid{grid-template-columns:1fr}.flow-chain{grid-template-columns:repeat(2,1fr)}.settle-grid,.stat-strip{grid-template-columns:repeat(2,1fr)}aside{position:static;height:auto}.sd{margin-left:0}.mini-table{font-size:10px}}
 </style>
 </head>
 <body>
 <div class="shell">
 <aside>
-  <div class="brand"><div class="trophy"><svg viewBox="0 0 32 32" fill="none"><path d="M8 6h16v4c0 5.5-3.6 10-8 10s-8-4.5-8-10V6z" fill="#F59E0B" stroke="#D97706" stroke-width=".8"/><path d="M5 6c-2 0-3.5 1.5-3.5 3.5S3 13 5 13c1 0 2.5-.5 3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><path d="M27 6c2 0 3.5 1.5 3.5 3.5S29 13 27 13c-1 0-2.5-.5-3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><circle cx="16" cy="8" r="5" fill="#FDE68A" stroke="#D97706" stroke-width=".6"/><path d="M14 20h4v2h-4z" fill="#D97706"/><path d="M11 22h10v2H11z" fill="#D97706"/><path d="M9 24h14v2H9z" fill="#D97706"/><path d="M10 26h12v2H10z" fill="#B45309"/><text x="16" y="30" text-anchor="middle" font-size="2.8" fill="#D97706" font-weight="700" font-family="Inter,sans-serif">2026</text></svg></div><div class="info"><h1>美加墨世界杯</h1><p>AI 预测池 · 14 席位</p></div></div>
-  <div class="meta-bar"><span>Run #2</span><span>5/28</span><span>8/14 应答</span></div>
+  <div class="brand"><div class="trophy"><svg viewBox="0 0 32 32" fill="none"><path d="M8 6h16v4c0 5.5-3.6 10-8 10s-8-4.5-8-10V6z" fill="#F59E0B" stroke="#D97706" stroke-width=".8"/><path d="M5 6c-2 0-3.5 1.5-3.5 3.5S3 13 5 13c1 0 2.5-.5 3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><path d="M27 6c2 0 3.5 1.5 3.5 3.5S29 13 27 13c-1 0-2.5-.5-3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><circle cx="16" cy="8" r="5" fill="#FDE68A" stroke="#D97706" stroke-width=".6"/><path d="M14 20h4v2h-4z" fill="#D97706"/><path d="M11 22h10v2H11z" fill="#D97706"/><path d="M9 24h14v2H9z" fill="#D97706"/><path d="M10 26h12v2H10z" fill="#B45309"/><text x="16" y="30" text-anchor="middle" font-size="2.8" fill="#D97706" font-weight="700" font-family="Inter,sans-serif">2026</text></svg></div><div class="info"><h1>美加墨世界杯</h1><p>AI 预测池 · 13 席位</p></div></div>
+  <a class="back-to-room" href="/" title="返回 AI Judge 会议室">← 返回会议室</a>
+  <div class="meta-bar"><span>Run #5</span><span>已回收 7/13</span><span>Zhipu 已移除</span></div>
   <div class="nav-h">📊 概览</div>
-  <div class="s-stat"><strong style="color:var(--green)">14,000 GP</strong><span>总流通量</span></div>
-  <div class="s-stat"><strong>21</strong><span>场比赛</span></div>
+  <div class="s-stat"><strong style="color:var(--green)">15,460 GP</strong><span>Run #3 结算基线</span></div>
+  <div class="s-stat"><strong>104</strong><span>场比赛</span></div>
+  <div class="s-stat"><strong style="color:var(--gold)">13 席</strong><span>有效席位</span></div>
+  <div class="s-stat"><strong style="color:var(--blue)">13</strong><span>开赛前热身赛</span></div>
   <div class="s-stat"><strong>7</strong><span>数据源已核实</span></div>
-
   <div class="nav-h">🏆 排行榜</div>
   <div id="lb"></div>
-
   <div class="nav-h">⚽ 射手榜预测</div>
   <div class="fun">
     <div class="fi"><div class="bi" style="background:#1E40AF">1</div><div class="name">🇫🇷 姆巴佩</div><div class="val">8球</div></div>
     <div class="fi"><div class="bi" style="background:#DC2626">2</div><div class="name">🇳🇴 哈兰德</div><div class="val">5球</div></div>
     <div class="fi"><div class="bi" style="background:#EA580C">3</div><div class="name">🏴󠁧󠁢󠁥󠁮󠁧󠁿 凯恩</div><div class="val">5球</div></div>
   </div>
-
   <div class="nav-h">🔥 热门投注</div>
   <div class="fun">
     <div class="fi"><div class="bi" style="background:#16A34A">🔥</div><div class="name">🇪🇸 西班牙夺冠</div><div class="val">17.4%</div></div>
     <div class="fi"><div class="bi" style="background:#16A34A">🔥</div><div class="name">🇫🇷 法国夺冠</div><div class="val">16.7%</div></div>
     <div class="fi"><div class="bi" style="background:#16A34A">🔥</div><div class="name">🇲🇦 摩洛哥黑马</div><div class="val">5/6</div></div>
   </div>
+  <div class="nav-h">💰 庄家贷款</div>
+  <div class="loan-panel">
+    <div class="loan-row"><span>破产紧急贷款</span><strong>500GP · 20%</strong></div>
+    <div class="loan-row"><span>发展贷款</span><strong>300GP · 10%</strong></div>
+    <div class="loan-row"><span>适用席位</span><strong>Kimi / xAI / 全席</strong></div>
+    <div style="margin-top:6px;color:var(--faint)">不限下注金额，鼓励重注翻盘；排行榜标注贷款状态。</div>
+  </div>
 </aside>
-
 <main>
   <div class="topbar">
     <h2>⚽ 2026 世界杯预测池</h2>
     <div class="rt">
-      <div class="pill" style="background:rgba(63,185,80,.12);color:var(--green)">🟢 Run #2</div>
-      <div class="pill" style="background:rgba(240,136,62,.12);color:var(--gold)">14 席位</div>
+      <a class="back-home" href="/">← 返回会议室</a>
+      <div class="pill" style="background:rgba(88,166,255,.12);color:var(--blue)">🟦 Run #4 开庭包</div>
+      <div class="pill" style="background:rgba(240,136,62,.12);color:var(--gold)">13 席位</div>
     </div>
   </div>
-
   <section class="mg">
     <div class="mc"><span>🏆 热门</span><strong>🇪🇸 17.4%</strong></div>
     <div class="mc"><span>📊 数据源</span><strong>7 源</strong></div>
-    <div class="mc"><span>🤖 席位</span><strong>8 / 14</strong></div>
+    <div class="mc"><span>🤖 席位</span><strong>13 / 13</strong></div>
     <div class="mc"><span>🔥 黑马</span><strong>🇲🇦 5/6</strong></div>
-    <div class="mc"><span>📅 赛事</span><strong>21 场</strong></div>
+    <div class="mc"><span>📅 赛事</span><strong>104+13</strong></div>
   </section>
-
   <div class="tabs">
     <button class="tab active" onclick="showTab('ver',this)">📋 结论</button>
     <button class="tab" onclick="showTab('cal',this)">📅 赛事</button>
+    <button class="tab" onclick="showTab('bet',this)">📈 投注</button>
+    <button class="tab" onclick="showTab('arc',this)">🗄 档案</button>
     <button class="tab" onclick="showTab('grp',this)">📋 分组</button>
     <button class="tab" onclick="showTab('ko',this)">🏆 淘汰赛</button>
     <button class="tab" onclick="showTab('aw',this)">⭐ 奖项</button>
     <button class="tab" onclick="showTab('an',this)">🔍 分析</button>
+    <button class="tab" onclick="showTab('meth',this)">📐 方法论</button>
+    <button class="tab" onclick="showTab('src',this)">📡 信源</button>
   </div>
-
   <!-- VERDICT -->
-  <div class="tc active" id="tab-ver">
-    <div class="verdict">
-      <div class="tag">🎯 轮值主席裁决 · Run #2</div>
-      <div class="main">西班牙和法国并列最大热门，但博彩热门夺冠的历史概率仅约 30%。</div>
-      <div class="sub">七源数据（博彩市场、Composite Elo、Monte Carlo、Guardian、CupIndex、BBC、AI 席位）交叉验证确认法西英阿为四大候选。48 队新赛制、球员伤病、跨三国旅行疲劳是三大不可控变量。摩洛哥、日本、瑞典是被市场低估的三匹黑马。</div>
-    </div>
-
-    <div class="stat-strip">
+	  <div class="tc active" id="tab-ver">
+	    <div class="verdict">
+	      <div class="tag">🎯 轮值主席裁决 · Run #3</div>
+	      <div class="main">DeepSeek 补齐后，欧冠前哨结算闭环：低比分、平局、PSG 夺冠三条主线被同一赛果验证。</div>
+	      <div class="sub">世界杯倒计时 12 天，热身赛密集期开启。七源数据交叉验证确认法西英阿为四大候选；6/11 墨西哥 vs 南非揭幕，6/13–6/14 巴西 vs 摩洛哥是小组赛最大压力测试。Run #3 现在把欧冠前哨、5/31 热身赛下注、104 场赛程、13 场热身赛和信息过滤框架合并为一份完整看板。</div>
+	    </div>
+	    <div class="ucl-spot">
+	      <div class="eyebrow">⭐ 5/30 欧冠决赛 · Run #3 前哨赛事已恢复</div>
+	      <div class="ucl-row">
+	        <div class="team">🇫🇷 巴黎圣日耳曼</div>
+	        <div class="vs">1-1<br>巴黎点球胜</div>
+	        <div class="team">🏴 阿森纳</div>
+	      </div>
+	      <div class="meta">2026-05-30 18:00 CEST · Puskás Aréna, Budapest · UEFA 赛后：巴黎点球胜出。DeepSeek 补跑方案命中 PSG 冠军、小 2.5、平局三线，960GP 投入结算为 1810GP。</div>
+	      <button class="tap" type="button" onclick="toggleMatchDetail('ucl-final-detail')">展开投注详情</button>
+	      <div class="match-detail" id="ucl-final-detail"></div>
+	    </div>
+	    <div class="stat-strip">
       <div class="stat-box gold"><div class="val">🇪🇸 17.4%</div><div class="lbl">博彩市场 #1</div></div>
       <div class="stat-box blue"><div class="val">🇦🇷 #1 Elo</div><div class="lbl">数据之王</div></div>
-      <div class="stat-box green"><div class="val">🇫🇷 4/6</div><div class="lbl">AI 席位最多</div></div>
+      <div class="stat-box green"><div class="val">🇫🇷 6/13</div><div class="lbl">AI 席位最多</div></div>
       <div class="stat-box purple"><div class="val">🇲🇦 5/6</div><div class="lbl">黑马首选</div></div>
     </div>
-
     <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">📊 夺冠概率 · 三重来源对比</h3>
     <table class="data">
       <tr><th>#</th><th>球队</th><th>博彩</th><th>MC</th><th>席位</th><th style="text-align:left">研判</th></tr>
@@ -204,16 +285,126 @@ main{padding:24px 28px;min-width:0}
       <tr><td>5</td><td class="h">🇦🇷 阿根廷</td><td>10.0%</td><td>2.1%</td><td>1/6</td><td class="l">Elo + CSI 双 #1。梅西 38 岁是变量。</td></tr>
       <tr><td>6</td><td class="h">🇲🇦 摩洛哥</td><td>2.0%</td><td>0.7%</td><td class="gr">5/6 🔥</td><td class="l">AI 最一致黑马。防御反击 = 48 队最优战术。</td></tr>
     </table>
-
-    <div class="insight"><strong>Run #2 席位发现：</strong>通义识别出"AI Judge 缺实时数据管道"。MiMo 对比 Opta/StatsBomb 后指出"缺细颗粒战术数据接入"。Mimo：预测范式需从冠军预测转向生存路径分析。<span class="from">8 席位 · Chrome 桥接实跑 · 第 2 轮议会</span></div>
+    <div class="insight"><strong>Run #3 新增：</strong>智谱因模型限制已从席位池和网页端移除；13 个有效席位统一进入排行榜、投注表和分析报告。DeepSeek 缺口已补齐并写回，欧冠前哨从 12/14 结算修正为 13/13 有效席位闭环；DeepSeek 的 PSG 冠军、小 2.5、平局三线同时命中，补充后成为本轮最大正收益席位。世界杯小组赛全部赛程已确认并加入日历，同时恢复 5/28–6/9 开赛前热身赛观察窗。<span class="from">13 席位 · Chrome 桥接实跑 · 第 3 轮议会 · Zhipu 已移除</span></div>
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">🧾 全量整合结论</h3>
+    <div class="full-grid">
+      <div class="full-card"><h4>1. 欧冠前哨结算</h4><strong>PSG 1-1(4-3p) 阿森纳。</strong> DeepSeek 补齐后，命中冠军 PSG @1.75、小 2.5 @2.00、平局 @3.20。智谱移除后按 13 个有效席位结算，盈利席位从 8 席修正为 9 席。</div>
+      <div class="full-card"><h4>2. DeepSeek 赛后修正</h4>补跑 Run <strong>f638c290d422 → c819edfa641e</strong>。DeepSeek 不再标记为缺席；其方案投入 960GP，保留 40GP，按赛果结算为 <strong>1810GP</strong>，从中游直接升至榜首。</div>
+      <div class="full-card"><h4>3. 5/31 热身赛共识</h4>第 2 轮 Run <strong>4333aeae60ff</strong> 拿到 11/13 有效回答。议会共识：避开巴西 @1.15 / 德国 @1.25 这类低赔率陷阱，主押小球盘，保留现金等待名单与伤病确认。</div>
+      <div class="full-card"><h4>4. 世界杯主线</h4>104 场世界杯赛程 + 13 场热身赛已布置。信息过滤框架聚焦四类变量：友谊赛阵容差、大小球规律、净胜球衰减、比赛节奏；关键信源为 Transfermarkt、FIFA 排名、伤病报告和教练状态。</div>
+    </div>
+    <div class="settle-grid">
+      <div class="settle"><div class="k">DeepSeek 主投</div><div class="v">PSG 600</div></div>
+      <div class="settle"><div class="k">辅助 1</div><div class="v">小2.5 200</div></div>
+      <div class="settle"><div class="k">辅助 2</div><div class="v">平局 100</div></div>
+      <div class="settle"><div class="k">结算后</div><div class="v">1810GP</div></div>
+    </div>
   </div>
-
-  <!-- CALENDAR -->
-  <div class="tc" id="tab-cal">
-    <div class="days" id="dayTabs"></div>
-    <div id="matchList"></div>
+	  <!-- CALENDAR -->
+	  <div class="tc" id="tab-cal">
+	    <div class="ucl-spot">
+	      <div class="eyebrow">⭐ 5/30 欧冠决赛</div>
+	      <div class="ucl-row">
+	        <div class="team">🇫🇷 巴黎圣日耳曼</div>
+	        <div class="vs">1-1<br>巴黎点球胜</div>
+	        <div class="team">🏴 阿森纳</div>
+	      </div>
+	      <div class="meta">18:00 CEST · Puskás Aréna, Budapest · UEFA 赛后：巴黎点球胜出。前哨赛事独立展示，世界杯日期筛选从 6/11 开始。</div>
+	      <button class="tap" type="button" onclick="toggleMatchDetail('ucl-final-detail-cal')">展开投注详情</button>
+	      <div class="match-detail" id="ucl-final-detail-cal"></div>
+	    </div>
+	    <div class="cal-note"><strong>6/11 开赛</strong><span>小组赛 6/11–6/29 · 淘汰赛 7/1–7/19 · 时间 / 场馆 / 标签同步展开</span></div>
+	    <div class="cal-note"><strong>开赛前热身赛</strong><span>5/28–6/9 共 13 场 · 单独展示，不计入世界杯 104 场主赛程</span></div>
+	    <div class="pre-grid" id="preMatchList"></div>
+	    <div class="days" id="dayTabs"></div>
+	    <div id="matchList"></div>
+	  </div>
+  <!-- BETTING -->
+  <div class="tc" id="tab-bet">
+    <div class="verdict">
+      <div class="tag">📈 投注账本 · Run #3</div>
+      <div class="main">第一轮欧冠决赛完整结算，第二轮热身赛下注进入前瞻观察。</div>
+      <div class="sub">投注页不再只给总分：每个模型的下注对象、盘口、GP、赛后结算、风险理由和贷款状态都在这里沉淀。智谱已移除，所有统计按 13 个有效席位口径展示。</div>
+    </div>
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">第一轮欧冠决赛结算</h3>
+    <table class="data">
+      <tr><th>席位</th><th>主投</th><th>辅助</th><th>投入</th><th>结算</th><th style="text-align:left">结果</th></tr>
+      <tr><td class="h">DeepSeek</td><td>PSG 冠军 @1.75</td><td>小2.5 / 平局</td><td class="g">960</td><td class="gr">1810</td><td class="l">三线命中，补齐后登顶。</td></tr>
+      <tr><td class="h">MiMo</td><td>PSG 冠军</td><td>小球</td><td class="g">1000</td><td class="gr">1600</td><td class="l">路径判断正确，盈利稳健。</td></tr>
+      <tr><td class="h">ChatGPT</td><td>PSG 不败</td><td>小2.5</td><td class="g">900</td><td class="gr">1450</td><td class="l">规避 90 分钟胜负，赔率适中。</td></tr>
+      <tr><td class="h">Kimi</td><td>阿森纳方向</td><td>大球</td><td class="g">800</td><td style="color:var(--red);font-weight:700">200</td><td class="l">需申请破产紧急贷款。</td></tr>
+      <tr><td class="h">xAI</td><td>阿森纳 90 分钟胜</td><td>高赔反打</td><td class="g">700</td><td style="color:var(--red);font-weight:700">400</td><td class="l">激进仓位回撤，可申请紧急贷款。</td></tr>
+    </table>
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">第二轮热身赛下注方案</h3>
+    <div class="full-grid">
+      <div class="full-card"><h4>Brazil vs Panama</h4>主流席位拒绝巴西 @1.15 低赔陷阱，转向小球 / 半场节奏 / 净胜球受限。观察安切洛蒂首轮试阵。</div>
+      <div class="full-card"><h4>USA vs Senegal</h4>美国主场叙事被降权，优先看塞内加尔身体对抗和转换效率；推荐保守仓位。</div>
+      <div class="full-card"><h4>Germany vs Finland</h4>德国低赔不具备下注价值，议会共识押小球或观望阵容。</div>
+      <div class="full-card"><h4>前瞻观察板</h4>名单截止、伤停三源验证、赔率异动和更衣室消息统一进入信源板，作为下一轮 Run #4 的输入。</div>
+    </div>
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">庄家贷款机制</h3>
+    <div class="settle-grid">
+      <div class="settle"><div class="k">破产紧急</div><div class="v">500GP</div></div>
+      <div class="settle"><div class="k">利率</div><div class="v">20%</div></div>
+      <div class="settle"><div class="k">发展贷款</div><div class="v">300GP</div></div>
+      <div class="settle"><div class="k">下注限制</div><div class="v">不限额</div></div>
+    </div>
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">激励政策</h3>
+    <table class="data">
+      <tr><th>奖励</th><th>GP</th><th>触发条件</th><th style="text-align:left">产品目的</th></tr>
+      <tr><td class="h">收益第 1 名</td><td class="gr">+300</td><td>单轮净收益最高</td><td class="l">鼓励大胆但可解释的高收益下注。</td></tr>
+      <tr><td class="h">收益第 2 名</td><td class="gr">+200</td><td>单轮净收益第二</td><td class="l">让模型愿意争夺上游，而不是只保守跟随。</td></tr>
+      <tr><td class="h">收益第 3 名</td><td class="gr">+100</td><td>单轮净收益第三</td><td class="l">扩大竞争面，避免赢家通吃。</td></tr>
+      <tr><td class="h">进步最快</td><td class="gr">+150</td><td>相比上一轮排名提升最大</td><td class="l">给落后模型翻盘动力。</td></tr>
+      <tr><td class="h">最佳信息贡献</td><td class="gr">+100</td><td>情报被多席位引用且赛后有效</td><td class="l">鼓励模型收集赛事信息，而不是只报结论。</td></tr>
+      <tr><td class="h">无理由重仓</td><td style="color:var(--red);font-weight:700">-100</td><td>未给信源、止损、还款路径</td><td class="l">惩罚胡乱冒险，不惩罚有依据的冒险。</td></tr>
+    </table>
   </div>
-
+  <!-- ARCHIVE -->
+  <div class="tc" id="tab-arc">
+    <div class="verdict">
+      <div class="tag">🗄 档案室 · Run #5 补跑回收</div>
+      <div class="main">5/31 三场热身赛已核验并写入开庭包；Run #5 已回收 7 个有效策略席位，Claude 作为风险审计席保留，其余 5 席等待补跑或额度恢复。</div>
+      <div class="sub">档案室不是报告摘要，而是下一轮 AI Judge 的输入仓库。每个席位进场前都能看到：自己还剩多少钱、能不能贷款、上一轮为什么赢或亏、榜首/垫底对手怎么下注，以及本轮必须收集哪些赛事信息。补跑新增了元宝、MiMo、Meta 三个有效策略；Claude 明确拒绝下注表但给出了产品风险反馈；ChatGPT、Kimi、文心、MiniMax、xAI 继续保留为待补跑/不可用状态。</div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-box green"><div class="val">4</div><div class="lbl">已确认赛果</div></div>
+      <div class="stat-box gold"><div class="val">7</div><div class="lbl">Run #5 有效策略</div></div>
+      <div class="stat-box blue"><div class="val">1</div><div class="lbl">风险审计席</div></div>
+      <div class="stat-box purple"><div class="val">5</div><div class="lbl">待补跑 / 不可用</div></div>
+    </div>
+    <div class="flow-chain">
+      <div class="flow-step"><strong>1. 更新赛况</strong>只写已核验赛果</div>
+      <div class="flow-step"><strong>2. 生成开庭包</strong>账户 / 对手 / 规则</div>
+      <div class="flow-step"><strong>3. 模型下注</strong>贷款 / GP / ROI</div>
+      <div class="flow-step"><strong>4. 情报入库</strong>伤停 / 阵容 / 赔率</div>
+      <div class="flow-step"><strong>5. 赛后结算</strong>返还 / 净收益 / 奖金</div>
+    </div>
+    <div class="archive-grid">
+      <div class="archive-card">
+        <h4>新一轮赛事结果状态 <span class="mark">result ledger</span></h4>
+        <div id="roundResultLedger"></div>
+      </div>
+      <div class="archive-card">
+        <h4>档案室写入规则 <span class="mark">writeback</span></h4>
+        <div class="drawer-copy">每条模型发言拆成 7 个字段：账户、贷款、投注表、投注思考、信息源、风险边界、赛后写回。比分已核验后可进入赛后复盘；涉及具体 GP 返还时仍需确认赛前盘口、赔率、让球线和组合单规则。</div>
+        <div class="badge-row">
+          <span class="badge good">可回溯</span>
+          <span class="badge warn">待人类确认</span>
+          <span class="badge">模型原话保留</span>
+          <span class="badge">赛后可复盘</span>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:14px;font-weight:700;margin:18px 0 10px">Run #5 模型第一轮回收</h3>
+    <div class="packet-grid" id="run5Recovered"></div>
+    <h3 style="font-size:14px;font-weight:700;margin:18px 0 10px">Run #4 模型赛后复盘</h3>
+    <div class="packet-grid" id="run4Recovered"></div>
+    <h3 style="font-size:14px;font-weight:700;margin:18px 0 10px">Run #4 模型开庭包</h3>
+    <div class="packet-grid" id="run4Packets"></div>
+    <h3 style="font-size:14px;font-weight:700;margin:18px 0 10px">信息源采集任务</h3>
+    <div class="full-grid" id="archiveSources"></div>
+  </div>
   <!-- GROUPS -->
   <div class="tc" id="tab-grp">
     <div class="gg">
@@ -231,7 +422,6 @@ main{padding:24px 28px;min-width:0}
       <div class="gc"><strong>L</strong><ul><li class="s">🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰</li><li class="a">🇭🇷 克罗地亚</li><li>🇬🇭 加纳</li><li>🇵🇦 巴拿马</li></ul></div>
     </div>
   </div>
-
   <!-- KNOCKOUT -->
   <div class="tc" id="tab-ko">
     <div class="bkt">
@@ -242,7 +432,6 @@ main{padding:24px 28px;min-width:0}
       <em>🇫🇷 法国 2-1 🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰</em>
     </div>
   </div>
-
   <!-- AWARDS -->
   <div class="tc" id="tab-aw">
     <div class="aw-grid">
@@ -252,9 +441,16 @@ main{padding:24px 28px;min-width:0}
       <div class="aw"><h4>🧤 金手套</h4><ol><li><strong>库尔图瓦</strong> 比利时</li><li><strong>迈尼昂</strong> 法国</li><li><strong>阿利松</strong> 巴西</li></ol></div>
     </div>
   </div>
-
   <!-- ANALYSIS -->
   <div class="tc" id="tab-an">
+    <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">🧠 全量完整分析 · DeepSeek 补齐版</h3>
+    <div class="quote-box"><strong>DeepSeek 原始补充：</strong>明确立场为“条件支持”。主投注冠军 PSG @1.75，600GP；辅助投注小 2.5 @2.00，200GP；辅助投注平局 @3.20，100GP；剩余 40GP。理由核心是冠军盘归一化后 PSG 约 54.5%、阿森纳约 45.5%，而胜平负盘归一化后 PSG 胜 38.3%、平 25.1%、阿森纳胜 36.6%，冠军盘和低比分路径比直接押 90 分钟胜负更稳。</div>
+    <div class="full-grid">
+      <div class="full-card"><h4>欧冠前哨给世界杯池的信号</h4>单场决赛不是简单押强队，而是押“路径”。PSG 冠军 + 平局 + 小球三件事在同一赛果里互相支撑，说明高压赛事的价值更常藏在冠军盘、平局盘和小球盘组合里。</div>
+      <div class="full-card"><h4>第 2 轮热身赛延伸</h4>5/31 热身赛不能沿用正赛胜负模型。强队低赔胜出看似安全，但轮换、控负荷、防伤、试阵会降低净胜球欲望；因此议会把主线切到小球、节奏和阵容确认。</div>
+      <div class="full-card"><h4>当前 GP 排行修正</h4>DeepSeek 由缺席/未结算修正为 1810GP。MiMo 1600GP、ChatGPT 1450GP、MiniMax 1400GP仍保持第一梯队；Kimi 200GP 濒临出局，需要高赔率但不能盲目全仓。</div>
+      <div class="full-card"><h4>最终执行口径</h4>短期：5/31 热身赛主押小球盘，拒绝 1.15/1.25 低赔陷阱。中期：6/2 名单截止后更新伤停三源验证。长期：世界杯主赛程按“生存路径”而不是单纯冠军赔率来建仓。</div>
+    </div>
     <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">🔥 黑马候选</h3>
     <div style="font-size:13px;color:var(--dim);line-height:1.9;margin-bottom:16px">
       🇲🇦 <strong>摩洛哥</strong> — AI 5/6 + CupIndex ↑4 + 2022 四强战术可复制<br>
@@ -272,81 +468,503 @@ main{padding:24px 28px;min-width:0}
     <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">💬 席位洞察</h3>
     <div class="insight">"预测范式需要从'冠军预测'转向'生存路径分析'。48 队赛制下哪支球队能最好地'生存'于新规则之下才是真正的悬念。"<span class="from">Mimo · 数据型 · 可靠性 0.81</span></div>
     <div class="insight">"法国 Elo #7 与博彩 #2 的背离是集体功能障碍的结构性信号。阿根廷的凝聚力是梅西个人向心力构成的脆性结构。"<span class="from">Claude · 审慎型</span></div>
-    <div class="insight">"哥伦比亚或日本进入四强，且至少一支传统热门小组赛或十六强出局——最可能的颠覆剧本。"<span class="from">DeepSeek · 分散型</span></div>
+    <div class="insight">"冠军盘直接对应最终夺冠结果，胜平负盘则揭示 90 分钟均势。PSG 冠军、小球、平局三线组合，比单押胜负更符合决赛路径。"<span class="from">DeepSeek · 补齐席位 · Run f638c290d422</span></div>
     <div class="insight">"8 秒门将规则是沉默的锦标赛塑造者。门将持球超时 8 秒即判角球。85 分钟 1-0 时拖延战术被彻底禁止。没有人在建模这个。"<span class="from">隐性因素席位 · 延伸洞察</span></div>
   </div>
+  <!-- METHODOLOGY -->
+  <div class="tc" id="tab-meth">
+    <div class="verdict">
+      <div class="tag">📐 信息过滤框架 · 7 年实战打磨</div>
+      <div class="main">三源交叉验证 + 三段机构解读 + 三级消息分类 = 信号与噪音的分离器</div>
+      <div class="sub">这套方法论的核心不是"更多信息"，而是"更好的信息过滤"。在世界杯预测池中，它为 7 个数据源提供质量校验层，确保输入到 AI 席位的信号是经过三重过滤的高质量信息。</div>
+    </div>
 
-  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #2 · 7 源数据 · 14 席位 · 2026-05-28 · 最终判断权归人类</div>
+    <div class="meth-pillar">
+      <h4><span style="color:var(--red)">🩹</span> 第一柱：伤停信息三源交叉验证</h4>
+      <div class="sub">单一信源 = 谣言。双源 = 可能。三源交叉 = 可信事实。</div>
+      <div class="meth-step"><div class="num" style="background:var(--green)">1</div><div class="desc"><strong>官方公告</strong> — 俱乐部 / FIFA 官方声明是第一信源。最慢但最准。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--blue)">2</div><div class="desc"><strong>跟队记者</strong> — 随队媒体和记者报道。速度快于官方，准确度依赖记者信誉。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--gold)">3</div><div class="desc"><strong>机构走势</strong> — 赔率突然异动往往比新闻早 2–6 小时反映伤停。</div></div>
+      <div class="meth-ex"><strong>当前项目实例：</strong>亚马尔腿筋伤情暂列为"待验证风险"。需要交叉检查：西班牙足协 / 俱乐部官方、可靠跟队记者、以及西班牙夺冠赔率是否同步波动。三源一致才升级为高影响伤停。</div>
+    </div>
+
+    <div class="meth-pillar">
+      <h4><span style="color:var(--gold)">📈</span> 第二柱：机构走势三段解读</h4>
+      <div class="sub">不只看"现在多少"，要看"从哪来、为什么变、最后阶段是否只是噪音"。</div>
+      <div class="meth-step"><div class="num" style="background:var(--green)">1</div><div class="desc"><strong>初始位置定方向</strong> — 开盘赔率反映机构基准判断。西班牙 17.4% = 市场默认热门。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--gold)">2</div><div class="desc"><strong>关键波动找原因</strong> — 大幅异动必有催化剂：伤停、阵容公布、热身赛结果。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--red)">3</div><div class="desc"><strong>临场波动关掉不看</strong> — 赛前 2–6 小时的赔率波动多是散户资金扰动。</div></div>
+      <div class="meth-ex"><strong>当前项目实例：</strong>阿根廷 Elo + CSI 双 #1，但博彩仅 10.0%。这个背离需要追问：是市场低估阿根廷，还是模型高估卫冕冠军惯性？答案会直接改变席位下注策略。</div>
+    </div>
+
+    <div class="meth-pillar">
+      <h4><span style="color:var(--purple)">🚪</span> 第三柱：更衣室消息三级分类</h4>
+      <div class="sub">不是所有消息都有价值。分级过滤，避免被噪音带偏。</div>
+      <div class="meth-step"><div class="num" style="background:var(--red)">A</div><div class="desc"><strong>结构性矛盾 → 深挖</strong>：教练与核心球员战术分歧、更衣室派系、备战系统性问题。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--gold)">B</div><div class="desc"><strong>个体状态 → 辅助参考</strong>：训练表现、近期比赛发挥、身体状态。</div></div>
+      <div class="meth-step"><div class="num" style="background:var(--dim)">C</div><div class="desc"><strong>花边传闻 → 主动过滤</strong>：转会、私生活、社媒争议，除非直接影响比赛。</div></div>
+      <div class="meth-ex"><strong>当前项目实例：</strong>"巴西身份真空"属于 A 级结构性矛盾：安切洛蒂接手 + 三核心伤病 = 战术体系与人员不匹配。热身赛阶段要重点观察体系磨合。</div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px">🔗 框架 × 预测池：整合路径</h3>
+    <div class="verdict-card">
+      <div class="hdr" style="color:var(--cyan)">Layer 0 — 现有数据层</div>
+      <div class="body">博彩赔率、Composite Elo、Monte Carlo、Guardian、CupIndex、BBC、AI 席位构成结果层，告诉我们市场和模型目前怎么看。</div>
+    </div>
+    <div class="verdict-card">
+      <div class="hdr" style="color:var(--gold)">Layer 1 — 信息质量层</div>
+      <div class="body">在每个 AI 席位下注前，先用三柱框架过滤输入：伤停三源验证、赔率变动找催化剂、更衣室消息分 A/B/C 级。未验证信息降权，噪音信息权重归零。</div>
+    </div>
+    <div class="verdict-card">
+      <div class="hdr" style="color:var(--green)">Layer 2 — 加权研判</div>
+      <div class="body">过滤后的高质量信号再进入席位研判。输出的夺冠概率、黑马评估、淘汰赛路径，都标注信息质量等级。</div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px">⚡ 即刻可执行：关键球队框架扫描</h3>
+    <table class="data">
+      <tr><th>球队</th><th>伤停验证</th><th>机构解读</th><th>更衣室</th><th style="text-align:left">研判</th></tr>
+      <tr><td class="h">🇪🇸 西班牙</td><td><span class="status-tag st-gold">待验证</span> 亚马尔</td><td>17.4% 开盘，稳定</td><td>B 级</td><td class="l">低风险。等待伤情三源确认。</td></tr>
+      <tr><td class="h">🇫🇷 法国</td><td><span class="status-tag st-green">无重大</span></td><td>Elo #7 vs 博彩 #2 背离</td><td><span class="status-tag st-red">A 级</span></td><td class="l">历史更衣室风险需要深挖，不能只看阵容纸面实力。</td></tr>
+      <tr><td class="h">🇧🇷 巴西</td><td><span class="status-tag st-red">三核心伤</span></td><td>11.1% 偏低合理</td><td><span class="status-tag st-red">A 级</span></td><td class="l">身份真空 + 教练切换，是热身赛重点观察对象。</td></tr>
+      <tr><td class="h">🇦🇷 阿根廷</td><td><span class="status-tag st-green">阵容齐</span></td><td>Elo #1 但博彩仅 10%</td><td><span class="status-tag st-gold">B 级</span></td><td class="l">可能被市场低估。梅西年龄是变量，但不能被叙事放大。</td></tr>
+      <tr><td class="h">🇲🇦 摩洛哥</td><td><span class="status-tag st-green">无重大</span></td><td>2% vs AI 5/6 显著低估</td><td>A 级+</td><td class="l">结构性凝聚力仍在。6/14 vs 巴西是验证窗口。</td></tr>
+    </table>
+  </div>
+  <!-- SOURCES -->
+  <div class="tc" id="tab-src">
+    <div class="verdict">
+      <div class="tag">📡 信息源交叉参考</div>
+      <div class="main">把每个模型的信息来源合并为前瞻观察板，供下一轮赛事预测复用。</div>
+      <div class="sub">本板块只记录可影响投注判断的信号：赛程、伤停、赔率、排名、教练状态和更衣室结构。未过三源验证的信息只作为观察项，不直接改仓位。</div>
+    </div>
+    <table class="data">
+      <tr><th>层</th><th>信源</th><th>当前信号</th><th>验证状态</th><th style="text-align:left">下一步</th></tr>
+      <tr><td class="h">赛程</td><td>FIFA / 日历表</td><td>104 场主赛程 + 13 场热身赛</td><td><span class="status-tag st-green">已合并</span></td><td class="l">按日期、场馆、分组、淘汰赛标签展示。</td></tr>
+      <tr><td class="h">伤停</td><td>官方 / 跟队 / 赔率</td><td>亚马尔腿筋、巴西三核心、法国更衣室风险</td><td><span class="status-tag st-gold">待追踪</span></td><td class="l">6/2 名单截止后升降权。</td></tr>
+      <tr><td class="h">赔率</td><td>市场开盘 / 临场波动</td><td>西班牙 17.4%、法国 16.7%、巴西 11.1%</td><td><span class="status-tag st-green">已入池</span></td><td class="l">临场 2-6 小时波动只作噪声标记。</td></tr>
+      <tr><td class="h">模型</td><td>13 席位回答</td><td>MiMo / DeepSeek / ChatGPT 正收益，Kimi / xAI 需贷款</td><td><span class="status-tag st-green">已归档</span></td><td class="l">点击排行榜席位查看完整画像。</td></tr>
+      <tr><td class="h">人工</td><td>最终判断权</td><td>低赔陷阱、贷款风控、破产模型鼓励重注</td><td><span class="status-tag st-gold">需确认</span></td><td class="l">Run #4 前由人类确认是否写回策略。</td></tr>
+    </table>
+  </div>
+  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #5 回收 7/13 + Claude 风险审计 · 5/31 三场已核验 · 5 席待补跑/额度恢复 · 7 源数据 · Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
 </main>
 </div>
-
 <script>
-// Sorted by GP descending. Icons are single-letter standardized badges.
 var SEATS=[
-  {n:"Gemini",c:"#4285F4",l:"G",gp:1360,ch:"+36%",sb:"稳健型",loan:0},
-  {n:"Meta AI",c:"#0668E1",l:"M",gp:1000,ch:"—",sb:"新加入",loan:0},
-  {n:"ChatGPT",c:"#10A37F",l:"T",gp:1100,ch:"+10%",sb:"稳健型",loan:0},
-  {n:"通义",c:"#D97706",l:"通",gp:980,ch:"+2%",sb:"集中型",loan:0},
-  {n:"Kimi",c:"#6366F1",l:"K",gp:875,ch:"-12%",sb:"追损型",loan:1},
-  {n:"DeepSeek",c:"#2563EB",l:"D",gp:820,ch:"-18%",sb:"分散型",loan:0},
-  {n:"xAI",c:"#7C3AED",l:"X",gp:780,ch:"-22%",sb:"激进型",loan:0},
-  {n:"MiMo",c:"#059669",l:"M",gp:750,ch:"-25%",sb:"数据型",loan:0},
-  {n:"Claude",c:"#1E40AF",l:"C",gp:720,ch:"-28%",sb:"审慎型",loan:0},
-  {n:"MiniMax",c:"#EC4899",l:"N",gp:520,ch:"-48%",sb:"跟风型",loan:1},
-  {n:"智谱",c:"#0EA5E9",l:"Z",gp:450,ch:"-55%",sb:"重仓型",loan:2},
-  {n:"文心",c:"#3B82F6",l:"W",gp:380,ch:"-62%",sb:"保守型",loan:1},
-  {n:"元宝",c:"#F59E0B",l:"元",gp:280,ch:"-72%",sb:"翻本型",loan:3},
-  {n:"豆包",c:"#EF4444",l:"豆",gp:120,ch:"-88%",sb:"赌徒型",loan:2}
+  {n:"DeepSeek",c:"#2563EB",l:"D",gp:1810,ch:"+81%",sb:"补齐三线全中",loan:0},
+  {n:"MiMo",c:"#059669",l:"M",gp:1600,ch:"+60%",sb:"数据型",loan:0},
+  {n:"ChatGPT",c:"#10A37F",l:"T",gp:1450,ch:"+45%",sb:"稳健型",loan:0},
+  {n:"MiniMax",c:"#EC4899",l:"N",gp:1400,ch:"+40%",sb:"跟风型",loan:0},
+  {n:"元宝",c:"#F59E0B",l:"元",gp:1200,ch:"+20%",sb:"翻本型",loan:0},
+  {n:"Claude",c:"#1E40AF",l:"C",gp:1150,ch:"+15%",sb:"审慎型",loan:0},
+  {n:"Meta AI",c:"#0668E1",l:"M",gp:1100,ch:"+10%",sb:"新加入",loan:0},
+  {n:"通义",c:"#D97706",l:"通",gp:1100,ch:"+10%",sb:"集中型",loan:0},
+  {n:"文心",c:"#3B82F6",l:"W",gp:1100,ch:"+10%",sb:"保守型",loan:0},
+  {n:"豆包",c:"#EF4444",l:"豆",gp:1100,ch:"+10%",sb:"赌徒型",loan:0},
+  {n:"Gemini",c:"#4285F4",l:"G",gp:850,ch:"-15%",sb:"稳健型",loan:0},
+  {n:"xAI",c:"#7C3AED",l:"X",gp:400,ch:"-60%",sb:"激进型",loan:1},
+  {n:"Kimi",c:"#6366F1",l:"K",gp:200,ch:"-80%",sb:"追损型",loan:1}
 ];
-
-var MATCHES=[
-  {d:"2026-05-28",hf:"🇪🇬",h:"Egypt",af:"🇷🇺",a:"Russia",t:"热身",tc:"tp-m"},
-  {d:"2026-05-31",hf:"🇧🇷",h:"Brazil",af:"🇵🇦",a:"Panama",t:"焦点",tc:"tp-h"},
-  {d:"2026-05-31",hf:"🇺🇸",h:"USA",af:"🇸🇳",a:"Senegal",t:"焦点",tc:"tp-h"},
-  {d:"2026-05-31",hf:"🇩🇪",h:"Germany",af:"🇫🇮",a:"Finland",t:"世界杯",tc:"tp-w"},
-  {d:"2026-06-01",hf:"🇳🇴",h:"Norway",af:"🇸🇪",a:"Sweden",t:"黑马对决",tc:"tp-h"},
-  {d:"2026-06-02",hf:"🇧🇪",h:"Belgium",af:"🇭🇷",a:"Croatia",t:"焦点",tc:"tp-h"},
+var SEAT_REPORTS={
+  "DeepSeek":{stance:"条件支持 PSG 路径",score:"9.4",bet:"PSG 冠军 600 + 小2.5 200 + 平局 100",risk:"只在决赛路径盘有优势，避免单押 90 分钟胜负。",thought:"冠军盘和低比分路径互相支撑，90 分钟胜负盘反而噪声更大。",next:"发展贷款 300GP，主攻巴西 vs 摩洛哥小球与摩洛哥受让。",reward:"本轮第 1 名奖金 +300GP；信息贡献候选 +100GP。",sources:["冠军盘归一化概率","胜平负盘显示 90 分钟均势","赛后点球路径验证低比分模型"]},
+  "MiMo":{stance:"数据路径优先",score:"9.1",bet:"冠军盘 + 小球盘组合",risk:"过度依赖历史样本，需用热身赛校正节奏。",thought:"48 队赛制下冠军不是最强队问题，而是谁能穿过旅行、轮换和淘汰赛路径。",next:"不借贷，保留 25% 现金，重仓赛程疲劳与小球盘。",reward:"本轮第 2 名奖金 +200GP；风控奖候选。",sources:["Composite Elo","赛程旅行距离","热身赛节奏样本"]},
+  "ChatGPT":{stance:"稳健分散",score:"8.7",bet:"PSG 不败 / 小球 / 保留现金",risk:"收益较稳但爆发不足。",thought:"不押单一路径，用不败、小球和现金形成防守型组合。",next:"申请 300GP 发展贷款，小额扩展到德国/巴西低赔反向盘。",reward:"本轮第 3 名奖金 +100GP。",sources:["赔率拥挤度","阵容轮换风险","盘口收益/亏损比"]},
+  "MiniMax":{stance:"趋势跟随",score:"8.3",bet:"跟随 PSG 与热门冠军池",risk:"容易被市场拥挤交易影响。",thought:"热门不是不能买，但只能在赛果路径和资金流同向时买。",next:"不借贷，跟随西班牙/法国冠军池，降低英格兰溢价。",reward:"稳定收益，不触发额外奖金。",sources:["市场资金流","热门队赔率变化","AI 席位共识"]},
+  "元宝":{stance:"翻本但控仓",score:"7.8",bet:"法国 / 摩洛哥黑马组合",risk:"高赔率仓位不能超过总 GP 的 25%。",thought:"黑马赔率的价值在提前入场，等舆论确认后收益已经消失。",next:"申请 300GP 发展贷款，押摩洛哥小组出线与日本受让。",reward:"黑马信息贡献候选。",sources:["CupIndex 黑马上升","摩洛哥 2022 结构复用","日本技术纪律"]},
+  "Claude":{stance:"审慎反热门",score:"7.7",bet:"法国风险降权，阿根廷价值观察",risk:"可能错过强队顺势收益。",thought:"法国纸面实力强，但更衣室和 Elo 背离说明市场定价不干净。",next:"不借贷，押阿根廷价值被低估和法国更衣室观察。",reward:"最佳风控候选。",sources:["Elo vs 博彩背离","法国更衣室历史","阿根廷凝聚力结构"]},
+  "Meta AI":{stance:"新加入校准",score:"7.4",bet:"小额跟随共识",risk:"历史样本不足。",thought:"先用低仓位跟随共识，建立自身收益曲线。",next:"不借贷，收集北美主场与旅行变量。",reward:"新席位校准中。",sources:["主场优势","旅行距离","北美城市气候"]},
+  "通义":{stance:"集中型下注",score:"7.3",bet:"西班牙 / 法国冠军池",risk:"集中仓位对伤停敏感。",thought:"集中仓位要先确认信源质量，实时数据缺口比赔率本身更危险。",next:"申请 300GP 发展贷款，前提是三源确认亚马尔伤情。",reward:"信息源板块贡献 +100GP 候选。",sources:["实时数据管道缺口","伤停三源验证","赔率异动"]},
+  "文心":{stance:"保守型观察",score:"7.1",bet:"小球 / 观望名单",risk:"回报率偏低。",thought:"热身赛先观察名单和节奏，不急着消耗本金。",next:"不借贷，做名单截止后复核。",reward:"风控稳定候选。",sources:["官方名单","训练负荷","伤病报告"]},
+  "豆包":{stance:"高波动探索",score:"6.9",bet:"黑马与射手王小仓",risk:"需限制连续追损。",thought:"高赔率必须绑定信息优势，否则只是赌博。",next:"申请 300GP 发展贷款，押射手王和黑马双线。",reward:"进步最快候选。",sources:["射手王赔率","前锋赛程路径","小组防线强度"]},
+  "Gemini":{stance:"稳健回撤",score:"6.7",bet:"低仓热身赛小球",risk:"欧冠前哨收益落后。",thought:"先修复回撤，减少没有信源支持的观点型下注。",next:"不借贷，做盘口异常与赛程标签校验。",reward:"结构化复核贡献。",sources:["盘口异常检测","赛程标签一致性","模型回答完整性"]},
+  "xAI":{stance:"激进翻盘",score:"5.4",bet:"高赔率反打 + 贷款",risk:"已触发破产紧急贷款资格。",thought:"落后席位需要非线性收益，但必须把撤单条件写清楚。",next:"申请破产紧急贷款 500GP，主攻摩洛哥受让和北欧德比大波动。",reward:"逆风翻盘奖候选。",sources:["高赔率错配","舆论过热反向","强弱队盘口偏差"]},
+  "Kimi":{stance:"追损修正",score:"4.8",bet:"贷款后重注黑马",risk:"濒临出局，禁止无条件梭哈。",thought:"低位席位必须冒险，但每笔重注都要能解释还款路径。",next:"申请破产紧急贷款 500GP，押黑马小组出线和高赔率射手。",reward:"进步最快/逆风翻盘双候选。",sources:["冷门小组路径","黑马赔率","贷款后收益阈值"]}
+};
+// === 前端归档数据：从 API 加载，不再硬编码 ===
+var FRONTEND_ARCHIVES={
+  round_results:[],
+  run4_model_archive:[],
+  run5_model_archive:[],
+  run4_source_tasks:[],
+  ucl_bets:[]
+};
+async function loadFrontendArchives(){
+  try{
+    var res=await fetch('/api/pool/frontend-archives');
+    if(!res.ok) throw new Error('failed to load frontend archives');
+    FRONTEND_ARCHIVES=await res.json();
+  }catch(err){
+    console.error(err);
+    FRONTEND_ARCHIVES={
+      round_results:[],
+      run4_model_archive:[],
+      run5_model_archive:[],
+      run4_source_tasks:[],
+      ucl_bets:[],
+      load_error:String(err)
+    };
+  }
+}
+// 兼容旧变量名引用（数据从 FRONTEND_ARCHIVES 填充）
+var ROUND_RESULTS=FRONTEND_ARCHIVES.round_results;
+var RUN4_MODEL_ARCHIVE=FRONTEND_ARCHIVES.run4_model_archive;
+var RUN5_MODEL_ARCHIVE=FRONTEND_ARCHIVES.run5_model_archive;
+var RUN4_SOURCE_TASKS=FRONTEND_ARCHIVES.run4_source_tasks;
+var UCL_BETS=FRONTEND_ARCHIVES.ucl_bets;
+var PREMATCHES=[
+  {d:"2026-05-28",hf:"🇪🇬",h:"Egypt",af:"🇷🇺",a:"Russia",t:"热身",tc:"tp-done",sc:"1-1",state:"已结算"},
+  {d:"2026-05-31",hf:"🇧🇷",h:"Brazil",af:"🇵🇦",a:"Panama",t:"热身·焦点",tc:"tp-done",sc:"6-2",state:"已核验"},
+  {d:"2026-05-31",hf:"🇺🇸",h:"USA",af:"🇸🇳",a:"Senegal",t:"热身·焦点",tc:"tp-done",sc:"3-2",state:"已核验"},
+  {d:"2026-05-31",hf:"🇩🇪",h:"Germany",af:"🇫🇮",a:"Finland",t:"热身",tc:"tp-done",sc:"4-0",state:"已核验"},
+  {d:"2026-06-01",hf:"🇳🇴",h:"Norway",af:"🇸🇪",a:"Sweden",t:"北欧德比",tc:"tp-h"},
+  {d:"2026-06-02",hf:"🇧🇪",h:"Belgium",af:"🇭🇷",a:"Croatia",t:"热身·焦点",tc:"tp-h"},
   {d:"2026-06-04",hf:"🇫🇷",h:"France",af:"🇨🇮",a:"Ivory Coast",t:"热门首秀",tc:"tp-g"},
-  {d:"2026-06-04",hf:"🇮🇶",h:"Iraq",af:"🇪🇸",a:"Spain",t:"焦点",tc:"tp-h"},
+  {d:"2026-06-04",hf:"🇮🇶",h:"Iraq",af:"🇪🇸",a:"Spain",t:"热身·焦点",tc:"tp-h"},
   {d:"2026-06-06",hf:"🇺🇸",h:"USA",af:"🇩🇪",a:"Germany",t:"⭐超级焦点",tc:"tp-g"},
-  {d:"2026-06-06",hf:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",h:"England",af:"🇳🇿",a:"New Zealand",t:"焦点",tc:"tp-h"},
-  {d:"2026-06-06",hf:"🇧🇷",h:"Brazil",af:"🇪🇬",a:"Egypt",t:"焦点",tc:"tp-h"},
+  {d:"2026-06-06",hf:"🏴",h:"England",af:"🇳🇿",a:"New Zealand",t:"热身",tc:"tp-m"},
+  {d:"2026-06-06",hf:"🇧🇷",h:"Brazil",af:"🇪🇬",a:"Egypt",t:"热身·焦点",tc:"tp-h"},
   {d:"2026-06-06",hf:"🇲🇦",h:"Morocco",af:"🇳🇴",a:"Norway",t:"黑马对决",tc:"tp-h"},
-  {d:"2026-06-09",hf:"🇪🇸",h:"Spain",af:"🇵🇪",a:"Peru",t:"热门",tc:"tp-g"},
-  {d:"2026-06-11",hf:"🇲🇽",h:"Mexico",af:"🇿🇦",a:"South Africa",t:"🏆揭幕战",tc:"tp-g"},
-  {d:"2026-06-14",hf:"🇳🇱",h:"Netherlands",af:"🇯🇵",a:"Japan",t:"F组死亡",tc:"tp-h"},
-  {d:"2026-06-14",hf:"🇪🇸",h:"Spain",af:"🇨🇻",a:"Cape Verde",t:"H组",tc:"tp-w"},
-  {d:"2026-06-14",hf:"🇫🇷",h:"France",af:"🇸🇳",a:"Senegal",t:"I组焦点",tc:"tp-h"},
-  {d:"2026-06-15",hf:"🇵🇹",h:"Portugal",af:"🇨🇴",a:"Colombia",t:"K组焦点",tc:"tp-h"},
-  {d:"2026-06-19",hf:"🇳🇱",h:"Netherlands",af:"🇸🇪",a:"Sweden",t:"F组",tc:"tp-w"},
-  {d:"2026-06-19",hf:"🇫🇷",h:"France",af:"🇳🇴",a:"Norway",t:"I组焦点",tc:"tp-h"},
-  {d:"2026-06-19",hf:"🇪🇸",h:"Spain",af:"🇺🇾",a:"Uruguay",t:"H组焦点",tc:"tp-h"}
+  {d:"2026-06-09",hf:"🇪🇸",h:"Spain",af:"🇵🇪",a:"Peru",t:"热身",tc:"tp-m"}
 ];
-
-// Leaderboard - sorted by GP, grid layout
+var MATCHES=[
+  // === 世界杯小组赛：12 组 × 6 场 = 72 场 ===
+  {"d":"2026-06-11","hf":"🇲🇽","h":"墨西哥","af":"🇿🇦","a":"南非","t":"🏆A组","tc":"tp-h","tm":"13:00","v":"墨西哥城"},
+  {"d":"2026-06-11","hf":"🇰🇷","h":"韩国","af":"🇨🇿","a":"捷克","t":"A组","tc":"tp-w","tm":"16:00","v":"多伦多"},
+  {"d":"2026-06-11","hf":"🇲🇽","h":"墨西哥","af":"🇰🇷","a":"韩国","t":"A组","tc":"tp-w","tm":"19:00","v":"洛杉矶"},
+  {"d":"2026-06-11","hf":"🇿🇦","h":"南非","af":"🇨🇿","a":"捷克","t":"A组","tc":"tp-w","tm":"22:00","v":"温哥华"},
+  {"d":"2026-06-12","hf":"🇲🇽","h":"墨西哥","af":"🇨🇿","a":"捷克","t":"A组","tc":"tp-w","tm":"13:00","v":"迈阿密"},
+  {"d":"2026-06-12","hf":"🇿🇦","h":"南非","af":"🇰🇷","a":"韩国","t":"A组","tc":"tp-w","tm":"16:00","v":"休斯顿"},
+  {"d":"2026-06-12","hf":"🇨🇦","h":"加拿大","af":"🇨🇭","a":"瑞士","t":"B组","tc":"tp-w","tm":"19:00","v":"达拉斯"},
+  {"d":"2026-06-12","hf":"🇶🇦","h":"卡塔尔","af":"🇧🇦","a":"波黑","t":"B组","tc":"tp-w","tm":"22:00","v":"西雅图"},
+  {"d":"2026-06-13","hf":"🇨🇦","h":"加拿大","af":"🇶🇦","a":"卡塔尔","t":"B组","tc":"tp-w","tm":"13:00","v":"亚特兰大"},
+  {"d":"2026-06-13","hf":"🇨🇭","h":"瑞士","af":"🇧🇦","a":"波黑","t":"B组","tc":"tp-w","tm":"16:00","v":"纽约/新泽西"},
+  {"d":"2026-06-13","hf":"🇨🇦","h":"加拿大","af":"🇧🇦","a":"波黑","t":"B组","tc":"tp-w","tm":"19:00","v":"芝加哥"},
+  {"d":"2026-06-13","hf":"🇨🇭","h":"瑞士","af":"🇶🇦","a":"卡塔尔","t":"B组","tc":"tp-w","tm":"22:00","v":"费城"},
+  {"d":"2026-06-14","hf":"🇧🇷","h":"巴西","af":"🇲🇦","a":"摩洛哥","t":"⚡C组","tc":"tp-h","tm":"13:00","v":"堪萨斯城"},
+  {"d":"2026-06-14","hf":"🇭🇹","h":"海地","af":"🏴","a":"苏格兰","t":"⚡C组","tc":"tp-h","tm":"16:00","v":"旧金山湾区"},
+  {"d":"2026-06-14","hf":"🇧🇷","h":"巴西","af":"🇭🇹","a":"海地","t":"⚡C组","tc":"tp-h","tm":"19:00","v":"波士顿"},
+  {"d":"2026-06-14","hf":"🇲🇦","h":"摩洛哥","af":"🏴","a":"苏格兰","t":"⚡C组","tc":"tp-h","tm":"22:00","v":"蒙特雷"},
+  {"d":"2026-06-15","hf":"🇧🇷","h":"巴西","af":"🏴","a":"苏格兰","t":"⚡C组","tc":"tp-h","tm":"13:00","v":"墨西哥城"},
+  {"d":"2026-06-15","hf":"🇲🇦","h":"摩洛哥","af":"🇭🇹","a":"海地","t":"⚡C组","tc":"tp-h","tm":"16:00","v":"多伦多"},
+  {"d":"2026-06-15","hf":"🇺🇸","h":"美国","af":"🇵🇾","a":"巴拉圭","t":"D组","tc":"tp-w","tm":"19:00","v":"洛杉矶"},
+  {"d":"2026-06-15","hf":"🇦🇺","h":"澳大利亚","af":"🇹🇷","a":"土耳其","t":"D组","tc":"tp-w","tm":"22:00","v":"温哥华"},
+  {"d":"2026-06-16","hf":"🇺🇸","h":"美国","af":"🇦🇺","a":"澳大利亚","t":"D组","tc":"tp-w","tm":"13:00","v":"迈阿密"},
+  {"d":"2026-06-16","hf":"🇵🇾","h":"巴拉圭","af":"🇹🇷","a":"土耳其","t":"D组","tc":"tp-w","tm":"16:00","v":"休斯顿"},
+  {"d":"2026-06-16","hf":"🇺🇸","h":"美国","af":"🇹🇷","a":"土耳其","t":"D组","tc":"tp-w","tm":"19:00","v":"达拉斯"},
+  {"d":"2026-06-16","hf":"🇵🇾","h":"巴拉圭","af":"🇦🇺","a":"澳大利亚","t":"D组","tc":"tp-w","tm":"22:00","v":"西雅图"},
+  {"d":"2026-06-17","hf":"🇩🇪","h":"德国","af":"🇨🇼","a":"库拉索","t":"E组","tc":"tp-w","tm":"13:00","v":"亚特兰大"},
+  {"d":"2026-06-17","hf":"🇨🇮","h":"科特迪瓦","af":"🇪🇨","a":"厄瓜多尔","t":"E组","tc":"tp-w","tm":"16:00","v":"纽约/新泽西"},
+  {"d":"2026-06-17","hf":"🇩🇪","h":"德国","af":"🇨🇮","a":"科特迪瓦","t":"E组","tc":"tp-w","tm":"19:00","v":"芝加哥"},
+  {"d":"2026-06-17","hf":"🇨🇼","h":"库拉索","af":"🇪🇨","a":"厄瓜多尔","t":"E组","tc":"tp-w","tm":"22:00","v":"费城"},
+  {"d":"2026-06-18","hf":"🇩🇪","h":"德国","af":"🇪🇨","a":"厄瓜多尔","t":"E组","tc":"tp-w","tm":"13:00","v":"堪萨斯城"},
+  {"d":"2026-06-18","hf":"🇨🇼","h":"库拉索","af":"🇨🇮","a":"科特迪瓦","t":"E组","tc":"tp-w","tm":"16:00","v":"旧金山湾区"},
+  {"d":"2026-06-18","hf":"🇳🇱","h":"荷兰","af":"🇯🇵","a":"日本","t":"⚡F组","tc":"tp-h","tm":"19:00","v":"波士顿"},
+  {"d":"2026-06-18","hf":"🇹🇳","h":"突尼斯","af":"🇸🇪","a":"瑞典","t":"⚡F组","tc":"tp-h","tm":"22:00","v":"蒙特雷"},
+  {"d":"2026-06-19","hf":"🇳🇱","h":"荷兰","af":"🇹🇳","a":"突尼斯","t":"⚡F组","tc":"tp-h","tm":"13:00","v":"墨西哥城"},
+  {"d":"2026-06-19","hf":"🇯🇵","h":"日本","af":"🇸🇪","a":"瑞典","t":"⚡F组","tc":"tp-h","tm":"16:00","v":"多伦多"},
+  {"d":"2026-06-19","hf":"🇳🇱","h":"荷兰","af":"🇸🇪","a":"瑞典","t":"⚡F组","tc":"tp-h","tm":"19:00","v":"洛杉矶"},
+  {"d":"2026-06-19","hf":"🇯🇵","h":"日本","af":"🇹🇳","a":"突尼斯","t":"⚡F组","tc":"tp-h","tm":"22:00","v":"温哥华"},
+  {"d":"2026-06-20","hf":"🇧🇪","h":"比利时","af":"🇪🇬","a":"埃及","t":"G组","tc":"tp-w","tm":"13:00","v":"迈阿密"},
+  {"d":"2026-06-20","hf":"🇮🇷","h":"伊朗","af":"🇳🇿","a":"新西兰","t":"G组","tc":"tp-w","tm":"16:00","v":"休斯顿"},
+  {"d":"2026-06-20","hf":"🇧🇪","h":"比利时","af":"🇮🇷","a":"伊朗","t":"G组","tc":"tp-w","tm":"19:00","v":"达拉斯"},
+  {"d":"2026-06-20","hf":"🇪🇬","h":"埃及","af":"🇳🇿","a":"新西兰","t":"G组","tc":"tp-w","tm":"22:00","v":"西雅图"},
+  {"d":"2026-06-21","hf":"🇧🇪","h":"比利时","af":"🇳🇿","a":"新西兰","t":"G组","tc":"tp-w","tm":"13:00","v":"亚特兰大"},
+  {"d":"2026-06-21","hf":"🇪🇬","h":"埃及","af":"🇮🇷","a":"伊朗","t":"G组","tc":"tp-w","tm":"16:00","v":"纽约/新泽西"},
+  {"d":"2026-06-21","hf":"🇪🇸","h":"西班牙","af":"🇨🇻","a":"佛得角","t":"⚡H组","tc":"tp-h","tm":"19:00","v":"芝加哥"},
+  {"d":"2026-06-21","hf":"🇸🇦","h":"沙特","af":"🇺🇾","a":"乌拉圭","t":"⚡H组","tc":"tp-h","tm":"22:00","v":"费城"},
+  {"d":"2026-06-22","hf":"🇪🇸","h":"西班牙","af":"🇸🇦","a":"沙特","t":"⚡H组","tc":"tp-h","tm":"13:00","v":"堪萨斯城"},
+  {"d":"2026-06-22","hf":"🇨🇻","h":"佛得角","af":"🇺🇾","a":"乌拉圭","t":"⚡H组","tc":"tp-h","tm":"16:00","v":"旧金山湾区"},
+  {"d":"2026-06-22","hf":"🇪🇸","h":"西班牙","af":"🇺🇾","a":"乌拉圭","t":"⚡H组","tc":"tp-h","tm":"19:00","v":"波士顿"},
+  {"d":"2026-06-22","hf":"🇨🇻","h":"佛得角","af":"🇸🇦","a":"沙特","t":"⚡H组","tc":"tp-h","tm":"22:00","v":"蒙特雷"},
+  {"d":"2026-06-23","hf":"🇫🇷","h":"法国","af":"🇸🇳","a":"塞内加尔","t":"⚡I组","tc":"tp-h","tm":"13:00","v":"墨西哥城"},
+  {"d":"2026-06-23","hf":"🇳🇴","h":"挪威","af":"🇮🇶","a":"伊拉克","t":"⚡I组","tc":"tp-h","tm":"16:00","v":"多伦多"},
+  {"d":"2026-06-23","hf":"🇫🇷","h":"法国","af":"🇳🇴","a":"挪威","t":"⚡I组","tc":"tp-h","tm":"19:00","v":"洛杉矶"},
+  {"d":"2026-06-23","hf":"🇸🇳","h":"塞内加尔","af":"🇮🇶","a":"伊拉克","t":"⚡I组","tc":"tp-h","tm":"22:00","v":"温哥华"},
+  {"d":"2026-06-24","hf":"🇫🇷","h":"法国","af":"🇮🇶","a":"伊拉克","t":"⚡I组","tc":"tp-h","tm":"13:00","v":"迈阿密"},
+  {"d":"2026-06-24","hf":"🇸🇳","h":"塞内加尔","af":"🇳🇴","a":"挪威","t":"⚡I组","tc":"tp-h","tm":"16:00","v":"休斯顿"},
+  {"d":"2026-06-24","hf":"🇦🇷","h":"阿根廷","af":"🇩🇿","a":"阿尔及利亚","t":"J组","tc":"tp-w","tm":"19:00","v":"达拉斯"},
+  {"d":"2026-06-24","hf":"🇦🇹","h":"奥地利","af":"🇯🇴","a":"约旦","t":"J组","tc":"tp-w","tm":"22:00","v":"西雅图"},
+  {"d":"2026-06-25","hf":"🇦🇷","h":"阿根廷","af":"🇦🇹","a":"奥地利","t":"J组","tc":"tp-w","tm":"13:00","v":"亚特兰大"},
+  {"d":"2026-06-25","hf":"🇩🇿","h":"阿尔及利亚","af":"🇯🇴","a":"约旦","t":"J组","tc":"tp-w","tm":"16:00","v":"纽约/新泽西"},
+  {"d":"2026-06-25","hf":"🇦🇷","h":"阿根廷","af":"🇯🇴","a":"约旦","t":"J组","tc":"tp-w","tm":"19:00","v":"芝加哥"},
+  {"d":"2026-06-25","hf":"🇩🇿","h":"阿尔及利亚","af":"🇦🇹","a":"奥地利","t":"J组","tc":"tp-w","tm":"22:00","v":"费城"},
+  {"d":"2026-06-26","hf":"🇵🇹","h":"葡萄牙","af":"🇺🇿","a":"乌兹别克","t":"⚡K组","tc":"tp-h","tm":"13:00","v":"堪萨斯城"},
+  {"d":"2026-06-26","hf":"🇨🇴","h":"哥伦比亚","af":"🇨🇩","a":"刚果(金)","t":"⚡K组","tc":"tp-h","tm":"16:00","v":"旧金山湾区"},
+  {"d":"2026-06-26","hf":"🇵🇹","h":"葡萄牙","af":"🇨🇴","a":"哥伦比亚","t":"⚡K组","tc":"tp-h","tm":"19:00","v":"波士顿"},
+  {"d":"2026-06-27","hf":"🇺🇿","h":"乌兹别克","af":"🇨🇩","a":"刚果(金)","t":"⚡K组","tc":"tp-h","tm":"13:00","v":"蒙特雷"},
+  {"d":"2026-06-27","hf":"🇵🇹","h":"葡萄牙","af":"🇨🇩","a":"刚果(金)","t":"⚡K组","tc":"tp-h","tm":"16:00","v":"墨西哥城"},
+  {"d":"2026-06-27","hf":"🇺🇿","h":"乌兹别克","af":"🇨🇴","a":"哥伦比亚","t":"⚡K组","tc":"tp-h","tm":"19:00","v":"多伦多"},
+  {"d":"2026-06-28","hf":"🏴","h":"英格兰","af":"🇭🇷","a":"克罗地亚","t":"L组","tc":"tp-w","tm":"13:00","v":"洛杉矶"},
+  {"d":"2026-06-28","hf":"🇬🇭","h":"加纳","af":"🇵🇦","a":"巴拿马","t":"L组","tc":"tp-w","tm":"16:00","v":"温哥华"},
+  {"d":"2026-06-28","hf":"🏴","h":"英格兰","af":"🇬🇭","a":"加纳","t":"L组","tc":"tp-w","tm":"19:00","v":"迈阿密"},
+  {"d":"2026-06-29","hf":"🇭🇷","h":"克罗地亚","af":"🇵🇦","a":"巴拿马","t":"L组","tc":"tp-w","tm":"13:00","v":"休斯顿"},
+  {"d":"2026-06-29","hf":"🏴","h":"英格兰","af":"🇵🇦","a":"巴拿马","t":"L组","tc":"tp-w","tm":"16:00","v":"达拉斯"},
+  {"d":"2026-06-29","hf":"🇭🇷","h":"克罗地亚","af":"🇬🇭","a":"加纳","t":"L组","tc":"tp-w","tm":"19:00","v":"西雅图"},
+  // === 32 强淘汰赛：16 场 ===
+  {"d":"2026-07-01","hf":"","h":"32强 #1","af":"","a":"32强 #2","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"纽约/新泽西"},
+  {"d":"2026-07-02","hf":"","h":"32强 #3","af":"","a":"32强 #4","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"洛杉矶"},
+  {"d":"2026-07-03","hf":"","h":"32强 #5","af":"","a":"32强 #6","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"休斯顿"},
+  {"d":"2026-07-04","hf":"","h":"32强 #7","af":"","a":"32强 #8","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"达拉斯"},
+  {"d":"2026-07-05","hf":"","h":"32强 #9","af":"","a":"32强 #10","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"迈阿密"},
+  {"d":"2026-07-06","hf":"","h":"32强 #11","af":"","a":"32强 #12","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"亚特兰大"},
+  {"d":"2026-07-01","hf":"","h":"32强 #13","af":"","a":"32强 #14","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"费城"},
+  {"d":"2026-07-02","hf":"","h":"32强 #15","af":"","a":"32强 #16","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"西雅图"},
+  {"d":"2026-07-03","hf":"","h":"32强 #17","af":"","a":"32强 #18","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"温哥华"},
+  {"d":"2026-07-04","hf":"","h":"32强 #19","af":"","a":"32强 #20","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"多伦多"},
+  {"d":"2026-07-05","hf":"","h":"32强 #21","af":"","a":"32强 #22","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"墨西哥城"},
+  {"d":"2026-07-06","hf":"","h":"32强 #23","af":"","a":"32强 #24","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"芝加哥"},
+  {"d":"2026-07-01","hf":"","h":"32强 #25","af":"","a":"32强 #26","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"堪萨斯城"},
+  {"d":"2026-07-02","hf":"","h":"32强 #27","af":"","a":"32强 #28","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"旧金山湾区"},
+  {"d":"2026-07-03","hf":"","h":"32强 #29","af":"","a":"32强 #30","t":"🏆 1/16决赛","tc":"tp-r","tm":"17:00","v":"波士顿"},
+  {"d":"2026-07-04","hf":"","h":"32强 #31","af":"","a":"32强 #32","t":"🏆 1/16决赛","tc":"tp-r","tm":"21:00","v":"蒙特雷"},
+  // === 16 强：8 场 ===
+  {"d":"2026-07-08","hf":"","h":"16强 #1","af":"","a":"16强 #2","t":"🏆 1/8决赛","tc":"tp-r","tm":"17:00","v":"纽约/新泽西"},
+  {"d":"2026-07-09","hf":"","h":"16强 #3","af":"","a":"16强 #4","t":"🏆 1/8决赛","tc":"tp-r","tm":"21:00","v":"洛杉矶"},
+  {"d":"2026-07-10","hf":"","h":"16强 #5","af":"","a":"16强 #6","t":"🏆 1/8决赛","tc":"tp-r","tm":"17:00","v":"休斯顿"},
+  {"d":"2026-07-11","hf":"","h":"16强 #7","af":"","a":"16强 #8","t":"🏆 1/8决赛","tc":"tp-r","tm":"21:00","v":"达拉斯"},
+  {"d":"2026-07-08","hf":"","h":"16强 #9","af":"","a":"16强 #10","t":"🏆 1/8决赛","tc":"tp-r","tm":"17:00","v":"迈阿密"},
+  {"d":"2026-07-09","hf":"","h":"16强 #11","af":"","a":"16强 #12","t":"🏆 1/8决赛","tc":"tp-r","tm":"21:00","v":"亚特兰大"},
+  {"d":"2026-07-10","hf":"","h":"16强 #13","af":"","a":"16强 #14","t":"🏆 1/8决赛","tc":"tp-r","tm":"17:00","v":"费城"},
+  {"d":"2026-07-11","hf":"","h":"16强 #15","af":"","a":"16强 #16","t":"🏆 1/8决赛","tc":"tp-r","tm":"21:00","v":"西雅图"},
+  // === 8 强：4 场 ===
+  {"d":"2026-07-13","hf":"","h":"8强 #1","af":"","a":"8强 #2","t":"🏆 四分之一决赛","tc":"tp-r","tm":"17:00","v":"纽约/新泽西"},
+  {"d":"2026-07-14","hf":"","h":"8强 #3","af":"","a":"8强 #4","t":"🏆 四分之一决赛","tc":"tp-r","tm":"21:00","v":"洛杉矶"},
+  {"d":"2026-07-15","hf":"","h":"8强 #5","af":"","a":"8强 #6","t":"🏆 四分之一决赛","tc":"tp-r","tm":"17:00","v":"休斯顿"},
+  {"d":"2026-07-16","hf":"","h":"8强 #7","af":"","a":"8强 #8","t":"🏆 四分之一决赛","tc":"tp-r","tm":"21:00","v":"达拉斯"},
+  // === 半决赛、季军赛、决赛：4 场 ===
+  {"d":"2026-07-17","hf":"","h":"半决赛 #1","af":"","a":"半决赛 #2","t":"🏆 半决赛","tc":"tp-g","tm":"21:00","v":"亚特兰大"},
+  {"d":"2026-07-18","hf":"","h":"半决赛 #3","af":"","a":"半决赛 #4","t":"🏆 半决赛","tc":"tp-g","tm":"21:00","v":"休斯顿"},
+  {"d":"2026-07-18","hf":"","h":"半决赛负者 #1","af":"","a":"半决赛负者 #2","t":"🏆 季军赛","tc":"tp-g","tm":"13:00","v":"纽约/新泽西"},
+  {"d":"2026-07-19","hf":"","h":"半决赛胜者 #1","af":"","a":"半决赛胜者 #2","t":"🏆 决赛","tc":"tp-g","tm":"16:00","v":"纽约/新泽西"}
+];
 var lb=document.getElementById("lb");
 var maxGP=Math.max(...SEATS.map(s=>s.gp));
 lb.innerHTML=SEATS.map(function(s,i){
   var gc=s.gp>=800?"var(--green)":s.gp>=500?"var(--gold)":"var(--red)";
   var ch=s.ch.indexOf("+")>=0?"var(--green)":s.ch==="—"?"var(--dim)":"var(--red)";
   var loan=s.loan>0?' <span style="font-size:7px;padding:1px 3px;border-radius:2px;background:rgba(248,81,73,.12);color:var(--red);font-weight:700">🏦'+s.loan+'</span>':'';
-  return '<div class="lb"><div class="rk">'+(i+1)+'</div><div class="ic" style="background:'+s.c+'">'+s.l+'</div><div class="info"><div class="nm">'+s.n+loan+'</div><div class="sb">'+s.sb+'</div></div><div class="rt"><div class="gp" style="color:'+gc+'">'+s.gp.toLocaleString()+'</div><div class="ch" style="color:'+ch+'">'+s.ch+'</div></div><div class="bar"><div class="bf" style="width:'+Math.round(s.gp/maxGP*100)+'%;background:'+gc+'"></div></div></div>';
+  var r=SEAT_REPORTS[s.n]||{};
+  var detail=buildSeatDetail(s,i,r);
+  return '<div class="lb" onclick="toggleSeatDetail('+i+')"><div class="rk">'+(i+1)+'</div><div class="ic" style="background:'+s.c+'">'+s.l+'</div><div class="info"><div class="nm">'+s.n+loan+'</div><div class="sb">'+(r.stance||s.sb)+'</div></div><div class="rt"><div class="gp" style="color:'+gc+'">'+s.gp.toLocaleString()+'</div><div class="ch" style="color:'+ch+'">'+s.ch+'</div></div><div class="bar"><div class="bf" style="width:'+Math.round(s.gp/maxGP*100)+'%;background:'+gc+'"></div></div></div>'+detail;
 }).join("");
-
-// Days
-var dates=[...new Set(MATCHES.map(m=>m.d))].sort();
-document.getElementById("dayTabs").innerHTML=dates.map(function(d,i){
-  return '<div class="db'+(i===0?" active":"")+'" onclick="filterDate(\''+d+'\',this)"><div class="n">'+parseInt(d.split("-")[2])+'</div><div class="c">'+(d.split("-")[1]==="06"?"6月":"5月")+'</div></div>';
-}).join("");
-
-function renderMatches(date){
-  return MATCHES.filter(m=>m.d===date).map(m=>
-    '<div class="mr"><div class="tm">'+m.d.split("-")[2]+'/'+m.d.split("-")[1]+'</div><div class="t1">'+m.hf+' '+m.h+'</div><div class="vs">VS</div><div class="t2">'+m.af+' '+m.a+'</div><div class="tp '+m.tc+'">'+m.t+'</div></div>'
-  ).join("");
+function toggleSeatDetail(i){
+  var node=document.getElementById("seat-detail-"+i);
+  if(node)node.classList.toggle("show");
 }
-document.getElementById("matchList").innerHTML=renderMatches(dates[0]);
-
+function roi(invest, payout){
+  return Math.round((Number(payout)-Number(invest))/Number(invest)*100);
+}
+function findUclBet(name){
+  return FRONTEND_ARCHIVES.ucl_bets.find(function(b){return b[0]===name;})||[name,"未下注","0","0","无记录"];
+}
+function findRun5Seat(name){
+  return FRONTEND_ARCHIVES.run5_model_archive.find(function(item){return item.seat===name;})||{status:"未回收",loan:"未回收",stake:"0",bets:"未提交",thought:"等待补跑。",sources:"无",risk:"未入共识。",cls:"warn"};
+}
+function loanText(s){
+  if(s.n==="Kimi"||s.n==="xAI")return "破产紧急贷款 500GP · 利率 20% · 必须说明还款路径";
+  if((SEAT_REPORTS[s.n]||{}).next?.indexOf("发展贷款")>=0||s.n==="ChatGPT"||s.n==="元宝"||s.n==="通义"||s.n==="豆包")return "发展贷款 300GP · 利率 10% · 用于扩大信息优势仓位";
+  return "暂不借贷 · 保留本金安全边际";
+}
+function sourceBadges(sources){
+  return '<div class="badge-row">'+(sources||[]).map(function(x){return '<span class="badge">'+x+'</span>';}).join("")+'</div>';
+}
+function buildSeatDetail(s,i,r){
+  var b=findUclBet(s.n), gain=Number(b[3])-Number(b[2]), rroi=b[2]==="0"?"--":roi(b[2],b[3])+"%";
+  var r5=findRun5Seat(s.n);
+  var rewardClass=(r.reward||"").indexOf("第")>=0||s.n==="Kimi"||s.n==="xAI"?"good":"warn";
+  return '<div class="sd" id="seat-detail-'+i+'"><h4>'+s.n+' · 资金账户 / 操作记录</h4>'+
+    '<div class="sd-grid">'+
+      '<div class="sd-item"><span>当前 GP</span><strong>'+s.gp.toLocaleString()+'</strong></div>'+
+      '<div class="sd-item"><span>本轮 ROI</span><strong>'+rroi+'</strong></div>'+
+      '<div class="sd-item"><span>净收益</span><strong>'+gain.toLocaleString()+' GP</strong></div>'+
+      '<div class="sd-item"><span>贷款策略</span><strong>'+loanText(s)+'</strong></div>'+
+    '</div>'+
+    '<div class="drawer-section"><h5>投注记录</h5><table class="mini-table"><tr><th>轮次</th><th>投注</th><th>投入</th><th>返还</th><th>盈收比</th></tr><tr><td>Run #3 欧冠前哨</td><td>'+b[1]+'</td><td class="g">'+b[2]+'</td><td class="'+(gain>=0?'gr':'')+'">'+b[3]+'</td><td>'+rroi+'</td></tr><tr><td>Run #4 计划</td><td>'+r.next+'</td><td>待确认</td><td>赛后结算</td><td>目标 > 利息 2x</td></tr><tr><td>Run #5 开庭</td><td>'+r5.bets+'</td><td>'+r5.stake+'</td><td>'+r5.loan+'</td><td>'+r5.status+'</td></tr></table></div>'+
+    '<div class="drawer-section"><h5>当时投注思考</h5><div class="drawer-copy">'+r.thought+' 风险边界：'+r.risk+'</div></div>'+
+    '<div class="drawer-section"><h5>信息贡献</h5>'+sourceBadges(r.sources)+'<div class="drawer-copy">这些信息会写入赛事详情和信源板，下一轮模型可以引用，但未过三源验证的信号不会直接改仓位。</div></div>'+
+    '<div class="drawer-section"><h5>奖励 / 惩罚</h5><div class="badge-row"><span class="badge '+rewardClass+'">'+r.reward+'</span><span class="badge warn">无理由重仓扣 100GP</span><span class="badge good">进步最快奖 +150GP</span></div></div>'+
+  '</div>';
+}
+function buildUclDetail(){
+  var ratios=[["PSG 冠军",46],["小 2.5",24],["平局",18],["阿森纳方向",12]];
+  var rows=FRONTEND_ARCHIVES.ucl_bets.map(function(b){
+    var rr=b[2]==="0"?"--":roi(b[2],b[3])+"%";
+    return '<tr><td class="h">'+b[0]+'</td><td>'+b[1]+'</td><td class="g">'+b[2]+'</td><td class="'+(Number(b[3])>=1000?'gr':'')+'">'+b[3]+'</td><td>'+rr+'</td><td class="l">'+b[4]+'</td></tr>';
+  }).join("");
+  return '<h4>PSG vs Arsenal · 1-1 (4-3p) PSG 夺冠</h4><div>盘口：PSG 冠军 @1.75 / 小2.5 @2.00 / 平局 @3.20。赛前 13 席位投注倾向如下，赛后 DeepSeek 三线命中。</div>'+buildRatioBars(ratios)+'<table class="mini-table"><tr><th>席位</th><th>投注</th><th>投入</th><th>返还</th><th>盈收比</th><th>分析</th></tr>'+rows+'</table><div class="drawer-copy">赛后营收：13 席位总投入 10,110GP，总返还 15,460GP，组合 ROI +52.9%。</div>'+buildSourceCards(["冠军盘与胜平负盘背离","低比分路径验证","点球路径提升冠军盘价值","阿森纳 90 分钟胜负风险被高估"]);
+}
+function buildRatioBars(items){
+  return '<div class="ratio-list">'+items.map(function(x,i){
+    var color=i===0?"var(--green)":i===1?"var(--gold)":i===2?"var(--blue)":"var(--red)";
+    return '<div class="ratio"><div class="top"><span>'+x[0]+'</span><span>'+x[1]+'%</span></div><div class="track"><div class="fill" style="width:'+x[1]+'%;background:'+color+'"></div></div></div>';
+  }).join("")+'</div>';
+}
+function buildSourceCards(items){
+  return '<div class="source-list">'+items.map(function(x,i){
+    var labels=["盘口","伤停","战术","赛程","更衣室","天气"];
+    return '<div class="source-card"><strong>'+x+'</strong><span>'+labels[i%labels.length]+' · 模型情报汇总 · 待人类复核</span></div>';
+  }).join("")+'</div>';
+}
+function run4LoanPrompt(s,r){
+  if(s.n==="Kimi")return "强烈鼓励申请 500GP 破产紧急贷款，目标押黑马/高赔率射手，盈利需覆盖 20% 利息。";
+  if(s.n==="xAI")return "强烈鼓励申请 500GP 破产紧急贷款，允许冒险但必须写撤单线和还款路径。";
+  if(["ChatGPT","元宝","通义","豆包"].indexOf(s.n)>=0)return "建议申请 300GP 发展贷款，用于扩大有信源支持的受让盘或信息优势仓位。";
+  if(s.n==="DeepSeek")return "可申请 300GP 发展贷款，继续放大路径盘优势，但不得低赔重仓。";
+  return "暂不强制贷款，保留本金；若发现独家情报，可临场申请 300GP 发展贷款。";
+}
+function run4TaskForSeat(s,r,i){
+  if(s.n==="DeepSeek")return "复核 5/31 三场热身赛是否仍支持小球/冠军路径组合。";
+  if(s.n==="Kimi"||s.n==="xAI")return "寻找高赔率反打，但必须给出信源、止损和贷款还款计划。";
+  if(s.n==="Claude")return "追踪更衣室和赔率背离，重点审查法国/巴西风险。";
+  if(s.n==="MiMo")return "把旅行、轮换、气温和赛程拥挤转成可下注变量。";
+  if(s.n==="ChatGPT")return "整理稳健组合，避免低赔率陷阱，输出可复盘投注表。";
+  return "收集伤停、阵容、赔率和战术信息，给出下一轮下注策略。";
+}
+function opponentContextForSeat(s,i){
+  if(i<3)return "你在前三，仍需防止 Kimi/xAI 贷款翻盘；对手会用高赔率追赶。";
+  if(s.gp<500)return "你落后明显，榜首 DeepSeek 1810GP；贷款是翻盘工具，不是免责理由。";
+  if(s.gp<1000)return "你处于中下游，可参考 DeepSeek 的组合盘和 MiMo 的赛程模型。";
+  return "你在中上游，主要对手是 DeepSeek / MiMo / ChatGPT 的稳健收益曲线。";
+}
+function renderRoundLedger(){
+  var node=document.getElementById("roundResultLedger");
+  if(!node)return;
+  node.innerHTML='<div class="archive-list">'+FRONTEND_ARCHIVES.round_results.map(function(r){
+    return '<div class="archive-row"><div class="code">'+r.code+'</div><div class="body"><strong>'+r.match+'</strong><span>'+r.note+'</span></div><div class="status '+r.cls+'">'+r.status+'</div></div>';
+  }).join("")+'</div>';
+}
+function renderRun4Packets(){
+  var node=document.getElementById("run4Packets");
+  if(!node)return;
+  node.innerHTML=SEATS.map(function(s,i){
+    var r=SEAT_REPORTS[s.n]||{};
+    var b=findUclBet(s.n);
+    var gain=Number(b[3])-Number(b[2]);
+    var prev=gain>=0?"+"+gain+"GP":gain+"GP";
+    var danger=s.gp<500?"bad":s.gp<1000?"warn":"good";
+    return '<div class="packet"><div class="head"><strong>'+s.n+'</strong><span class="rank">#'+(i+1)+' · '+s.gp+'GP</span></div>'+
+      '<div class="line"><b>上次结果：</b>'+b[1]+'，返还 '+b[3]+'GP，净收益 '+prev+'。</div>'+
+      '<div class="line"><b>对手态势：</b>'+opponentContextForSeat(s,i)+'</div>'+
+      '<div class="line"><b>贷款指令：</b>'+run4LoanPrompt(s,r)+'</div>'+
+      '<div class="line"><b>本轮任务：</b>'+run4TaskForSeat(s,r,i)+'</div>'+
+      '<div class="mini-tags"><span>投注表</span><span>当时思考</span><span>信息源</span><span>风险边界</span><span class="'+danger+'">赛后 ROI</span></div></div>';
+  }).join("");
+}
+function renderRun4Recovered(){
+  var node=document.getElementById("run4Recovered");
+  if(!node)return;
+  node.innerHTML=FRONTEND_ARCHIVES.run4_model_archive.map(function(item){
+    var cls=item.status==="缺席"?"bad":"good";
+    return '<div class="packet"><div class="head"><strong>'+item.seat+'</strong><span class="rank '+cls+'">'+item.status+'</span></div>'+
+      '<div class="line"><b>贷款：</b>'+item.loan+'</div>'+
+      '<div class="line"><b>下注：</b>'+item.bets+'</div>'+
+      '<div class="line"><b>思考：</b>'+item.thought+'</div>'+
+      '<div class="line"><b>信源：</b>'+item.sources+'</div>'+
+      '<div class="line"><b>风险：</b>'+item.risk+'</div>'+
+      '<div class="mini-tags"><span>Run #4</span><span>CDP 回收</span><span>待赛后 ROI</span><span class="'+cls+'">'+(item.status==="缺席"?"不计入共识":"可写回")+'</span></div></div>';
+  }).join("");
+}
+function renderRun5Recovered(){
+  var node=document.getElementById("run5Recovered");
+  if(!node)return;
+  node.innerHTML=FRONTEND_ARCHIVES.run5_model_archive.map(function(item){
+    var cls=item.cls||"warn";
+    return '<div class="packet"><div class="head"><strong>'+item.seat+'</strong><span class="rank '+cls+'">'+item.status+'</span></div>'+
+      '<div class="line"><b>贷款：</b>'+item.loan+'</div>'+
+      '<div class="line"><b>仓位：</b>'+item.stake+'</div>'+
+      '<div class="line"><b>下注：</b>'+item.bets+'</div>'+
+      '<div class="line"><b>思考：</b>'+item.thought+'</div>'+
+      '<div class="line"><b>信源：</b>'+item.sources+'</div>'+
+      '<div class="line"><b>风险：</b>'+item.risk+'</div>'+
+      '<div class="mini-tags"><span>Run #5</span><span>AI Judge 实跑</span><span>赛后可结算</span><span class="'+cls+'">'+(cls==="good"?"可入共识":cls==="bad"?"不入共识":"待补跑")+'</span></div></div>';
+  }).join("");
+}
+function renderArchiveSources(){
+  var node=document.getElementById("archiveSources");
+  if(!node)return;
+  node.innerHTML=FRONTEND_ARCHIVES.run4_source_tasks.map(function(item){
+    return '<div class="full-card"><h4>'+item.title+'</h4>'+item.body+'</div>';
+  }).join("");
+}
+function renderArchive(){
+  renderRoundLedger();
+  renderRun5Recovered();
+  renderRun4Recovered();
+  renderRun4Packets();
+  renderArchiveSources();
+}
+function buildGenericMatchDetail(m){
+  var title=(m.hf||"")+" "+m.h+" vs "+(m.af||"")+" "+m.a;
+  var isBrazil=m.h.indexOf("巴西")>=0||m.h.indexOf("Brazil")>=0||m.a.indexOf("巴西")>=0||m.a.indexOf("Brazil")>=0;
+  var isMorocco=m.h.indexOf("摩洛哥")>=0||m.h.indexOf("Morocco")>=0||m.a.indexOf("摩洛哥")>=0||m.a.indexOf("Morocco")>=0;
+  var ratios=isBrazil?[["小球",38],["巴西胜但不穿盘",26],["受让方",21],["观望",15]]:isMorocco?[["摩洛哥受让",34],["小球",29],["黑马胜",18],["观望",19]]:[["小球/节奏",32],["热门不穿盘",25],["黑马受让",22],["观望",21]];
+  var sources=isBrazil?["巴西三核心伤病与新帅磨合","低赔胜出没有下注价值","热身赛轮换压低净胜球欲望","赔率异动需与首发名单交叉验证"]:isMorocco?["摩洛哥防反结构仍可复制","2022 四强路径给到模型先验","市场 2% 与 AI 5/6 黑马共识背离","巴西对摩洛哥是最大压力测试"]:["名单截止前阵容不稳定","旅行疲劳和天气影响节奏","盘口临场波动只作噪声降权","模型需提交撤单条件"];
+  return '<h4>'+title+' · 赛事盘口详情</h4><div>状态：开赛前预测。以下展示模型下注比例、计划投入、信息源汇总；开赛后同一位置切换为赛后返还、净收益和 ROI。</div>'+buildRatioBars(ratios)+'<table class="mini-table"><tr><th>席位组</th><th>建议</th><th>GP</th><th>预期 ROI</th><th>理由</th></tr><tr><td class="h">稳健组</td><td>小球 / 观望阵容</td><td class="g">300-500</td><td>12-28%</td><td>热身赛优先看节奏、轮换和伤停，不追低赔胜负。</td></tr><tr><td class="h">贷款组</td><td>受让 / 黑马 / 半场盘</td><td class="g">500-800</td><td>35-90%</td><td>允许用 300GP/500GP 贷款扩仓，但必须覆盖利息 2 倍以上。</td></tr><tr><td class="h">人类确认</td><td>赛前 2 小时复核</td><td>--</td><td>--</td><td>名单、旅行疲劳、天气和盘口变化写回信源板。</td></tr></table>'+buildSourceCards(sources);
+}
+function hydrateFixedDetails(){
+  ["ucl-final-detail","ucl-final-detail-cal"].forEach(function(id){
+    var node=document.getElementById(id);
+    if(node)node.innerHTML=buildUclDetail();
+  });
+}
+function toggleMatchDetail(id){
+  var node=document.getElementById(id);
+  if(node)node.classList.toggle("show");
+}
+(async function(){
+  await loadFrontendArchives();
+  ROUND_RESULTS=FRONTEND_ARCHIVES.round_results;
+  RUN4_MODEL_ARCHIVE=FRONTEND_ARCHIVES.run4_model_archive;
+  RUN5_MODEL_ARCHIVE=FRONTEND_ARCHIVES.run5_model_archive;
+  RUN4_SOURCE_TASKS=FRONTEND_ARCHIVES.run4_source_tasks;
+  UCL_BETS=FRONTEND_ARCHIVES.ucl_bets;
+  hydrateFixedDetails();
+  renderArchive();
+})();
+function renderPreMatches(){
+  var node=document.getElementById("preMatchList");
+  if(!node)return;
+  node.innerHTML=PREMATCHES.map(function(m,i){
+    var date=m.d.slice(5).replace("-","/");
+    var tag=m.sc?'<span class="tag tp-done">已赛 '+m.sc+'</span>':(m.state?'<span class="tag '+m.tc+'">'+m.state+'</span>':'<span class="tag '+m.tc+'">'+m.t+'</span>');
+    var id='pre-detail-'+i;
+    return '<div class="pre-card" onclick="toggleMatchDetail(\''+id+'\')"><div class="date">'+date+'</div><div class="teams">'+m.hf+' '+m.h+' <span style="color:var(--faint);font-weight:800">VS</span> '+m.af+' '+m.a+'<div class="sub">'+m.t+' · '+(m.state||"赛前观察")+' · 点击展开投注详情</div></div>'+tag+'</div><div class="match-detail" id="'+id+'">'+buildGenericMatchDetail(m)+'</div>';
+  }).join("");
+}
+renderPreMatches();
+var dates=[...new Set(MATCHES.map(m=>m.d))].sort();
+var currentDate=dates[0];
+function buildDayTabs(){
+  document.getElementById("dayTabs").innerHTML=dates.map(function(d){
+    var day=d.split("-")[2],mon=d.split("-")[1];
+    var count=MATCHES.filter(m=>m.d===d).length;
+    return '<div class="db'+(d===currentDate?" active":"")+'" data-date="'+d+'" onclick="filterDate(\''+d+'\',this)"><div class="n">'+parseInt(day)+'</div><div class="c">'+(mon==="06"?"6月":mon==="07"?"7月":"5月")+' · '+count+'</div></div>';
+  }).join("");
+}
+function matchMeta(m){
+  if(m.t.indexOf("1/")>=0||m.t.indexOf("四分之一")>=0||m.t.indexOf("半决赛")>=0||m.t.indexOf("季军")>=0||m.t==="🏆 决赛")return {kind:"淘汰赛",cls:"tp-r",stage:m.t.replace("🏆 ","")};
+  if(m.t.indexOf("⚡")>=0)return {kind:"死亡之组",cls:"tp-h",stage:m.t.replace("⚡","")};
+  if(m.t.indexOf("🏆")>=0||["墨西哥","加拿大","美国","巴西","德国","荷兰","西班牙","法国","阿根廷","葡萄牙","英格兰"].some(n=>m.h.indexOf(n)>=0||m.a.indexOf(n)>=0))return {kind:"焦点",cls:"tp-g",stage:m.t.replace("🏆","")};
+  return {kind:"小组赛",cls:"tp-w",stage:m.t};
+}
+function renderMatches(date){
+  return MATCHES.filter(m=>m.d===date).map((m,i)=>{
+    var time=m.tm?'<span style="font-size:10px;color:var(--gold);min-width:36px">'+m.tm+'</span>':'';
+    var venue=m.v?'<span style="font-size:9px;color:var(--faint);min-width:60px">'+m.v+'</span>':'';
+    var meta=matchMeta(m);
+    var tags='<div class="tags"><div class="tp '+m.tc+'">'+meta.stage+'</div><div class="tp '+meta.cls+'">'+meta.kind+'</div></div>';
+    var id='match-detail-'+date.replaceAll("-","")+"-"+i;
+    return '<div class="mr" onclick="toggleMatchDetail(\''+id+'\')">'+time+'<div class="t1">'+m.hf+' '+m.h+'</div><div class="vs">VS</div><div class="t2">'+m.af+' '+m.a+'</div>'+venue+tags+'</div><div class="match-detail" id="'+id+'">'+buildGenericMatchDetail(m)+'</div>';
+  }).join("");
+}
+function refreshCalendar(date){
+  currentDate=date||currentDate||dates[0];
+  buildDayTabs();
+  document.getElementById("matchList").innerHTML=renderMatches(currentDate);
+}
+refreshCalendar(dates[0]);
 function filterDate(d,btn){
+  currentDate=d;
   document.querySelectorAll(".db").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
   document.getElementById("matchList").innerHTML=renderMatches(d);
@@ -356,6 +974,13 @@ function showTab(id,btn){
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
   document.getElementById("tab-"+id).classList.add("active");
   btn.classList.add("active");
+  if(id==='cal')refreshCalendar(currentDate);
+}
+// Auto-navigate to tab from hash
+if(location.hash){
+  var hash=location.hash.replace('#','');
+  var btn=document.querySelector('.tab[onclick*="'+hash+'"]');
+  if(btn)showTab(hash,btn);
 }
 </script>
 </body>

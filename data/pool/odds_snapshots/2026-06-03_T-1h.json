@@ -1,0 +1,3698 @@
+{
+  "version": "p10.1",
+  "date": "2026-06-03",
+  "snapshot_label": "T-1h",
+  "provider": "manual_stub",
+  "fetched_at": "2026-06-03T14:26:50Z",
+  "source_policy": "manual_stub_no_external_fetch",
+  "summary": {
+    "matches_total": 21,
+    "markets_requested": [
+      "moneyline",
+      "handicap",
+      "total_goals"
+    ],
+    "odds_rows": 147,
+    "valid_odds_rows": 0,
+    "missing_market_coverage": 63,
+    "match_mapping_failed": 0,
+    "provider_unavailable": false
+  },
+  "odds": [
+    {
+      "snapshot_id": "WARM-001_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-001",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-001",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-001",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-001",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-001",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-001",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-001_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-001",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-002",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-002",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-002",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-002",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-002",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-002",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-002_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-002",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-003",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-003",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-003",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-003",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-003",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-003",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-003_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-003",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-004",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-004",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-004",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-004",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-004",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-004",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-004_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-004",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-005",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-005",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-005",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-005",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-005",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-005",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-005_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-005",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-006",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-006",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-006",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-006",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-006",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-006",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-006_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-006",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-007",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-007",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-007",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-007",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-007",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-007",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-007_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-007",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-008",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-008",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-008",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-008",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-008",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-008",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-008_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-008",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-009",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-009",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-009",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-009",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-009",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-009",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-009_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-009",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-010",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-010",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-010",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-010",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-010",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-010",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-010_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-010",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-011",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-011",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-011",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-011",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-011",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-011",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-011_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-011",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-012",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-012",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-012",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-012",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-012",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-012",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-012_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-012",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WARM-013",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WARM-013",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WARM-013",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WARM-013",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WARM-013",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WARM-013",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WARM-013_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WARM-013",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-A1",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-A1",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-A1",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-A1",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-A1",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-A1",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-A1_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-A1",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-H1",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-H1",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-H1",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-H1",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-H1",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-H1",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-H1_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-H1",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-I1",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-I1",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-I1",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-I1",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-I1",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-I1",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-I1_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-I1",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-F1",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-F1",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-F1",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-F1",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-F1",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-F1",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-F1_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-F1",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-H2",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-H2",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-H2",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-H2",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-H2",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-H2",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-H2_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-H2",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-I2",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-I2",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-I2",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-I2",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-I2",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-I2",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-I2_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-I2",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-F2",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-F2",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-F2",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-F2",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-F2",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-F2",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-F2_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-F2",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_moneyline_home_win_manual_stub",
+      "match_id": "WC-K1",
+      "market": "moneyline",
+      "selection": "home_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_moneyline_draw_manual_stub",
+      "match_id": "WC-K1",
+      "market": "moneyline",
+      "selection": "draw",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_moneyline_away_win_manual_stub",
+      "match_id": "WC-K1",
+      "market": "moneyline",
+      "selection": "away_win",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": false,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_handicap_home_-0.5_manual_stub",
+      "match_id": "WC-K1",
+      "market": "handicap",
+      "selection": "home_-0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_handicap_away_+0.5_manual_stub",
+      "match_id": "WC-K1",
+      "market": "handicap",
+      "selection": "away_+0.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "home_handicap",
+          "away_handicap"
+        ],
+        "handicap_line_note": "Asian handicap; push → void/refund"
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_total_goals_over_2.5_manual_stub",
+      "match_id": "WC-K1",
+      "market": "total_goals",
+      "selection": "over_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    },
+    {
+      "snapshot_id": "WC-K1_T-1h_total_goals_under_2.5_manual_stub",
+      "match_id": "WC-K1",
+      "market": "total_goals",
+      "selection": "under_2.5",
+      "odds": null,
+      "bookmaker_or_provider": "manual_stub",
+      "snapshot_label": "T-1h",
+      "fetched_at": "2026-06-03T14:26:50Z",
+      "source_url": "",
+      "confidence": 0.0,
+      "status": "missing_market_coverage",
+      "market_rules": {
+        "push_possible": true,
+        "void_conditions": [
+          "match_cancelled",
+          "match_postponed_indefinitely"
+        ],
+        "selections": [
+          "over",
+          "under"
+        ],
+        "line_note": "including extra time? Usually no — 90min only. Confirm per competition."
+      }
+    }
+  ]
+}

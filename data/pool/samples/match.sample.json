@@ -1,0 +1,15 @@
+{
+  "match_id": "WARM-002",
+  "kickoff_at": "2026-06-03T20:00:00Z",
+  "home_team": "Brazil",
+  "away_team": "Panama",
+  "competition": "Friendly",
+  "status": "scheduled",
+  "provider": "manual",
+  "source_url": "",
+  "fetched_at": "2026-06-03T10:00:00Z",
+  "confidence": 0.3,
+  "group": null,
+  "stage": "warmup",
+  "venue": "Estadio Nacional Mane Garrincha"
+}

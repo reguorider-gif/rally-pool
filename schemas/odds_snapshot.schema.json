@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/odds_snapshot.schema.json",
+  "title": "Odds Snapshot",
+  "description": "A single odds data point at a specific time relative to kickoff. Settlement MUST use the odds snapshot from betting time, not post-match odds.",
+  "type": "object",
+  "required": ["snapshot_id", "match_id", "market", "selection", "odds", "snapshot_label", "fetched_at"],
+  "properties": {
+    "snapshot_id": {
+      "type": "string",
+      "description": "Unique identifier for this snapshot, e.g. WARM-002_T-1h_001."
+    },
+    "match_id": {
+      "type": "string",
+      "description": "References match_id from match schema."
+    },
+    "market": {
+      "type": "string",
+      "enum": ["moneyline", "handicap", "total_goals", "btts", "double_chance", "manual_review"],
+      "description": "Betting market type."
+    },
+    "selection": {
+      "type": "string",
+      "description": "The selection within the market, e.g. 'Brazil', 'Brazil -1.5', 'Over 2.5'."
+    },
+    "odds": {
+      "type": "number",
+      "exclusiveMinimum": 1,
+      "description": "Odds value. Must be greater than 1."
+    },
+    "bookmaker_or_provider": {
+      "type": "string",
+      "description": "Bookmaker or data provider name."
+    },
+    "snapshot_label": {
+      "type": "string",
+      "enum": ["T-24h", "T-6h", "T-1h", "T-15m", "manual"],
+      "description": "When this snapshot was taken relative to kickoff."
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when odds were fetched."
+    },
+    "source_url": {
+      "type": "string",
+      "description": "URL to the odds source."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in odds accuracy."
+    },
+    "market_rules": {
+      "type": "object",
+      "description": "Market-specific rules for settlement.",
+      "properties": {
+        "push_possible": {
+          "type": "boolean",
+          "description": "Whether a push (tie) is possible in this market."
+        },
+        "void_conditions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Conditions under which this bet would be voided."
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

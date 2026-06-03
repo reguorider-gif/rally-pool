@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/settlement.schema.json",
+  "title": "Settlement",
+  "description": "Post-match settlement for a single bet. Unsupported markets MUST be marked manual_review; MUST NOT be hard-calculated.",
+  "type": "object",
+  "required": ["round_id", "model_account", "match_id", "market", "selection", "stake", "odds", "outcome", "settlement_status", "settled_at"],
+  "properties": {
+    "round_id": {
+      "type": "string",
+      "description": "Round identifier."
+    },
+    "model_account": {
+      "type": "string",
+      "description": "Model account that placed this bet."
+    },
+    "match_id": {
+      "type": "string",
+      "description": "Match this settlement refers to."
+    },
+    "market": {
+      "type": "string",
+      "enum": ["moneyline", "handicap", "total_goals", "btts", "double_chance", "manual_review"],
+      "description": "Betting market type."
+    },
+    "selection": {
+      "type": "string",
+      "description": "Original selection."
+    },
+    "stake": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Original stake in GP."
+    },
+    "odds": {
+      "type": "number",
+      "exclusiveMinimum": 1,
+      "description": "Odds at time of bet (from odds_snapshot). MUST NOT use post-match odds."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["win", "loss", "push", "void", "manual_review", "unsettled", "error"],
+      "description": "Settlement outcome."
+    },
+    "payout": {
+      "type": ["number", "null"],
+      "description": "Payout amount in GP. stake * odds on win, 0 on loss, stake on push, null on void/manual_review."
+    },
+    "profit": {
+      "type": ["number", "null"],
+      "description": "Net profit in GP. payout - stake. Negative for losses."
+    },
+    "roi": {
+      "type": ["number", "null"],
+      "description": "Return on investment. profit / stake. Null if stake is 0 or settlement is not definitive."
+    },
+    "settlement_status": {
+      "type": "string",
+      "enum": ["unsettled", "settled", "push", "void", "manual_review", "error"],
+      "description": "Settlement status."
+    },
+    "settled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when settlement was calculated."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes, e.g. why a bet was voided or sent to manual_review."
+    },
+    "odds_snapshot_id": {
+      "type": "string",
+      "description": "Reference to the odds snapshot used for settlement."
+    },
+    "match_result_source": {
+      "type": "string",
+      "description": "Source of the match result used for settlement."
+    }
+  },
+  "additionalProperties": false
+}

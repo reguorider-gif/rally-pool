@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/model_output.schema.json",
+  "title": "Model Output",
+  "description": "Raw and parsed output from a model. Always preserves the raw text, even if parsing fails.",
+  "type": "object",
+  "required": ["round_id", "model_account", "seat_id", "raw_text", "schema_valid", "created_at"],
+  "properties": {
+    "round_id": {
+      "type": "string",
+      "description": "Round identifier."
+    },
+    "model_account": {
+      "type": "string",
+      "description": "Model account name."
+    },
+    "seat_id": {
+      "type": "string",
+      "description": "Seat identifier."
+    },
+    "run_marker": {
+      "type": "string",
+      "description": "Run marker that was injected into the prompt. If not present in output, indicates context pollution or misalignment."
+    },
+    "raw_text": {
+      "type": "string",
+      "description": "Complete raw text output from the model. MUST be preserved as-is."
+    },
+    "parsed_json": {
+      "type": ["object", "null"],
+      "description": "Parsed JSON if extraction succeeded, null otherwise."
+    },
+    "schema_valid": {
+      "type": "boolean",
+      "description": "Whether parsed_json passes bet_receipt schema validation."
+    },
+    "parse_errors": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of parse/validation errors encountered."
+    },
+    "pollution_signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "signal_type": { "type": "string", "description": "Type of pollution detected, e.g. 'werewolf_game', 'old_task', 'placeholder_text'." },
+          "matched_text": { "type": "string", "description": "The text fragment that triggered this signal." },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "description": "Detected pollution signals. Populated by classify_model_output.py in P9.3."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when output was recorded."
+    }
+  },
+  "additionalProperties": false
+}

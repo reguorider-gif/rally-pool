@@ -1,0 +1,107 @@
+{
+  "version": "p10.2",
+  "round_id": "run-5",
+  "date": "2026-06-03",
+  "generated_at": "2026-06-03T14:44:31Z",
+  "summary": {
+    "rejected_models": 13,
+    "rejected_bets": 13,
+    "reason_counts": {
+      "no_structured_bet_receipt": 7,
+      "model_not_eligible_for_consensus": 6
+    }
+  },
+  "rejections": [
+    {
+      "model_account": "gemini",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "chatgpt",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'context_polluted', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "claude",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'risk_refusal', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "yuanbao",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "wenxin",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'placeholder_only', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "deepseek",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "mimo",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "kimi",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'placeholder_only', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "qwen",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "xai",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'quota_blocked', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "minimax",
+      "stage": "model_eligibility",
+      "reason_code": "model_not_eligible_for_consensus",
+      "reason": "Model status is 'placeholder_only', eligible_for_consensus=False",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "doubao",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    },
+    {
+      "model_account": "meta",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "snapshot_id": "WARM-002_T-1h_001",
+  "match_id": "WARM-002",
+  "market": "moneyline",
+  "selection": "Brazil",
+  "odds": 1.85,
+  "bookmaker_or_provider": "sample_bookmaker",
+  "snapshot_label": "T-1h",
+  "fetched_at": "2026-06-03T19:00:00Z",
+  "source_url": "https://example.com/odds/WARM-002",
+  "confidence": 0.8,
+  "market_rules": {
+    "push_possible": false,
+    "void_conditions": ["match_postponed", "match_cancelled"]
+  }
+}
