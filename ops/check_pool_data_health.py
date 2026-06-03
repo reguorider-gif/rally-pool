@@ -694,6 +694,98 @@ def main():
             print(f"  ❌ rejections missing reason_counts")
             has_error = True
 
+    # ── P10.3 Settlement Check ──────────────────────────────────────────────
+    print("\n=== P10.3 Settlement Check ===")
+    settle_path = DATA / "settlements" / "run-5.json"
+    settle_idx_path = DATA / "settlements" / "index.json"
+    settle_md_path = DATA / "daily_reports" / "settlement_run-5.md"
+
+    # 1-3. File existence
+    st_data = None
+    for label, path in [("settlements/run-5.json", settle_path),
+                        ("settlements/index.json", settle_idx_path),
+                        ("daily_reports/settlement_run-5.md", settle_md_path)]:
+        if path.exists():
+            if path.suffix == ".json":
+                try:
+                    d = json.loads(path.read_text(encoding="utf-8"))
+                    print(f"  ✅ data/pool/{label}: exists")
+                    if "settlements/run-5.json" in label:
+                        st_data = d
+                except Exception as e:
+                    print(f"  ❌ data/pool/{label}: parse failed: {e}")
+                    has_error = True
+            else:
+                print(f"  ✅ data/pool/{label}: exists")
+        else:
+            print(f"  ⚠️ data/pool/{label}: NOT YET GENERATED (run settle_pool_round.py)")
+            has_warning = True
+
+    if st_data:
+        # 4. JSON parseable (already handled above)
+        # 5. settlement_status
+        ss = st_data.get("settlement_status")
+        expected_ss = "no_bets_to_settle"
+        if ss == expected_ss:
+            print(f"  ✅ settlement_status = {ss}")
+        else:
+            print(f"  ❌ settlement_status = {ss} (expected {expected_ss})")
+            has_error = True
+
+        # 6-8. Summary checks
+        summary = st_data.get("summary", {})
+        ab = summary.get("accepted_bets", -1)
+        sb = summary.get("settled_bets", -1)
+        tp = summary.get("total_profit", "missing")
+        roi = summary.get("roi", "missing")
+
+        if ab == 0:
+            print(f"  ✅ summary.accepted_bets = 0")
+        else:
+            print(f"  ❌ summary.accepted_bets = {ab} (expected 0)")
+            has_error = True
+
+        if sb == 0:
+            print(f"  ✅ summary.settled_bets = 0")
+        else:
+            print(f"  ❌ summary.settled_bets = {sb} (expected 0)")
+            has_error = True
+
+        if tp is None:
+            print(f"  ✅ summary.total_profit = null")
+        else:
+            print(f"  ❌ summary.total_profit = {tp} (expected null)")
+            has_error = True
+
+        if roi is None:
+            print(f"  ✅ summary.roi = null")
+        else:
+            print(f"  ❌ summary.roi = {roi} (expected null)")
+            has_error = True
+
+        # 9. valid_for_leaderboard_update
+        vlb = st_data.get("valid_for_leaderboard_update")
+        if vlb is False:
+            print(f"  ✅ valid_for_leaderboard_update = false")
+        else:
+            print(f"  ❌ valid_for_leaderboard_update = {vlb} (expected false)")
+            has_error = True
+
+    # 10-12. Markdown content checks
+    if settle_md_path.exists():
+        md_content = settle_md_path.read_text(encoding="utf-8")
+        md_checks = [
+            ("结算结论", "结算结论"),
+            ("没有 ROI", "没有 ROI"),
+            ("accepted_bets=0", "accepted_bets=0"),
+        ]
+        for label, keyword in md_checks:
+            if keyword in md_content:
+                print(f"  ✅ Markdown 包含 '{keyword}'")
+            else:
+                print(f"  ❌ Markdown 缺少 '{keyword}'")
+                has_error = True
+
     print()
 
     # --- 汇总 ---

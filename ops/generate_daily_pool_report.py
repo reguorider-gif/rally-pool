@@ -156,6 +156,7 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
                 "stage": "P10.1",
                 "detail": f"Odds snapshot exists with {valid_odds_rows} valid odds rows.",
             })
+    # P10.3 四态 settlement gap detection
     if not optional_data.get("settlements"):
         gaps.append({
             "gap": "missing_settlements",
@@ -163,6 +164,42 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
             "blocks": "P10.3 settlement",
             "note": "data/pool/settlements/run-5.json not found",
         })
+    else:
+        st_data = optional_data.get("settlements", {})
+        st_status = st_data.get("settlement_status", "missing")
+        if st_status == "no_bets_to_settle":
+            gaps.append({
+                "gap": "settlements_present_but_no_bets_to_settle",
+                "severity": "info",
+                "blocking": False,
+                "stage": "P10.3",
+                "detail": "Settlement file exists but no bets were available to settle (accepted_bets=0).",
+            })
+        elif st_status == "manual_review":
+            gaps.append({
+                "gap": "settlements_present_but_manual_review_required",
+                "severity": "medium",
+                "blocking": True,
+                "stage": "P10.3",
+                "detail": "Settlement file exists but manual review is required before finalization.",
+            })
+        elif st_status == "settled":
+            gaps.append({
+                "gap": "settlements_present",
+                "severity": "info",
+                "blocking": False,
+                "stage": "P10.3",
+                "detail": "Settlement completed successfully.",
+            })
+        else:
+            # Unknown status — treat as present but uncertain
+            gaps.append({
+                "gap": "settlements_present",
+                "severity": "info",
+                "blocking": False,
+                "stage": "P10.3",
+                "detail": f"Settlement file exists with status={st_status}.",
+            })
     if not optional_data.get("match_results"):
         gaps.append({
             "gap": "missing_match_results",
@@ -278,11 +315,25 @@ def generate_next_actions(rerun_queue: list, data_gaps: list) -> list:
             "stage": "P10.2",
             "blocking": False,
         })
-    # 4. 结算缺失
+    # 4. 结算状态（P10.3 四态）
     if any(g["gap"] == "missing_settlements" for g in data_gaps):
         actions.append({
             "action": "settle_pool_round",
             "reason": "Settlements missing; needed for ROI and leaderboard update",
+            "stage": "P10.3",
+            "blocking": False,
+        })
+    elif any(g["gap"] == "settlements_present_but_no_bets_to_settle" for g in data_gaps):
+        actions.append({
+            "action": "settle_pool_round_after_rerun",
+            "reason": "Settlement exists but no bets to settle — re-run after models produce structured receipts",
+            "stage": "P10.3",
+            "blocking": False,
+        })
+    elif any(g["gap"] == "settlements_present_but_manual_review_required" for g in data_gaps):
+        actions.append({
+            "action": "review_manual_settlements",
+            "reason": "Settlements require manual review before finalization",
             "stage": "P10.3",
             "blocking": False,
         })
@@ -319,8 +370,8 @@ def build_consensus_eligibility(runs_data: dict) -> dict:
 
 
 def build_risk_summary(model_outputs_data: dict, bet_receipts_exist: bool,
-                       settlements_exist: bool) -> dict:
-    """构建风险摘要。当前无投注单/结算数据，标记 missing。"""
+                       settlements_exist: bool, settlement_status: str = "") -> dict:
+    """构建风险摘要。P10.3: 含 settlement_status 状态评估。"""
     if not bet_receipts_exist or not settlements_exist:
         return {
             "total_stake":      None,
@@ -330,6 +381,14 @@ def build_risk_summary(model_outputs_data: dict, bet_receipts_exist: bool,
             "note":             "Cannot compute risk without bet_receipts and settlements",
         }
     # 未来：从 bet_receipts 和 settlements 计算实际风险
+    if settlement_status == "no_bets_to_settle":
+        return {
+            "total_stake":      None,
+            "max_single_match_risk": None,
+            "loan_used":        None,
+            "status":           "no_bets_to_settle",
+            "note":             "Settlement exists but no bets to settle — risk is not applicable",
+        }
     return {
         "total_stake":      None,
         "max_single_match_risk": None,
@@ -368,7 +427,8 @@ def generate_json_report(date_str: str, round_id: str,
     consensus = build_consensus_eligibility(runs_data)
 
     # 风险摘要
-    risk = build_risk_summary(outputs_data, bet_receipts_exist, settlements_exist)
+    st_status = optional_data.get("settlements", {}).get("settlement_status", "") if settlements_exist else ""
+    risk = build_risk_summary(outputs_data, bet_receipts_exist, settlements_exist, st_status)
 
     # 下一步动作
     next_actions = generate_next_actions(rerun_queue_list, data_gaps)
@@ -510,7 +570,17 @@ def generate_markdown_report(json_report: dict) -> str:
     lines.append("")
     lines.append(f"**是否可以计算 ROI**: 否（原因：缺少投注单/结算/赔率快照）")
     lines.append(f"**赔率数据**: {'缺失' if any(g['gap']=='missing_odds_snapshots' for g in dg) else '存在'}")  
-    lines.append(f"**结算数据**: {'缺失' if any(g['gap']=='missing_settlements' for g in dg) else '存在'}")  
+    # 结算数据状态
+    settle_label = "缺失"
+    if any(g["gap"] == "missing_settlements" for g in dg):
+        settle_label = "缺失"
+    elif any(g["gap"] == "settlements_present_but_no_bets_to_settle" for g in dg):
+        settle_label = "存在（无投注可结算）"
+    elif any(g["gap"] == "settlements_present_but_manual_review_required" for g in dg):
+        settle_label = "存在（待人工审核）"
+    elif any(g["gap"] == "settlements_present" for g in dg):
+        settle_label = "存在"
+    lines.append(f"**结算数据**: {settle_label}")  
     lines.append(f"**赛果数据**: {'缺失' if any(g['gap']=='missing_match_results' for g in dg) else '存在'}")  
     lines.append("")
 

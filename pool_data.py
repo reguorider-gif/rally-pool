@@ -470,6 +470,46 @@ def get_bet_rejections(round_id: str = None):
     }
 
 
+# ────────── P10.3 Settlements ───────────────────────────────────────────────
+
+def get_settlements(round_id: str = None):
+    """
+    P10.3 实现：返回结算数据。
+    - 无 round_id → 返回 data/pool/settlements/index.json
+    - 有 round_id → 返回 data/pool/settlements/{round_id}.json
+    - 文件不存在 → 返回 missing 结构，不崩溃
+    """
+    if round_id is None:
+        data = _read_json("settlements/index.json", default=None)
+        if data:
+            return data
+        return {"version": "p10.3", "updated_at": "", "rounds": []}
+
+    fname = f"settlements/{round_id}.json"
+    data = _read_json(fname, default=None)
+    if data:
+        return data
+    return {
+        "version": "p10.3",
+        "round_id": round_id,
+        "missing": True,
+        "error": "settlement not found",
+        "settlement_status": "missing",
+        "valid_for_leaderboard_update": False,
+        "settlements": [],
+    }
+
+
+def get_settlement(round_id: str = None):
+    """
+    P10.3 实现：获取单个 round 的完整结算结果。
+    与 get_settlements(round_id) 相同，提供更具语义的别名。
+    """
+    if not round_id:
+        return {"missing": True, "error": "round_id required"}
+    return get_settlements(round_id=round_id)
+
+
 # ---------- 数据健康检查（供 ops/check_pool_data_health.py 调用） ----------
 
 def check_data_health():

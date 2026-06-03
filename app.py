@@ -28,6 +28,7 @@ try:
         get_model_health, get_daily_reports, get_daily_report, get_odds_snapshots, get_odds_snapshot,
         get_match_results, get_match_result, get_match_snapshots,
         get_bet_receipts, get_bet_receipt, get_bet_rejections,
+        get_settlements, get_settlement,
         check_data_health,
     )
     _HAS_POOL_API = True
@@ -282,6 +283,31 @@ async def api_pool_bet_rejections(round_id: str):
         except Exception as e:
             print(f"[api_pool_bet_rejections] pool_data failed: {e}", file=sys.stderr)
     return {"round_id": round_id, "rejections": [], "warning": "pool_data unavailable"}
+
+
+# ── P10.3 Settlements API ──────────────────────────────────────────────────
+@app.get("/api/pool/settlements")
+async def api_pool_settlements():
+    """返回结算索引（P10.3 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_settlements()
+        except Exception as e:
+            print(f"[api_pool_settlements] pool_data failed: {e}", file=sys.stderr)
+    return {"version": "p10.3", "updated_at": "", "rounds": []}
+
+
+@app.get("/api/pool/settlements/{round_id}")
+async def api_pool_settlement(round_id: str):
+    """返回单个 round 的结算结果（P10.3 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_settlement(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_settlement] pool_data failed: {e}", file=sys.stderr)
+    return {"round_id": round_id, "settlement_status": "missing", "warning": "pool_data unavailable"}
 
 
 @app.get("/api/pool/daily-reports")
