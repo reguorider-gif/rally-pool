@@ -36,6 +36,7 @@ try:
         get_latest_pipeline_run, get_latest_daily_report,
         get_ops_readiness,
         get_provider_status, get_odds_snapshots as pd_get_odds_snapshots, get_odds_snapshot as pd_get_odds_snapshot,
+        get_provider_smoke, get_output_dropbox_report,
     )
     _HAS_POOL_API = True
     print("[app.py] pool_data loaded successfully")
@@ -98,6 +99,7 @@ def api_daily_logs():
 def api_archives():
     ensure_init()
     return get_round_archives()
+
 
 @app.get("/api/archive/{round_id}")
 def api_archive(round_id: str):
@@ -280,6 +282,7 @@ async def api_pool_provider_status():
             return get_provider_status()
         except Exception as e:
             print(f"[api_pool_provider_status] pool_data failed: {e}", file=sys.stderr)
+    from datetime import datetime, timezone
     return {
         "version":       "p13.0",
         "generated_at":   datetime.now(timezone.utc).isoformat(),
@@ -290,7 +293,77 @@ async def api_pool_provider_status():
     }
 
 
-# ── P10.2 Bet Receipts API ──────────────────────────────────────────────────
+# --- P13.0 Provider Smoke Test API ---
+
+@app.get("/api/pool/provider-smoke/{round_id}/{date}")
+async def api_pool_provider_smoke(round_id: str, date: str):
+    """返回真实赔率源 smoke test 结果（P13.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_provider_smoke(round_id=round_id, date=date)
+        except Exception as e:
+            print(f"[api_pool_provider_smoke] pool_data failed: {e}", file=sys.stderr)
+    from datetime import datetime, timezone
+    return {
+        "version":     "p13.0",
+        "round_id":    round_id,
+        "date":        date,
+        "status":      "BLOCKED_PROVIDER_NOT_CONFIGURED",
+        "summary": {
+            "provider":           "the_odds_api",
+            "configured":         False,
+            "provider_responded": None,
+            "matched_internal_matches": 0,
+            "valid_odds_rows":   0,
+            "coverage_status":   "real_odds_provider_not_configured",
+        },
+        "blocks": [],
+        "warnings":  ["THE_ODDS_API_KEY is not set"],
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# --- P13.0 Model Output Dropbox API ---
+
+@app.get("/api/pool/output-dropbox/{round_id}")
+async def api_pool_output_dropbox(round_id: str):
+    """返回模型输出投喂目录状态（P13.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_output_dropbox_report(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_output_dropbox] pool_data failed: {e}", file=sys.stderr)
+    # 读取 dropbox_check.json
+    dropbox_path = Path("data/pool/model_outputs/raw") / round_id / "dropbox_check.json"
+    if dropbox_path.exists():
+        try:
+            with open(dropbox_path, "r") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"[api_pool_output_dropbox] failed to read {dropbox_path}: {e}", file=sys.stderr)
+    # 返回默认值
+    from datetime import datetime, timezone
+    return {
+        "version":          "p13.0",
+        "round_id":         round_id,
+        "status":           "waiting_for_manual_ingest",
+        "outputs_expected": 13,
+        "outputs_found":    0,
+        "outputs_missing":  13,
+        "missing_models":   [],
+        "empty_files":     [],
+        "invalid_names":   [],
+        "has_run_marker":  False,
+        "has_round_id":    False,
+        "details":          {},
+        "generated_at":    datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# --- P10.2 Bet Receipts API ---
+
 @app.get("/api/pool/bet-receipts")
 async def api_pool_bet_receipts():
     """返回投注单索引（P10.2 新增）"""
@@ -327,7 +400,8 @@ async def api_pool_bet_rejections(round_id: str):
     return {"round_id": round_id, "rejections": [], "warning": "pool_data unavailable"}
 
 
-# ── P10.3 Settlements API ──────────────────────────────────────────────────
+# --- P10.3 Settlements API ---
+
 @app.get("/api/pool/settlements")
 async def api_pool_settlements():
     """返回结算索引（P10.3 新增）"""
@@ -352,7 +426,8 @@ async def api_pool_settlement(round_id: str):
     return {"round_id": round_id, "settlement_status": "missing", "warning": "pool_data unavailable"}
 
 
-# ── P11.0 Run Manifests & Ingested Outputs API ─────────────────────────────
+# --- P11.0 Run Manifests & Ingested Outputs API ---
+
 @app.get("/api/pool/run-manifests")
 async def api_pool_run_manifests():
     """返回所有 run manifest 索引（P11.0 新增）"""
@@ -597,57 +672,37 @@ async def api_cron_pipeline_status():
     - 只读，不写任何文件
     - 不触发 pipeline
     - 不部署
-    - 即使无 pipeline 也返回 ok=true
     """
     ensure_init()
-    warnings_list = []
-
-    latest_pipeline = {}
-    if _HAS_POOL_API:
-        try:
-            latest_pipeline = get_latest_pipeline_run()
-        except Exception as e:
-            latest_pipeline = {"missing": True, "error": str(e)}
-            warnings_list.append(f"get_latest_pipeline_run failed: {e}")
-    else:
-        latest_pipeline = {"missing": True, "error": "pool_data unavailable"}
-        warnings_list.append("pool_data unavailable")
-
-    latest_daily_report = {}
-    if _HAS_POOL_API:
-        try:
-            latest_daily_report = get_latest_daily_report()
-        except Exception as e:
-            latest_daily_report = {"missing": True, "error": str(e)}
-            warnings_list.append(f"get_latest_daily_report failed: {e}")
-    else:
-        latest_daily_report = {"missing": True, "error": "pool_data unavailable"}
-
-    return {
-        "ok": True,
-        "service": "ai-judge-pool",
-        "cron": "pipeline-status",
-        "generated_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
-        "latest_pipeline": latest_pipeline,
-        "latest_daily_report": latest_daily_report,
-        "warnings": warnings_list,
-        "note": "Vercel Cron is a lightweight status probe. GitHub Actions remains the state-mutating scheduler.",
-    }
+    # 读取最新 pipeline run
+    try:
+        latest = get_latest_pipeline_run()
+        return {
+            "status": "ok",
+            "latest_pipeline_run": latest,
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e),
+        }
 
 
-# === 前端页面 ===
+# === HTML 页面 ===
 
 @app.get("/", response_class=HTMLResponse)
 def index():
+    ensure_init()
     html_path = HTML_DIR / "index.html"
     if html_path.exists():
-        return html_path.read_text(encoding="utf-8")
-    return "<h1>AI Judge Prediction Pool</h1><p>Dashboard loading...</p>"
+        return HTMLResponse(content=html_path.read_text(encoding="utf-8"), media_type="text/html")
+    return HTMLResponse(content="<h1>index.html not found</h1>", status_code=404)
 
-# === 本地启动 ===
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 
 if __name__ == "__main__":
-    ensure_init()
-    print("\n🚀 Starting AI Judge Prediction Pool...")
-    print("📊 Dashboard: http://localhost:8080")
     uvicorn.run(app, host="0.0.0.0", port=8080)

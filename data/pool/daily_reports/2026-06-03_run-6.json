@@ -2,237 +2,32 @@
   "version": "p9.4",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-03T16:56:35Z",
+  "generated_at": "2026-06-03T21:53:55Z",
   "summary": {
-    "headline": "Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 3 data gaps",
+    "headline": "run-6 Daily Report — 0 valid outputs, 0 models need rerun, 4 data gaps",
     "status": "report_generated",
-    "total_models": 13,
+    "total_models": 0,
     "total_matches": 21,
-    "rerun_queue_count": 5
+    "rerun_queue_count": 0
   },
   "model_status_counts": {
-    "valid_receipt": 7,
-    "placeholder_only": 3,
-    "context_polluted": 1,
-    "quota_blocked": 1,
+    "valid_receipt": 0,
+    "placeholder_only": 0,
+    "context_polluted": 0,
+    "quota_blocked": 0,
     "auth_blocked": 0,
     "timeout": 0,
     "parse_error": 0,
-    "risk_refusal": 1,
-    "excluded_from_consensus": 6
+    "risk_refusal": 0,
+    "excluded_from_consensus": 0
   },
-  "model_status_rows": [
-    {
-      "model_account": "gemini",
-      "seat_id": "gemini",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "chatgpt",
-      "seat_id": "chatgpt",
-      "status": "context_polluted",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Detected legacy/werewolf context pollution",
-      "pollution_signals": [
-        "警长"
-      ]
-    },
-    {
-      "model_account": "claude",
-      "seat_id": "claude",
-      "status": "risk_refusal",
-      "eligible_for_consensus": false,
-      "needs_rerun": false,
-      "failure_reason": "Risk/compliance refusal — audit only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "yuanbao",
-      "seat_id": "yuanbao",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "wenxin",
-      "seat_id": "wenxin",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "deepseek",
-      "seat_id": "deepseek",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "mimo",
-      "seat_id": "mimo",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "kimi",
-      "seat_id": "kimi",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "qwen",
-      "seat_id": "qwen",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "xai",
-      "seat_id": "xai",
-      "status": "quota_blocked",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Quota/rate limit blocked",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "minimax",
-      "seat_id": "minimax",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "doubao",
-      "seat_id": "doubao",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "meta",
-      "seat_id": "meta",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    }
-  ],
-  "rerun_queue": [
-    {
-      "model_account": "chatgpt",
-      "seat_id": "chatgpt",
-      "current_status": "context_polluted",
-      "reason": "Detected legacy/werewolf context pollution",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "high"
-    },
-    {
-      "model_account": "wenxin",
-      "seat_id": "wenxin",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    },
-    {
-      "model_account": "kimi",
-      "seat_id": "kimi",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    },
-    {
-      "model_account": "xai",
-      "seat_id": "xai",
-      "current_status": "quota_blocked",
-      "reason": "Quota/rate limit blocked",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "high"
-    },
-    {
-      "model_account": "minimax",
-      "seat_id": "minimax",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    }
-  ],
+  "model_status_rows": [],
+  "rerun_queue": [],
   "consensus_eligibility": {
-    "eligible_count": 7,
-    "eligible_models": [
-      "gemini",
-      "yuanbao",
-      "deepseek",
-      "mimo",
-      "qwen",
-      "doubao",
-      "meta"
-    ],
-    "excluded_count": 6,
-    "excluded_models": [
-      {
-        "model_account": "chatgpt",
-        "status": "context_polluted",
-        "reason": "Detected legacy/werewolf context pollution"
-      },
-      {
-        "model_account": "claude",
-        "status": "risk_refusal",
-        "reason": "Risk/compliance refusal — audit only"
-      },
-      {
-        "model_account": "wenxin",
-        "status": "placeholder_only",
-        "reason": "Output is placeholder only"
-      },
-      {
-        "model_account": "kimi",
-        "status": "placeholder_only",
-        "reason": "Output is placeholder only"
-      },
-      {
-        "model_account": "xai",
-        "status": "quota_blocked",
-        "reason": "Quota/rate limit blocked"
-      },
-      {
-        "model_account": "minimax",
-        "status": "placeholder_only",
-        "reason": "Output is placeholder only"
-      }
-    ]
+    "eligible_count": 0,
+    "eligible_models": [],
+    "excluded_count": 0,
+    "excluded_models": []
   },
   "risk_summary": {
     "total_stake": null,
@@ -253,23 +48,23 @@
       "gap": "missing_settlements",
       "severity": "high",
       "blocks": "P10.3 settlement",
-      "note": "data/pool/settlements/run-5.json not found"
+      "note": "data/pool/settlements/run-6.json not found"
     },
     {
-      "gap": "bet_receipts_present_but_no_valid_bets",
+      "gap": "model_outputs_waiting_for_manual_ingest",
+      "severity": "medium",
+      "blocking": false,
+      "stage": "P13.0B",
+      "detail": "No model outputs found in /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6. status=waiting_for_manual_ingest"
+    },
+    {
+      "gap": "missing_bet_receipts",
       "severity": "high",
-      "blocking": true,
-      "stage": "P10.2",
-      "detail": "Bet receipts exist but 0 accepted bets. Models lack structured receipts or odds coverage is missing."
+      "blocks": "P10.3 settlement, risk summary",
+      "note": "No bet receipt files in data/pool/bet_receipts/"
     }
   ],
   "next_actions": [
-    {
-      "action": "rerun_failed_seats",
-      "reason": "Rerun queue has 5 models to retry",
-      "stage": "P11.1",
-      "blocking": false
-    },
     {
       "action": "settle_pool_round",
       "reason": "Settlements missing; needed for ROI and leaderboard update",
@@ -285,15 +80,6 @@
   ],
   "generated_files": [],
   "source_files": [
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/matches/current.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_accounts/current.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/leaderboard/current.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/archives/index.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/archives/run-5.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_runs/run-5.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-5.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/rerun_queue/run-5.json",
-    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/app_static/frontend_archives.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/odds_snapshots/2026-06-03_T-1h.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/odds_snapshots/index.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/match_results/2026-06-03.json",

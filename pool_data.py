@@ -1070,3 +1070,72 @@ def _odds_coverage_status(summary: dict) -> str:
     if valid > 0:
         return "provider_covered_internal_matches"
     return "unknown"
+
+
+def get_provider_smoke(round_id: str = None, date: str = None):
+    """
+    P13.0 新增：读取 provider smoke test 结果。
+    优先读取 data/pool/provider_smoke/{round_id}_{date}.json，
+    如果不存在，返回结构化默认值（不崩溃）。
+    """
+    if round_id and date:
+        smoke_path = DATA_DIR / "provider_smoke" / f"{round_id}_{date}.json"
+        if smoke_path.exists():
+            try:
+                data = json.loads(smoke_path.read_text(encoding="utf-8"))
+                return data
+            except Exception as e:
+                print(f"[pool_data] WARNING: failed to read {smoke_path}: {e}", file=sys.stderr)
+
+    # 返回结构化默认值
+    return {
+        "version":     "p13.0",
+        "round_id":    round_id or "",
+        "date":        date or "",
+        "status":      "BLOCKED_PROVIDER_NOT_CONFIGURED",
+        "summary": {
+            "provider":           "the_odds_api",
+            "configured":         False,
+            "provider_responded": None,
+            "matched_internal_matches": 0,
+            "valid_odds_rows":   0,
+            "coverage_status":   "real_odds_provider_not_configured",
+        },
+        "blocks":    [],
+        "warnings":  ["THE_ODDS_API_KEY is not set"],
+        "generated_at": _now_iso(),
+    }
+
+
+def get_output_dropbox_report(round_id: str = None):
+    """
+    P13.0 新增：读取模型输出投喂目录状态。
+    读取 data/pool/model_outputs/raw/{round_id}/dropbox_check.json。
+    """
+    if not round_id:
+        round_id = "run-6"  # 默认值
+
+    dropbox_path = DATA_DIR / "model_outputs" / "raw" / round_id / "dropbox_check.json"
+    if dropbox_path.exists():
+        try:
+            data = json.loads(dropbox_path.read_text(encoding="utf-8"))
+            return data
+        except Exception as e:
+            print(f"[pool_data] WARNING: failed to read {dropbox_path}: {e}", file=sys.stderr)
+
+    # 返回默认值
+    return {
+        "version":          "p13.0",
+        "round_id":         round_id,
+        "status":           "waiting_for_manual_ingest",
+        "outputs_expected":  13,
+        "outputs_found":    0,
+        "outputs_missing":  13,
+        "missing_models":   [],
+        "empty_files":     [],
+        "invalid_names":   [],
+        "has_run_marker":  False,
+        "has_round_id":    False,
+        "details":          {},
+        "generated_at":    _now_iso(),
+    }

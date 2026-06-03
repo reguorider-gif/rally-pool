@@ -21,24 +21,29 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "pool"
 REPORT_DIR = DATA_DIR / "daily_reports"
 
-# ── 输入文件 ──────────────────────────────────────────────────────────────────
-REQUIRED_FILES = {
-    "matches":       DATA_DIR / "matches" / "current.json",
-    "model_accounts": DATA_DIR / "model_accounts" / "current.json",
-    "leaderboard":    DATA_DIR / "leaderboard" / "current.json",
-    "archives_index": DATA_DIR / "archives" / "index.json",
-    "archive_run5":  DATA_DIR / "archives" / "run-5.json",
-    "model_runs":    DATA_DIR / "model_runs" / "run-5.json",
-    "model_outputs":  DATA_DIR / "model_outputs" / "run-5.json",
-    "rerun_queue":   DATA_DIR / "rerun_queue" / "run-5.json",
-    "frontend_archives": DATA_DIR / "app_static" / "frontend_archives.json",
-}
+# ── 输入文件（动态，根据 round_id 构建） ───────────────────────────────────
+def _build_required_files(round_id: str) -> dict:
+    """根据 round_id 构建 REQUIRED_FILES。"""
+    return {
+        "matches":       DATA_DIR / "matches" / "current.json",
+        "model_accounts": DATA_DIR / "model_accounts" / "current.json",
+        "leaderboard":    DATA_DIR / "leaderboard" / "current.json",
+        "archives_index": DATA_DIR / "archives" / "index.json",
+        "archive_run":   DATA_DIR / "archives" / f"{round_id}.json",
+        "model_runs":    DATA_DIR / "model_runs" / f"{round_id}.json",
+        "model_outputs":  DATA_DIR / "model_outputs" / f"{round_id}.json",
+        "rerun_queue":   DATA_DIR / "rerun_queue" / f"{round_id}.json",
+        "frontend_archives": DATA_DIR / "app_static" / "frontend_archives.json",
+    }
 
-OPTIONAL_FILES = {
-    "odds_snapshots":  list((DATA_DIR / "odds_snapshots").glob("*.json")) if (DATA_DIR / "odds_snapshots").exists() else [],
-    "settlements":     DATA_DIR / "settlements" / "run-5.json",
-    "match_results":   list((DATA_DIR / "match_results").glob("*.json")) if (DATA_DIR / "match_results").exists() else [],
-}
+
+def _build_optional_files(round_id: str) -> dict:
+    """根据 round_id 构建 OPTIONAL_FILES。"""
+    return {
+        "odds_snapshots":  list((DATA_DIR / "odds_snapshots").glob("*.json")) if (DATA_DIR / "odds_snapshots").exists() else [],
+        "settlements":     DATA_DIR / "settlements" / f"{round_id}.json",
+        "match_results":   list((DATA_DIR / "match_results").glob("*.json")) if (DATA_DIR / "match_results").exists() else [],
+    }
 
 # ── 状态枚举 ──────────────────────────────────────────────────────────────────
 ALL_STATUSES = [
@@ -101,7 +106,7 @@ def build_model_status_rows(runs_data: dict) -> list:
     return rows
 
 
-def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
+def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "") -> list:
     """检测数据缺口。"""
     gaps = []
     # 必需文件缺失（已在调用处处理，这里检测内容缺口）
@@ -190,12 +195,13 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
                 "detail": f"Real odds provider snapshot has {valid_odds_rows} valid odds rows.",
             })
     # P10.3 四态 settlement gap detection
-    if not optional_data.get("settlements"):
+    settlements = optional_data.get("settlements")
+    if not settlements:
         gaps.append({
             "gap": "missing_settlements",
             "severity": "high",
             "blocks": "P10.3 settlement",
-            "note": "data/pool/settlements/run-5.json not found",
+            "note": f"data/pool/settlements/{round_id}.json not found" if round_id else "data/pool/settlements/ file not found",
         })
     else:
         st_data = optional_data.get("settlements", {})
@@ -262,8 +268,65 @@ def detect_data_gaps(required_data: dict, optional_data: dict) -> list:
             "blocks": "P12.0 pipeline orchestration",
             "note": "No pipeline run records found",
         })
+    # 检查 model_outputs/raw/{round_id}/dropbox_check.json — P13.0B 五态检测
+    dropbox_dir = DATA_DIR / "model_outputs" / "raw" / round_id
+    dropbox_path = dropbox_dir / "dropbox_check.json" if dropbox_dir.exists() else None
+    if not dropbox_path or not dropbox_path.exists():
+        gaps.append({
+            "gap": "model_outputs_waiting_for_manual_ingest",
+            "severity": "medium",
+            "blocking": False,
+            "stage": "P13.0B",
+            "detail": f"No model outputs found in {dropbox_dir}. Waiting for manual ingest.",
+        })
+    else:
+        try:
+            dropbox_data = json.loads(dropbox_path.read_text(encoding="utf-8"))
+            outputs_found = dropbox_data.get("outputs_found", 0)
+            outputs_expected = dropbox_data.get("outputs_expected", 13)
+            status = dropbox_data.get("status", "unknown")
+            if outputs_found == 0:
+                gaps.append({
+                    "gap": "model_outputs_waiting_for_manual_ingest",
+                    "severity": "medium",
+                    "blocking": False,
+                    "stage": "P13.0B",
+                    "detail": f"No model outputs found in {dropbox_dir}. status={status}",
+                })
+            elif 0 < outputs_found < outputs_expected:
+                gaps.append({
+                    "gap": "model_outputs_partial_ingest",
+                    "severity": "medium",
+                    "blocking": False,
+                    "stage": "P13.0B",
+                    "detail": f"Partial model outputs found: {outputs_found}/{outputs_expected}. status={status}",
+                })
+            elif outputs_found >= outputs_expected:
+                gaps.append({
+                    "gap": "model_outputs_ready_for_ingest",
+                    "severity": "info",
+                    "blocking": False,
+                    "stage": "P13.0B",
+                    "detail": f"All {outputs_expected} model outputs found. status={status}",
+                })
+            else:
+                gaps.append({
+                    "gap": "model_outputs_unknown_status",
+                    "severity": "low",
+                    "blocking": False,
+                    "stage": "P13.0B",
+                    "detail": f"dropbox status={status}, outputs_found={outputs_found}",
+                })
+        except Exception as e:
+            gaps.append({
+                "gap": "model_outputs_dropbox_error",
+                "severity": "medium",
+                "blocking": False,
+                "stage": "P13.0B",
+                "detail": f"Failed to read {dropbox_path}: {e}",
+            })
     # 检查 bet_receipts — P10.2 四态检测
-    bet_br_path = DATA_DIR / "bet_receipts" / "run-5.json"
+    bet_br_path = DATA_DIR / "bet_receipts" / f"{round_id}.json"
     if not bet_br_path.exists():
         gaps.append({
             "gap": "missing_bet_receipts",
@@ -454,7 +517,7 @@ def generate_json_report(date_str: str, round_id: str,
     # 数据缺口
     bet_receipts_exist  = bool(optional_data.get("bet_receipts", []))
     settlements_exist   = bool(optional_data.get("settlements"))
-    data_gaps = detect_data_gaps(required_data, optional_data)
+    data_gaps = detect_data_gaps(required_data, optional_data, round_id)
 
     # 共识准入
     consensus = build_consensus_eligibility(runs_data)
@@ -466,11 +529,11 @@ def generate_json_report(date_str: str, round_id: str,
     # 下一步动作
     next_actions = generate_next_actions(rerun_queue_list, data_gaps)
 
-    # 来源文件列表
-    source_files = [
-        str(p) for p in REQUIRED_FILES.values()
-        if isinstance(p, Path) and p.exists()
-    ]
+    # 来源文件列表 — 从 required_data 的值中收集存在的 Path
+    source_files = []
+    for key, val in required_data.items():
+        if isinstance(val, Path) and val.exists():
+            source_files.append(str(val))
     for key, val in optional_data.items():
         if isinstance(val, list):
             for f in val:
@@ -480,10 +543,10 @@ def generate_json_report(date_str: str, round_id: str,
 
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # 标题 — 从 runs 中直接计算 needs_rerun
+    # 标题 — 从 runs 中直接计算 needs_rerun，使用动态 round_id
     needs_rerun_count = sum(1 for r in runs_data.get("runs", []) if r.get("needs_rerun"))
     valid      = model_status_counts.get("valid_receipt", 0)
-    headline   = (f"Run #5 Daily Report — {valid} valid outputs, "
+    headline   = (f"{round_id} Daily Report — {valid} valid outputs, "
                   f"{needs_rerun_count} models need rerun, {len(data_gaps)} data gaps")
 
     report = {
@@ -668,7 +731,8 @@ def main():
 
     # ── 读取必需文件 ──────────────────────────────────────────────────────────
     required_data = {}
-    for key, path in REQUIRED_FILES.items():
+    req_files = _build_required_files(round_id)
+    for key, path in req_files.items():
         data = load_json(path, default={}, verbose=verbose)
         required_data[key] = data
         if not data and verbose:
