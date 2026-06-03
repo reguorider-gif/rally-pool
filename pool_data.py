@@ -6,10 +6,16 @@ P9.2 新增：从 data/pool/ 读取 JSON，提供安全读取函数。
 from pathlib import Path
 import json
 import sys
+from datetime import datetime, timezone
 
 # 定位项目根目录（兼容 Vercel serverless 和本地运行）
 ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data" / "pool"
+
+
+def _now_iso():
+    """返回当前 UTC ISO 时间戳"""
+    return datetime.now(timezone.utc).isoformat()
 
 # ---------- 工具函数 ----------
 
@@ -508,6 +514,119 @@ def get_settlement(round_id: str = None):
     if not round_id:
         return {"missing": True, "error": "round_id required"}
     return get_settlements(round_id=round_id)
+
+
+# ────────── P11.0 Run Manifests & Ingested Outputs ──────────────────────────
+
+def get_run_manifests():
+    """
+    P11.0 实现：返回所有 run manifest 索引。
+    目录不存在或空 → 返回空结构。
+    """
+    manifests_dir = DATA_DIR / "run_manifests"
+    rounds = []
+    if manifests_dir.exists():
+        for json_file in sorted(manifests_dir.glob("*.json")):
+            try:
+                data = json.loads(json_file.read_text(encoding="utf-8"))
+                rounds.append({
+                    "round_id": data.get("round_id", json_file.stem),
+                    "date": data.get("date", ""),
+                    "path": str(json_file.relative_to(ROOT_DIR)),
+                    "seats_total": data.get("seats_total", 0),
+                    "run_marker": data.get("run_marker", ""),
+                })
+            except Exception:
+                continue
+    return {"version": "p11.0", "updated_at": _now_iso(), "rounds": rounds}
+
+
+def get_run_manifest(round_id: str = None):
+    """
+    P11.0 实现：获取单个 run manifest。
+    - 文件不存在 → 返回 missing 结构
+    """
+    if not round_id:
+        return {"missing": True, "error": "round_id required"}
+    data = _read_json(f"run_manifests/{round_id}.json", default=None)
+    if data:
+        return data
+    return {
+        "version": "p11.0",
+        "round_id": round_id,
+        "missing": True,
+        "error": "run manifest not found",
+        "seats": [],
+    }
+
+
+def get_prompt_index(round_id: str = None):
+    """
+    P11.0 实现：返回某轮 prompt 目录下的文件索引。
+    - round_id=None → 返回所有 round 的 prompt 索引
+    """
+    if round_id is None:
+        prompts_base = DATA_DIR / "prompts"
+        rounds = []
+        if prompts_base.exists():
+            for rd in sorted(prompts_base.iterdir()):
+                if rd.is_dir():
+                    md_files = sorted(rd.glob("*.md"))
+                    rounds.append({
+                        "round_id": rd.name,
+                        "prompt_count": len(md_files),
+                        "prompts": [p.name for p in md_files],
+                    })
+        return {"version": "p11.0", "rounds": rounds}
+
+    prompts_dir = DATA_DIR / "prompts" / round_id
+    if not prompts_dir.exists():
+        return {"version": "p11.0", "round_id": round_id, "prompt_count": 0, "prompts": []}
+
+    md_files = sorted(prompts_dir.glob("*.md"))
+    return {
+        "version": "p11.0",
+        "round_id": round_id,
+        "prompt_count": len(md_files),
+        "prompts": [p.name for p in md_files],
+    }
+
+
+def get_ingested_outputs(round_id: str = None):
+    """
+    P11.0 实现：返回 ingest 后的标准化输出索引。
+    - round_id=None → 返回所有 round 索引
+    """
+    if round_id is None:
+        ingested_base = DATA_DIR / "model_outputs" / "ingested"
+        rounds = []
+        if ingested_base.exists():
+            for rd in sorted(ingested_base.iterdir()):
+                if rd.is_dir():
+                    index_file = rd / "index.json"
+                    if index_file.exists():
+                        try:
+                            data = json.loads(index_file.read_text(encoding="utf-8"))
+                            rounds.append({
+                                "round_id": rd.name,
+                                "outputs_total": data.get("outputs_total", 0),
+                                "outputs_found": data.get("outputs_found", 0),
+                            })
+                        except Exception:
+                            rounds.append({"round_id": rd.name, "error": "parse failed"})
+        return {"version": "p11.0", "rounds": rounds}
+
+    try:
+        data = json.loads((DATA_DIR / "model_outputs" / "ingested" / round_id / "index.json").read_text(encoding="utf-8"))
+        return data
+    except Exception:
+        return {
+            "version": "p11.0",
+            "round_id": round_id,
+            "missing": True,
+            "error": "ingested outputs not found",
+            "outputs": [],
+        }
 
 
 # ---------- 数据健康检查（供 ops/check_pool_data_health.py 调用） ----------

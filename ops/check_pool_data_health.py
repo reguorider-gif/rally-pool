@@ -788,6 +788,109 @@ def main():
 
     print()
 
+    # ── P11.0 Run Manifest / Prompts / Ingest Check ─────────────────────────
+    print("=== P11.0 Run Manifest / Prompts / Ingest Check ===")
+    manifest_path = DATA / "run_manifests" / "run-6.json"
+    prompts_dir = DATA / "prompts" / "run-6"
+    ingested_path = DATA / "model_outputs" / "ingested" / "run-6" / "index.json"
+    raw_dir = DATA / "model_outputs" / "raw" / "run-6"
+
+    # 1. Manifest exists
+    if manifest_path.exists():
+        try:
+            mf = json.loads(manifest_path.read_text(encoding="utf-8"))
+            seats_mf = mf.get("seats_total", -1)
+            print(f"  ✅ data/pool/run_manifests/run-6.json: exists (seats_total={seats_mf})")
+            if seats_mf != 13:
+                print(f"  ❌ seats_total={seats_mf}, expected 13")
+                has_error = True
+        except Exception:
+            print(f"  ❌ data/pool/run_manifests/run-6.json: parse failed")
+            has_error = True
+    else:
+        print(f"  ⚠️ data/pool/run_manifests/run-6.json: NOT YET GENERATED")
+        has_warning = True
+
+    # 2-4. Prompts directory and content
+    if prompts_dir.exists():
+        md_files = sorted(prompts_dir.glob("*.md"))
+        prompt_count = len(md_files)
+        if prompt_count == 13:
+            print(f"  ✅ data/pool/prompts/run-6/: {prompt_count} prompts")
+        else:
+            print(f"  ❌ prompt count={prompt_count}, expected 13")
+            has_error = True
+
+        all_prompts_ok = 0
+        for p in md_files[:5]:  # 检查前 5 个
+            text = p.read_text()
+            checks_ok = True
+            for kw in ["AI_JUDGE_RUN_MARKER", "round_id: run-6", "bet_ledger"]:
+                if kw not in text:
+                    checks_ok = False
+                    break
+            if checks_ok:
+                all_prompts_ok += 1
+        if all_prompts_ok >= 5:
+            print(f"  ✅ first 5 prompts contain required keywords")
+        else:
+            print(f"  ❌ some prompts missing required keywords")
+            has_error = True
+
+        # 防污染说明检查
+        anti_pollution_found = False
+        for p in md_files[:3]:
+            text = p.read_text()
+            if "狼人杀" in text:
+                anti_pollution_found = True
+                break
+        if anti_pollution_found:
+            print(f"  ✅ prompts contain anti-pollution wording (狼人杀)")
+        else:
+            print(f"  ⚠️ prompts may lack anti-pollution wording")
+            has_warning = True
+    else:
+        print(f"  ⚠️ data/pool/prompts/run-6/: NOT YET GENERATED")
+        has_warning = True
+
+    # 5-8. Ingested outputs
+    if ingested_path.exists():
+        try:
+            ig = json.loads(ingested_path.read_text(encoding="utf-8"))
+            ot = ig.get("outputs_total", -1)
+            of = ig.get("outputs_found", -1)
+            om = ig.get("outputs_missing", -1)
+            print(f"  ✅ ingested/run-6/index.json: total={ot}, found={of}, missing={om}")
+            if ot != 13:
+                print(f"  ❌ outputs_total={ot}, expected 13")
+                has_error = True
+            if of != 0:
+                print(f"  ❌ outputs_found={of}, expected 0 (no raw outputs yet)")
+                has_error = True
+            if om != 13:
+                print(f"  ❌ outputs_missing={om}, expected 13")
+                has_error = True
+        except Exception:
+            print(f"  ❌ ingested/run-6/index.json: parse failed")
+            has_error = True
+    else:
+        print(f"  ⚠️ ingested/run-6/index.json: NOT YET GENERATED")
+        has_warning = True
+
+    # 9. State is waiting_for_manual_ingest, not failure
+    raw_files_found = 0
+    if raw_dir.exists():
+        raw_files_found = len([p for p in raw_dir.glob("*.txt") if p.stat().st_size > 50])
+    if raw_files_found == 0 and ingested_path.exists():
+        print(f"  ✅ state: waiting_for_manual_ingest (correct)")
+    elif raw_files_found == 0 and not ingested_path.exists():
+        print(f"  ⚠️ state: waiting_for_manual_ingest (ingest not yet run)")
+        has_warning = True
+    else:
+        print(f"  ⚠️ state: has raw outputs, ready for pipeline")
+
+    print()
+
     # --- 汇总 ---
     print("=== Summary ===")
     all_valid = all(r["valid_json"] for r in results)

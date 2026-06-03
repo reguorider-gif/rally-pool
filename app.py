@@ -29,6 +29,7 @@ try:
         get_match_results, get_match_result, get_match_snapshots,
         get_bet_receipts, get_bet_receipt, get_bet_rejections,
         get_settlements, get_settlement,
+        get_run_manifests, get_run_manifest, get_ingested_outputs,
         check_data_health,
     )
     _HAS_POOL_API = True
@@ -308,6 +309,43 @@ async def api_pool_settlement(round_id: str):
         except Exception as e:
             print(f"[api_pool_settlement] pool_data failed: {e}", file=sys.stderr)
     return {"round_id": round_id, "settlement_status": "missing", "warning": "pool_data unavailable"}
+
+
+# ── P11.0 Run Manifests & Ingested Outputs API ─────────────────────────────
+@app.get("/api/pool/run-manifests")
+async def api_pool_run_manifests():
+    """返回所有 run manifest 索引（P11.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_run_manifests()
+        except Exception as e:
+            print(f"[api_pool_run_manifests] pool_data failed: {e}", file=sys.stderr)
+    return {"version": "p11.0", "updated_at": "", "rounds": []}
+
+
+@app.get("/api/pool/run-manifests/{round_id}")
+async def api_pool_run_manifest(round_id: str):
+    """返回单个 run manifest（P11.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_run_manifest(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_run_manifest] pool_data failed: {e}", file=sys.stderr)
+    return {"round_id": round_id, "missing": True, "warning": "pool_data unavailable"}
+
+
+@app.get("/api/pool/ingested-outputs/{round_id}")
+async def api_pool_ingested_outputs(round_id: str):
+    """返回 ingest 后的标准化输出索引（P11.0 新增）"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_ingested_outputs(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_ingested_outputs] pool_data failed: {e}", file=sys.stderr)
+    return {"round_id": round_id, "missing": True, "warning": "pool_data unavailable"}
 
 
 @app.get("/api/pool/daily-reports")

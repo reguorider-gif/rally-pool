@@ -1,0 +1,102 @@
+{
+  "version": "p11.0",
+  "round_id": "run-6",
+  "ingested_at": "2026-06-03T15:33:09.526551+00:00",
+  "input_dir": "data/pool/model_outputs/raw/run-6",
+  "outputs_total": 13,
+  "outputs_found": 0,
+  "outputs_missing": 13,
+  "outputs": [
+    {
+      "model_account": "gemini",
+      "seat_id": "gemini",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/gemini.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/chatgpt.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "claude",
+      "seat_id": "claude",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/claude.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "yuanbao",
+      "seat_id": "yuanbao",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/yuanbao.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/wenxin.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "deepseek",
+      "seat_id": "deepseek",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/deepseek.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "mimo",
+      "seat_id": "mimo",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/mimo.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/kimi.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "qwen",
+      "seat_id": "qwen",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/qwen.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "xai",
+      "seat_id": "xai",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/xai.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/minimax.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "doubao",
+      "seat_id": "doubao",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/doubao.txt",
+      "found": false,
+      "bytes": 0
+    },
+    {
+      "model_account": "meta",
+      "seat_id": "meta",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/meta.txt",
+      "found": false,
+      "bytes": 0
+    }
+  ]
+}
