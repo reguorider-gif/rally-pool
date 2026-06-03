@@ -2,7 +2,7 @@
   "version": "p9.4",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-03T16:10:28Z",
+  "generated_at": "2026-06-03T16:56:35Z",
   "summary": {
     "headline": "Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 3 data gaps",
     "status": "report_generated",
@@ -243,11 +243,11 @@
   },
   "data_gaps": [
     {
-      "gap": "odds_snapshots_present_but_missing_market_coverage",
+      "gap": "real_odds_provider_not_configured",
       "severity": "medium",
       "blocking": false,
-      "stage": "P10.1",
-      "detail": "Odds snapshot exists, but no valid odds rows available. Provider may be manual_stub or missing market coverage."
+      "stage": "P13.0A",
+      "detail": "Real odds provider API key is not configured. Set THE_ODDS_API_KEY to enable."
     },
     {
       "gap": "missing_settlements",
@@ -268,12 +268,6 @@
       "action": "rerun_failed_seats",
       "reason": "Rerun queue has 5 models to retry",
       "stage": "P11.1",
-      "blocking": false
-    },
-    {
-      "action": "sync_odds_snapshots_with_real_provider",
-      "reason": "Odds snapshots exist but no valid odds rows — configure the_odds_api or another real provider",
-      "stage": "P10.1",
       "blocking": false
     },
     {
