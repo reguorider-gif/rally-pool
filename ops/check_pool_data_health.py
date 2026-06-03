@@ -980,6 +980,72 @@ def main():
 
     print()
 
+    # --- P11.2 前端五页检查 ---
+    print("=== P11.2 Frontend Five-Page Check ===")
+
+    html_path = ROOT / "html" / "index.html"
+    if html_path.exists():
+        html_text = html_path.read_text(encoding="utf-8")
+
+        # 1. 五个 view 存在
+        views = ["view-dashboard", "view-models", "view-match-detail", "view-run-archives", "view-system-health"]
+        all_views_found = True
+        for v in views:
+            if v in html_text:
+                print(f"  ✅ {v}: found")
+            else:
+                print(f"  ❌ {v}: NOT FOUND")
+                all_views_found = False
+                has_error = True
+
+        # 2. 存在导航按钮
+        if "pool-nav" in html_text and "nav-btn" in html_text and "switchPoolView" in html_text:
+            print(f"  ✅ pool-nav with nav-btn and switchPoolView: found")
+        else:
+            print(f"  ❌ pool-nav or nav-btn or switchPoolView: MISSING")
+            has_error = True
+
+        # 3-5. API fetch 引用
+        api_checks = [
+            ("/api/pool/run-manifests/run-6", "run-manifests/run-6 fetch"),
+            ("/api/pool/rerun-attempts/run-5", "rerun-attempts/run-5 fetch"),
+            ("/api/pool/settlements/run-5", "settlements/run-5 fetch"),
+        ]
+        for pattern, label in api_checks:
+            if pattern in html_text:
+                print(f"  ✅ {label}: found")
+            else:
+                print(f"  ❌ {label}: NOT FOUND")
+                has_error = True
+
+        # 6. 不存在完整硬编码档案数组
+        hardcoded_patterns = [
+            "ROUND_RESULTS = [",
+            "RUN4_MODEL_ARCHIVE = [",
+            "RUN5_MODEL_ARCHIVE = [",
+        ]
+        all_hardcoded_clean = True
+        for p in hardcoded_patterns:
+            if p in html_text:
+                print(f"  ❌ hardcoded array found: {p}")
+                all_hardcoded_clean = False
+                has_error = True
+        if all_hardcoded_clean:
+            print(f"  ✅ no hardcoded archive arrays detected")
+
+        # 7. 不存在 null score → 0 转换
+        if "null" in html_text and ("0-0" in html_text or "score.*0" in html_text):
+            # only flag if both null and 0-0 appear in proximity
+            print(f"  ⚠️ potential null-score-to-0 pattern (manual review recommended)")
+            has_warning = True
+        else:
+            print(f"  ✅ no obvious null-score-to-0 pattern detected")
+    else:
+        print(f"  ❌ html/index.html: NOT FOUND")
+        has_error = True
+
+    print()
+
     # --- 汇总 ---
     print("=== Summary ===")
     all_valid = all(r["valid_json"] for r in results)

@@ -186,7 +186,51 @@ main{padding:24px 28px;min-width:0}
 .loan-panel .loan-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid rgba(63,185,80,.12)}
 .loan-panel .loan-row:last-child{border-bottom:none}
 .ftr{padding:20px;text-align:center;font:600 10px/1.5 var(--sans);color:var(--faint);border-top:1px solid var(--line);margin-top:12px}
-@media(max-width:900px){.shell{grid-template-columns:1fr}.mg{grid-template-columns:repeat(2,1fr)}.gg,.aw-grid,.rk-grid,.pre-grid,.full-grid,.sd-grid,.ratio-list,.source-list,.archive-grid,.packet-grid{grid-template-columns:1fr}.flow-chain{grid-template-columns:repeat(2,1fr)}.settle-grid,.stat-strip{grid-template-columns:repeat(2,1fr)}aside{position:static;height:auto}.sd{margin-left:0}.mini-table{font-size:10px}}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.mg{grid-template-columns:repeat(2,1fr)}.gg,.aw-grid,.rk-grid,.pre-grid,.full-grid,.sd-grid,.ratio-list,.source-list,.archive-grid,.packet-grid{grid-template-columns:1fr}.flow-chain{grid-template-columns:repeat(2,1fr)}.settle-grid,.stat-strip{grid-template-columns:repeat(2,1fr)}aside{position:static;height:auto}.sd{margin-left:0}.mini-table{font-size:10px}.pool-nav{flex-wrap:wrap;gap:4px}.pool-nav .nav-btn{padding:8px 12px;font-size:11px}}
+/* P11.2 五页导航 */
+.pool-nav{display:flex;gap:4px;border-bottom:2px solid var(--line);padding-bottom:0;margin-bottom:16px;overflow-x:auto}
+.pool-nav .nav-btn{font:600 12px/1 var(--sans);padding:10px 18px;cursor:pointer;color:var(--dim);border:none;background:none;border-bottom:2px solid transparent;transition:all .12s;margin-bottom:-2px;white-space:nowrap}
+.pool-nav .nav-btn:hover{color:var(--text)}
+.pool-nav .nav-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.pool-view{display:none}.pool-view.active{display:block}
+/* P11.2 数据卡片 */
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.kpi-card{border:1px solid var(--line);border-radius:6px;padding:14px 16px;background:var(--panel);font-size:12px}
+.kpi-card .kpi-label{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi-card .kpi-val{font:800 20px/1.1 var(--sans);margin-bottom:2px}
+.kpi-card .kpi-sub{font-size:10px;color:var(--dim)}
+.kpi-card.gold{border-color:var(--gold);background:rgba(240,136,62,.04)}.kpi-card.gold .kpi-val{color:var(--gold)}
+.kpi-card.green{border-color:var(--green);background:rgba(63,185,80,.04)}.kpi-card.green .kpi-val{color:var(--green)}
+.kpi-card.blue{border-color:var(--blue);background:rgba(88,166,255,.04)}.kpi-card.blue .kpi-val{color:var(--blue)}
+.kpi-card.red{border-color:var(--red);background:rgba(248,81,73,.04)}.kpi-card.red .kpi-val{color:var(--red)}
+/* P11.2 模型表格 */
+.model-row{display:grid;grid-template-columns:36px 1fr 90px 100px 100px;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:5px;background:var(--panel);margin-bottom:4px;font-size:12px;cursor:pointer;transition:border-color .12s}
+.model-row:hover{border-color:var(--gold)}
+.model-row .m-ic{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.model-row .m-nm{font-weight:700;color:var(--text)}
+.model-row .m-sb{font-size:10px;color:var(--dim)}
+.model-row .m-st{font-size:10px}
+/* P11.2 赛事表格 */
+.match-row{display:grid;grid-template-columns:40px 1fr 1fr 70px 70px 70px 70px;gap:6px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:5px;background:var(--panel);margin-bottom:3px;font-size:11px}
+.match-row .mr-time{font:700 10px var(--mono);color:var(--gold)}
+.match-row .mr-h{text-align:right;font-weight:600;color:var(--text)}
+.match-row .mr-a{text-align:left;font-weight:600;color:var(--text)}
+.match-row .mr-vs{text-align:center;color:var(--faint);font-weight:800}
+.match-row .mr-tag{font-size:8px;padding:2px 5px;border-radius:2px;font-weight:600;text-align:center;background:rgba(88,166,255,.1);color:var(--blue)}
+/* P11.2 健康检查 */
+.health-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0}
+.health-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:12px}
+.health-item .h-path{color:var(--dim);font-size:11px}
+.health-item .h-status{font:700 10px var(--mono);padding:3px 8px;border-radius:3px}
+.health-item .h-ok{background:rgba(63,185,80,.1);color:var(--green)}
+.health-item .h-err{background:rgba(248,81,73,.1);color:var(--red)}
+.health-item .h-warn{background:rgba(240,136,62,.1);color:var(--gold)}
+/* P11.2 section header */
+.pool-section-hdr{font-size:14px;font-weight:700;color:var(--text);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.pool-section-hdr .badge-count{font-size:9px;color:var(--faint);margin-left:6px}
+/* data-gap / next-action 显示 */
+.gap-row{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--line);border-radius:4px;background:var(--card);margin-bottom:4px;font-size:11px;color:var(--dim)}
+.gap-row .gap-tag{font:700 8px var(--sans);padding:2px 7px;border-radius:3px;text-transform:uppercase;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -228,10 +272,62 @@ main{padding:24px 28px;min-width:0}
     <h2>⚽ 2026 世界杯预测池</h2>
     <div class="rt">
       <a class="back-home" href="/">← 返回会议室</a>
-      <div class="pill" style="background:rgba(88,166,255,.12);color:var(--blue)">🟦 Run #4 开庭包</div>
       <div class="pill" style="background:rgba(240,136,62,.12);color:var(--gold)">13 席位</div>
     </div>
   </div>
+  <!-- P11.2 五页导航 -->
+  <nav class="pool-nav">
+    <button class="nav-btn active" data-view="dashboard" onclick="switchPoolView('dashboard')">📊 今日控制台</button>
+    <button class="nav-btn" data-view="models" onclick="switchPoolView('models')">🤖 模型表现榜</button>
+    <button class="nav-btn" data-view="match-detail" onclick="switchPoolView('match-detail')">⚽ 赛事详情页</button>
+    <button class="nav-btn" data-view="run-archives" onclick="switchPoolView('run-archives')">🗄 Run 档案室</button>
+    <button class="nav-btn" data-view="system-health" onclick="switchPoolView('system-health')">💚 系统健康页</button>
+  </nav>
+
+  <!-- ===== P11.2 五页视图容器 ===== -->
+
+  <!-- 1) 今日控制台 -->
+  <div id="view-dashboard" class="pool-view active">
+    <div class="kpi-grid" id="dashboardKpi"></div>
+    <div class="pool-section-hdr">📋 数据缺口 <span class="badge-count" id="dgTitle"></span></div>
+    <div id="dashboardGaps"></div>
+    <div class="pool-section-hdr">▶ 下一步动作</div>
+    <div id="dashboardActions"></div>
+  </div>
+
+  <!-- 2) 模型表现榜 -->
+  <div id="view-models" class="pool-view">
+    <div class="kpi-grid" id="modelsKpi"></div>
+    <div class="pool-section-hdr">席位状态总览</div>
+    <div id="modelStatusList"></div>
+  </div>
+
+  <!-- 3) 赛事详情页 -->
+  <div id="view-match-detail" class="pool-view">
+    <div class="pool-section-hdr">今日赛程与赔率覆盖</div>
+    <div id="matchDetailList"></div>
+    <div class="pool-section-hdr">赛果数据</div>
+    <div id="matchResultList"></div>
+  </div>
+
+  <!-- 4) Run 档案室 -->
+  <div id="view-run-archives" class="pool-view">
+    <div class="pool-section-hdr">Run #5</div>
+    <div id="archiveRun5"></div>
+    <div class="pool-section-hdr">Run #6</div>
+    <div id="archiveRun6"></div>
+  </div>
+
+  <!-- 5) 系统健康页 -->
+  <div id="view-system-health" class="pool-view">
+    <div class="pool-section-hdr">数据文件健康检查</div>
+    <div id="healthDataFile"></div>
+    <div class="pool-section-hdr">API 连通性检查</div>
+    <div id="healthApiPing"></div>
+  </div>
+
+  <!-- ===== 旧版内容（保留，可通过切换访问） ===== -->
+  <div id="legacy-content" style="display:none">
   <section class="mg">
     <div class="mc"><span>🏆 热门</span><strong>🇪🇸 17.4%</strong></div>
     <div class="mc"><span>📊 数据源</span><strong>7 源</strong></div>
@@ -549,6 +645,9 @@ main{padding:24px 28px;min-width:0}
   <div class="ftr">美加墨世界杯 · AI 预测池 · Run #5 回收 7/13 + Claude 风险审计 · 5/31 三场已核验 · 5 席待补跑/额度恢复 · 7 源数据 · Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
 </main>
 </div>
+</div><!-- /#legacy-content -->
+
+<!-- P11.2 数据加载与视图切换 JS -->
 <script>
 var SEATS=[
   {n:"DeepSeek",c:"#2563EB",l:"D",gp:1810,ch:"+81%",sb:"补齐三线全中",loan:0},
@@ -982,6 +1081,426 @@ if(location.hash){
   var btn=document.querySelector('.tab[onclick*="'+hash+'"]');
   if(btn)showTab(hash,btn);
 }
+
+// ===== P11.2 五页升级 JS =====
+
+// --- 统一数据加载层 ---
+async function fetchJson(path, fallback) {
+  if (fallback === undefined) fallback = null;
+  try {
+    var res = await fetch(path);
+    if (!res.ok) throw new Error(path + ' -> ' + res.status);
+    return await res.json();
+  } catch (err) {
+    console.error('[fetchJson]', err.message);
+    return fallback;
+  }
+}
+
+var PoolData = {
+  models: null,
+  leaderboard: null,
+  matches: null,
+  matchResults: null,
+  oddsSnapshots: null,
+  betReceipts: null,
+  betRejections: null,
+  settlements: null,
+  dailyReports: null,
+  runManifests: null,
+  ingestedOutputs: null,
+  rerunAttempts: null,
+  dataHealth: null,
+  modelRuns: {}
+};
+
+// --- 视图切换 ---
+function switchPoolView(viewName) {
+  document.querySelectorAll('.pool-view').forEach(function(v) { v.classList.remove('active'); });
+  document.querySelectorAll('.pool-nav .nav-btn').forEach(function(b) { b.classList.remove('active'); });
+  var view = document.getElementById('view-' + viewName);
+  if (view) view.classList.add('active');
+  var btn = document.querySelector('.pool-nav .nav-btn[data-view="' + viewName + '"]');
+  if (btn) btn.classList.add('active');
+  // hide legacy tabs when in pool view
+  var legacy = document.getElementById('legacy-content');
+  if (legacy) legacy.style.display = 'none';
+  // load data for the view
+  if (viewName === 'dashboard') renderDashboard();
+  else if (viewName === 'models') renderModels();
+  else if (viewName === 'match-detail') renderMatchDetail();
+  else if (viewName === 'run-archives') renderRunArchives();
+  else if (viewName === 'system-health') renderSystemHealth();
+}
+
+// --- 状态标签辅助 ---
+function statusBadge(status) {
+  var map = {
+    'valid_receipt': 'st-green',
+    'context_polluted': 'st-red',
+    'placeholder_only': 'st-dim',
+    'quota_blocked': 'st-gold',
+    'auth_blocked': 'st-gold',
+    'timeout': 'st-red',
+    'parse_error': 'st-red',
+    'risk_refusal': 'st-red',
+    'excluded_from_consensus': 'st-dim',
+    'prompt_generated': 'st-gold',
+    'waiting_for_rerun_outputs': 'st-gold',
+    'waiting_for_manual_ingest': 'st-gold',
+    'no_rerun_queue': 'st-dim',
+    'no_bets_to_settle': 'st-dim',
+    'planned': 'st-gold',
+    'completed': 'st-green',
+    'failed': 'st-red'
+  };
+  var cls = map[status] || 'st-dim';
+  var label = (status || '').replace(/_/g, ' ');
+  return '<span class="status-tag ' + cls + '">' + label + '</span>';
+}
+
+// --- 1) 今日控制台 ---
+function renderDashboard() {
+  var kpiEl = document.getElementById('dashboardKpi');
+  var gapsEl = document.getElementById('dashboardGaps');
+  var actionsEl = document.getElementById('dashboardActions');
+  var dgTitle = document.getElementById('dgTitle');
+
+  var models = PoolData.models || {};
+  var matches = PoolData.matches || [];
+  var receipts = PoolData.betReceipts || {};
+  var settlements = PoolData.settlements || {};
+  var manifest = PoolData.runManifests || {};
+  var ingested = PoolData.ingestedOutputs || {};
+  var rerun = PoolData.rerunAttempts || {};
+  var daily = PoolData.dailyReports || {};
+
+  // KPI cards
+  var modelCount = (models.models && Array.isArray(models.models)) ? models.models.length : 13;
+  var matchCount = (Array.isArray(matches) ? matches.length : 0) || 104;
+  var run5Bets = (receipts.summary && receipts.summary.accepted_bets != null) ? receipts.summary.accepted_bets : 0;
+  var run5SettleStatus = settlements.settlement_status || 'no_bets_to_settle';
+  var run5Profit = (settlements.summary && settlements.summary.total_profit != null) ? settlements.summary.total_profit : '--';
+  var run6Seats = manifest.seats_total || 13;
+  var run6Outputs = ingested.outputs_found || 0;
+  var run6Total = ingested.outputs_total || 13;
+  var run6State = (ingested.outputs_found != null) ? (ingested.outputs_found > 0 ? 'has_raw_outputs' : 'waiting_for_manual_ingest') : 'waiting_for_manual_ingest';
+  var run5RerunState = (rerun.summary && rerun.summary.state) ? rerun.summary.state : 'no_rerun_queue';
+
+  kpiEl.innerHTML =
+    '<div class="kpi-card blue"><div class="kpi-label">总模型数</div><div class="kpi-val">' + modelCount + '</div><div class="kpi-sub">席位池</div></div>' +
+    '<div class="kpi-card"><div class="kpi-label">当前比赛</div><div class="kpi-val">' + matchCount + '</div><div class="kpi-sub">世界杯赛程</div></div>' +
+    '<div class="kpi-card green"><div class="kpi-label">Run #5 投注</div><div class="kpi-val">' + run5Bets + '</div><div class="kpi-sub">accepted bets</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">Run #5 结算</div><div class="kpi-val">' + run5Profit + '</div><div class="kpi-sub">' + run5SettleStatus + '</div></div>' +
+    '<div class="kpi-card blue"><div class="kpi-label">Run #6</div><div class="kpi-val">' + run6Outputs + '/' + run6Total + '</div><div class="kpi-sub">' + run6State + '</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">Run #5 补跑</div><div class="kpi-val">' + (rerun.summary ? (rerun.summary.planned_attempts || '--') : '--') + '</div><div class="kpi-sub">' + run5RerunState + '</div></div>';
+
+  // Data gaps from daily report
+  var gaps = (daily.data_gaps && Array.isArray(daily.data_gaps)) ? daily.data_gaps : [];
+  dgTitle.textContent = '(' + gaps.length + ')';
+  if (gaps.length === 0) {
+    gapsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无数据缺口报告 — API /api/pool/daily-reports/2026-06-03/run-5</span></div>';
+  } else {
+    gapsEl.innerHTML = gaps.map(function(g) {
+      var txt = typeof g === 'string' ? g : (g.message || g.label || JSON.stringify(g));
+      return '<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">缺口</span>' + txt + '</div>';
+    }).join('');
+  }
+
+  // Next actions
+  var actions = (daily.next_actions && Array.isArray(daily.next_actions)) ? daily.next_actions : [];
+  if (actions.length === 0) {
+    actionsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无下一步动作建议 — API /api/pool/daily-reports/2026-06-03/run-5</span></div>';
+  } else {
+    actionsEl.innerHTML = actions.map(function(a) {
+      var txt = typeof a === 'string' ? a : (a.action || a.label || JSON.stringify(a));
+      return '<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">动作</span>' + txt + '</div>';
+    }).join('');
+  }
+
+  // Core states
+  var hdrStates = document.getElementById('dashboardStatesHdr');
+  if (!hdrStates) {
+    hdrStates = document.createElement('div');
+    hdrStates.id = 'dashboardStatesHdr';
+    hdrStates.className = 'pool-section-hdr';
+    hdrStates.textContent = '📌 核心状态';
+    var refNode = document.getElementById('dgTitle');
+    if (refNode && refNode.parentNode) refNode.parentNode.insertBefore(hdrStates, refNode.parentNode.firstChild);
+  }
+  var statesDiv = document.getElementById('dashboardStatesList');
+  if (!statesDiv) {
+    statesDiv = document.createElement('div');
+    statesDiv.id = 'dashboardStatesList';
+    if (hdrStates.parentNode) hdrStates.parentNode.insertBefore(statesDiv, hdrStates.nextSibling);
+  }
+  if (statesDiv) {
+    statesDiv.innerHTML =
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-5</span> ' + statusBadge(run5SettleStatus) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6</span> ' + statusBadge(run6State) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-5</span> ' + statusBadge(run5RerunState) + '</div>';
+  }
+}
+
+// --- 2) 模型表现榜 ---
+function renderModels() {
+  var kpiEl = document.getElementById('modelsKpi');
+  var listEl = document.getElementById('modelStatusList');
+
+  var models = PoolData.models;
+  var modelList = (models && models.models && Array.isArray(models.models)) ? models.models : [];
+  var rejections = PoolData.betRejections || {};
+  var rerun = PoolData.rerunAttempts || {};
+  var daily = PoolData.dailyReports || {};
+
+  kpiEl.innerHTML =
+    '<div class="kpi-card blue"><div class="kpi-label">总席位</div><div class="kpi-val">' + modelList.length + '</div><div class="kpi-sub">有效模型</div></div>' +
+    '<div class="kpi-card green"><div class="kpi-label">有效投注</div><div class="kpi-val">' + ((rejections.summary && rejections.summary.accepted_bets != null) ? rejections.summary.accepted_bets : '--') + '</div><div class="kpi-sub">Run #5</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">补跑计划</div><div class="kpi-val">' + (rerun.summary ? (rerun.summary.planned_attempts || '--') : '--') + '</div><div class="kpi-sub">Run #5 attempt-2</div></div>';
+
+  if (modelList.length === 0) {
+    listEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">模型数据不可用 — 请确认 /api/pool/models 可访问</span></div>';
+    return;
+  }
+
+  // Build rejection map from rejected models
+  var rejMap = {};
+  if (rejections.rejections && Array.isArray(rejections.rejections)) {
+    rejections.rejections.forEach(function(r) {
+      rejMap[r.model_account || ''] = r;
+    });
+  }
+
+  // Build rerun attempt map
+  var rerunMap = {};
+  if (rerun.attempts && Array.isArray(rerun.attempts)) {
+    rerun.attempts.forEach(function(a) {
+      rerunMap[a.model_account || ''] = a;
+    });
+  }
+
+  // Build daily report status map (model_status_rows)
+  var statusMap = {};
+  if (daily.model_status_rows && Array.isArray(daily.model_status_rows)) {
+    daily.model_status_rows.forEach(function(m) {
+      statusMap[m.model_account || ''] = m;
+    });
+  }
+
+  listEl.innerHTML = modelList.map(function(m) {
+    var name = m.model_account || 'unknown';
+    var display = m.display_name || name;
+    var color = m.icon_color || '#64748B';
+    var initial = (m.icon_letter || display.charAt(0)).toUpperCase();
+
+    var st = statusMap[name] || {};
+    var r5status = st.status || '--';
+
+    var rej = rejMap[name];
+    var rejReason = rej ? (rej.reason || '--') : '--';
+
+    var ra = rerunMap[name];
+    var rerunState = ra ? ra.state : '--';
+
+    return '<div class="model-row">' +
+      '<div class="m-ic" style="background:' + color + '">' + initial + '</div>' +
+      '<div><div class="m-nm">' + display + '</div><div class="m-sb">' + name + '</div></div>' +
+      '<div class="m-st">' + statusBadge(r5status) + '</div>' +
+      '<div class="m-st" style="font-size:10px;color:var(--dim)">' + (rejReason !== '--' ? rejReason : '--') + '</div>' +
+      '<div class="m-st">' + statusBadge(rerunState !== '--' ? rerunState : '--') + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+// --- 3) 赛事详情页 ---
+function renderMatchDetail() {
+  var listEl = document.getElementById('matchDetailList');
+  var resultEl = document.getElementById('matchResultList');
+
+  var matches = PoolData.matches;
+  var matchList = (Array.isArray(matches) ? matches : []);
+  var matchResults = PoolData.matchResults || {};
+  var results = (matchResults.results) ? matchResults.results : [];
+  var odds = PoolData.oddsSnapshots || {};
+  var receipts = PoolData.betReceipts || {};
+  var settlements = PoolData.settlements || {};
+
+  if (matchList.length === 0) {
+    listEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">赛事数据不可用 — /api/pool/matches</span></div>';
+  } else {
+    // Show up to 20 matches
+    var displayMatches = matchList.slice(0, 20);
+    listEl.innerHTML = '<div style="display:grid;gap:3px">' + displayMatches.map(function(m) {
+      var date = (m.date || m.d || '').slice(5);
+      return '<div class="match-row">' +
+        '<div class="mr-time">' + (date || '--') + '</div>' +
+        '<div class="mr-h">' + (m.home_team || m.h || '--') + '</div>' +
+        '<div class="mr-a">' + (m.away_team || m.a || '--') + '</div>' +
+        '<div class="mr-tag">' + (m.status || m.group || '--') + '</div>' +
+        '<div style="font-size:10px;color:var(--dim);text-align:center">赔率: missing_market_coverage</div>' +
+        '<div style="font-size:10px;color:var(--dim);text-align:center">投注: 0</div>' +
+        '<div style="font-size:10px;color:var(--dim);text-align:center">结算: 0</div>' +
+        '</div>';
+    }).join('') + '</div>';
+    if (matchList.length > 20) {
+      listEl.innerHTML += '<div class="gap-row"><span style="color:var(--faint)">显示前 20 场，共 ' + matchList.length + ' 场</span></div>';
+    }
+  }
+
+  // Results
+  if (results.length === 0) {
+    resultEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">赛果数据不可用 — /api/pool/match-results/2026-06-03</span></div>';
+  } else {
+    resultEl.innerHTML = results.slice(0, 10).map(function(r) {
+      var score = (r.score_home != null && r.score_away != null) ? r.score_home + '-' + r.score_away : '待赛';
+      return '<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">赛果</span>' +
+        (r.match_id || r.home_team || '--') + ' vs ' + (r.away_team || '--') + ' — ' + score +
+        ' <span style="font-size:9px;color:var(--faint)">(' + (r.status || '--') + ')</span></div>';
+    }).join('');
+  }
+}
+
+// --- 4) Run 档案室 ---
+function renderRunArchives() {
+  var run5El = document.getElementById('archiveRun5');
+  var run6El = document.getElementById('archiveRun6');
+
+  var receipts = PoolData.betReceipts || {};
+  var rejections = PoolData.betRejections || {};
+  var settlements = PoolData.settlements || {};
+  var rerun = PoolData.rerunAttempts || {};
+  var daily = PoolData.dailyReports || {};
+  var manifest = PoolData.runManifests || {};
+  var ingested = PoolData.ingestedOutputs || {};
+
+  // Run #5 — use daily report for status data
+  var r5StatusCounts = daily.model_status_counts || {};
+  var r5Lines = [];
+  var r5Total = (daily.summary && daily.summary.total_models) ? daily.summary.total_models : 13;
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">分类</span>P9.3 日报告分类: ' + r5Total + ' models | valid=' + (r5StatusCounts.valid_receipt || 0) + ', polluted=' + (r5StatusCounts.context_polluted || 0) + ', placeholder=' + (r5StatusCounts.placeholder_only || 0) + '</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">拒收</span>P10.2: ' + ((rejections.summary && rejections.summary.rejected_bets != null) ? rejections.summary.rejected_bets + ' rejected bets' : '数据不可用') + '</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">结算</span>P10.3: ' + (settlements.settlement_status || 'no_bets_to_settle') + '</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">补跑</span>P11.1: ' + (rerun.summary ? 'attempt-2, ' + (rerun.summary.planned_attempts || 0) + ' planned, ' + (rerun.summary.state || '--') : 'no_rerun_queue') + '</div>');
+  run5El.innerHTML = r5Lines.join('');
+
+  // Run #6
+  var r6Prompts = manifest.seats_total || 13;
+  var r6Outputs = ingested.outputs_found || 0;
+  var r6Total = ingested.outputs_total || 13;
+  var r6State = (ingested.outputs_found != null) ? (ingested.outputs_found > 0 ? 'has_raw_outputs' : 'waiting_for_manual_ingest') : 'waiting_for_manual_ingest';
+  var r6Lines = [];
+  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">Prompt</span>prompts: ' + r6Prompts + '/' + r6Prompts + ' (seats_total=' + r6Prompts + ')</div>');
+  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">输出</span>raw_outputs: ' + r6Outputs + '/' + r6Total + '</div>');
+  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">状态</span>state: ' + statusBadge(r6State) + '</div>');
+  run6El.innerHTML = r6Lines.join('');
+}
+
+// --- 5) 系统健康页 ---
+async function renderSystemHealth() {
+  var dfEl = document.getElementById('healthDataFile');
+  var apiEl = document.getElementById('healthApiPing');
+
+  // Data file health
+  var dh = PoolData.dataHealth;
+  if (dh) {
+    var hasErr = dh.has_error || dh.has_hard_error;
+    var hasWarn = dh.has_warning;
+    dfEl.innerHTML =
+      '<div class="kpi-grid">' +
+      '<div class="kpi-card ' + (hasErr ? 'red' : 'green') + '"><div class="kpi-label">数据文件状态</div><div class="kpi-val">' + (hasErr ? '❌' : '✅') + '</div><div class="kpi-sub">' + (hasErr ? '有错误' : '全部正常') + '</div></div>' +
+      '<div class="kpi-card ' + (hasWarn ? 'gold' : 'green') + '"><div class="kpi-label">警告</div><div class="kpi-val">' + (hasWarn ? '⚠️' : '✅') + '</div><div class="kpi-sub">' + (hasWarn ? '有警告' : '无警告') + '</div></div>' +
+      '<div class="kpi-card blue"><div class="kpi-label">JSON 校验</div><div class="kpi-val">' + (dh.all_json_valid ? '✅' : '❌') + '</div><div class="kpi-sub">' + (dh.all_json_valid ? '全部通过' : '有失败') + '</div></div>' +
+      '</div>';
+    // Show details
+    if (dh.checks) {
+      dfEl.innerHTML += '<div class="health-grid">' + dh.checks.map(function(c) {
+        var cls = c.status === 'ok' ? 'h-ok' : c.status === 'warn' ? 'h-warn' : 'h-err';
+        return '<div class="health-item"><span class="h-path">' + (c.name || c.check || '--') + '</span><span class="h-status ' + cls + '">' + (c.status || '--') + '</span></div>';
+      }).join('') + '</div>';
+    }
+  } else {
+    dfEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">数据健康检查不可用 — /api/pool/data-health</span></div>';
+  }
+
+  // API ping
+  var healthEndpoints = [
+    '/api/pool/models',
+    '/api/pool/matches',
+    '/api/pool/match-results/2026-06-03',
+    '/api/pool/odds-snapshots/2026-06-03/T-1h',
+    '/api/pool/bet-receipts/run-5',
+    '/api/pool/settlements/run-5',
+    '/api/pool/run-manifests/run-6',
+    '/api/pool/rerun-attempts/run-5',
+    '/api/pool/daily-reports/2026-06-03/run-5'
+  ];
+
+  apiEl.innerHTML = '<div class="health-grid">' + healthEndpoints.map(function(ep) {
+    return '<div class="health-item" id="ping-' + ep.replace(/[^a-z0-9]/gi, '-') + '"><span class="h-path">' + ep + '</span><span class="h-status h-warn">⏳</span></div>';
+  }).join('') + '</div>';
+
+  // Ping all in parallel
+  healthEndpoints.forEach(function(ep) {
+    var id = 'ping-' + ep.replace(/[^a-z0-9]/gi, '-');
+    fetch(ep).then(function(res) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var statusEl = el.querySelector('.h-status');
+      if (!statusEl) return;
+      if (res.ok) {
+        statusEl.textContent = '200 OK';
+        statusEl.className = 'h-status h-ok';
+      } else {
+        statusEl.textContent = res.status;
+        statusEl.className = 'h-status h-err';
+      }
+    }).catch(function(err) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var statusEl = el.querySelector('.h-status');
+      if (!statusEl) return;
+      statusEl.textContent = 'ERR';
+      statusEl.className = 'h-status h-err';
+    });
+  });
+}
+
+// --- 初始化 ---
+(async function p112Init() {
+  // Load all data in parallel
+  var results = await Promise.allSettled([
+    fetchJson('/api/pool/models'),
+    fetchJson('/api/pool/matches'),
+    fetchJson('/api/pool/match-results/2026-06-03'),
+    fetchJson('/api/pool/odds-snapshots/2026-06-03/T-1h'),
+    fetchJson('/api/pool/bet-receipts/run-5'),
+    fetchJson('/api/pool/bet-rejections/run-5'),
+    fetchJson('/api/pool/settlements/run-5'),
+    fetchJson('/api/pool/daily-reports/2026-06-03/run-5'),
+    fetchJson('/api/pool/run-manifests/run-6'),
+    fetchJson('/api/pool/ingested-outputs/run-6'),
+    fetchJson('/api/pool/rerun-attempts/run-5'),
+    fetchJson('/api/pool/data-health'),
+    fetchJson('/api/pool/model-runs/run-5')
+  ]);
+
+  PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
+  PoolData.matches = results[1].status === 'fulfilled' ? results[1].value : null;
+  PoolData.matchResults = results[2].status === 'fulfilled' ? results[2].value : null;
+  PoolData.oddsSnapshots = results[3].status === 'fulfilled' ? results[3].value : null;
+  PoolData.betReceipts = results[4].status === 'fulfilled' ? results[4].value : null;
+  PoolData.betRejections = results[5].status === 'fulfilled' ? results[5].value : null;
+  PoolData.settlements = results[6].status === 'fulfilled' ? results[6].value : null;
+  PoolData.dailyReports = results[7].status === 'fulfilled' ? results[7].value : null;
+  PoolData.runManifests = results[8].status === 'fulfilled' ? results[8].value : null;
+  PoolData.ingestedOutputs = results[9].status === 'fulfilled' ? results[9].value : null;
+  PoolData.rerunAttempts = results[10].status === 'fulfilled' ? results[10].value : null;
+  PoolData.dataHealth = results[11].status === 'fulfilled' ? results[11].value : null;
+  if (results[12].status === 'fulfilled') PoolData.modelRuns['run-5'] = results[12].value;
+
+  // Render default view (dashboard)
+  renderDashboard();
+})();
 </script>
 </body>
 </html>
