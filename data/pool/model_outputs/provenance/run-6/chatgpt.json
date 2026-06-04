@@ -1,0 +1,23 @@
+{
+  "version": "ai_judge_desktop_worldcup_pool_export.v1",
+  "run_id": "b45f47174c7e",
+  "round_id": "run-6",
+  "date": "2026-06-03",
+  "seat": "chatgpt",
+  "model_account": "chatgpt",
+  "ok": true,
+  "method": null,
+  "raw_output_path": "data/pool/model_outputs/raw/run-6/chatgpt.txt",
+  "parsed": {
+    "memory_update": {
+      "run_id": "run-6",
+      "seat_id": "chatgpt",
+      "style": "steady_diversified",
+      "lesson_from_previous_round": "PSG title + under + draw protection worked because correlated downside was controlled.",
+      "current_blocker": "pipeline_status=blocked and accepted_bets=0; prediction quality cannot score unless bets are accepted and backfilled.",
+      "risk_rule": "Never mark friendlies as settled without two-source result verification.",
+      "strategy_shift": "Use moderate investment loan, 7 diversified positions, strict cancellation rules, and preserve 630GP reserve."
+    }
+  },
+  "response_chars": 6533
+}

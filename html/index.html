@@ -295,6 +295,11 @@ main{padding:24px 28px;min-width:0}
     <div id="dashboardStates"></div>
     <div class="pool-section-hdr">🏛 运行感知</div>
     <div id="dashboardAwareness"></div>
+    <div class="pool-section-hdr">🔌 自动化桥接操作台</div>
+    <div id="automationBridge"></div>
+    <div id="automationLog" style="margin-top:8px"></div>
+    <div class="pool-section-hdr">🧠 赛事记忆系统</div>
+    <div id="memorySystem"></div>
     <div class="pool-section-hdr">📋 数据缺口 <span class="badge-count" id="dgTitle"></span></div>
     <div id="dashboardGaps"></div>
     <div class="pool-section-hdr">▶ 下一步动作</div>
@@ -1109,13 +1114,41 @@ if(location.hash){
 
 // ===== P11.2 五页升级 JS =====
 
-// --- API Base：本地页面可探测 8510，线上页面固定使用 Vercel ---
+// --- API Base：页面数据默认走 Vercel；桌面入口额外探测本地 AI Judge 桥 ---
+
+var LOCAL_BRIDGE_BASE = '';
+var LOCAL_BRIDGE_STATUS = null;
+
+function wantsLocalBridge() {
+  var params = new URLSearchParams(location.search || '');
+  return params.get('bridge') === 'local' || params.get('desktop') === '1' || localStorage.getItem('pool_local_bridge') === '1';
+}
+
+async function probeLocalBridge() {
+  LOCAL_BRIDGE_BASE = '';
+  LOCAL_BRIDGE_STATUS = null;
+  if (!wantsLocalBridge()) return null;
+  try {
+    var res = await fetch('http://127.0.0.1:8501/api/worldcup-pool/health', {signal: AbortSignal.timeout(2200)});
+    if (res.ok) {
+      LOCAL_BRIDGE_BASE = 'http://127.0.0.1:8501';
+      LOCAL_BRIDGE_STATUS = await res.json();
+      localStorage.setItem('pool_local_bridge', '1');
+      return LOCAL_BRIDGE_STATUS;
+    }
+  } catch(e) {
+    LOCAL_BRIDGE_STATUS = {ok:false, error:String(e && e.message || e)};
+  }
+  return LOCAL_BRIDGE_STATUS;
+}
 
 async function probeLocalApi() {
   if (window.POOL_API_BASE) {
     API_BASE = window.POOL_API_BASE;
+    await probeLocalBridge();
     return;
   }
+  await probeLocalBridge();
   var isLocalPage = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
   if (!isLocalPage) {
     API_BASE = 'https://pool-app-one.vercel.app';
@@ -1212,7 +1245,8 @@ function statusBadge(status) {
     'no_bets_to_settle': 'st-dim',
     'planned': 'st-gold',
     'completed': 'st-green',
-    'failed': 'st-red'
+    'failed': 'st-red',
+    'blocked': 'st-red'
   };
   var cls = map[status] || 'st-dim';
   var label = (status || '').replace(/_/g, ' ');
@@ -1233,6 +1267,91 @@ function actionText(item) {
   if (!item) return '';
   if (typeof item === 'string') return item;
   return item.action || item.reason || item.detail || item.label || JSON.stringify(item);
+}
+
+async function callLocalBridgeAction(action, btn) {
+  var logEl = document.getElementById('automationLog');
+  if (!LOCAL_BRIDGE_BASE) {
+    if (logEl) logEl.innerHTML = '<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.12);color:var(--red)">不可执行</span>本地 AI Judge 桥未连接。请从 AI Judge 客户端点击赛事预测进入，或打开 http://127.0.0.1:8501/worldcup-pool。</div>';
+    return;
+  }
+  var old = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = '执行中'; }
+  if (logEl) logEl.innerHTML = '<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.12);color:var(--blue)">running</span>' + htmlEscape(action) + ' 已发送到本地桥。</div>';
+  try {
+    var res = await fetch(LOCAL_BRIDGE_BASE + '/api/worldcup-pool/action', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({action: action, date: '2026-06-03', round_id: 'run-6'})
+    });
+    var data = await res.json();
+    var ok = !!data.ok;
+    var detail = '';
+    if (data.run_id) {
+      detail = 'run_id=' + htmlEscape(data.run_id) + ' · <a href="' + LOCAL_BRIDGE_BASE + htmlEscape(data.report_url || '') + '" target="_blank">打开报告</a>';
+    } else if (data.results && data.results.length) {
+      detail = data.results.map(function(r){ return htmlEscape((r.command || []).slice(-2).join(' ')) + ' rc=' + htmlEscape(r.returncode); }).join('；');
+    } else {
+      detail = htmlEscape(data.error || data.message || JSON.stringify(data).slice(0, 300));
+    }
+    if (logEl) logEl.innerHTML = '<div class="gap-row"><span class="gap-tag" style="background:' + (ok ? 'rgba(63,185,80,.12);color:var(--green)' : 'rgba(248,81,73,.12);color:var(--red)') + '">' + (ok ? '完成' : '失败') + '</span>' + detail + '</div>';
+    if (ok && (action === 'run_pipeline' || action === 'generate_prompts' || action === 'sync_results')) {
+      PoolData.runtimeSummary = data.runtime_summary || PoolData.runtimeSummary;
+      renderDashboard();
+    }
+  } catch(e) {
+    if (logEl) logEl.innerHTML = '<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.12);color:var(--red)">失败</span>' + htmlEscape(e && e.message || e) + '</div>';
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = old; }
+  }
+}
+
+function renderAutomationBridge() {
+  var el = document.getElementById('automationBridge');
+  if (!el) return;
+  var connected = !!LOCAL_BRIDGE_BASE;
+  var bridgeLabel = connected ? '本地桥已连接' : (wantsLocalBridge() ? '本地桥未连接' : '只读线上模式');
+  var statusClass = connected ? 'green' : 'gold';
+  var disabled = connected ? '' : ' disabled';
+  el.innerHTML =
+    '<div class="full-grid" style="margin-top:0">' +
+      '<div class="full-card"><h4>桥接状态</h4><strong>' + htmlEscape(bridgeLabel) + '</strong>' +
+        '<div class="drawer-copy" style="margin-top:8px">网页数据读取 Vercel；实体按钮通过 AI Judge 客户端本地 API 执行脚本和网页模型局。</div>' +
+        '<div class="mini-tags"><span class="' + statusClass + '">' + (connected ? '127.0.0.1:8501' : '需要桌面客户端') + '</span><span>run-6</span><span>the_odds_api</span></div></div>' +
+      '<div class="full-card"><h4>自动化动作</h4>' +
+        '<div class="badge-row">' +
+          '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'sync_results\', this)">同步赛果</button>' +
+          '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'generate_prompts\', this)">生成真实赔率 Prompt</button>' +
+          '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'start_model_round\', this)">启动网页模型局</button>' +
+          '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'run_pipeline\', this)">生成报告/结算</button>' +
+          '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'full_local_cycle\', this)">一键全自动局</button>' +
+        '</div>' +
+        '<div class="drawer-copy" style="margin-top:8px">顺序：同步赛果 → 生成 prompt → 启动网页模型局 → 自动写回 raw outputs → 自动生成报告/结算。</div>' +
+      '</div>' +
+    '</div>';
+}
+
+function renderMemorySystem() {
+  var el = document.getElementById('memorySystem');
+  if (!el) return;
+  var rt = PoolData.runtimeSummary || {};
+  var archives = rt.archives || {};
+  var automation = rt.automation || {};
+  var blockers = automation.pipeline_blockers || [];
+  var actions = automation.next_actions || [];
+  var ranking = rt.current_ranking || [];
+  var rows = ranking.slice(0, 6).map(function(r) {
+    return '<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.12);color:var(--blue)">#' + htmlEscape(r.rank || '-') + '</span>' + htmlEscape(r.display_name || r.model_account || '--') + ' · ' + htmlEscape(r.balance_gp == null ? '--' : r.balance_gp + 'GP') + ' · loan ' + htmlEscape(r.loan_gp == null ? '--' : r.loan_gp + 'GP') + '</div>';
+  }).join('');
+  el.innerHTML =
+    '<div class="full-grid" style="margin-top:0">' +
+      '<div class="full-card"><h4>账户/贷款记忆</h4>' + (rows || '<div class="drawer-copy">暂无排名记忆</div>') + '</div>' +
+      '<div class="full-card"><h4>运行记忆</h4>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.12);color:var(--gold)">blocker</span>' + htmlEscape(blockers[0] ? blockers[0].reason : '无') + '</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.12);color:var(--green)">next</span>' + htmlEscape(actionText(actions[actions.length - 1]) || '--') + '</div>' +
+        '<div class="drawer-copy" style="margin-top:8px">历史归档：赛果 ' + ((archives.counts && archives.counts.round_results) || 0) + ' · UCL ' + ((archives.counts && archives.counts.ucl_bets) || 0) + ' · Run #5 模型 ' + ((archives.counts && archives.counts.run5_model_archive) || 0) + '</div>' +
+      '</div>' +
+    '</div>';
 }
 
 function renderDashboardAwareness() {
@@ -1377,6 +1496,8 @@ function renderDashboard() {
   }
 
   renderDashboardAwareness();
+  renderAutomationBridge();
+  renderMemorySystem();
 
   // Data gaps from daily report
   var gaps = (daily.data_gaps && Array.isArray(daily.data_gaps)) ? daily.data_gaps : [];
@@ -1922,8 +2043,9 @@ async function renderSystemHealth() {
   var apiSrcEl = document.getElementById('apiSource');
   if (apiSrcEl) {
     var isLocal = API_BASE.indexOf('127.0.0.1') >= 0;
-    apiSrcEl.textContent = 'API: ' + (isLocal ? '本地 8510' : 'Vercel 线上');
-    apiSrcEl.style.color = isLocal ? 'var(--green)' : 'var(--gold)';
+    var bridge = LOCAL_BRIDGE_BASE ? ' + 本地桥' : '';
+    apiSrcEl.textContent = 'API: ' + (isLocal ? '本地 8510' : 'Vercel 线上') + bridge;
+    apiSrcEl.style.color = LOCAL_BRIDGE_BASE ? 'var(--green)' : (isLocal ? 'var(--green)' : 'var(--gold)');
   }
   // Load all data in parallel
   var results = await Promise.allSettled([

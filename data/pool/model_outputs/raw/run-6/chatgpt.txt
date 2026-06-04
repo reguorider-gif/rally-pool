@@ -1,977 +1,212 @@
-跳至内容
-刘
-历史聊天记录
-ChatGPT
-新聊天
-搜索聊天
-库
-项目
-应用
-Codex
-更多
-最近
-AI Judge 赛事预测
-AI赛事预测无有效投注
-No Valid Bet
-No valid bet available
-任务说明与提示词
-AI Judge Hermes 集成
-AI Judge 自动化改造
-低信息输入处理方案
-Hello任务处理建议
-AI Judge 存储架构取舍
-AI Judge 存储架构分析
-Python vs Rust 性能差异
-Transformer 核心机制分析
-Transformer 核心机制分析
-Transformer 核心机制分析
-P2.4回归测试C分析
-P2.4回归测试C验证
-P2.4存储架构比较
-JSON vs SQLite 存储取舍
-评估历史裁决质量
-AI Judge 存储决策
-AI Judge 存储决策
-AI Judge 存储决策
-探探账号解封申诉
-AI Judge 存储决策
-AI世界杯预测分析
-世界杯预测策略
-Day 1 策略分析
-刘
-刘威迪
-Pro
-分享
-AI_JUDGE_RUN_ID:pool-run6-web-active-missing-rerun-20260604
-席位：chatgpt
-输出 JSON 时必须包含 run_id 字段，值必须等于 pool-run6-web-active-missing-rerun-20260604；seat_id 字段必须严格等于 chatgpt。
-发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。
-AI_JUDGE_RUN_MARKER:AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603
+立场：条件支持。
 
-# AI Judge 赛事预测池独立模型席位
+我支持 ChatGPT 席位在 run-6 主动下注，但只支持“轻贷款 + 多市场分散 + 只押未来或未结算窗口”的方案；反对用未验证赛果补收益，也反对在 pipeline_status=blocked、accepted_bets=0 的状态下伪造已成交投注。
+
+1. 账户复盘
 
 seat_id: chatgpt
-model_account: chatgpt
-display_name: ChatGPT
-round_id: run-6
-date: 2026-06-03
 
-【合规与实验边界】
-这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。
-所有投注均为模拟，仅用于算法研究与模型评估。
+当前资产: 1450GP
 
-## 当前任务
-你是 AI Judge 赛事预测池中的一个独立模型席位。
-你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。
+当前排名: #3/14
 
-## 强制防污染要求
-- 不要回答旧任务。
-- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。
-- 不要输出你的最终答案。
-- 不要输出 Markdown。
-- 不要输出解释性自然语言。
-- 不要输出 JSON 之外的任何内容。
-- JSON 必须能被 json.loads 解析。
+上轮有效结算: PSG 1-1 Arsenal，PSG 点球夺冠；ChatGPT 的 PSG 不败/冠军方向 + 小球保护属于稳健盈利路径。
 
-## 可用比赛摘要
+本轮状态: blocked
+
+valid_odds_rows: 989
+
+accepted_bets: 0
+
+结算原则: 2026-06-01 至 2026-06-03 热身赛窗口不得写成已结算收益，除非完成双源赛果校验。
+
+本席目标: 不追 DeepSeek 的单点爆发，目标是用 5-7 个低相关仓位拿“有效投注数量 + 信源质量 + ROI质量”综合分。
+
+2. 支持理由
+
+当前 #3 距离 #1 DeepSeek 差 360GP，纯保守会被动掉队；但 1450GP 仍有防守资本，不应走 Kimi/Grok 式极限翻盘。
+
+run-6 当前 accepted_bets=0，最大问题不是预测能力，而是结构化投注未落库；下一步优先修复“可回填 bets”，否则排行榜评分直接损失有效投注数量。
+
+FIFA/媒体赛程显示 6月4日至6月6日仍有密集友谊赛窗口，例如 France v Côte d'Ivoire、Spain v Iraq、Sweden v Greece、Mexico v Serbia、Canada v Ireland、Haiti v Peru、Brazil v Egypt、USA v Germany 等，足够构造分散仓位。
+雅虎体育
++2
+ESPN.com
++2
+
+Haiti 属于高叙事波动队：已晋级世界杯但存在长期中立场、旅行与组织压力，这适合做小仓位反热门/小球观察，不适合重仓追胜。
+Reuters
++1
+
+Nicaragua 近期对 South Africa 0-0 的样本显示其弱队低位防守可制造小球，但该样本不能直接外推到 Paraguay v Nicaragua，只能作为小球备选信号。
+Reuters
+
+3. 贷款策略
+
+loan_type: investment_loan
+
+loan_amount: 300GP
+
+interest_rate_per_round: 10%
+
+repay_due: 330GP
+
+rationale: 用于扩展 3 个额外低相关仓位，争取有效投注数量与排名提升奖励。
+
+stop_loss: 若前 3 个仓位净亏损 ≥240GP，则暂停后续新增投注。
+
+repayment_path: 只要本轮净收益 ≥330GP，优先归还贷款；若净收益 0-329GP，下轮只做小仓位防守并保留偿还义务。
+
+不申请破产贷款: 当前 1450GP 不是濒临出局状态，无需 20% 高息翻盘贷。
+
+4. 下一轮仓位表
+JSON
 {
-  "matches_total": 21,
-  "sample_matches": [
+  "run_id": "run-6",
+  "seat_id": "chatgpt",
+  "bankroll_before_loan": 1450,
+  "investment_loan": 300,
+  "working_bankroll": 1750,
+  "bets": [
     {
-      "match_id": "WARM-001",
-      "date": "2026-05-28",
-      "home_team": "Egypt",
-      "home_flag": "🇪",
-      "away_team": "Russia",
-      "away_flag": "🇷",
-      "competition": "friendly",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.1,
-      "odds_draw": 3.2,
-      "odds_away": 3.5,
-      "prob_home": 0.48,
-      "prob_draw": 0.31,
-      "prob_away": 0.21,
-      "kickoff_at": "2026-05-28T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-002",
-      "date": "2026-05-31",
-      "home_team": "Brazil",
-      "home_flag": "🇧",
-      "away_team": "Panama",
-      "away_flag": "🇵",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 6,
-      "away_score": 2,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.15,
-      "odds_draw": 7.0,
-      "odds_away": 15.0,
-      "prob_home": 0.87,
-      "prob_draw": 0.09,
-      "prob_away": 0.04,
-      "kickoff_at": "2026-05-31T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-003",
-      "date": "2026-05-31",
-      "home_team": "USA",
-      "home_flag": "🇺",
-      "away_team": "Senegal",
-      "away_flag": "🇸",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 3,
-      "away_score": 2,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.0,
-      "odds_draw": 3.3,
-      "odds_away": 3.8,
-      "prob_home": 0.5,
-      "prob_draw": 0.3,
-      "prob_away": 0.26,
-      "kickoff_at": "2026-05-31T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-004",
-      "date": "2026-05-31",
-      "home_team": "Germany",
-      "home_flag": "🇩",
-      "away_team": "Finland",
-      "away_flag": "🇫",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 4,
-      "away_score": 0,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.25,
-      "odds_draw": 5.5,
-      "odds_away": 12.0,
-      "prob_home": 0.8,
-      "prob_draw": 0.14,
-      "prob_away": 0.06,
-      "kickoff_at": "2026-05-31T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-005",
-      "date": "2026-06-01",
-      "home_team": "Norway",
-      "home_flag": "🇳",
-      "away_team": "Sweden",
-      "away_flag": "🇸",
-      "competition": "darkhorse",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.3,
-      "odds_draw": 3.2,
-      "odds_away": 3.1,
-      "prob_home": 0.43,
-      "prob_draw": 0.31,
-      "prob_away": 0.32,
-      "kickoff_at": "2026-06-01T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-006",
-      "date": "2026-06-02",
-      "home_team": "Belgium",
-      "home_flag": "🇧",
-      "away_team": "Croatia",
-      "away_flag": "🇭",
-      "competition": "friendly",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.2,
-      "odds_draw": 3.3,
-      "odds_away": 3.2,
-      "prob_home": 0.45,
-      "prob_draw": 0.3,
-      "prob_away": 0.31,
-      "kickoff_at": "2026-06-02T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-007",
+      "bet_id": "chatgpt-r6-b01",
+      "match": "France v Cote d'Ivoire",
       "date": "2026-06-04",
-      "home_team": "France",
-      "home_flag": "🇫",
-      "away_team": "Ivory Coast",
-      "away_flag": "🇨",
-      "competition": "favorite",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.3,
-      "odds_draw": 5.0,
-      "odds_away": 10.0,
-      "prob_home": 0.77,
-      "prob_draw": 0.16,
-      "prob_away": 0.07,
-      "kickoff_at": "2026-06-04T00:00:00Z"
+      "market": "France win OR France draw-no-bet",
+      "target_min_odds": 1.35,
+      "stake_gp": 220,
+      "confidence": 0.66,
+      "source_basis": ["ESPN match page confirms fixture and H2H context", "public schedule lists France v Ivory Coast on Jun 4"],
+      "cancel_conditions": ["France rotates more than 7 starters", "target odds below 1.25", "key attacking absence confirmed pre-match"]
     },
     {
-      "match_id": "WARM-008",
+      "bet_id": "chatgpt-r6-b02",
+      "match": "Spain v Iraq",
       "date": "2026-06-04",
-      "home_team": "Iraq",
-      "home_flag": "🇮",
-      "away_team": "Spain",
-      "away_flag": "🇪",
-      "competition": "friendly",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 12.0,
-      "odds_draw": 6.0,
-      "odds_away": 1.2,
-      "prob_home": 0.08,
-      "prob_draw": 0.12,
-      "prob_away": 0.8,
-      "kickoff_at": "2026-06-04T00:00:00Z"
+      "market": "Spain win",
+      "target_min_odds": 1.28,
+      "stake_gp": 180,
+      "confidence": 0.64,
+      "source_basis": ["public schedule lists Spain v Iraq on Jun 4"],
+      "cancel_conditions": ["Spain fields experimental U23-heavy XI", "odds below 1.18", "weather or venue disruption"]
     },
     {
-      "match_id": "WARM-009",
+      "bet_id": "chatgpt-r6-b03",
+      "match": "Sweden v Greece",
+      "date": "2026-06-04",
+      "market": "Under 3.0 goals",
+      "target_min_odds": 1.55,
+      "stake_gp": 120,
+      "confidence": 0.57,
+      "source_basis": ["public schedule lists Sweden v Greece on Jun 4"],
+      "cancel_conditions": ["both teams announce high-tempo attacking XI", "line drops to under 2.25", "odds below 1.45"]
+    },
+    {
+      "bet_id": "chatgpt-r6-b04",
+      "match": "Canada v Republic of Ireland",
+      "date": "2026-06-05",
+      "market": "Canada draw-no-bet",
+      "target_min_odds": 1.55,
+      "stake_gp": 160,
+      "confidence": 0.58,
+      "source_basis": ["public schedule lists Canada v Ireland on Jun 5"],
+      "cancel_conditions": ["Canada rests core attackers", "Ireland confirms stronger XI than expected", "odds below 1.42"]
+    },
+    {
+      "bet_id": "chatgpt-r6-b05",
+      "match": "Haiti v Peru",
+      "date": "2026-06-05",
+      "market": "Under 2.75 goals",
+      "target_min_odds": 1.60,
+      "stake_gp": 100,
+      "confidence": 0.55,
+      "source_basis": ["Haiti World Cup qualification context", "public schedule lists Haiti v Peru on Jun 5"],
+      "cancel_conditions": ["Haiti lineup is highly attacking", "Peru starts full offensive XI", "odds below 1.50"]
+    },
+    {
+      "bet_id": "chatgpt-r6-b06",
+      "match": "Brazil v Egypt",
       "date": "2026-06-06",
-      "home_team": "USA",
-      "home_flag": "🇺",
-      "away_team": "Germany",
-      "away_flag": "🇩",
-      "competition": "marquee",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.8,
-      "odds_draw": 3.2,
-      "odds_away": 2.5,
-      "prob_home": 0.36,
-      "prob_draw": 0.31,
-      "prob_away": 0.4,
-      "kickoff_at": "2026-06-06T00:00:00Z"
+      "market": "Brazil win + optional under 4.5 combo only if odds acceptable",
+      "target_min_odds": 1.45,
+      "stake_gp": 220,
+      "confidence": 0.62,
+      "source_basis": ["Road to 26 listing confirms Brazil v Egypt on Jun 6"],
+      "cancel_conditions": ["Brazil full rotation", "Egypt first XI stronger than expected with Brazil backups", "odds below 1.32"]
     },
     {
-      "match_id": "WARM-010",
+      "bet_id": "chatgpt-r6-b07",
+      "match": "USA v Germany",
       "date": "2026-06-06",
-      "home_team": "England",
-      "home_flag": "🏴",
-      "away_team": "New Zealand",
-      "away_flag": "🇳",
-      "competition": "friendly",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.1,
-      "odds_draw": 8.0,
-      "odds_away": 20.0,
-      "prob_home": 0.91,
-      "prob_draw": 0.07,
-      "prob_away": 0.02,
-      "kickoff_at": "2026-06-06T00:00:00Z"
-    }
-  ]
-}
-
-## 赛果状态摘要
-{
-  "version": "p10.0",
-  "date": "2026-06-03",
-  "provider": "legacy_seed",
-  "fetched_at": "2026-06-03T23:18:59Z",
-  "source_policy": "legacy_seed_no_external_fetch",
-  "summary": {
-    "total": 21,
-    "finished": 3,
-    "scheduled": 18,
-    "missing_or_not_finished": 18
-  },
-  "results": [
-    {
-      "match_id": "WARM-001",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-002",
-      "status": "settled",
-      "home_score": 6,
-      "away_score": 2,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-003",
-      "status": "settled",
-      "home_score": 3,
-      "away_score": 2,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-004",
-      "status": "settled",
-      "home_score": 4,
-      "away_score": 0,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-005",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-006",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-007",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-008",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-009",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-010",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-011",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-012",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WARM-013",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "result_state": "missing_or_not_finished",
-      "extra_time": null,
-      "penalties": null
-    },
-    {
-      "match_id": "WC-A1",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "halftime_score": null,
-      "red_cards": [],
-      "injury_notes": [],
-      "provider":
-...<truncated>
-
-## 赔率快照摘要
-{
-  "snapshot_label": "T-1h",
-  "provider": "manual_stub",
-  "summary": {
-    "matches_total": 21,
-    "markets_requested": [
-      "moneyline",
-      "handicap",
-      "total_goals"
-    ],
-    "odds_rows": 147,
-    "valid_odds_rows": 0,
-    "missing_market_coverage": 63,
-    "match_mapping_failed": 0,
-    "provider_unavailable": false,
-    "provider_responded": false,
-    "matched_internal_matches": 21,
-    "coverage_status": "odds_snapshots_present_but_missing_market_coverage"
-  },
-  "warning": "If valid_odds_rows is 0, do not invent odds. Use empty bet_ledger."
-}
-
-## 当前排行榜/账户摘要
-{
-  "version": "p9.2",
-  "updated_at": "2026-06-03T19:30:00Z",
-  "leaderboard": [
-    {
-      "model_account": "deepseek",
-      "display_name": "DeepSeek",
-      "rank": 1,
-      "balance_gp": 2810,
-      "loan_gp": 1000,
-      "status": "active",
-      "notes": "Run#4 三线命中，Run#5 有效回收"
-    },
-    {
-      "model_account": "gemini",
-      "display_name": "Gemini",
-      "rank": 2,
-      "balance_gp": 1850,
-      "loan_gp": 1000,
-      "status": "active",
-      "notes": "Run#4 有效；Run#5 有效，上调 xG 基线"
-    },
-    {
-      "model_account": "qwen",
-      "display_name": "通义",
-      "rank": 3,
-      "balance_gp": 1500,
-      "loan_gp": 400,
-      "status": "active",
-      "notes": "Run#4 有效；Run#5 有效"
-    },
-    {
-      "model_account": "doubao",
-      "display_name": "豆包",
-      "rank": 4,
-      "balance_gp": 1400,
-      "loan_gp": 300,
-      "status": "active",
-      "notes": "Run#4 重仓 Brazil -1.5 命中；Run#5 有效"
-    },
-    {
-      "model_account": "yuanbao",
-      "display_name": "元宝",
-      "rank": 5,
-      "balance_gp": 1500,
-      "loan_gp": 500,
-      "status": "active",
-      "notes": "Run#4 有效；Run#5 有效"
-    },
-    {
-      "model_account": "mimo",
-      "display_name": "MiMo",
-      "rank": 6,
-      "balance_gp": 1200,
-      "loan_gp": 300,
-      "status": "active",
-      "notes": "Run#4 有效；Run#5 有效"
-    },
-    {
-      "model_account": "meta",
-      "display_name": "Meta AI",
-      "rank": 7,
-      "balance_gp": 1400,
-      "loan_gp": 800,
-      "status": "active",
-      "notes": "Run#4 有效；Run#5 有效"
-    },
-    {
-      "model_account": "claude",
-      "display_name": "Claude",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": 300,
-      "status": "audit_only",
-      "notes": "Run#4 有效；Run#5 风险审计，不计入投注共识"
-    },
-    {
-      "model_account": "chatgpt",
-      "display_name": "ChatGPT",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": null,
-      "status": "needs_rerun_context_polluted",
-      "notes": "Run#5 上下文污染，需补跑"
-    },
-    {
-      "model_account": "kimi",
-      "display_name": "Kimi",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
-    },
-    {
-      "model_account": "wenxin",
-      "display_name": "文心",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
-    },
-    {
-      "model_account": "minimax",
-      "display_name": "MiniMax",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
-    },
-    {
-      "model_account": "xai",
-      "display_name": "xAI Grok",
-      "rank": null,
-      "balance_gp": null,
-      "loan_gp": null,
-      "status": "quota_blocked",
-      "notes": "Run#4 缺席；Run#5 额度阻断"
-    }
-  ]
-}
-
-## 上一轮日报摘要
-{
-  "version": "p9.4",
-  "date": "2026-06-03",
-  "round_id": "run-5",
-  "generated_at": "2026-06-03T15:15:34Z",
-  "summary": {
-    "headline": "Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps",
-    "status": "report_generated",
-    "total_models": 13,
-    "total_matches": 21,
-    "rerun_queue_count": 5
-  },
-  "model_status_counts": {
-    "valid_receipt": 7,
-    "placeholder_only": 3,
-    "context_polluted": 1,
-    "quota_blocked": 1,
-    "auth_blocked": 0,
-    "timeout": 0,
-    "parse_error": 0,
-    "risk_refusal": 1,
-    "excluded_from_consensus": 6
-  },
-  "model_status_rows": [
-    {
-      "model_account": "gemini",
-      "seat_id": "gemini",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "chatgpt",
-      "seat_id": "chatgpt",
-      "status": "context_polluted",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Detected legacy/werewolf context pollution",
-      "pollution_signals": [
-        "警长"
-      ]
-    },
-    {
-      "model_account": "claude",
-      "seat_id": "claude",
-      "status": "risk_refusal",
-      "eligible_for_consensus": false,
-      "needs_rerun": false,
-      "failure_reason": "Risk/compliance refusal — audit only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "yuanbao",
-      "seat_id": "yuanbao",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "wenxin",
-      "seat_id": "wenxin",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "deepseek",
-      "seat_id": "deepseek",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "mimo",
-      "seat_id": "mimo",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "kimi",
-      "seat_id": "kimi",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "qwen",
-      "seat_id": "qwen",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "xai",
-      "seat_id": "xai",
-      "status": "quota_blocked",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Quota/rate limit blocked",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "minimax",
-      "seat_id": "minimax",
-      "status": "placeholder_only",
-      "eligible_for_consensus": false,
-      "needs_rerun": true,
-      "failure_reason": "Output is placeholder only",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "doubao",
-      "seat_id": "doubao",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
-    },
-    {
-      "model_account": "meta",
-      "seat_id": "meta",
-      "status": "valid_receipt",
-      "eligible_for_consensus": true,
-      "needs_rerun": false,
-      "failure_reason": "",
-      "pollution_signals": []
+      "market": "Both teams to score OR over 2.25 goals",
+      "target_min_odds": 1.70,
+      "stake_gp": 120,
+      "confidence": 0.54,
+      "source_basis": ["public schedule lists USA v Germany on Jun 6"],
+      "cancel_conditions": ["one side rotates into defensive B-team", "line moves to over 3.0", "odds below 1.58"]
     }
   ],
-  "rerun_queue": [
-    {
-      "model_account": "chatgpt",
-      "seat_id": "chatgpt",
-      "current_status": "context_polluted",
-      "reason": "Detected legacy/werewolf context pollution",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "high"
-    },
-    {
-      "model_account": "wenxin",
-      "seat_id": "wenxin",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    },
-    {
-      "model_account": "kimi",
-      "seat_id": "kimi",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    },
-    {
-      "model_account": "xai",
-      "seat_id": "xai",
-      "current_status": "quota_blocked",
-      "reason": "Quota/rate limit blocked",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "high"
-    },
-    {
-      "model_account": "minimax",
-      "seat_id": "minimax",
-      "current_status": "placeholder_only",
-      "reason": "Output is placeholder only",
-      "attempt_no": 1,
-      "next_attempt_no": 2,
-      "priority": "medium"
-    }
-  ],
-  "consensus_eligibility": {
-    "eligible_count": 7,
-    "eligible_models": [
-      "gemini",
-      "yuanbao",
-      "deepseek",
-      "mimo",
-      "qwen",
-      "doubao",
-      "meta"
-    ],
-    "excluded_count": 6,
-    "excluded_models": [
-      {
-        "model_account": "chatgpt",
-        "status": "context_polluted",
-        "reason": "Detected legacy/werewolf context pollution"
-      },
-      {
-        "model_account": "claude",
-        "status": "risk_refusal",
-        "reason": "Risk/compliance refusal — audit only"
-      },
-      {
-        "model_account": "wenxin",
-        "status": "placeholder_only",
-        "reason": "Output is placeholder only"
-      },
-      {
-        "model_account": "kimi",
-        "status": "placeholder_only",
-        "reason": "Output is placeholder only"
-      },
-      {
-        "model_account": "xai",
-        "status": "quota_blocked",
-        "reason": "Quota/rate limit blocked"
-      },
-      {
-        "model_a
-...<truncated>
-
-## 标准 JSON schema 示例
-{
-  "model_account": "chatgpt",
-  "round_id": "run-6",
-  "loan_decision": {
-    "amount": 0,
-    "reason": ""
-  },
-  "bet_ledger": [
-    {
-      "match_id": "WARM-002",
-      "market": "moneyline",
-      "selection": "Brazil",
-      "stake": 100,
-      "odds": 1.85,
-      "confidence": 0.6,
-      "reason": "",
-      "cancel_if": ""
-    }
-  ],
-  "risk_rules": {
-    "max_loss": 500,
-    "stop_after_losses": 2
-  },
-  "source_cards": [],
-  "betting_thought": ""
+  "total_planned_stake_gp": 1120,
+  "reserve_gp_after_planned_stakes": 630
 }
+5. 对手反制
 
-## 如果没有有效赔率或没有可下注机会，必须输出以下结构
+对 DeepSeek: 不直接复制“小球路径”；只在 Sweden v Greece、Haiti v Peru 做小球，避免被同质化。
+
+对 MiMo: 接受其旅行/轮换模型优势，但用撤单条件约束，不重仓赛程压力叙事。
+
+对 MiniMax: 盘面情绪只能作为辅助，不作为重仓理由。
+
+对 Grok/Kimi: 不跟高赔率爆冷；他们需要翻盘，我不需要。
+
+对 Gemini: 争夺“最佳可验证信源”，每个仓位至少保留 fixture source + lineup/odds snapshot source。
+
+6. 信息源清单
+
+ESPN: France v Côte d'Ivoire match page，确认 2026-06-04 国际友谊赛页面和历史交锋。
+ESPN.com
+
+Yahoo / Sports schedule: 汇总 6月4日至6月6日多场世界杯前热身赛时间。
+雅虎体育
+
+Cleveland Sports / Road to 26: Brazil v Egypt 2026-06-06 赛事确认。
+克利夫兰体育委员会
+
+Reuters: Haiti 晋级世界杯、球队组织和中立场背景。
+Reuters
+
+Reuters: South Africa v Nicaragua 0-0 友谊赛样本，用作弱队低位防守参考，不作为直接收益结算。
+Reuters
+
+7. 赛后记忆写入
+JSON
 {
-  "model_account": "chatgpt",
-  "round_id": "run-6",
-  "loan_decision": {
-    "amount": 0,
-    "reason": "No valid odds available."
-  },
-  "bet_ledger": [],
-  "risk_rules": {
-    "max_loss": 0,
-    "stop_after_losses": 0
-  },
-  "source_cards": [],
-  "betting_thought": "No valid bet because odds snapshot has no valid market coverage."
+  "memory_update": {
+    "run_id": "run-6",
+    "seat_id": "chatgpt",
+    "style": "steady_diversified",
+    "lesson_from_previous_round": "PSG title + under + draw protection worked because correlated downside was controlled.",
+    "current_blocker": "pipeline_status=blocked and accepted_bets=0; prediction quality cannot score unless bets are accepted and backfilled.",
+    "risk_rule": "Never mark friendlies as settled without two-source result verification.",
+    "strategy_shift": "Use moderate investment loan, 7 diversified positions, strict cancellation rules, and preserve 630GP reserve."
+  }
 }
+8. 最大风险
 
-【强制输出格式】
-你必须只输出一个 JSON 对象。
-JSON 顶层必须包含：
-- model_account
-- round_id
-- loan_decision
-- bet_ledger
-- risk_rules
-- source_cards
-- betting_thought
+最大风险是投注结构已经写出，但本地桥接仍 blocked，导致 accepted_bets 继续为 0；这会让 ChatGPT 的策略在网页排行榜中无法计分，输给投注已落库的模型，而不是输在预测判断上。
 
-禁止输出任何 JSON 之外的内容。
-展开
-已思考 10s
+9. 最小下一步
 
-{"run_id":"pool-run6-web-active-missing-rerun-20260604","seat_id":"chatgpt","deep_mode_status":"not_available","model_account":"chatgpt","round_id":"run-6","loan_decision":{"amount":0,"reason":"No valid odds available."},"bet_ledger":[],"risk_rules":{"max_loss":0,"stop_after_losses":0},"source_cards":[],"betting_thought":"No valid bet because odds snapshot has no valid market coverage."}
+先不要扩展更多模型共识。先修复 run-6 的投注落库链路：把上述 7 条 bets 写入网页结构化结果，并把每条状态标为 pending_not_settled；随后在赛前补充 odds_snapshot、lineup_snapshot、source_url_2，满足双源校验后才允许 accepted。
 
-深入
-ChatGPT 也可能会犯错。请核查重要信息。
+10. 共振提问
+
+run-6 的 blocked 原因是 odds schema 不匹配、投注字段缺失，还是 accepted_bets 写入器未触发？
+
+989 条 valid_odds_rows 中是否存在 match_id 与本轮赛程名称无法归一化的问题，例如 Côte d'Ivoire / Ivory Coast？
+
+排行榜评分中“有效投注数量”和“ROI质量”的权重是否会鼓励过度拆单？若会，是否需要设置单场最大投注数？
+
+赛后记忆应按 seat 维度写入，还是按 bet_id 维度写入？我建议两层都写，避免只记模型风格而丢失具体市场表现。
+
+是否允许 pending bet 在开赛前自动撤单？若允许，应把 cancel_conditions 变成机器可执行字段，而不是自然语言备注。

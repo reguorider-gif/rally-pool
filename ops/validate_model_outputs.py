@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 P10.2 validate_model_outputs — validate model outputs, match against odds snapshots,
 and generate bet receipts (accepted / manual_review / rejected).
@@ -13,6 +14,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,6 +23,15 @@ DATA_DIR = BASE_DIR / "data" / "pool"
 sys.path.insert(0, str(BASE_DIR))
 
 VALID_MARKETS = {"moneyline", "handicap", "total_goals", "btts", "double_chance"}
+
+TEAM_ALIASES = {
+    "cote d ivoire": "ivory coast",
+    "cote divoire": "ivory coast",
+    "côte d ivoire": "ivory coast",
+    "united states": "usa",
+    "u s a": "usa",
+    "republic of ireland": "ireland",
+}
 
 
 # ── helpers ──────────────────────────────────────────────────────────────────
@@ -61,6 +72,192 @@ def parse_bet_receipt(text: str) -> list:
     if not text or not isinstance(text, str):
         return []
     return extract_json_from_text(text)
+
+
+def _norm(value: str) -> str:
+    """Normalize loose model/team text for matching."""
+    if not value:
+        return ""
+    text = unicodedata.normalize("NFKD", str(value))
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    for alias, canonical in TEAM_ALIASES.items():
+        text = text.replace(alias, canonical)
+    return text
+
+
+def _receipt_score(obj: dict) -> int:
+    """Prefer the JSON block that looks like a betting receipt, not memory_update."""
+    if not isinstance(obj, dict):
+        return -1
+    score = 0
+    if isinstance(obj.get("bet_ledger"), list):
+        score += 100 + len(obj.get("bet_ledger", []))
+    if isinstance(obj.get("bets"), list):
+        score += 80 + len(obj.get("bets", []))
+    if "loan_decision" in obj or "investment_loan" in obj:
+        score += 10
+    if "memory_update" in obj:
+        score -= 50
+    return score
+
+
+def select_bet_receipt(candidates: list) -> dict | None:
+    """Select the best structured betting object from parsed JSON candidates."""
+    ranked = [c for c in candidates if isinstance(c, dict)]
+    if not ranked:
+        return None
+    best = max(ranked, key=_receipt_score)
+    return best if _receipt_score(best) > 0 else None
+
+
+def _match_from_label(label: str, matches_map: dict) -> dict | None:
+    text = _norm(label)
+    if not text:
+        return None
+    for match in matches_map.values():
+        home = _norm(match.get("home_team", ""))
+        away = _norm(match.get("away_team", ""))
+        if home and away and home in text and away in text:
+            return match
+    return None
+
+
+def _selection_from_market_text(market_text: str, match: dict) -> str:
+    text = _norm(market_text)
+    home = _norm(match.get("home_team", ""))
+    away = _norm(match.get("away_team", ""))
+    if "draw" in text and "draw no bet" not in text and "dnb" not in text:
+        return "Draw"
+    if home and home in text:
+        return match.get("home_team", "")
+    if away and away in text:
+        return match.get("away_team", "")
+    return ""
+
+
+def _market_from_text(market_text: str) -> str:
+    text = _norm(market_text)
+    if "win" in text or "draw no bet" in text or "dnb" in text:
+        return "moneyline"
+    if "under" in text or "over" in text or "小" in market_text or "大" in market_text:
+        return "total_goals"
+    if "both teams" in text or "btts" in text:
+        return "btts"
+    if "double chance" in text:
+        return "double_chance"
+    if "handicap" in text or re.search(r"(^|\s)[+-]\d", market_text):
+        return "handicap"
+    return "moneyline"
+
+
+def _fallback_moneyline_odds(match: dict, selection: str) -> float | None:
+    sel = _norm(selection)
+    if sel == _norm(match.get("home_team", "")):
+        return match.get("odds_home")
+    if sel == "draw":
+        return match.get("odds_draw")
+    if sel == _norm(match.get("away_team", "")):
+        return match.get("odds_away")
+    return None
+
+
+def _normalize_bet(raw_bet: dict, matches_map: dict, odds_snapshot: dict) -> tuple:
+    """Normalize common web-model bet JSON into the internal bet_ledger shape."""
+    if not isinstance(raw_bet, dict):
+        return None, "bet_not_object"
+
+    match_id = raw_bet.get("match_id")
+    match = matches_map.get(match_id) if match_id else None
+    if match is None:
+        match = _match_from_label(str(raw_bet.get("match") or raw_bet.get("fixture") or ""), matches_map)
+        match_id = match.get("match_id") if match else None
+    if match is None or not match_id:
+        return None, "match_not_mapped"
+
+    raw_market = str(raw_bet.get("market") or raw_bet.get("selection") or "")
+    market = raw_bet.get("market_type") or raw_bet.get("market_key") or raw_bet.get("market")
+    if market not in VALID_MARKETS:
+        market = _market_from_text(raw_market)
+
+    selection = raw_bet.get("selection")
+    if not selection or not isinstance(selection, str):
+        selection = _selection_from_market_text(raw_market, match)
+    if not selection:
+        return None, "selection_not_mapped"
+
+    stake = raw_bet.get("stake")
+    if stake is None:
+        stake = raw_bet.get("stake_gp")
+    if not isinstance(stake, (int, float)) or stake <= 0:
+        return None, "stake_not_mapped"
+
+    odds_val = raw_bet.get("odds")
+    odds_source = raw_bet.get("odds_source") or ""
+    provider_row = find_odds_match(odds_snapshot, match_id, market, selection)
+    if provider_row:
+        odds_val = provider_row.get("odds")
+        odds_source = "the_odds_api"
+    elif not isinstance(odds_val, (int, float)) or odds_val <= 1:
+        fallback = _fallback_moneyline_odds(match, selection) if market == "moneyline" else None
+        if isinstance(fallback, (int, float)) and fallback > 1:
+            odds_val = fallback
+            odds_source = "matches_current_fallback"
+        else:
+            return None, "odds_not_mapped"
+
+    normalized = {
+        "bet_id": raw_bet.get("bet_id") or f"{match_id}-{market}-{selection}",
+        "match_id": match_id,
+        "market": market,
+        "selection": selection,
+        "stake": stake,
+        "odds": odds_val,
+        "confidence": raw_bet.get("confidence"),
+        "odds_source": odds_source or "model_supplied",
+        "source_basis": raw_bet.get("source_basis", []),
+        "cancel_conditions": raw_bet.get("cancel_conditions", []),
+        "raw_market": raw_bet.get("market"),
+    }
+    return normalized, ""
+
+
+def normalize_receipt(receipt: dict, model_account: str, round_id: str,
+                      matches_map: dict, odds_snapshot: dict) -> dict:
+    """Bridge model-facing receipt variants into the validator schema."""
+    normalized = dict(receipt)
+    raw_bets = receipt.get("bet_ledger")
+    if not isinstance(raw_bets, list):
+        raw_bets = receipt.get("bets")
+
+    skipped = []
+    bet_ledger = []
+    if isinstance(raw_bets, list):
+        for raw_bet in raw_bets:
+            bet, reason = _normalize_bet(raw_bet, matches_map, odds_snapshot)
+            if bet:
+                bet_ledger.append(bet)
+            else:
+                skipped.append({"reason": reason, "bet": raw_bet})
+        normalized["bet_ledger"] = bet_ledger
+        normalized["non_executable_bets"] = skipped
+
+    if "loan_decision" not in normalized:
+        amount = normalized.get("investment_loan", normalized.get("loan_amount", 0))
+        if not isinstance(amount, (int, float)):
+            amount = 0
+        normalized["loan_decision"] = {
+            "type": "investment_loan" if amount else "none",
+            "amount": amount,
+        }
+
+    normalized["round_id"] = normalized.get("round_id") or normalized.get("run_id") or round_id
+    normalized["model_account"] = normalized.get("model_account") or normalized.get("seat_id") or model_account
+    if normalized["model_account"] == "grok":
+        normalized["model_account"] = "xai"
+    return normalized
 
 
 def is_eligible_model(run: dict) -> bool:
@@ -146,6 +343,8 @@ def validate_bet_ledger(bet: dict, matches_map: dict, odds_snapshot: dict,
 
     # odds snapshot matching (only if bet passed field checks)
     if not errors and mid and market and selection:
+        if bet.get("odds_source") == "matches_current_fallback":
+            return errors
         match = find_odds_match(odds_snapshot, mid, market, selection)
         if match is None:
             # Check if market coverage even exists for this match+market
@@ -210,16 +409,17 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
             eligible_count += 1
 
         # ── Try to extract bet receipt ──
-        receipt = output_entry.get("parsed_json")
-        if receipt is None:
-            # Try extracting from raw_text
-            raw = output_entry.get("raw_text", "")
-            parsed = parse_bet_receipt(raw)
-            if parsed:
-                # Take first valid-looking receipt
-                receipt = parsed[0]
-                if verbose:
-                    print(f"  {ma}: extracted JSON from raw_text")
+        raw = output_entry.get("raw_text", "")
+        candidates = []
+        parsed_json = output_entry.get("parsed_json")
+        if isinstance(parsed_json, dict):
+            candidates.append(parsed_json)
+        candidates.extend(parse_bet_receipt(raw))
+        receipt = select_bet_receipt(candidates)
+        if receipt is not None:
+            receipt = normalize_receipt(receipt, ma, round_id, matches_map, odds_snapshot)
+            if verbose:
+                print(f"  {ma}: selected betting receipt from {len(candidates)} JSON block(s)")
 
         if receipt is None or not isinstance(receipt, dict):
             # No structured receipt
@@ -344,6 +544,18 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     accepted_bets = sum(r.get("bet_count", 0) for r in accepted_receipts)
     manual_review_bets = len(manual_review_receipts)
     rejected_bets = len(rejections)
+    provider_bets = sum(
+        1
+        for r in accepted_receipts
+        for bet in r.get("receipt", {}).get("bet_ledger", [])
+        if bet.get("odds_source") == "the_odds_api"
+    )
+    fallback_bets = sum(
+        1
+        for r in accepted_receipts
+        for bet in r.get("receipt", {}).get("bet_ledger", [])
+        if bet.get("odds_source") == "matches_current_fallback"
+    )
 
     # Count rejection reasons
     reason_counts = {}
@@ -360,6 +572,8 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "models_with_structured_receipts": structured_count,
         "candidate_bets": candidate_bets,
         "accepted_bets": accepted_bets,
+        "provider_bets": provider_bets,
+        "fallback_bets": fallback_bets,
         "manual_review_bets": manual_review_bets,
         "rejected_bets": rejected_bets,
         "valid_for_settlement": accepted_bets > 0,

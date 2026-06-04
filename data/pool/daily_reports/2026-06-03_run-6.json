@@ -2,7 +2,7 @@
   "version": "p9.4",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-04T09:27:51Z",
+  "generated_at": "2026-06-04T10:26:22Z",
   "summary": {
     "headline": "run-6 Daily Report — 12 valid outputs, 0 models need rerun, 4 data gaps",
     "status": "report_generated",
@@ -29,14 +29,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "chatgpt",
@@ -45,14 +38,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "yuanbao",
@@ -61,14 +47,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "wenxin",
@@ -77,14 +56,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "deepseek",
@@ -93,15 +65,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "投票淘汰",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "mimo",
@@ -110,14 +74,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "kimi",
@@ -126,14 +83,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "qwen",
@@ -142,15 +92,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "投票淘汰",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "xai",
@@ -159,14 +101,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "minimax",
@@ -175,14 +110,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "doubao",
@@ -191,14 +119,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     },
     {
       "model_account": "meta",
@@ -207,14 +128,7 @@
       "eligible_for_consensus": true,
       "needs_rerun": false,
       "failure_reason": "",
-      "pollution_signals": [
-        "狼人杀",
-        "警长",
-        "守卫",
-        "平民",
-        "预言家",
-        "Grand Judge"
-      ]
+      "pollution_signals": []
     }
   ],
   "rerun_queue": [],
@@ -241,8 +155,7 @@
     "total_stake": null,
     "max_single_match_risk": null,
     "loan_used": null,
-    "status": "no_bets_to_settle",
-    "note": "Settlement exists but no bets to settle — risk is not applicable"
+    "status": "not_implemented"
   },
   "data_gaps": [
     {
@@ -253,11 +166,11 @@
       "detail": "Real odds provider snapshot has 989 valid odds rows."
     },
     {
-      "gap": "settlements_present_but_no_bets_to_settle",
-      "severity": "info",
-      "blocking": false,
+      "gap": "settlements_present_but_manual_review_required",
+      "severity": "medium",
+      "blocking": true,
       "stage": "P10.3",
-      "detail": "Settlement file exists but no bets were available to settle (accepted_bets=0)."
+      "detail": "Settlement file exists but manual review is required before finalization."
     },
     {
       "gap": "model_outputs_ready_for_ingest",
@@ -267,17 +180,17 @@
       "detail": "All 12 model outputs found. status=ready_for_ingest"
     },
     {
-      "gap": "bet_receipts_present_but_no_valid_bets",
-      "severity": "high",
-      "blocking": true,
-      "stage": "P10.2",
-      "detail": "Bet receipts exist but 0 accepted bets. Models lack structured receipts or odds coverage is missing."
+      "gap": "bet_receipts_present_and_settleable",
+      "severity": "info",
+      "blocking": false,
+      "stage": "P10.3",
+      "detail": "Bet receipts ready with 3 accepted bets."
     }
   ],
   "next_actions": [
     {
-      "action": "settle_pool_round_after_rerun",
-      "reason": "Settlement exists but no bets to settle — re-run after models produce structured receipts",
+      "action": "review_manual_settlements",
+      "reason": "Settlements require manual review before finalization",
       "stage": "P10.3",
       "blocking": false
     },

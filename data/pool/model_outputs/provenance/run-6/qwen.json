@@ -1,0 +1,13 @@
+{
+  "version": "ai_judge_desktop_worldcup_pool_export.v1",
+  "run_id": "b45f47174c7e",
+  "round_id": "run-6",
+  "date": "2026-06-03",
+  "seat": "qwen",
+  "model_account": "qwen",
+  "ok": true,
+  "method": null,
+  "raw_output_path": "data/pool/model_outputs/raw/run-6/qwen.txt",
+  "parsed": null,
+  "response_chars": 1003
+}

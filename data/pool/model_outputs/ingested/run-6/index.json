@@ -1,7 +1,7 @@
 {
   "version": "p11.0",
   "round_id": "run-6",
-  "ingested_at": "2026-06-04T09:27:51.445758+00:00",
+  "ingested_at": "2026-06-04T10:26:17.863950+00:00",
   "input_dir": "data/pool/model_outputs/raw/run-6",
   "outputs_total": 12,
   "outputs_found": 12,
@@ -12,84 +12,84 @@
       "seat_id": "gemini",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/gemini.txt",
       "found": true,
-      "bytes": 20550
+      "bytes": 4218
     },
     {
       "model_account": "chatgpt",
       "seat_id": "chatgpt",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/chatgpt.txt",
       "found": true,
-      "bytes": 25420
+      "bytes": 8773
     },
     {
       "model_account": "yuanbao",
       "seat_id": "yuanbao",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/yuanbao.txt",
       "found": true,
-      "bytes": 6372
+      "bytes": 2958
     },
     {
       "model_account": "wenxin",
       "seat_id": "wenxin",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/wenxin.txt",
       "found": true,
-      "bytes": 5473
+      "bytes": 4197
     },
     {
       "model_account": "deepseek",
       "seat_id": "deepseek",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/deepseek.txt",
       "found": true,
-      "bytes": 28513
+      "bytes": 7314
     },
     {
       "model_account": "mimo",
       "seat_id": "mimo",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/mimo.txt",
       "found": true,
-      "bytes": 25205
+      "bytes": 6490
     },
     {
       "model_account": "kimi",
       "seat_id": "kimi",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/kimi.txt",
       "found": true,
-      "bytes": 9666
+      "bytes": 1032
     },
     {
       "model_account": "qwen",
       "seat_id": "qwen",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/qwen.txt",
       "found": true,
-      "bytes": 7757
+      "bytes": 2387
     },
     {
       "model_account": "xai",
       "seat_id": "xai",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/xai.txt",
       "found": true,
-      "bytes": 26590
+      "bytes": 2109
     },
     {
       "model_account": "minimax",
       "seat_id": "minimax",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/minimax.txt",
       "found": true,
-      "bytes": 5112
+      "bytes": 2541
     },
     {
       "model_account": "doubao",
       "seat_id": "doubao",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/doubao.txt",
       "found": true,
-      "bytes": 5109
+      "bytes": 3177
     },
     {
       "model_account": "meta",
       "seat_id": "meta",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/meta.txt",
       "found": true,
-      "bytes": 19046
+      "bytes": 1157
     }
   ]
 }

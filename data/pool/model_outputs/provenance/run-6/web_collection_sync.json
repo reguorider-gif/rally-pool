@@ -1,164 +1,96 @@
 {
-  "run_id": "run-6",
-  "web_run_dirs": [
-    "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604",
-    "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604"
-  ],
-  "total": 12,
-  "saved_raw_outputs": 12,
-  "blocked_or_missing": 0,
-  "saved": [
+  "version": "ai_judge_desktop_worldcup_pool_export.v1",
+  "run_id": "b45f47174c7e",
+  "round_id": "run-6",
+  "date": "2026-06-03",
+  "exported_at": "2026-06-04T10:17:38.088930+00:00",
+  "rows": [
     {
-      "seat_id": "doubao",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/doubao.txt",
-      "bytes": 5109
-    },
-    {
-      "seat_id": "kimi",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/kimi.txt",
-      "bytes": 9666
-    },
-    {
-      "seat_id": "meta",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/meta.txt",
-      "bytes": 19046
-    },
-    {
-      "seat_id": "minimax",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/minimax.txt",
-      "bytes": 5112
-    },
-    {
-      "seat_id": "qwen",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/qwen.txt",
-      "bytes": 7757
-    },
-    {
-      "seat_id": "wenxin",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/wenxin.txt",
-      "bytes": 5473
-    },
-    {
-      "seat_id": "yuanbao",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/yuanbao.txt",
-      "bytes": 6372
+      "seat_id": "gemini",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/gemini.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/gemini.txt",
+      "response_chars": 1730
     },
     {
       "seat_id": "chatgpt",
-      "status": "answered",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/chatgpt.txt",
-      "bytes": 25420
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/chatgpt.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/chatgpt.txt",
+      "response_chars": 6533
+    },
+    {
+      "seat_id": "yuanbao",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/yuanbao.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/yuanbao.txt",
+      "response_chars": 1284
+    },
+    {
+      "seat_id": "wenxin",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/wenxin.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/wenxin.txt",
+      "response_chars": 1706
     },
     {
       "seat_id": "deepseek",
-      "status": "answered",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/deepseek.txt",
-      "bytes": 28513
-    },
-    {
-      "seat_id": "gemini",
-      "status": "raw_answer_unparsed",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/gemini.txt",
-      "bytes": 20550
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/deepseek.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/deepseek.txt",
+      "response_chars": 3446
     },
     {
       "seat_id": "mimo",
-      "status": "raw_answer_unparsed",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/mimo.txt",
-      "bytes": 25205
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/mimo.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/mimo.txt",
+      "response_chars": 2763
+    },
+    {
+      "seat_id": "kimi",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/kimi.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/kimi.txt",
+      "response_chars": 568
+    },
+    {
+      "seat_id": "qwen",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/qwen.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/qwen.txt",
+      "response_chars": 1003
     },
     {
       "seat_id": "xai",
-      "status": "answered",
-      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/xai.txt",
-      "bytes": 26590
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/xai.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/xai.txt",
+      "response_chars": 888
+    },
+    {
+      "seat_id": "minimax",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/minimax.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/minimax.txt",
+      "response_chars": 1187
+    },
+    {
+      "seat_id": "doubao",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/doubao.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/doubao.txt",
+      "response_chars": 1464
+    },
+    {
+      "seat_id": "meta",
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/provenance/run-6/meta.json",
+      "raw_output_path": "data/pool/model_outputs/raw/run-6/meta.txt",
+      "response_chars": 492
     }
   ],
   "blocked": [],
-  "rows": [
-    {
-      "seat_id": "chatgpt",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 23921,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/chatgpt.json"
-    },
-    {
-      "seat_id": "deepseek",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 25284,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/deepseek.json"
-    },
-    {
-      "seat_id": "doubao",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 3814,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/doubao.json"
-    },
-    {
-      "seat_id": "gemini",
-      "status": "raw_answer_unparsed",
-      "failure_reason": "raw_answer_unparsed",
-      "raw_text_len": 19409,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/gemini.json"
-    },
-    {
-      "seat_id": "kimi",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 7329,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/kimi.json"
-    },
-    {
-      "seat_id": "meta",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 10358,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/meta.json"
-    },
-    {
-      "seat_id": "mimo",
-      "status": "raw_answer_unparsed",
-      "failure_reason": "raw_answer_unparsed",
-      "raw_text_len": 23674,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/mimo.json"
-    },
-    {
-      "seat_id": "minimax",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 3995,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/minimax.json"
-    },
-    {
-      "seat_id": "qwen",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 5074,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/qwen.json"
-    },
-    {
-      "seat_id": "wenxin",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 3924,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/wenxin.json"
-    },
-    {
-      "seat_id": "xai",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 25257,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/xai.json"
-    },
-    {
-      "seat_id": "yuanbao",
-      "status": "answered",
-      "failure_reason": "answered",
-      "raw_text_len": 4573,
-      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-20260604/round-1/yuanbao.json"
-    }
+  "active_pool_models": [
+    "chatgpt",
+    "deepseek",
+    "doubao",
+    "gemini",
+    "kimi",
+    "meta",
+    "mimo",
+    "minimax",
+    "qwen",
+    "wenxin",
+    "xai",
+    "yuanbao"
   ]
 }

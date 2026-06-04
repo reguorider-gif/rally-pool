@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 AI Judge 预测池 — 每日自动报告生成脚本
 P9.4

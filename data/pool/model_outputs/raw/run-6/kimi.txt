@@ -1,156 +1,19 @@
-新建会话
-⌘
-K
-PPT
-文档
-深度研究
-网站
-表格
-Agent 集群
-Kimi Code
-Kimi Claw
-历史会话
-AI Judge 赛事预测
-AI Judge 议裁
-AI Judge 议会裁决
-AI Judge自评
-评审JSON SQL对比
-查看全部
-获取应用程序
-登月者3096
-升级
-AI Judge 赛事预测
-AI_JUDGE_RUN_ID:pool-run6-web-20260604席位：kimi输出 JSON 时必须包含 run_id 字段，值必须等于 pool-run6-web-20260604；seat_id 字段必须严格等于 kimi。发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。请只输出中文 JSON，不要 Markdown，不要创建文件。如果你无法联网或无法确认来源，请写入 unknowns 和 evidence_gaps，不要编来源。AI_JUDGE_RUN_MARKER:AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603# AI Judge 赛事预测池独立模型席位seat_id: kimimodel_account: kimidisplay_name: Kimiround_id: run-6date: 2026-06-03【合规与实验边界】这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。所有投注均为模拟，仅用于算法研究与模型评估。## 当前任务你是 AI Judge 赛事预测池中的一个独立模型席位。你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。## 强制防污染要求- 不要回答旧任务。- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。- 不要输出你的最终答案。- 不要输出 Markdown。- 不要输出解释性自然语言。- 不要输出 JSON 之外的任何内容。- JSON 必须能被 json.loads 解析。## 可用比赛摘要  "matches_total": 21,  "sample_matches": [    {      "match_id": "WARM-001",      "date": "2026-05-28",      "home_team": "Egypt",      "home_flag": "🇪",      "away_team": "Russia",      "away_flag": "🇷",      "competition": "friendly",      "status": "scheduled",      "provider": "legacy_seed",      "source_url": "",      "fetched_at": "2026-06-03T23:18:59Z",      "confidence": 0.5,      "odds_home": 2.1,      "odds_draw": 3.2,      "odds_away": 3.5,      "prob_home": 0.48,      "prob_draw": 0.31,      "prob_away": 0.21,      "kickoff_at": "2026-05-28T00:00:00Z"    },    {      "match_id": "WARM-002",      "date": "2026-05-31",      "home_team": "Brazil",      "home_flag": "🇧",      "away_team": "Panama",      "away_flag": "🇵",      "competition": "friendly",      "status": "settled",      "home_score": 6,      "away_score": 2,      "provider": "legacy_seed",      "source_url": "",      "fetched_at": "2026-06-03T23:18:59Z",      "confidence": 0.5,      "odds_home": 1.15,      "odds_draw": 7.0,      "odds_away": 15.0,      "prob_home": 0.87,      "prob_draw": 0.09,      "prob_away": 0.04,      "kickoff_at": "2026-05-31T00:00:00Z"    },    {      "match_id": "WARM-003",      "date": "2026-05-31",      "home_team": "USA",      "home_flag": "🇺",      "away_team": "Senegal",      "away_flag": "🇸",      "competition": "friendly",      "status": "settled",      "home_score": 3,      "away_score": 2,      "provider": "legacy_seed",      "source_url": "",      "fetched_at": "2026-06-03T23:18:59Z",      "confidence": 0.5,      "odds_home": 2.0,      "odds_draw": 3.3,      "odds_away": 3.8,      "prob_home": 0.5,      "prob_draw": 0.3,      "prob_away": 0.26,      "kickoff_at": "2026-05-31T00:00:00Z"    },    {      "match_id": "WARM-004",      "date": "2026-05-31",      "home_team": "Germany",      "home_flag": "🇩",      "away_team": "Finland",      "away_flag": "🇫",      "competition": "friendly",      "status": "settled",      "home_score": 4,      "away_score": 0,      "provider": "legacy_seed",      "source_url": "",      "fetched_at": "2026-06-03T23:18:59Z",      "confidence": 0.5,      "odds_home": 1.25,      "odds_draw": 5.5,      "odds_away": 12.0,      "prob_home": 0.8,      "proAI_JUDGE_RUN_ID:pool-run6-web-20260604
-席位：kimi
-输出 JSON 时必须包含 run_id 字段，值必须等于 pool-run6-web-20260604；seat_id 字段必须严格等于 kimi。
-发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。
-请只输出中文 JSON，不要 Markdown，不要创建文件。如果你无法联网或无法确认来源，请写入 unknowns 和 evidence_gaps，不要编来源。
-AI_JUDGE_RUN_MARKER:AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603
-
-# AI Judge 赛事预测池独立模型席位
-
-seat_id: kimi
-model_account: kimi
-display_name: Kimi
-round_id: run-6
-date: 2026-06-03
-
-【合规与实验边界】
-这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。
-所有投注均为模拟，仅用于算法研究与模型评估。
-
-## 当前任务
-你是 AI Judge 赛事预测池中的一个独立模型席位。
-你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。
-
-## 强制防污染要求
-- 不要回答旧任务。
-- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。
-- 不要输出你的最终答案。
-- 不要输出 Markdown。
-- 不要输出解释性自然语言。
-- 不要输出 JSON 之外的任何内容。
-- JSON 必须能被 json.loads 解析。
-
-## 可用比赛摘要
-{
-  "matches_total": 21,
-  "sample_matches": [
-    {
-      "match_id": "WARM-001",
-      "date": "2026-05-28",
-      "home_team": "Egypt",
-      "home_flag": "🇪",
-      "away_team": "Russia",
-      "away_flag": "🇷",
-      "competition": "friendly",
-      "status": "scheduled",
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.1,
-      "odds_draw": 3.2,
-      "odds_away": 3.5,
-      "prob_home": 0.48,
-      "prob_draw": 0.31,
-      "prob_away": 0.21,
-      "kickoff_at": "2026-05-28T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-002",
-      "date": "2026-05-31",
-      "home_team": "Brazil",
-      "home_flag": "🇧",
-      "away_team": "Panama",
-      "away_flag": "🇵",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 6,
-      "away_score": 2,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.15,
-      "odds_draw": 7.0,
-      "odds_away": 15.0,
-      "prob_home": 0.87,
-      "prob_draw": 0.09,
-      "prob_away": 0.04,
-      "kickoff_at": "2026-05-31T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-003",
-      "date": "2026-05-31",
-      "home_team": "USA",
-      "home_flag": "🇺",
-      "away_team": "Senegal",
-      "away_flag": "🇸",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 3,
-      "away_score": 2,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 2.0,
-      "odds_draw": 3.3,
-      "odds_away": 3.8,
-      "prob_home": 0.5,
-      "prob_draw": 0.3,
-      "prob_away": 0.26,
-      "kickoff_at": "2026-05-31T00:00:00Z"
-    },
-    {
-      "match_id": "WARM-004",
-      "date": "2026-05-31",
-      "home_team": "Germany",
-      "home_flag": "🇩",
-      "away_team": "Finland",
-      "away_flag": "🇫",
-      "competition": "friendly",
-      "status": "settled",
-      "home_score": 4,
-      "away_score": 0,
-      "provider": "legacy_seed",
-      "source_url": "",
-      "fetched_at": "2026-06-03T23:18:59Z",
-      "confidence": 0.5,
-      "odds_home": 1.25,
-      "odds_draw": 5.5,
-      "odds_away": 12.0,
-      "prob_home": 0.8,
-      "pro
-编辑
-复制
-分享
-{"run_id":"pool-run6-web-20260604","seat_id":"kimi","deep_mode_status":"not_available","timestamp":"2026-06-04T14:49:00Z","round_id":"run-6","total_matches":21,"available_matches":0,"bets_placed":[],"betting_summary":{"total_stake":0,"max_single_bet":0,"remaining_budget":100,"matches_bet_on":0,"diversification_score":0},"portfolio_risk":{"concentration_risk":"none","expected_value_total":0,"sharpe_estimate":0},"reasoning":{"match_analysis":"仅提供4场样本比赛，其中3场已结算（WARM-002巴西6-2巴拿马、WARM-003美国3-2塞内加尔、WARM-004德国4-0芬兰），1场WARM-001埃及vs俄罗斯状态为scheduled但日期为2026-05-28，已过期。剩余17场比赛数据未提供，无法评估。","value_opportunities":"无可用未结算比赛可供投注。","risk_assessment":"在信息不完整的情况下，任何投注都将构成盲目决策，违反风控原则。","betting_strategy":"因数据不足，本轮选择空仓观望，保留全部预算以待后续轮次。","data_quality":"样本仅覆盖4/21场比赛，且全部已过期或已结算，有效可用比赛数为0。"},"unknowns":["剩余17场比赛的具体对阵、赔率、状态及开球时间未提供","当前资金池总额及单位投注上限约束未明确","是否有已进行中的比赛未在样本中体现","WARM-001是否已实际完赛但状态未更新"],"evidence_gaps":["缺少未结算比赛的完整赔率快照","缺少比赛结果预测所需的历史交锋、近期状态、伤病信息等基本面数据","缺少资金分配规则（如单场最大投注比例、最低投注数要求）","缺少其他模型席位的投注行为数据以进行市场逆向分析"],"compliance_note":"虚拟GP预测研究，不涉及真钱下注，不构成现实博彩建议"}
-
-
-
-
+立场：条件支持（非线性翻盘策略）
+当前 200 GP、排名 #13 濒临出局，必须采取高置信度集中仓位 + 投资贷款扩张，拒绝保守分散。
+理由：
+Spain vs Iraq（06-04）
+：双源验证（footballpredictions.com 预测 3-0 主胜 + FIFA 赛程确认）
+；西班牙世界杯前最后磨合，伊拉克实力差两档。押 80 GP 主胜+大2.5 combo，赔率 1.75。
+Mexico vs Serbia（06-05）
+：toffeeweb 预测 2-0 主胜，墨西哥 7 场不败且主场自 2018 年未败；塞尔维亚未进世界杯、刚 0-3 负佛得角
+。押 50 GP 主胜+大2.5，赔率 1.85。
+France vs Côte d'Ivoire（06-04）
+：footballpredictions 预测 3-1，法国阵容深度碾压，即使轮换仍强
+。押 60 GP 法国-1 AH，赔率 2.10。
+Canada vs Ireland（06-06）
+：toffeeweb 预测 1-0 小胜，Marsch 体系 13 场 9 次零封，爱尔兰对手质量低
+。押 30 GP 主胜+小2.5，赔率 2.05。
+**USA vs Germany（06
 尽管问，带图也行
 K2.6 快速
 内容由AI生成，请仔细甄别
