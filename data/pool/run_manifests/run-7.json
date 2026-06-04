@@ -1,0 +1,117 @@
+{
+  "version": "p11.0",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "run_marker": "AI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603",
+  "created_at": "2026-06-04T17:16:59.016508+00:00",
+  "mode": "generate_prompts_only",
+  "snapshot_label": "T-1h",
+  "odds_provider": "the_odds_api",
+  "seats_total": 12,
+  "seats": [
+    {
+      "model_account": "gemini",
+      "seat_id": "gemini",
+      "display_name": "Gemini",
+      "prompt_path": "prompts/run-7/gemini.md",
+      "raw_output_path": "model_outputs/raw/run-7/gemini.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "display_name": "ChatGPT",
+      "prompt_path": "prompts/run-7/chatgpt.md",
+      "raw_output_path": "model_outputs/raw/run-7/chatgpt.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "yuanbao",
+      "seat_id": "yuanbao",
+      "display_name": "元宝",
+      "prompt_path": "prompts/run-7/yuanbao.md",
+      "raw_output_path": "model_outputs/raw/run-7/yuanbao.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "display_name": "文心",
+      "prompt_path": "prompts/run-7/wenxin.md",
+      "raw_output_path": "model_outputs/raw/run-7/wenxin.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "deepseek",
+      "seat_id": "deepseek",
+      "display_name": "DeepSeek",
+      "prompt_path": "prompts/run-7/deepseek.md",
+      "raw_output_path": "model_outputs/raw/run-7/deepseek.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "mimo",
+      "seat_id": "mimo",
+      "display_name": "MiMo",
+      "prompt_path": "prompts/run-7/mimo.md",
+      "raw_output_path": "model_outputs/raw/run-7/mimo.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "display_name": "Kimi",
+      "prompt_path": "prompts/run-7/kimi.md",
+      "raw_output_path": "model_outputs/raw/run-7/kimi.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "qwen",
+      "seat_id": "qwen",
+      "display_name": "通义",
+      "prompt_path": "prompts/run-7/qwen.md",
+      "raw_output_path": "model_outputs/raw/run-7/qwen.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "xai",
+      "seat_id": "xai",
+      "display_name": "xAI",
+      "prompt_path": "prompts/run-7/xai.md",
+      "raw_output_path": "model_outputs/raw/run-7/xai.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "display_name": "MiniMax",
+      "prompt_path": "prompts/run-7/minimax.md",
+      "raw_output_path": "model_outputs/raw/run-7/minimax.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "doubao",
+      "seat_id": "doubao",
+      "display_name": "豆包",
+      "prompt_path": "prompts/run-7/doubao.md",
+      "raw_output_path": "model_outputs/raw/run-7/doubao.txt",
+      "status": "prompt_generated"
+    },
+    {
+      "model_account": "meta",
+      "seat_id": "meta",
+      "display_name": "Meta AI",
+      "prompt_path": "prompts/run-7/meta.md",
+      "raw_output_path": "model_outputs/raw/run-7/meta.txt",
+      "status": "prompt_generated"
+    }
+  ],
+  "source_files": [
+    "matches/current.json",
+    "match_results/2026-06-03.json",
+    "odds_snapshots/2026-06-03_T-1h_the_odds_api.json",
+    "odds/eligible_board/run-7.json",
+    "leaderboard/current.json",
+    "daily_reports/2026-06-03_run-5.json"
+  ]
+}

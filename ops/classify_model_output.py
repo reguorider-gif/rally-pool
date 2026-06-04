@@ -120,8 +120,9 @@ def classify_model(model_account, record, round_id, verbose=False):
     parsed_json = record.get("parsed_json")
     has_current_parsed_json = isinstance(parsed_json, dict)
 
-    # 检查原始 status 字段作为辅助线索
+    # 检查原始 status / failure_reason 字段作为辅助线索
     legacy_status = record.get("status", "")
+    source_failure_reason = str(record.get("failure_reason") or "").strip()
 
     # 检查 eligible 和 needs_rerun 字段
     eligible = record.get("eligible_for_consensus", None)
@@ -231,6 +232,9 @@ def classify_model(model_account, record, round_id, verbose=False):
         eligible_for_consensus = False
     if needs_rerun is not None and needs_rerun:
         needs_rerun_flag = True
+
+    if source_failure_reason and status != "valid_receipt":
+        failure_reason = source_failure_reason
 
     # 汇总所有检测到的信号
     all_pollution_signals = []
@@ -380,6 +384,7 @@ def load_ingested_round_data(round_id, ingested_path):
         model_records[model] = {
             "seat_id": item.get("seat_id", model),
             "status": status,
+            "failure_reason": reason,
             "raw_text": f"{reason}\n{body_excerpt}".strip(),
             "bets": reason,
             "thought": body_excerpt,

@@ -23,6 +23,8 @@ DOCS_DIR = ROOT / "docs"
 OPS_DIR = ROOT / "ops"
 HTML_FILE = ROOT / "html" / "index.html"
 APP_FILE = ROOT / "app.py"
+ACTIVE_ROUND = "run-7"
+ACTIVE_DATE = "2026-06-03"
 
 
 def load_current_model_ids():
@@ -810,25 +812,25 @@ def main():
 
     # ── P11.0 Run Manifest / Prompts / Ingest Check ─────────────────────────
     print("=== P11.0 Run Manifest / Prompts / Ingest Check ===")
-    manifest_path = DATA / "run_manifests" / "run-6.json"
-    prompts_dir = DATA / "prompts" / "run-6"
-    ingested_path = DATA / "model_outputs" / "ingested" / "run-6" / "index.json"
-    raw_dir = DATA / "model_outputs" / "raw" / "run-6"
+    manifest_path = DATA / "run_manifests" / f"{ACTIVE_ROUND}.json"
+    prompts_dir = DATA / "prompts" / ACTIVE_ROUND
+    ingested_path = DATA / "model_outputs" / "ingested" / ACTIVE_ROUND / "index.json"
+    raw_dir = DATA / "model_outputs" / "raw" / ACTIVE_ROUND
 
     # 1. Manifest exists
     if manifest_path.exists():
         try:
             mf = json.loads(manifest_path.read_text(encoding="utf-8"))
             seats_mf = mf.get("seats_total", -1)
-            print(f"  ✅ data/pool/run_manifests/run-6.json: exists (seats_total={seats_mf})")
+            print(f"  ✅ data/pool/run_manifests/{ACTIVE_ROUND}.json: exists (seats_total={seats_mf})")
             if seats_mf != current_model_count:
                 print(f"  ❌ seats_total={seats_mf}, expected {current_model_count}")
                 has_error = True
         except Exception:
-            print(f"  ❌ data/pool/run_manifests/run-6.json: parse failed")
+            print(f"  ❌ data/pool/run_manifests/{ACTIVE_ROUND}.json: parse failed")
             has_error = True
     else:
-        print(f"  ⚠️ data/pool/run_manifests/run-6.json: NOT YET GENERATED")
+        print(f"  ⚠️ data/pool/run_manifests/{ACTIVE_ROUND}.json: NOT YET GENERATED")
         has_warning = True
 
     # 2-4. Prompts directory and content
@@ -836,7 +838,7 @@ def main():
         md_files = sorted(prompts_dir.glob("*.md"))
         prompt_count = len(md_files)
         if prompt_count == current_model_count:
-            print(f"  ✅ data/pool/prompts/run-6/: {prompt_count} prompts")
+            print(f"  ✅ data/pool/prompts/{ACTIVE_ROUND}/: {prompt_count} prompts")
         else:
             print(f"  ❌ prompt count={prompt_count}, expected {current_model_count}")
             has_error = True
@@ -845,7 +847,7 @@ def main():
         for p in md_files[:5]:  # 检查前 5 个
             text = p.read_text()
             checks_ok = True
-            for kw in ["AI_JUDGE_RUN_MARKER", "round_id: run-6", "bet_ledger"]:
+            for kw in ["AI_JUDGE_RUN_MARKER", f"round_id: {ACTIVE_ROUND}", "eligible_board", '"bets"']:
                 if kw not in text:
                     checks_ok = False
                     break
@@ -870,7 +872,7 @@ def main():
             print(f"  ⚠️ prompts may lack anti-pollution wording")
             has_warning = True
     else:
-        print(f"  ⚠️ data/pool/prompts/run-6/: NOT YET GENERATED")
+        print(f"  ⚠️ data/pool/prompts/{ACTIVE_ROUND}/: NOT YET GENERATED")
         has_warning = True
 
     # 5-8. Ingested outputs
@@ -880,7 +882,7 @@ def main():
             ot = ig.get("outputs_total", -1)
             of = ig.get("outputs_found", -1)
             om = ig.get("outputs_missing", -1)
-            print(f"  ✅ ingested/run-6/index.json: total={ot}, found={of}, missing={om}")
+            print(f"  ✅ ingested/{ACTIVE_ROUND}/index.json: total={ot}, found={of}, missing={om}")
             if ot != current_model_count:
                 print(f"  ❌ outputs_total={ot}, expected {current_model_count}")
                 has_error = True
@@ -897,10 +899,10 @@ def main():
             else:
                 print(f"  ✅ state detail: ready_for_ingest")
         except Exception:
-            print(f"  ❌ ingested/run-6/index.json: parse failed")
+            print(f"  ❌ ingested/{ACTIVE_ROUND}/index.json: parse failed")
             has_error = True
     else:
-        print(f"  ⚠️ ingested/run-6/index.json: NOT YET GENERATED")
+        print(f"  ⚠️ ingested/{ACTIVE_ROUND}/index.json: NOT YET GENERATED")
         has_warning = True
 
     # 9. State is waiting_for_manual_ingest, not failure
@@ -1035,12 +1037,15 @@ def main():
 
         # 3-5. API fetch 引用
         api_checks = [
-            ("/api/pool/run-manifests/run-6", "run-manifests/run-6 fetch"),
-            ("/api/pool/rerun-attempts/run-5", "rerun-attempts/run-5 fetch"),
-            ("/api/pool/settlements/run-5", "settlements/run-5 fetch"),
+            (
+                [f"/api/pool/run-manifests/{ACTIVE_ROUND}", "'/api/pool/run-manifests/' + ACTIVE_ROUND"],
+                f"run-manifests/{ACTIVE_ROUND} fetch",
+            ),
+            (["/api/pool/rerun-attempts/run-5"], "rerun-attempts/run-5 fetch"),
+            (["/api/pool/settlements/run-5"], "settlements/run-5 fetch"),
         ]
-        for pattern, label in api_checks:
-            if pattern in html_text:
+        for patterns, label in api_checks:
+            if any(pattern in html_text for pattern in patterns):
                 print(f"  ✅ {label}: found")
             else:
                 print(f"  ❌ {label}: NOT FOUND")
@@ -1086,22 +1091,22 @@ def main():
         has_error = True
 
     # 2-3. pipeline_runs JSON & MD
-    pipeline_json = DATA / "pipeline_runs" / "2026-06-03_run-6.json"
-    pipeline_md = DATA / "pipeline_runs" / "2026-06-03_run-6.md"
+    pipeline_json = DATA / "pipeline_runs" / f"{ACTIVE_DATE}_{ACTIVE_ROUND}.json"
+    pipeline_md = DATA / "pipeline_runs" / f"{ACTIVE_DATE}_{ACTIVE_ROUND}.md"
 
     json_exists = pipeline_json.exists()
     md_exists = pipeline_md.exists()
 
     if json_exists:
-        print(f"  ✅ data/pool/pipeline_runs/2026-06-03_run-6.json: exists")
+        print(f"  ✅ data/pool/pipeline_runs/{ACTIVE_DATE}_{ACTIVE_ROUND}.json: exists")
     else:
-        print(f"  ⚠️  data/pool/pipeline_runs/2026-06-03_run-6.json: NOT YET GENERATED (run pipeline)")
+        print(f"  ⚠️  data/pool/pipeline_runs/{ACTIVE_DATE}_{ACTIVE_ROUND}.json: NOT YET GENERATED (run pipeline)")
         has_warning = True
 
     if md_exists:
-        print(f"  ✅ data/pool/pipeline_runs/2026-06-03_run-6.md: exists")
+        print(f"  ✅ data/pool/pipeline_runs/{ACTIVE_DATE}_{ACTIVE_ROUND}.md: exists")
     else:
-        print(f"  ⚠️  data/pool/pipeline_runs/2026-06-03_run-6.md: NOT YET GENERATED (run pipeline)")
+        print(f"  ⚠️  data/pool/pipeline_runs/{ACTIVE_DATE}_{ACTIVE_ROUND}.md: NOT YET GENERATED (run pipeline)")
         has_warning = True
 
     # 4. JSON 可解析
@@ -1127,14 +1132,14 @@ def main():
                 print(f"  ❌ steps count = {len(steps)} (expected > 0)")
                 has_error = True
 
-            # 7. run-6 waiting_for_manual_ingest 不算 hard failure
+            # 7. active round waiting_for_manual_ingest 不算 hard failure
             has_waiting = any(
                 "waiting_for_manual_ingest" in str(s.get("reason", "")).lower() or
                 "waiting_for_manual_ingest" in str(s.get("warnings", "")).lower()
                 for s in steps
             )
             if has_waiting:
-                print(f"  ✅ run-6 waiting_for_manual_ingest marked (not a hard failure)")
+                print(f"  ✅ {ACTIVE_ROUND} waiting_for_manual_ingest marked (not a hard failure)")
             # (no error even if not present — might be pass)
 
             # Check for real blockers (not waiting_for_manual_ingest)
@@ -1407,16 +1412,16 @@ def main():
         print(f"  ❌ ops/check_model_output_dropbox.py: NOT FOUND")
         has_error = True
 
-    # 4. data/pool/model_outputs/raw/run-6/README.md 存在
-    readme_path = DATA / "model_outputs" / "raw" / "run-6" / "README.md"
+    # 4. data/pool/model_outputs/raw/{ACTIVE_ROUND}/README.md 存在
+    readme_path = DATA / "model_outputs" / "raw" / ACTIVE_ROUND / "README.md"
     if readme_path.exists():
-        print(f"  ✅ data/pool/model_outputs/raw/run-6/README.md: exists")
+        print(f"  ✅ data/pool/model_outputs/raw/{ACTIVE_ROUND}/README.md: exists")
     else:
         print(f"  ⚠️  README.md not found (optional but recommended)")
         has_warning = True
 
-    # 5. data/pool/model_outputs/raw/run-6/dropbox_check.json 存在
-    dbc_json = DATA / "model_outputs" / "raw" / "run-6" / "dropbox_check.json"
+    # 5. data/pool/model_outputs/raw/{ACTIVE_ROUND}/dropbox_check.json 存在
+    dbc_json = DATA / "model_outputs" / "raw" / ACTIVE_ROUND / "dropbox_check.json"
     dbc_exists = dbc_json.exists()
     if dbc_exists:
         print(f"  ✅ dropbox_check.json: exists")

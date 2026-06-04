@@ -1,0 +1,40 @@
+{
+  "version": "p10.3",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "snapshot_label": "T-1h",
+  "generated_at": "2026-06-04T17:17:00Z",
+  "settlement_status": "manual_review",
+  "valid_for_leaderboard_update": false,
+  "summary": {
+    "models_total": 12,
+    "accepted_bets": 4,
+    "settled_bets": 0,
+    "manual_review_bets": 4,
+    "void_bets": 0,
+    "push_bets": 0,
+    "winning_bets": 0,
+    "losing_bets": 0,
+    "total_stake": null,
+    "total_payout": null,
+    "total_profit": null,
+    "roi": null
+  },
+  "settlements": [],
+  "manual_review": [],
+  "notes": [
+    {
+      "code": "settlement_not_implemented",
+      "message": "Settlement logic for accepted_bets > 0 is not yet implemented. All bets moved to manual_review."
+    }
+  ],
+  "source_files": [
+    "data/pool/bet_receipts/run-7.json",
+    "data/pool/bet_receipts/rejections/run-7.json",
+    "data/pool/bet_receipts/index.json",
+    "data/pool/match_results/2026-06-03.json",
+    "data/pool/odds_snapshots/2026-06-03_T-1h.json",
+    "data/pool/leaderboard/current.json",
+    "data/pool/model_accounts/current.json"
+  ]
+}

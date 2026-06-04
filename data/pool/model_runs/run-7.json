@@ -1,0 +1,262 @@
+{
+  "version": "p9.3",
+  "round_id": "run-7",
+  "generated_at": "2026-06-04T17:16:59Z",
+  "summary": {
+    "total": 12,
+    "valid_receipt": 10,
+    "placeholder_only": 0,
+    "context_polluted": 0,
+    "quota_blocked": 0,
+    "auth_blocked": 0,
+    "timeout": 2,
+    "parse_error": 0,
+    "risk_refusal": 0,
+    "needs_rerun": 2,
+    "excluded_from_consensus": 2
+  },
+  "runs": [
+    {
+      "round_id": "run-7",
+      "model_account": "gemini",
+      "seat_id": "gemini",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "yuanbao",
+      "seat_id": "yuanbao",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "attempt_no": 1,
+      "status": "timeout",
+      "eligible_for_consensus": false,
+      "needs_rerun": true,
+      "failure_reason": "prompt_still_in_input_after_enter_send",
+      "detected_pollution_signals": [],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "deepseek",
+      "seat_id": "deepseek",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "投票淘汰"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "mimo",
+      "seat_id": "mimo",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "qwen",
+      "seat_id": "qwen",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "投票淘汰"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "xai",
+      "seat_id": "xai",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "attempt_no": 1,
+      "status": "timeout",
+      "eligible_for_consensus": false,
+      "needs_rerun": true,
+      "failure_reason": "wait_response_timeout",
+      "detected_pollution_signals": [],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "doubao",
+      "seat_id": "doubao",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    },
+    {
+      "round_id": "run-7",
+      "model_account": "meta",
+      "seat_id": "meta",
+      "attempt_no": 1,
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "detected_pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家"
+      ],
+      "source_path": "data/pool/archives/run-7.json",
+      "trace_id": "",
+      "created_at": "2026-06-04T17:16:59Z",
+      "updated_at": "2026-06-04T17:16:59Z"
+    }
+  ]
+}

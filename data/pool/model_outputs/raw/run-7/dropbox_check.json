@@ -1,0 +1,32 @@
+{
+  "version": "p13.0",
+  "generated_at": "2026-06-04T17:16:30.917343+00:00",
+  "round_id": "run-7",
+  "outputs_expected": 12,
+  "outputs_found": 10,
+  "outputs_missing": 2,
+  "found_files": [
+    "chatgpt",
+    "deepseek",
+    "doubao",
+    "gemini",
+    "kimi",
+    "meta",
+    "mimo",
+    "qwen",
+    "xai",
+    "yuanbao"
+  ],
+  "missing_files": [
+    "minimax",
+    "wenxin"
+  ],
+  "empty_files": [
+    "minimax.txt",
+    "wenxin.txt"
+  ],
+  "mismatched_files": [],
+  "status": "partial_outputs_found",
+  "message": "Partial outputs found (10/12). You can run partial ingest, or wait for all outputs.",
+  "next_action": "# partial ingest:\n  python3 ops/ai_judge_daily_pool.py ingest --round run-7 --input-dir data/pool/model_outputs/raw/run-7"
+}

@@ -1,0 +1,26 @@
+{
+  "version": "p9.3",
+  "round_id": "run-7",
+  "generated_at": "2026-06-04T17:16:59Z",
+  "max_attempts": 3,
+  "queue": [
+    {
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "current_status": "timeout",
+      "reason": "prompt_still_in_input_after_enter_send",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "medium"
+    },
+    {
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "current_status": "timeout",
+      "reason": "wait_response_timeout",
+      "attempt_no": 1,
+      "next_attempt_no": 2,
+      "priority": "medium"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "wenxin",
+  "model_account": "wenxin",
+  "ok": false,
+  "status": "absent_after_retry",
+  "failure_reason": "prompt_still_in_input_after_enter_send",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": null,
+  "parsed": null,
+  "response_chars": 0,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T17:02:13.839007+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://wenxin.baidu.com/new-chat"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": [
+                "按下Command + D收藏，下次使用不迷路 关闭",
+                "关闭"
+              ]
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://wenxin.baidu.com/new-chat",
+              "title": "文心 - 百度旗下AI助手",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          },
+          {
+            "click_new_chat_for_new_conversation": {
+              "clicked": false,
+              "reason": "no_new_chat_candidate"
+            }
+          },
+          {
+            "dismiss_after_new_click": {
+              "clicked": [
+                "按下Command + D收藏，下次使用不迷路 关闭",
+                "关闭"
+              ]
+            }
+          },
+          {
+            "wait_input_after_new_click": {
+              "ok": true,
+              "url": "https://wenxin.baidu.com/new-chat",
+              "title": "文心 - 百度旗下AI助手",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://wenxin.baidu.com/new-chat",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://wenxin.baidu.com/new-chat",
+        "title": "文心 - 百度旗下AI助手",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": "有问题尽管问我~",
+            "text": "",
+            "x": 267,
+            "y": 261,
+            "w": 767,
+            "h": 70,
+            "disabled": false
+          }
+        ],
+        "buttons": [],
+        "body_excerpt": "按下Command + D收藏，下次使用不迷路\n关闭\n新对话\n魔法图片\n写作帮手\n放心写\n今天\nAI Judge 运维态稳定评估方案\n运维态稳定性的风险评估\nAI Judge功能开发与运维决策\nAI Judge运维态二轮共振回答\nP3.2/P3.5运维态条件支持\nAI Judge 运维态评估与双轨并行方案\n新对话\nAI Judge 运维态条件支持方案\n昨天\n系统“正常”评估报告\nAI Judge健康状态裁决\nAI Judge 附件规范化深度裁决\n附件规范化任务解析\n新对话\n新对话\nAI Judge二轮裁决与技术预案\nAI Judge运行状态健康度评估\nAI Judge双轨运行模式方案\nP3.2-RC1运维态裁决报告\nAI Judge健康状态深度评估与方案\nAI Judge运行状态健康评估\n设置\n下载\n新对话\nHi，有什么可以帮你？\n自动模式\n魔法图片\n文档解析\n办公写作\n文艺创作\n内容改写\n中英互译\n内容由AI生成，仅供参考"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": [
+                "按下Command + D收藏，下次使用不迷路 关闭",
+                "关闭"
+              ]
+            }
+          }
+        ],
+        "url": "https://wenxin.baidu.com/new-chat",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:02:32.457158+00:00",
+        "released_at": "2026-06-04T17:02:38.144451+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_cdp_enter_after_js_fill",
+        "inputLen": 35458,
+        "inputRect": {
+          "x": 266.5,
+          "y": 236,
+          "width": 767,
+          "height": 120,
+          "right": 1033.5,
+          "bottom": 356
+        }
+      },
+      "js_enter_submit": {
+        "ok": true,
+        "tag": "DIV",
+        "text": "AI_JUDGE_RUN_ID:run-7\n席位：wenxin\n输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 wenxin。\n发送前请开启网页里的深思/深度思考/推理/专家模式；如",
+        "events": [
+          {
+            "type": "keydown",
+            "accepted": false
+          },
+          {
+            "type": "keypress",
+            "accepted": true
+          },
+          {
+            "type": "keyup",
+            "accepted": true
+          }
+        ]
+      },
+      "status": "submit_not_confirmed",
+      "reason": "prompt_still_in_input_after_enter_send",
+      "finished_at": "2026-06-04T17:02:38.144317+00:00"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}

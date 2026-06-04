@@ -1,0 +1,380 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "chatgpt",
+  "model_account": "chatgpt",
+  "ok": true,
+  "status": "answered",
+  "failure_reason": "answered",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": "data/pool/model_outputs/raw/run-7/chatgpt.txt",
+  "parsed": {
+    "run_id": "run-7",
+    "seat_id": "chatgpt",
+    "round_id": "run-7",
+    "deep_mode_status": "not_available",
+    "bets": [
+      {
+        "board_id": "run-7:WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+        "odds_row_id": "WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+        "stake_gp": 120,
+        "rationale": "Provider-covered eligible_board row only. Selected the visible best available WC-A1 draw price at 4.8 versus nearby listed draw prices mostly around 4.0-4.65, giving price-dislocation value if baseline draw probability is at or above 21%. Opening-match risk profile supports a smaller contrarian draw position rather than favorite chasing.",
+        "risk": "High variance single-outcome moneyline. Void/reduce in audit if duplicate Betfair rows are deduplicated differently, if lineup/news materially shifts Mexico win probability upward, or if validator rejects duplicate board_id handling."
+      },
+      {
+        "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+        "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+        "stake_gp": 80,
+        "rationale": "Provider-covered eligible_board row only. Selected the highest visible Mexico handicap price at 2.29 among listed Mexico handicap rows, capturing bookmaker dispersion versus 1.71-2.21 comparables while keeping stake smaller due to missing explicit handicap line in the prompt excerpt.",
+        "risk": "Handicap line is not repeated by this output and must be parsed from board_id/provider row by settlement. Reduce exposure if the hidden line is less favorable than assumed or if late team news weakens Mexico."
+      }
+    ],
+    "no_bet_reason": null,
+    "sources_checked": [
+      {
+        "source_type": "eligible_board",
+        "provider": "the_odds_api",
+        "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+        "coverage": "989 provider-covered valid rows across handicap, moneyline, and total_goals; settlement restricted to eligible_board only."
+      },
+      {
+        "source_type": "odds_snapshot_summary",
+        "provider": "the_odds_api",
+        "snapshot_label": "T-1h",
+        "coverage": "1190 odds rows, 989 valid rows, 5 matched internal matches, provider_responded=true."
+      },
+      {
+        "source_type": "results_status",
+        "provider": "legacy_seed",
+        "fetched_at": "2026-06-04T16:18:34Z",
+        "coverage": "WC-A1 listed as scheduled with no score, no red cards, and no injury notes in the provided status feed."
+      },
+      {
+        "source_type": "risk_context",
+        "provider": "leaderboard_account_summary",
+        "coverage": "chatgpt active but rank, balance_gp, and loan_gp are null; no virtual loan requested because bankroll constraints are not explicit."
+      }
+    ],
+    "loan_request": {
+      "requested": false,
+      "amount_gp": 0,
+      "reason": "Balance and loan fields are null for chatgpt, so no leverage is requested under incomplete account constraints.",
+      "stop_loss_rule": "No additional exposure beyond 200 GP total stake unless Banker Judge supplies explicit balance and loan ceiling."
+    }
+  },
+  "response_chars": 38836,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T16:59:30.736111+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://chatgpt.com/"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": [
+                "关闭边栏"
+              ]
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://chatgpt.com/",
+              "title": "ChatGPT",
+              "inputs": 1,
+              "waited_seconds": 0.03,
+              "dismisses": []
+            }
+          },
+          {
+            "click_new_chat_for_new_conversation": {
+              "clicked": true,
+              "label": "新聊天 group __menu-item hoverable gap-1.5",
+              "x": 130,
+              "y": 78
+            }
+          },
+          {
+            "dismiss_after_new_click": {
+              "clicked": [
+                "关闭边栏"
+              ]
+            }
+          },
+          {
+            "wait_input_after_new_click": {
+              "ok": true,
+              "url": "https://chatgpt.com/",
+              "title": "ChatGPT",
+              "inputs": 1,
+              "waited_seconds": 0.1,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://chatgpt.com/",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://chatgpt.com/",
+        "title": "ChatGPT",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": "textbox",
+            "type": null,
+            "aria": "与 ChatGPT 聊天",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 448,
+            "y": 299,
+            "w": 664,
+            "h": 40,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "跳至内容",
+            "x": -48,
+            "y": -1,
+            "w": 96,
+            "h": 16,
+            "disabled": false
+          },
+          {
+            "tag": "NAV",
+            "role": null,
+            "type": null,
+            "aria": "侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 0,
+            "y": 0,
+            "w": 52,
+            "h": 679,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": "打开边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 8,
+            "y": 8,
+            "w": 36,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 6,
+            "y": 60,
+            "w": 40,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 6,
+            "y": 96,
+            "w": 40,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 6,
+            "y": 132,
+            "w": 40,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "DIV",
+            "role": "button",
+            "type": "button",
+            "aria": "打开“个人资料”菜单",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 8,
+            "y": 627,
+            "w": 38,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "NAV",
+            "role": null,
+            "type": null,
+            "aria": "历史聊天记录",
+            "title": null,
+            "placeholder": null,
+            "text": "ChatGPT\n新聊天\n搜索聊天\n库\n项目\n应用\nCodex\n更多\n最近\nAI Judge Hermes 集成\n任务说明与提示词\nAI Judge 自动化改造\n功能开发与运维决策\nAI Judge 功能开发决策\nAgnes AI 平台介绍\nAI Judge健康评估\nClaude功能修复指令\nAI项目结合方案\nAI Judge 运维评估\nChatGPT 预测策略\nP3.2-RC1 运维与开发决策\nP3.2-RC1 运维与开发决策\nP3.2",
+            "x": 0,
+            "y": 0,
+            "w": 260,
+            "h": 613,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": "主页",
+            "title": null,
+            "placeholder": null,
+            "text": "ChatGPT",
+            "x": 8,
+            "y": 8,
+            "w": 95,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": "关闭边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 201,
+            "y": 8,
+            "w": 36,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "新聊天",
+            "x": 6,
+            "y": 60,
+            "w": 233,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "搜索聊天",
+            "x": 6,
+            "y": 96,
+            "w": 233,
+            "h": 36,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "跳至内容\n历史聊天记录\nChatGPT\n新聊天\n搜索聊天\n库\n项目\n应用\nCodex\n更多\n最近\nAI Judge Hermes 集成\n任务说明与提示词\nAI Judge 自动化改造\n功能开发与运维决策\nAI Judge 功能开发决策\nAgnes AI 平台介绍\nAI Judge健康评估\nClaude功能修复指令\nAI项目结合方案\nAI Judge 运维评估\nChatGPT 预测策略\nP3.2-RC1 运维与开发决策\nP3.2-RC1 运维与开发决策\nP3.2-RC1 运维态分析\nAI Judge 赛事预测\nAI赛事预测无有效投注\nNo Valid Bet\nNo valid bet available\n低信息输入处理方案\nHello任务处理建议\nAI Judge 存储架构取舍\nAI Judge 存储架构分析\nPython vs Rust 性能差异\nTransformer 核心机制分析\nTransformer 核心机制分析\nTransformer 核心机制分析\nP2.4回归测试C分析\nP2.4回归测试C验证\nP2.4存储架构比较\nJSON vs SQLite 存储取舍\n评估历史裁决质量\n刘威迪\nPro\n你今天在想些什么？"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": [
+                "关闭边栏"
+              ]
+            }
+          }
+        ],
+        "url": "https://chatgpt.com/",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T16:59:53.547864+00:00",
+        "released_at": "2026-06-04T17:00:05.844165+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_insert_text_and_click_send",
+        "inputLen": 35469,
+        "inputRect": {
+          "x": 344,
+          "y": 298.671875,
+          "width": 540,
+          "height": 40,
+          "right": 884,
+          "bottom": 338.671875
+        }
+      },
+      "post_insert_send_click": {
+        "ok": true,
+        "direct": true,
+        "x": 1032,
+        "y": 507,
+        "label": "发送提示 composer-submit-btn composer-submit-button-color h-9 w-9 composer-submit-button",
+        "selector": "[data-testid=\"send-button\"]",
+        "site_specific": true
+      },
+      "status": "answered",
+      "reason": "answered",
+      "parse_error": null,
+      "finished_at": "2026-06-04T17:00:36.616765+00:00",
+      "snapshot_url": "https://chatgpt.com/c/6a21af12-8360-832c-b17e-22f8c6b65e35",
+      "snapshot_title": "AI Judge 赛事预测",
+      "raw_text_excerpt": "ched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-008\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-009\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-010\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-011\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-012\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-013\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WC-A1\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\":\n...<truncated>\n\n## 赔率快照摘要\n{\n  \"snapshot_label\": \"T-1h\",\n  \"provider\": \"the_odds_api\",\n  \"summary\": {\n    \"matches_total\": 21,\n    \"markets_requested\": [\n      \"moneyline\",\n      \"handicap\",\n      \"total_goals\"\n    ],\n    \"odds_rows\": 1190,\n    \"valid_odds_rows\": 989,\n    \"missing_market_coverage\": 0,\n    \"match_mapping_failed\": 201,\n    \"provider_unavailable\": false,\n    \"provider_responded\": true,\n    \"matched_internal_matches\": 5,\n    \"coverage_status\": \"real_odds_provider_has_valid_odds\"\n  },\n  \"warning\": \"Do not bet from this snapshot directly. Use eligible_board rows only.\"\n}\n\n## 当前排行榜/账户摘要\n{\n  \"version\": \"p9.2\",\n  \"updated_at\": \"2026-06-03T19:30:00Z\",\n  \"leaderboard\": [\n    {\n      \"model_account\": \"deepseek\",\n      \"display_name\": \"DeepSeek\",\n      \"rank\": 1,\n      \"balance_gp\": 2810,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 三线命中，Run#5 有效回收\"\n    },\n    {\n      \"model_account\": \"gemini\",\n      \"display_name\": \"Gemini\",\n      \"rank\": 2,\n      \"balance_gp\": 1850,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效，上调 xG 基线\"\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"display_name\": \"通义\",\n      \"rank\": 3,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 400,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"display_name\": \"豆包\",\n      \"rank\": 4,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 重仓 Brazil -1.5 命中；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"display_name\": \"元宝\",\n      \"rank\": 5,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 500,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"display_name\": \"MiMo\",\n      \"rank\": 6,\n      \"balance_gp\": 1200,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"meta\",\n      \"display_name\": \"Meta AI\",\n      \"rank\": 7,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 800,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"display_name\": \"ChatGPT\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"display_name\": \"Kimi\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"display_name\": \"文心\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"display_name\": \"MiniMax\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"display_name\": \"xAI Grok\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    }\n  ]\n}\n\n## 上一轮日报摘要\n{\n  \"version\": \"p9.4\",\n  \"date\": \"2026-06-03\",\n  \"round_id\": \"run-5\",\n  \"generated_at\": \"2026-06-03T15:15:34Z\",\n  \"summary\": {\n    \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\",\n    \"status\": \"report_generated\",\n    \"total_models\": 13,\n    \"total_matches\": 21,\n    \"rerun_queue_count\": 5\n  },\n  \"model_status_counts\": {\n    \"valid_receipt\": 7,\n    \"placeholder_only\": 3,\n    \"context_polluted\": 1,\n    \"quota_blocked\": 1,\n    \"auth_blocked\": 0,\n    \"timeout\": 0,\n    \"parse_error\": 0,\n    \"risk_refusal\": 1,\n    \"excluded_from_consensus\": 6\n  },\n  \"model_status_rows\": [\n    {\n      \"model_account\": \"gemini\",\n      \"seat_id\": \"gemini\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"status\": \"context_polluted\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Detected legacy/werewolf context pollution\",\n      \"pollution_signals\": [\n        \"警长\"\n      ]\n    },\n    {\n      \"model_account\": \"claude\",\n      \"seat_id\": \"claude\",\n      \"status\": \"risk_refusal\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"Risk/compliance refusal — audit only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"seat_id\": \"yuanbao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"deepseek\",\n      \"seat_id\": \"deepseek\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"seat_id\": \"mimo\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"seat_id\": \"qwen\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"status\": \"quota_blocked\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Quota/rate limit blocked\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"seat_id\": \"doubao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"meta\",\n      \"seat_id\": \"meta\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    }\n  ],\n  \"rerun_queue\": [\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"current_status\": \"context_polluted\",\n      \"reason\": \"Detected legacy/werewolf context pollution\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"current_status\": \"quota_blocked\",\n      \"reason\": \"Quota/rate limit blocked\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    }\n  ],\n  \"consensus_eligibility\": {\n    \"eligible_count\": 7,\n    \"eligible_models\": [\n      \"gemini\",\n      \"yuanbao\",\n      \"deepseek\",\n      \"mimo\",\n      \"qwen\",\n      \"doubao\",\n      \"meta\"\n    ],\n    \"excluded_count\": 6,\n    \"excluded_models\": [\n      {\n        \"model_account\": \"chatgpt\",\n        \"status\": \"context_polluted\",\n        \"reason\": \"Detected legacy/werewolf context pollution\"\n      },\n      {\n        \"model_account\": \"claude\",\n        \"status\": \"risk_refusal\",\n        \"reason\": \"Risk/compliance refusal — audit only\"\n      },\n      {\n        \"model_account\": \"wenxin\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"kimi\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"xai\",\n        \"status\": \"quota_blocked\",\n        \"reason\": \"Quota/rate limit blocked\"\n      },\n      {\n        \"model_a\n...<truncated>\n\n## 标准 JSON schema 示例\n{\n  \"seat_id\": \"chatgpt\",\n  \"round_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\",\n      \"stake_gp\": 100,\n      \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\",\n      \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"sources_checked\": []\n}\n\n## 如果没有 provider-covered 可下注机会，必须输出以下结构\n{\n  \"seat_id\": \"chatgpt\",\n  \"round_id\": \"run-7\",\n  \"bets\": [],\n  \"no_bet_reason\": \"No provider-covered board row has positive expected value.\",\n  \"sources_checked\": []\n}\n\n【强制输出格式】\n你必须只输出一个 JSON 对象。\nJSON 顶层必须包含：\n- seat_id\n- round_id\n- bets\n- no_bet_reason\n- sources_checked\n\nbets 规则：\n- accepted 结算只认 provider-covered board row。\n- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。\n- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。\n- stake_gp 必须为正数。\n- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。\n- 不要写 fallback、manual_stub 或模型自造 odds。\n\n禁止输出任何 JSON 之外的内容。\n展开\n已思考 10s\n\n{\n\"run_id\": \"run-7\",\n\"seat_id\": \"chatgpt\",\n\"round_id\": \"run-7\",\n\"deep_mode_status\": \"not_available\",\n\"bets\": [\n{\n\"board_id\": \"run-7:WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api\",\n\"odds_row_id\": \"WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api\",\n\"stake_gp\": 120,\n\"rationale\": \"Provider-covered eligible_board row only. Selected the visible best available WC-A1 draw price at 4.8 versus nearby listed draw prices mostly around 4.0-4.65, giving price-dislocation value if baseline draw probability is at or above 21%. Opening-match risk profile supports a smaller contrarian draw position rather than favorite chasing.\",\n\"risk\": \"High variance single-outcome moneyline. Void/reduce in audit if duplicate Betfair rows are deduplicated differently, if lineup/news materially shifts Mexico win probability upward, or if validator rejects duplicate board_id handling.\"\n},\n{\n\"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n\"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n\"stake_gp\": 80,\n\"rationale\": \"Provider-covered eligible_board row only. Selected the highest visible Mexico handicap price at 2.29 among listed Mexico handicap rows, capturing bookmaker dispersion versus 1.71-2.21 comparables while keeping stake smaller due to missing explicit handicap line in the prompt excerpt.\",\n\"risk\": \"Handicap line is not repeated by this output and must be parsed from board_id/provider row by settlement. Reduce exposure if the hidden line is less favorable than assumed or if late team news weakens Mexico.\"\n}\n],\n\"no_bet_reason\": null,\n\"sources_checked\": [\n{\n\"source_type\": \"eligible_board\",\n\"provider\": \"the_odds_api\",\n\"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n\"coverage\": \"989 provider-covered valid rows across handicap, moneyline, and total_goals; settlement restricted to eligible_board only.\"\n},\n{\n\"source_type\": \"odds_snapshot_summary\",\n\"provider\": \"the_odds_api\",\n\"snapshot_label\": \"T-1h\",\n\"coverage\": \"1190 odds rows, 989 valid rows, 5 matched internal matches, provider_responded=true.\"\n},\n{\n\"source_type\": \"results_status\",\n\"provider\": \"legacy_seed\",\n\"fetched_at\": \"2026-06-04T16:18:34Z\",\n\"coverage\": \"WC-A1 listed as scheduled with no score, no red cards, and no injury notes in the provided status feed.\"\n},\n{\n\"source_type\": \"risk_context\",\n\"provider\": \"leaderboard_account_summary\",\n\"coverage\": \"chatgpt active but rank, balance_gp, and loan_gp are null; no virtual loan requested because bankroll constraints are not explicit.\"\n}\n],\n\"loan_request\": {\n\"requested\": false,\n\"amount_gp\": 0,\n\"reason\": \"Balance and loan fields are null for chatgpt, so no leverage is requested under incomplete account constraints.\",\n\"stop_loss_rule\": \"No additional exposure beyond 200 GP total stake unless Banker Judge supplies explicit balance and loan ceiling.\"\n}\n}\n\n深入\nChatGPT 也可能会犯错。请核查重要信息。"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}

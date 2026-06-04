@@ -238,7 +238,7 @@ main{padding:24px 28px;min-width:0}
 <aside>
   <div class="brand"><div class="trophy"><svg viewBox="0 0 32 32" fill="none"><path d="M8 6h16v4c0 5.5-3.6 10-8 10s-8-4.5-8-10V6z" fill="#F59E0B" stroke="#D97706" stroke-width=".8"/><path d="M5 6c-2 0-3.5 1.5-3.5 3.5S3 13 5 13c1 0 2.5-.5 3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><path d="M27 6c2 0 3.5 1.5 3.5 3.5S29 13 27 13c-1 0-2.5-.5-3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><circle cx="16" cy="8" r="5" fill="#FDE68A" stroke="#D97706" stroke-width=".6"/><path d="M14 20h4v2h-4z" fill="#D97706"/><path d="M11 22h10v2H11z" fill="#D97706"/><path d="M9 24h14v2H9z" fill="#D97706"/><path d="M10 26h12v2H10z" fill="#B45309"/><text x="16" y="30" text-anchor="middle" font-size="2.8" fill="#D97706" font-weight="700" font-family="Inter,sans-serif">2026</text></svg></div><div class="info"><h1>美加墨世界杯</h1><p>AI 预测池 · 12 席位</p></div></div>
   <a class="back-to-room" href="/" title="返回 AI Judge 会议室">← 返回会议室</a>
-  <div class="meta-bar"><span>Run #6</span><span>已回收 12/12</span><span>Claude / Zhipu 已移除</span></div>
+  <div class="meta-bar"><span>Run #7</span><span>P15 provider-covered rerun</span><span>active seats 12</span></div>
   <div class="nav-h">📊 概览</div>
   <div class="s-stat"><strong style="color:var(--green)">15,460 GP</strong><span>Run #3 结算基线</span></div>
   <div class="s-stat"><strong>104</strong><span>场比赛</span></div>
@@ -327,7 +327,7 @@ main{padding:24px 28px;min-width:0}
   <div id="view-run-archives" class="pool-view">
     <div class="pool-section-hdr">Run #5</div>
     <div id="archiveRun5"></div>
-    <div class="pool-section-hdr">Run #6</div>
+    <div class="pool-section-hdr">Run #7</div>
     <div id="archiveRun6"></div>
     <div class="pool-section-hdr">⭐ 欧冠前哨结算</div>
     <div id="archiveUclFinal"></div>
@@ -413,10 +413,10 @@ main{padding:24px 28px;min-width:0}
       <tr><td>5</td><td class="h">🇦🇷 阿根廷</td><td>10.0%</td><td>2.1%</td><td>1/6</td><td class="l">Elo + CSI 双 #1。梅西 38 岁是变量。</td></tr>
       <tr><td>6</td><td class="h">🇲🇦 摩洛哥</td><td>2.0%</td><td>0.7%</td><td class="gr">5/6 🔥</td><td class="l">AI 最一致黑马。防御反击 = 48 队最优战术。</td></tr>
     </table>
-    <div class="insight"><strong>Run #6 更新：</strong>Claude 与智谱已从当前席位池和网页端移除；12 个有效席位统一进入排行榜、投注表和分析报告。DeepSeek 缺口已补齐并写回，欧冠前哨历史档案继续保留，当前轮只按可采集席位闭环。世界杯小组赛全部赛程已确认并加入日历，同时恢复 5/28–6/9 开赛前热身赛观察窗。<span class="from">12 席位 · Chrome 桥接实跑 · Run #6 · Claude/Zhipu 已移除</span></div>
+    <div class="insight"><strong>Run #7 / P15 更新：</strong>Claude 与智谱不进入当前席位池；12 个有效席位统一进入排行榜、投注表和分析报告。本轮只接受 provider-covered eligible board 下注，fallback 只能作为 analysis-only。世界杯小组赛全部赛程已确认并加入日历，同时恢复 5/28–6/9 开赛前热身赛观察窗。<span class="from">12 席位 · provider-covered rerun · Run #7 · Claude/Zhipu 已移除</span></div>
     <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">🧾 全量整合结论</h3>
     <div class="full-grid">
-      <div class="full-card"><h4>1. 欧冠前哨结算</h4><strong>PSG 1-1(4-3p) 阿森纳。</strong> DeepSeek 补齐后，命中冠军 PSG @1.75、小 2.5 @2.00、平局 @3.20。历史档案保留原始口径，当前 run-6 改按 12 个可采集席位执行。</div>
+      <div class="full-card"><h4>1. 欧冠前哨结算</h4><strong>PSG 1-1(4-3p) 阿森纳。</strong> DeepSeek 补齐后，命中冠军 PSG @1.75、小 2.5 @2.00、平局 @3.20。历史档案保留原始口径，当前 active pool 按 12 个可采集席位执行。</div>
       <div class="full-card"><h4>2. DeepSeek 赛后修正</h4>补跑 Run <strong>f638c290d422 → c819edfa641e</strong>。DeepSeek 不再标记为缺席；其方案投入 960GP，保留 40GP，按赛果结算为 <strong>1810GP</strong>，从中游直接升至榜首。</div>
       <div class="full-card"><h4>3. 5/31 热身赛共识</h4>第 2 轮 Run <strong>4333aeae60ff</strong> 拿到 11/13 有效回答。议会共识：避开巴西 @1.15 / 德国 @1.25 这类低赔率陷阱，主押小球盘，保留现金等待名单与伤病确认。</div>
       <div class="full-card"><h4>4. 世界杯主线</h4>104 场世界杯赛程 + 13 场热身赛已布置。信息过滤框架聚焦四类变量：友谊赛阵容差、大小球规律、净胜球衰减、比赛节奏；关键信源为 Transfermarkt、FIFA 排名、伤病报告和教练状态。</div>
@@ -492,7 +492,7 @@ main{padding:24px 28px;min-width:0}
   <div class="tc" id="tab-arc">
     <div class="verdict">
       <div class="tag">🗄 档案室 · Run #5 补跑回收</div>
-      <div class="main">5/31 三场热身赛已核验并写入开庭包；Run #6 已回收 12 个当前活跃策略席位，补跑队列已清空。</div>
+      <div class="main">5/31 三场热身赛已核验并写入开庭包；Run #7 使用 P15 provider-covered eligible board 重跑 12 个当前活跃策略席位。</div>
       <div class="sub">档案室不是报告摘要，而是下一轮 AI Judge 的输入仓库。每个席位进场前都能看到：自己还剩多少钱、能不能贷款、上一轮为什么赢或亏、榜首/垫底对手怎么下注，以及本轮必须收集哪些赛事信息。当前席位池保留 12 个可采集模型，继续补跑 ChatGPT、Gemini、DeepSeek、MiMo、xAI。</div>
     </div>
     <div class="stat-strip">
@@ -674,7 +674,7 @@ main{padding:24px 28px;min-width:0}
       <tr><td class="h">人工</td><td>最终判断权</td><td>低赔陷阱、贷款风控、破产模型鼓励重注</td><td><span class="status-tag st-gold">需确认</span></td><td class="l">Run #4 前由人类确认是否写回策略。</td></tr>
     </table>
   </div>
-  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #6 回收 12/12 · 5/31 三场已核验 · 补跑队列已清空 · 7 源数据 · Claude/Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
+  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #7 P15 · active seats 12 · provider-covered eligible board · 5/31 三场已核验 · 7 源数据 · Claude/Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
 </main>
 </div>
 </div><!-- /#legacy-content -->
@@ -711,6 +711,8 @@ var SEAT_REPORTS={
 };
 // === 前端归档数据：从 API 加载，不再硬编码 ===
 var API_BASE = window.POOL_API_BASE || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? '' : 'https://pool-app-one.vercel.app');
+var ACTIVE_ROUND = 'run-7';
+var ACTIVE_DATE = '2026-06-03';
 var FRONTEND_ARCHIVES={
   round_results:[],
   run4_model_archive:[],
@@ -1293,7 +1295,7 @@ async function callLocalBridgeAction(action, btn) {
     var res = await fetch(LOCAL_BRIDGE_BASE + '/api/worldcup-pool/action', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({action: action, date: '2026-06-03', round_id: 'run-6'})
+      body: JSON.stringify({action: action, date: ACTIVE_DATE, round_id: ACTIVE_ROUND})
     });
     var data = await res.json();
     var ok = !!data.ok;
@@ -1330,7 +1332,7 @@ function renderAutomationBridge() {
     '<div class="full-grid" style="margin-top:0">' +
       '<div class="full-card"><h4>桥接状态</h4><strong>' + htmlEscape(bridgeLabel) + '</strong>' +
         '<div class="drawer-copy" style="margin-top:8px">网页数据读取 Vercel；实体按钮通过 AI Judge 客户端本地 API 执行脚本和网页模型局。</div>' +
-        '<div class="mini-tags"><span class="' + statusClass + '">' + (connected ? '127.0.0.1:8501' : '需要桌面客户端') + '</span><span>run-6</span><span>the_odds_api</span></div></div>' +
+        '<div class="mini-tags"><span class="' + statusClass + '">' + (connected ? '127.0.0.1:8501' : '需要桌面客户端') + '</span><span>' + ACTIVE_ROUND + '</span><span>the_odds_api</span></div></div>' +
       '<div class="full-card"><h4>自动化动作</h4>' +
         '<div class="badge-row">' +
           '<button class="tap" type="button"' + disabled + ' onclick="callLocalBridgeAction(\'sync_results\', this)">同步赛果</button>' +
@@ -1475,9 +1477,9 @@ function renderDashboard() {
   kpiEl.innerHTML =
     '<div class="kpi-card blue"><div class="kpi-label">总模型数</div><div class="kpi-val">' + modelCount + '</div><div class="kpi-sub">席位池</div></div>' +
     '<div class="kpi-card"><div class="kpi-label">当前比赛</div><div class="kpi-val">' + matchCount + '</div><div class="kpi-sub">世界杯赛程</div></div>' +
-    '<div class="kpi-card ' + (run5Bets > 0 ? 'green' : 'red') + '"><div class="kpi-label">Run #6 投注</div><div class="kpi-val">' + run5Bets + '</div><div class="kpi-sub">provider-covered</div></div>' +
-    '<div class="kpi-card ' + (readiness.valid_for_settlement ? 'green' : 'red') + '"><div class="kpi-label">Run #6 结算</div><div class="kpi-val">' + (readiness.valid_for_settlement ? 'READY' : 'HOLD') + '</div><div class="kpi-sub">' + run5SettleStatus + '</div></div>' +
-    '<div class="kpi-card blue"><div class="kpi-label">Run #6</div><div class="kpi-val">' + run6Outputs + '/' + run6Total + '</div><div class="kpi-sub">' + run6State + '</div></div>' +
+    '<div class="kpi-card ' + (run5Bets > 0 ? 'green' : 'red') + '"><div class="kpi-label">Run #7 投注</div><div class="kpi-val">' + run5Bets + '</div><div class="kpi-sub">provider-covered</div></div>' +
+    '<div class="kpi-card ' + (readiness.valid_for_settlement ? 'green' : 'red') + '"><div class="kpi-label">Run #7 结算</div><div class="kpi-val">' + (readiness.valid_for_settlement ? 'READY' : 'HOLD') + '</div><div class="kpi-sub">' + run5SettleStatus + '</div></div>' +
+    '<div class="kpi-card blue"><div class="kpi-label">Run #7</div><div class="kpi-val">' + run6Outputs + '/' + run6Total + '</div><div class="kpi-sub">' + run6State + '</div></div>' +
     '<div class="kpi-card green"><div class="kpi-label">真实赔率</div><div class="kpi-val">' + (rtProvider.valid_odds_rows || 0) + '</div><div class="kpi-sub">valid odds rows</div></div>';
 
   // 阻塞状态卡
@@ -1493,15 +1495,15 @@ function renderDashboard() {
     var borderColor, bgColor, icon, title, desc;
     if (run6Outputs === 0) {
       borderColor = 'rgba(248,81,73,.4)'; bgColor = 'rgba(248,81,73,.06)'; icon = '🔴';
-      title = '当前阻塞：Run #6 模型输出 ' + run6Outputs + '/' + run6Total;
+      title = '当前阻塞：Run #7 模型输出 ' + run6Outputs + '/' + run6Total;
       desc = '不是系统故障 — 是等待人工投喂。' + run6Total + ' 个 prompt 已就绪，逐个发给对应模型保存原始输出。';
     } else if (run6Outputs < run6Total) {
       borderColor = 'rgba(240,136,62,.4)'; bgColor = 'rgba(240,136,62,.06)'; icon = '🟡';
-      title = 'Run #6 部分完成：' + run6Outputs + '/' + run6Total;
+      title = 'Run #7 部分完成：' + run6Outputs + '/' + run6Total;
       desc = '已有 ' + run6Outputs + ' 个模型输出，可执行 partial chain。剩余 ' + (run6Total - run6Outputs) + ' 个待投喂。';
     } else {
       borderColor = 'rgba(63,185,80,.4)'; bgColor = 'rgba(63,185,80,.06)'; icon = '🟢';
-      title = 'Run #6 全部完成：' + run6Outputs + '/' + run6Total;
+      title = 'Run #7 全部完成：' + run6Outputs + '/' + run6Total;
       desc = '可执行 full chain。';
     }
 
@@ -1521,9 +1523,9 @@ function renderDashboard() {
   // 核心状态
   if (statesEl) {
     statesEl.innerHTML =
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6 结算</span> ' + statusBadge(run5SettleStatus) + ' · provider-covered ' + (readiness.provider_covered_accepted_bets || 0) + ' · analysis-only ' + (readiness.analysis_only_bets || 0) + '</div>' +
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6</span> ' + statusBadge(run6State) + '</div>' +
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-6</span> ' + statusBadge(run5RerunState) + '</div>';
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">' + ACTIVE_ROUND + ' 结算</span> ' + statusBadge(run5SettleStatus) + ' · provider-covered ' + (readiness.provider_covered_accepted_bets || 0) + ' · analysis-only ' + (readiness.analysis_only_bets || 0) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">' + ACTIVE_ROUND + '</span> ' + statusBadge(run6State) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun ' + ACTIVE_ROUND + '</span> ' + statusBadge(run5RerunState) + '</div>';
   }
 
   renderDashboardAwareness();
@@ -1534,7 +1536,7 @@ function renderDashboard() {
   var gaps = (daily.data_gaps && Array.isArray(daily.data_gaps)) ? daily.data_gaps : [];
   dgTitle.textContent = '(' + gaps.length + ')';
   if (gaps.length === 0) {
-    gapsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无数据缺口报告 — API /api/pool/daily-reports/2026-06-03/run-6</span></div>';
+    gapsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无数据缺口报告 — API /api/pool/daily-reports/' + ACTIVE_DATE + '/' + ACTIVE_ROUND + '</span></div>';
   } else {
     gapsEl.innerHTML = gaps.map(function(g) {
       var txt = typeof g === 'string' ? g : (g.message || g.label || JSON.stringify(g));
@@ -1545,7 +1547,7 @@ function renderDashboard() {
   // Next actions
   var actions = (daily.next_actions && Array.isArray(daily.next_actions)) ? daily.next_actions : [];
   if (actions.length === 0) {
-    actionsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无下一步动作建议 — API /api/pool/daily-reports/2026-06-03/run-6</span></div>';
+    actionsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无下一步动作建议 — API /api/pool/daily-reports/' + ACTIVE_DATE + '/' + ACTIVE_ROUND + '</span></div>';
   } else {
     actionsEl.innerHTML = actions.map(function(a) {
       var txt = typeof a === 'string' ? a : (a.action || a.label || JSON.stringify(a));
@@ -1553,17 +1555,17 @@ function renderDashboard() {
     }).join('');
   }
 
-  // 操作指南（run-6 等待投喂时显示）
+  // 操作指南（active round 等待投喂时显示）
   var howtoEl = document.getElementById('dashboardHowto');
   if (howtoEl && run6Outputs === 0) {
     howtoEl.innerHTML =
       '<div style="border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 16px;font-size:12px;line-height:1.8;color:var(--dim)">' +
-      '<div style="font-weight:700;color:var(--text);margin-bottom:8px">如何投喂 Run #6 模型输出</div>' +
+      '<div style="font-weight:700;color:var(--text);margin-bottom:8px">如何投喂 Run #7 模型输出</div>' +
       '<div style="display:grid;gap:6px">' +
-        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">1</span>打开 data/pool/prompts/run-6/ 目录，逐个读取 ' + run6Total + ' 个模型的 prompt 文件</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">1</span>打开 data/pool/prompts/' + ACTIVE_ROUND + '/ 目录，逐个读取 ' + run6Total + ' 个模型的 prompt 文件</div>' +
         '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">2</span>将完整 prompt 复制给对应模型（ChatGPT / DeepSeek / Doubao / Gemini / Kimi / Meta / MiMo / MiniMax / Qwen / Wenxin / xAI / Yuanbao）</div>' +
-        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">3</span>将模型的原始回答保存到 data/pool/model_outputs/raw/run-6/{model}.txt</div>' +
-        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">4</span>运行 python3 ops/ingest_run6_outputs.py --round run-6 检查 found/missing</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">3</span>将模型的原始回答保存到 data/pool/model_outputs/raw/' + ACTIVE_ROUND + '/{model}.txt</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">4</span>运行 python3 ops/check_model_output_dropbox.py --round ' + ACTIVE_ROUND + ' 检查 found/missing</div>' +
         '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">5</span>全部 ' + run6Total + ' 个就绪后，运行 pipeline 生成 bet receipts 和 settlement</div>' +
       '</div>' +
       '<div style="margin-top:8px;font-size:10px;color:var(--faint)">禁止：复制 run-5 输出、人工修 JSON、补模型没说过的 odds、删除模型拒绝内容</div>' +
@@ -1579,7 +1581,7 @@ function renderModels() {
   var models = PoolData.models;
   var modelList = (models && models.models && Array.isArray(models.models)) ? models.models : [];
   var modelRuns = PoolData.modelRuns || {};
-  var run5 = modelRuns['run-6'] || {};
+  var run5 = modelRuns[ACTIVE_ROUND] || {};
   var rejections = PoolData.betRejections || {};
   var dropbox = PoolData.modelDropbox || {};
   var rerun = PoolData.rerunAttempts || {};
@@ -1592,9 +1594,9 @@ function renderModels() {
 
   kpiEl.innerHTML =
     '<div class="kpi-card blue"><div class="kpi-label">总席位</div><div class="kpi-val">' + modelList.length + '</div><div class="kpi-sub">有效模型</div></div>' +
-    '<div class="kpi-card green"><div class="kpi-label">Run #6 有效</div><div class="kpi-val">' + validCount + '/' + modelList.length + '</div><div class="kpi-sub">valid_receipt</div></div>' +
+    '<div class="kpi-card green"><div class="kpi-label">Run #7 有效</div><div class="kpi-val">' + validCount + '/' + modelList.length + '</div><div class="kpi-sub">valid_receipt</div></div>' +
     '<div class="kpi-card red"><div class="kpi-label">需补跑</div><div class="kpi-val">' + needsRerun + '</div><div class="kpi-sub">needs_rerun</div></div>' +
-    '<div class="kpi-card gold"><div class="kpi-label">Run #6 输出</div><div class="kpi-val">' + (dropbox.outputs_found || 0) + '/' + (dropbox.outputs_expected || 12) + '</div><div class="kpi-sub">' + (dropbox.status || 'unknown') + '</div></div>';
+    '<div class="kpi-card gold"><div class="kpi-label">Run #7 输出</div><div class="kpi-val">' + (dropbox.outputs_found || 0) + '/' + (dropbox.outputs_expected || 12) + '</div><div class="kpi-sub">' + (dropbox.status || 'unknown') + '</div></div>';
 
   if (modelList.length === 0) {
     listEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">模型数据不可用 — 请确认 /api/pool/models 可访问</span></div>';
@@ -1613,7 +1615,7 @@ function renderModels() {
   var missingSet = new Set(dropbox.missing_files || []);
 
   // Table header
-  var html = '<div style="display:grid;grid-template-columns:36px 1fr 100px 100px 100px 100px;gap:6px;align-items:center;padding:6px 10px;border-bottom:2px solid var(--line);font-size:9px;color:var(--faint);text-transform:uppercase;font-weight:700"><div></div><div>模型</div><div>Run #5</div><div>eligible</div><div>拒收原因</div><div>Run #6</div></div>';
+  var html = '<div style="display:grid;grid-template-columns:36px 1fr 100px 100px 100px 100px;gap:6px;align-items:center;padding:6px 10px;border-bottom:2px solid var(--line);font-size:9px;color:var(--faint);text-transform:uppercase;font-weight:700"><div></div><div>模型</div><div>Run #7</div><div>eligible</div><div>拒收原因</div><div>输出</div></div>';
 
   html += modelList.map(function(m) {
     var name = m.model_account || 'unknown';
@@ -1822,7 +1824,7 @@ function renderRunArchives() {
   var dropbox = PoolData.modelDropbox || {};
   var providerSmoke = PoolData.providerSmoke || {};
   var modelRuns = PoolData.modelRuns || {};
-  var run5 = modelRuns['run-6'] || {};
+  var run5 = modelRuns[ACTIVE_ROUND] || {};
   var r5summary = run5.summary || {};
 
   // Run #5 — 用 model-runs 和 bet-rejections 的实际数据
@@ -1839,7 +1841,7 @@ function renderRunArchives() {
   r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">补跑</span> ' + (rerun.summary ? statusBadge(rerun.summary.state || '--') + ' · ' + (rerun.summary.planned_attempts || 0) + ' planned' : statusBadge('no_rerun_queue')) + '</div>');
   run5El.innerHTML = r5Lines.join('');
 
-  // Run #6 — 用 output-dropbox 的实际数据
+  // Active round — 用 output-dropbox 的实际数据
   var r6Outputs = dropbox.outputs_found || 0;
   var r6Expected = dropbox.outputs_expected || 12;
   var r6Missing = dropbox.missing_files || [];
@@ -1892,7 +1894,7 @@ async function renderSystemHealth() {
     var dbCls = dbFound === 0 ? 'red' : dbFound < dbExpected ? 'gold' : 'green';
     modelOutEl.innerHTML =
       '<div class="kpi-grid">' +
-      '<div class="kpi-card ' + dbCls + '"><div class="kpi-label">Run #6 输出</div><div class="kpi-val">' + dbFound + '/' + dbExpected + '</div><div class="kpi-sub">' + dbStatus + '</div></div>' +
+      '<div class="kpi-card ' + dbCls + '"><div class="kpi-label">Run #7 输出</div><div class="kpi-val">' + dbFound + '/' + dbExpected + '</div><div class="kpi-sub">' + dbStatus + '</div></div>' +
       '<div class="kpi-card ' + (dbMissing.length > 0 ? 'gold' : 'green') + '"><div class="kpi-label">缺失模型</div><div class="kpi-val">' + dbMissing.length + '</div><div class="kpi-sub">models</div></div>' +
       '</div>' +
       '<div style="margin-top:8px;font-size:11px;color:var(--dim)">缺失：' + (dbMissing.length > 0 ? dbMissing.join(', ') : '无') + '</div>';
@@ -1926,18 +1928,18 @@ async function renderSystemHealth() {
     '/api/matches',
     '/api/pool/match-results/2026-06-03',
     '/api/pool/odds-snapshots/2026-06-03/T-1h/the_odds_api',
-    '/api/pool/bet-receipts/run-6',
-    '/api/pool/settlements/run-6',
+    '/api/pool/bet-receipts/' + ACTIVE_ROUND,
+    '/api/pool/settlements/' + ACTIVE_ROUND,
     '/api/pool/settlements/run-5',
-    '/api/pool/run-manifests/run-6',
-    '/api/pool/rerun-attempts/run-6',
+    '/api/pool/run-manifests/' + ACTIVE_ROUND,
+    '/api/pool/rerun-attempts/' + ACTIVE_ROUND,
     '/api/pool/rerun-attempts/run-5',
-    '/api/pool/daily-reports/2026-06-03/run-6',
+    '/api/pool/daily-reports/' + ACTIVE_DATE + '/' + ACTIVE_ROUND,
     '/api/cron/pipeline-status',
     '/api/pool/ops-readiness',
     '/api/pool/provider-status',
-    '/api/pool/runtime-summary',
-    '/api/pool/settlement-readiness/run-6'
+    '/api/pool/runtime-summary?round_id=' + ACTIVE_ROUND + '&date=' + ACTIVE_DATE,
+    '/api/pool/settlement-readiness/' + ACTIVE_ROUND
   ];
 
   apiEl.innerHTML = '<div class="health-grid">' + healthEndpoints.map(function(ep) {
@@ -2085,26 +2087,26 @@ async function renderSystemHealth() {
   var results = await Promise.allSettled([
     fetchJson('/api/pool/models'),
     fetchJson('/api/matches'),
-    fetchJson('/api/pool/match-results/2026-06-03'),
-    fetchJson('/api/pool/odds-snapshots/2026-06-03/T-1h'),
-    fetchJson('/api/pool/bet-receipts/run-6'),
-    fetchJson('/api/pool/bet-rejections/run-6'),
-    fetchJson('/api/pool/settlements/run-6'),
-    fetchJson('/api/pool/daily-reports/2026-06-03/run-6'),
-    fetchJson('/api/pool/run-manifests/run-6'),
-    fetchJson('/api/pool/ingested-outputs/run-6'),
-    fetchJson('/api/pool/rerun-attempts/run-6'),
+    fetchJson('/api/pool/match-results/' + ACTIVE_DATE),
+    fetchJson('/api/pool/odds-snapshots/' + ACTIVE_DATE + '/T-1h'),
+    fetchJson('/api/pool/bet-receipts/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/bet-rejections/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/settlements/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/daily-reports/' + ACTIVE_DATE + '/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/run-manifests/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/ingested-outputs/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/rerun-attempts/' + ACTIVE_ROUND),
     fetchJson('/api/pool/data-health'),
-    fetchJson('/api/pool/model-runs/run-6'),
+    fetchJson('/api/pool/model-runs/' + ACTIVE_ROUND),
     fetchJson('/api/pool/pipeline-runs'),
-    fetchJson('/api/pool/pipeline-runs/2026-06-03/run-6'),
+    fetchJson('/api/pool/pipeline-runs/' + ACTIVE_DATE + '/' + ACTIVE_ROUND),
     fetchJson('/api/cron/pipeline-status'),
     fetchJson('/api/pool/ops-readiness'),
     fetchJson('/api/pool/provider-status'),
-    fetchJson('/api/pool/output-dropbox/run-6'),
-    fetchJson('/api/pool/provider-smoke/run-6/2026-06-03'),
-    fetchJson('/api/pool/runtime-summary'),
-    fetchJson('/api/pool/settlement-readiness/run-6')
+    fetchJson('/api/pool/output-dropbox/' + ACTIVE_ROUND),
+    fetchJson('/api/pool/provider-smoke/' + ACTIVE_ROUND + '/' + ACTIVE_DATE),
+    fetchJson('/api/pool/runtime-summary?round_id=' + ACTIVE_ROUND + '&date=' + ACTIVE_DATE),
+    fetchJson('/api/pool/settlement-readiness/' + ACTIVE_ROUND)
   ]);
 
   PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -2119,7 +2121,7 @@ async function renderSystemHealth() {
   PoolData.ingestedOutputs = results[9].status === 'fulfilled' ? results[9].value : null;
   PoolData.rerunAttempts = results[10].status === 'fulfilled' ? results[10].value : null;
   PoolData.dataHealth = results[11].status === 'fulfilled' ? results[11].value : null;
-  if (results[12].status === 'fulfilled') PoolData.modelRuns['run-6'] = results[12].value;
+  if (results[12].status === 'fulfilled') PoolData.modelRuns[ACTIVE_ROUND] = results[12].value;
   PoolData.pipelineRuns = results[13].status === 'fulfilled' ? results[13].value : null;
   PoolData.pipelineRun = results[14].status === 'fulfilled' ? results[14].value : null;
   PoolData.opsReadiness = results[16].status === 'fulfilled' ? results[16].value : null;
@@ -2177,7 +2179,7 @@ async function renderSystemHealth() {
       return;
     }
     var icon = data.status === 'ready_for_ingest' ? '✅' : (data.status === 'partial_outputs_found' ? '⚠️' : '🔴');
-    var html = '<div style="margin:4px 0;"><b>' + icon + ' run-6 dropbox</b>: ' + data.status + '</div>';
+    var html = '<div style="margin:4px 0;"><b>' + icon + ' ' + ACTIVE_ROUND + ' dropbox</b>: ' + data.status + '</div>';
     html += '<div>expected: ' + data.outputs_expected + ', found: ' + data.outputs_found + ', missing: ' + data.outputs_missing + '</div>';
     if (data.next_action) {
       html += '<pre style="background:#f5f5f5;padding:6px;border-radius:6px;overflow-x:auto;font-size:11px;">' + data.next_action + '</pre>';

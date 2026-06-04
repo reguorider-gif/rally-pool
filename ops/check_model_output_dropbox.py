@@ -37,6 +37,16 @@ def load_model_accounts() -> list:
     return [m["model_account"] for m in data.get("models", [])]
 
 
+def is_real_output(path: Path) -> bool:
+    if not path.exists() or path.stat().st_size <= 50:
+        return False
+    try:
+        head = path.read_text(encoding="utf-8", errors="ignore")[:200]
+    except Exception:
+        return False
+    return not head.lstrip().startswith("[WAITING")
+
+
 def check_dropbox(round_id: str, to_json: bool = False):
     """检查指定 round 的 raw output 投喂目录。"""
     raw_dir   = DATA_DIR / "model_outputs" / "raw" / round_id
@@ -84,8 +94,9 @@ def check_dropbox(round_id: str, to_json: bool = False):
             mismatched.append({"file": f.name, "reason": "not_in_model_accounts"})
             continue
 
-        if size == 0:
+        if not is_real_output(f):
             empty.append(f.name)
+            continue
 
         found.append(name)
 

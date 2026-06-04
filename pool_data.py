@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 # 定位项目根目录（兼容 Vercel serverless 和本地运行）
 ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data" / "pool"
+ACTIVE_ROUND_ID = "run-7"
+ACTIVE_DATE = "2026-06-03"
 
 
 def _now_iso():
@@ -480,7 +482,7 @@ def get_settlement_readiness(round_id: str = None):
     """
     P14.0：读取 provider-covered settlement readiness 红绿灯。
     """
-    round_id = round_id or "run-6"
+    round_id = round_id or ACTIVE_ROUND_ID
     data = _read_json(f"reports/settlement_readiness_{round_id}.json", default=None)
     if data:
         return data
@@ -1135,7 +1137,7 @@ def get_output_dropbox_report(round_id: str = None):
     读取 data/pool/model_outputs/raw/{round_id}/dropbox_check.json。
     """
     if not round_id:
-        round_id = "run-6"  # 默认值
+        round_id = ACTIVE_ROUND_ID
 
     dropbox_path = DATA_DIR / "model_outputs" / "raw" / round_id / "dropbox_check.json"
     if dropbox_path.exists():
@@ -1169,10 +1171,10 @@ def get_runtime_summary(round_id: str = None, date: str = None):
     """
     P14.0：返回预测池当前运行态 + 历史归档摘要。
     这个接口专门给新版五页 UI 使用，避免首页只读 run-5 或隐藏旧档案后
-    让欧冠前哨、历史投注和 run-6 真实回收状态看起来“消失”。
+    让欧冠前哨、历史投注和最新真实回收状态看起来“消失”。
     """
-    round_id = round_id or "run-6"
-    date = date or "2026-06-03"
+    round_id = round_id or ACTIVE_ROUND_ID
+    date = date or ACTIVE_DATE
 
     models = get_model_accounts()
     leaderboard = get_leaderboard()

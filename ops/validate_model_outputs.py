@@ -513,6 +513,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     structured_count = 0
     candidate_bets = 0
     analysis_only_bets = 0
+    model_no_bet_count = 0
 
     for output_entry in outputs_data.get("outputs", []):
         ma = output_entry.get("model_account", "unknown")
@@ -586,16 +587,24 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
 
         if len(bet_ledger) == 0:
             skipped = receipt.get("non_executable_bets", [])
-            reason_codes = sorted({
-                s.get("reason", "rejected_missing_provider_odds")
-                for s in skipped
-                if isinstance(s, dict)
-            }) or ["rejected_missing_provider_odds"]
+            if not skipped and receipt.get("no_bet_reason"):
+                reason_codes = ["model_no_bet"]
+                model_no_bet_count += 1
+            else:
+                reason_codes = sorted({
+                    s.get("reason", "rejected_missing_provider_odds")
+                    for s in skipped
+                    if isinstance(s, dict)
+                }) or ["rejected_missing_provider_odds"]
             rejections.append({
                 "model_account": ma,
                 "stage": "provider_coverage",
                 "reason_code": ",".join(reason_codes),
-                "reason": "No provider-covered bet references an eligible board_id and odds_row_id.",
+                "reason": (
+                    receipt.get("no_bet_reason")
+                    if reason_codes == ["model_no_bet"]
+                    else "No provider-covered bet references an eligible board_id and odds_row_id."
+                ),
                 "analysis_only_bets": analysis_only,
                 "non_executable_bets": skipped,
                 "source_path": str(DATA_DIR / "model_outputs" / f"{round_id}.json"),
@@ -715,6 +724,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "provider_covered_accepted_bets": provider_covered_accepted_bets,
         "fallback_bets": fallback_bets,
         "analysis_only_bets": analysis_only_bets,
+        "model_no_bet_count": model_no_bet_count,
         "manual_review_bets": manual_review_bets,
         "rejected_bets": rejected_bets,
         "eligible_board_rows": eligible_board.get("summary", {}).get("eligible_board_rows", 0),
@@ -746,6 +756,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "provider_covered_accepted_bets": provider_covered_accepted_bets,
         "fallback_bets": fallback_bets,
         "analysis_only_bets": analysis_only_bets,
+        "model_no_bet_count": model_no_bet_count,
         "valid_for_settlement": valid_for_settlement,
         "blockers": blockers,
     }
@@ -783,6 +794,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
             "rejected_models": len(set(rj["model_account"] for rj in rejections)),
             "rejected_bets": rejected_bets,
             "analysis_only_bets": analysis_only_bets,
+            "model_no_bet_count": model_no_bet_count,
             "reason_counts": reason_counts,
         },
         "rejections": rejections,
@@ -807,6 +819,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "provider_covered_accepted_bets": provider_covered_accepted_bets,
         "fallback_bets": fallback_bets,
         "analysis_only_bets": analysis_only_bets,
+        "model_no_bet_count": model_no_bet_count,
         "manual_review_bets": manual_review_bets,
         "rejected_bets": rejected_bets,
         "valid_for_settlement": valid_for_settlement,

@@ -664,7 +664,7 @@ def api_pool_frontend_archives():
 
 
 @app.get("/api/pool/runtime-summary")
-def api_pool_runtime_summary(round_id: str = "run-6", date: str = "2026-06-03"):
+def api_pool_runtime_summary(round_id: str = "run-7", date: str = "2026-06-03"):
     """返回预测池当前运行态与历史归档摘要。"""
     ensure_init()
     if _HAS_POOL_API:

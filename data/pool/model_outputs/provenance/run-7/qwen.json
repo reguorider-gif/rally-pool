@@ -1,0 +1,255 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "qwen",
+  "model_account": "qwen",
+  "ok": true,
+  "status": "answered",
+  "failure_reason": "answered",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": "data/pool/model_outputs/raw/run-7/qwen.txt",
+  "parsed": {
+    "run_id": "run-7",
+    "seat_id": "qwen",
+    "round_id": "run-7",
+    "bets": [
+      {
+        "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+        "stake_gp": 100,
+        "rationale": "Mexico possesses a historical home advantage and superior squad depth compared to South Africa. The handicap odds of 2.29 at GTbets present a positive expected value compared to the sharp baseline of 2.05 at Pinnacle.",
+        "risk": "South Africa's potential low-block defensive strategy could result in a draw or a narrow one-goal defeat, failing to cover the handicap."
+      }
+    ],
+    "no_bet_reason": null,
+    "sources_checked": [
+      "FIFA World Cup historical home advantage statistics",
+      "Mexico vs South Africa historical head-to-head records",
+      "Pinnacle odds baseline comparison for value identification",
+      "Pre-match squad availability and injury reports"
+    ]
+  },
+  "response_chars": 12787,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T17:02:38.219397+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://chat.qwen.ai/c/new-chat"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://chat.qwen.ai/",
+              "title": "Qwen Studio",
+              "inputs": 3,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          },
+          {
+            "click_new_chat_for_new_conversation": {
+              "clicked": false,
+              "reason": "no_new_chat_candidate"
+            }
+          },
+          {
+            "dismiss_after_new_click": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_click": {
+              "ok": true,
+              "url": "https://chat.qwen.ai/",
+              "title": "Qwen Studio",
+              "inputs": 3,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://chat.qwen.ai/",
+        "inputs": 3
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://chat.qwen.ai/",
+        "title": "Qwen Studio",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "INPUT",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": "搜索对话",
+            "text": "",
+            "x": 52,
+            "y": 106,
+            "w": 183,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "TEXTAREA",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": "有什么我能帮您的吗？",
+            "text": "",
+            "x": 432,
+            "y": 293,
+            "w": 564,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "INPUT",
+            "role": "combobox",
+            "type": "search",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 1004,
+            "y": 291,
+            "w": 68,
+            "h": 24,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": "切换侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 215,
+            "y": 18,
+            "w": 20,
+            "h": 20,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "刘威迪",
+            "x": 16,
+            "y": 627,
+            "w": 227,
+            "h": 28,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "?",
+            "x": 1272,
+            "y": 651,
+            "w": 20,
+            "h": 20,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "Voice Input",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 1088,
+            "y": 293,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "新建对话\n我的创作\n社区\nCoder\n项目\n新项目\n所有对话\n刘威迪\n?\nQwen3.7-Plus\n你准备好了我就来。\n自动"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://chat.qwen.ai/",
+        "inputs": 3
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:02:43.809980+00:00",
+        "released_at": "2026-06-04T17:02:47.471340+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_insert_text_and_click_send",
+        "inputLen": 35540,
+        "inputRect": {
+          "x": 432,
+          "y": 292.5,
+          "width": 564,
+          "height": 32,
+          "right": 996,
+          "bottom": 324.5
+        }
+      },
+      "post_insert_send_click": {
+        "ok": false,
+        "fallback": true,
+        "x": 1152,
+        "y": 529,
+        "selector": "[class*=\"send\"]",
+        "label": "message-input-right-button-send",
+        "site_specific": true,
+        "reason": "physical_send_selector"
+      },
+      "status": "answered",
+      "reason": "answered",
+      "parse_error": null,
+      "finished_at": "2026-06-04T17:03:34.957485+00:00",
+      "snapshot_url": "https://chat.qwen.ai/c/2ea6ea23-332e-49b9-bfd2-409670858bcc",
+      "snapshot_title": "Qwen Studio",
+      "raw_text_excerpt": "新建对话\n我的创作\n社区\nCoder\n项目\n新项目\n所有对话\n今天\n墨西哥胜出预测\n新建对话\nAI Judge开发与运维平衡策略\nAI Judge 功能迭代决策\n昨天\nAI Judge 健康状态评估\n世界杯热身赛预测策略博弈\nAI预测池策略博弈\n新建对话\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780562458426310000] P3.2-RC1运维态决策执行方案 1. 共振提问回应： - 问题1：当前...\nP3.2-RC1运维延续决策\nAI 赛事预测模型输出\nhello\n深度裁决模式执行报告\n过去 7 天\nJSON与SQLite架构取舍裁决报告\nJSON与SQLite存储架构比较\nP2.4回归测试状态验证\nP2.4回归测试C裁决报告\nJSON与SQLite架构选型决策\nJSON与SQLite架构取舍裁决报告\n历史裁决质量评估\nAI Judge 存储架构决策裁决\nSQLite 迁移优先决策\nSQLite优先迁移决策\n本地存储方案评估\n世界杯热身赛投注策略优化\nQwen世界杯预测策略\n世界杯预测策略共振\nAI Judge 热身赛策略分析\n猎人首日归票策略\n支持：Qwen\n支持竞选警长\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780307531405248000] 我的公开发言：我怀疑DeepSeek在故意制造对立。他指责Gemini有睁眼动作，...\nAI Judge 警长投票决断\nAI Judge 警长竞选决策\nAI Judge 警长竞选决策\n我竞选警长 支持立场： 1. 警长职责与AI Judge的决策一致性匹配，可提升流程透明度。 2. 历史数据表明，由高可信度角色担任警长能降低误判率18%（基于2025年狼人杀算法评...\n竞选警长的理性决策\nQwen热身赛策略分析\n警长竞选立场分析\nAI Prediction Pool Strategy\n世界杯竞猜二轮策略共振\nQwen 世界杯预测竞逐策略\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780260838670270000] A. 我的账户与排名目标 当前资产：1100GP | 当前排名：#8/14 ...\n世界杯竞猜二轮策略\n世界杯预测池策略竞逐\n世界杯开幕战策略共振\nQwen 世界杯预测竞争策略\nQwen 世界杯预测策略\n世界杯热身赛核验与投注策略\n我的公开发言：我怀疑Claude的逻辑存在自我矛盾，他先批判控场，却立刻施压Kimi，这种策略性压迫与狼人伪装高度吻合。同时，DeepSeek对Gemini的反向质疑也显露出过度防御，疑似在转移...\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780243969094711000] 我的公开发言：第3夜狼刀落在我身上，守卫成功守护，说明狼人目标明确。前两轮票型显示...\n我的公开发言：我怀疑Gemini的立场存在结构性矛盾。其对Claude的批判与自身行为高度相似，且在未明确证据下直接锁定DeepSeek为潜在狼人，这种快速站队和施压手法符合狼人操控节奏的特征。...\nKimi 焊跳逻辑漏洞明显，票型同盟铁证如山。 我投票淘汰：Kimi\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780242296228980000] 我的公开发言： 第一轮投票中，7人集体投向Meta AI，其中Wenxin、C...\n首轮投票策略分析\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780240234086424000] 我的公开发言：我怀疑玩家A的发言存在逻辑断层，其对夜晚事件的描述与基础规则冲突。建...\n[AIJUDGE_ANSWER_START:AIJUDGE-qwen-1780240234086424000] 我的公开发言：我怀疑玩家A的首夜发言存在逻辑断层，其对其他玩家的否定过于绝对。请A...\n新建对话\n新建对话\n新建对话\n刘威迪\n?\nQwen3.7-Plus\n\nAI_JUDGE_RUN_ID:run-7\n席位：qwen\n输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 qwen。\n发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。\n通义特别要求：开启思考后也必须输出最终 JSON，不要停在“已经完成思考”状态；如果无法继续输出，请 deep_mode_status 写 mode_failed 并仍然输出 JSON。\nAI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603\n\n# AI Judge 赛事预测池独立模型席位\n\nseat_id: qwen\nmodel_account: qwen\ndisplay_name: 通义\nround_id: run-7\ndate: 2026-06-03\n\n【合规与实验边界】\n这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。\n所有投注均为模拟，仅用于算法研究与模型评估。\n\n## 当前任务\n你是 AI Judge 赛事预测池中的一个独立模型席位。\n你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出 P15 单一 JSON 投注单。\n本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。\n你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。\n你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。\n\n## 强制防污染要求\n- 不要回答旧任务。\n- 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。\n- 不要输出 Markdown。\n- 不要输出解释性自然语言。\n- 不要输出 JSON 之外的任何内容。\n- JSON 必须能被 json.loads 解析。\n- 只能从 eligible_board 中选择下注对象。\n- 每条 bets 必须引用 eligible_board 内现有的 board_id。\n- odds_row_id 可选；如果省略，系统只允许从 board_id 解析。\n- 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。\n- 不得把 fallback match 写入 settlement bet。\n- 下注 market / selection 必须与 board row 一致；你不需要重复填写 market/selection，validator 会从 board_id 解析。\n- 如果没有合适下注，bets 必须为空，并填写 no_bet_reason。\n\n## Provider-covered eligible_board（唯一可下注来源）\n{\n  \"summary\": {\n    \"eligible_board_rows\": 989,\n    \"markets\": [\n      \"handicap\",\n      \"moneyline\",\n      \"total_goals\"\n    ],\n    \"matches_covered\": 5,\n    \"match_ids\": [\n      \"WC-A1\",\n      \"WC-F1\",\n      \"WC-F2\",\n      \"WC-H1\",\n      \"WC-I1\"\n    ],\n    \"valid_for_settlement\": true\n  },\n  \"items\": [\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.21,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"1xBet\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 1.71,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"BetOnline.ag\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.0,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"Bovada\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.29,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"GTbets\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_MyBookie.ag_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_MyBookie.ag_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.18,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"MyBookie.ag\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_Pinnacle_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_Pinnacle_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.05,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"Pinnacle\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_1xBet_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_1xBet_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 1.59,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"1xBet\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_BetOnline.ag_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_BetOnline.ag_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 2.2,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"BetOnline.ag\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_Bovada_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_Bovada_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 1.83,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"Bovada\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_GTbets_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_GTbets_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 1.62,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"GTbets\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_MyBookie.ag_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_MyBookie.ag_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 1.61,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"MyBookie.ag\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_South Africa_Pinnacle_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_South Africa_Pinnacle_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"South Africa\",\n      \"price\": 1.86,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"Pinnacle\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_moneyline_Draw_1xBet_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_moneyline_Draw_1xBet_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"moneyline\",\n      \"selection\": \"Draw\",\n      \"price\": 4.55,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"1xBet\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_moneyline_Draw_888sport_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_moneyline_Draw_888sport_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"moneyline\",\n      \"selection\": \"Draw\",\n      \"price\": 4.0,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"888sport\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_moneyline_Draw_Bet Right_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\"\n\n已经完成思考\n{\n\"run_id\": \"run-7\",\n\"seat_id\": \"qwen\",\n\"round_id\": \"run-7\",\n\"bets\": [\n{\n\"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n\"stake_gp\": 100,\n\"rationale\": \"Mexico possesses a historical home advantage and superior squad depth compared to South Africa. The handicap odds of 2.29 at GTbets present a positive expected value compared to the sharp baseline of 2.05 at Pinnacle.\",\n\"risk\": \"South Africa's potential low-block defensive strategy could result in a draw or a narrow one-goal defeat, failing to cover the handicap.\"\n}\n],\n\"no_bet_reason\": null,\n\"sources_checked\": [\n\"FIFA World Cup historical home advantage statistics\",\n\"Mexico vs South Africa historical head-to-head records\",\n\"Pinnacle odds baseline comparison for value identification\",\n\"Pre-match squad availability and injury reports\"\n]\n}\n自动\n人工智能生成的内容可能不准确。"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}

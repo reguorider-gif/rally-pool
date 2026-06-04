@@ -1,0 +1,574 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "meta",
+  "model_account": "meta",
+  "ok": true,
+  "status": "raw_answer_unparsed",
+  "failure_reason": "raw_answer_unparsed",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": "data/pool/model_outputs/raw/run-7/meta.txt",
+  "parsed": null,
+  "response_chars": 70000,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T17:05:13.839888+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://www.meta.ai/"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://www.meta.ai/",
+              "title": "Meta AI",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://www.meta.ai/",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://www.meta.ai/",
+        "title": "Meta AI",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": "textbox",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 414,
+            "y": 275,
+            "w": 728,
+            "h": 27,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "NAV",
+            "role": null,
+            "type": null,
+            "aria": "侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "新建聊天\n⇧⌘O\n搜索\n⌘K\nVibes\n创建\n历史记录\n[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] [SYSTEM] 作为 AI Judge 独立专家席位，你重视清晰、证据和可执行性。请先给出明确立场，再说明依据、风险和下一步；不要回避，不要只写空泛结论。 [MODE_INS",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 679,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": "首页",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 12,
+            "y": 12,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": "切换侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 208,
+            "y": 12,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "新建聊天\n⇧⌘O",
+            "x": 12,
+            "y": 57,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "搜索\n⌘K",
+            "x": 12,
+            "y": 90,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Vibes",
+            "x": 12,
+            "y": 123,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "创建",
+            "x": 12,
+            "y": 156,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] [SYSTEM] 作为 AI Judge 独立专家席位，你重视清晰、证据和可执行性。请先给出明确立场，再说明依据、风险和下一步；不要回避，不要只写空泛结论。 [MODE_INSTRUCTION] 你正在执行深度裁决模式。请按议会式流程",
+            "x": 12,
+            "y": 237,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge 决策",
+            "x": 12,
+            "y": 270,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多选项",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 212,
+            "y": 274,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge 评估",
+            "x": 12,
+            "y": 303,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多选项",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 212,
+            "y": 307,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "新建聊天\n⇧⌘O\n搜索\n⌘K\nVibes\n创建\n历史记录\n[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] [SYSTEM] 作为 AI Judge 独立专家席位，你重视清晰、证据和可执行性。请先给出明确立场，再说明依据、风险和下一步；不要回避，不要只写空泛结论。 [MODE_INSTRUCTION] 你正在执行深度裁决模式。请按议会式流程处理问题：先拆解目标，再组织多个席位独立发言，进行交叉验证，标注证据、假设、分歧和不确定性，最后形成可审计裁决报告。输出应包含：问题拆解、席位观点、交叉验证、共识与分歧、风险、最终裁决、下一步行动。 [QUESTION] [AIJUDGE_PRE_RUN_CONFIRMATION] 你将作为 AI Judge 全席位中的独立专家，不要互相迎合，也不要只给一个省略式结论。目标是输出可审计、可比较、可落地的方案。 用户原始任务： A案中的申请执行人张三是B案的被执行人，现在张三委托律师李四代理A案。执行过程中，李四、张三及其配偶王五一同前往法院做执行笔录，张三指定王五代为领取执行款。领取之后，张三并未将该执行款用于清偿B案的执行义务。问李四是否构成拒不执行判决罪。 请以中国刑法“拒不执行判决、裁定罪”的构成要件、共同犯罪/帮助犯、律师代理职责边界、主观明知和客观帮助行为为中心进行深度裁决；区分张三、王五和李四的责任，并说明结论的不确定性与补充事实需求。 规范化任务： A案中的申请执行人张三是B案的被执行人，现在张三委托律师李四代理A案。执行过程中，李四、张三及其配偶王五一同前往法院做执行笔录，张三指定王五代为领取执行款。领取之后，张三并未将该执行款用于清偿B案的执行义务。问李四是否构成拒不执行判决罪。 请以中国刑法“拒不执行判决、裁定罪”的构成要件、共同犯罪/帮助犯、律师代理职责边界、主观明知和客观帮助行为为中心进行深度裁决；区分张三、王五和李四的责任，并说明结论的不确定性与补充事实需求。 任务意图： 对一个决策做多席位评估，输出立场、条件和下一步验证 裁决模式： 深度裁决 输出必须包含： - 独立结论或方案，标题必须对齐用户任务 - 列出 3-5 条关键依据，并区分事实、推断和建议 - 说明页面/流程/证据或实施结构，不要只给评价 - 给出报告/文稿/交付物的专业格式建议 - 指出最大风险、反方观点和失败条件 - 若存在多个可行路径，列出至少 3 个可选方案供用户选择 - 给出最小可执行下一步和验收标准 专业报告要求： - 标题必须与用户任务对齐，不能把流程状态误写成业务标题 - 先给可阅读的结论和方案，再把证据、模型贡献、互评和原始日志放入附录 - 若存在多个可行方向，必须分别说明适用场景、优点、缺点、风险和实施成本 - 不要省略有效模型给出的具体路径；提炼噪音，但保留可追溯来源 需要主动核查或声明的假设： - 外部事实若会变化，需要显式标注信息时点 约束：不要把所有内容塞进一个杂乱页面；不要把不可验证内容说成事实；事实、推断、建议要分开写，最终输出要能被产品经理直接审阅和选择。 请作为 AI Judge 的一个独立席位回答。输出要求： 1. 先给出明确立场：支持 / 条件支持 / 反对 / 信息不足。 2. 给出 3-5 条理由，每条尽量包含可验证依据或需要验证的假设。 3. 给出最大风险和最小下一步。 4. 单独输出「共振提问」：站在用户目标和你的席位专长上，提出 3-5 个能显著补强方案的问题。 5. 当前模式：strategic。请保持结论紧凑，避免套话。 重要：不要只进行思考，必须在最终回答区域输出正文。请将你的最终答案完整包裹在以下两行标记之"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://www.meta.ai/",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:05:18.664687+00:00",
+        "released_at": "2026-06-04T17:05:22.733419+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_insert_text_and_click_send",
+        "inputLen": 35451,
+        "inputRect": {
+          "x": 414,
+          "y": 274.5,
+          "width": 728,
+          "height": 27,
+          "right": 1142,
+          "bottom": 301.5
+        }
+      },
+      "post_insert_send_click": {
+        "ok": true,
+        "direct": true,
+        "x": 1082,
+        "y": 336,
+        "label": "即时 enabled:active:scale-98 inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-0.5 focus:not-focus-visible:outline-none transition-transform duration-15"
+      },
+      "status": "raw_answer_unparsed",
+      "reason": "raw_answer_unparsed",
+      "parse_error": "seat_id_mismatch:gemini!=meta",
+      "finished_at": "2026-06-04T17:05:35.543615+00:00",
+      "snapshot_url": "https://www.meta.ai/prompt/83eea652-a34e-4546-af90-37233fdd6eb4",
+      "snapshot_title": "Meta AI",
+      "raw_text_excerpt": "{ \"match_id\": \"WARM-002\", \"status\": \"settled\", \"home_score\": 6, \"away_score\": 2, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-003\", \"status\": \"settled\", \"home_score\": 3, \"away_score\": 2, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-004\", \"status\": \"settled\", \"home_score\": 4, \"away_score\": 0, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-005\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-006\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-007\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-008\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-009\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-010\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-011\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-012\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WARM-013\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": \"legacy_seed\", \"source_url\": \"\", \"fetched_at\": \"2026-06-04T16:18:34Z\", \"confidence\": 0.5, \"result_state\": \"missing_or_not_finished\", \"extra_time\": null, \"penalties\": null }, { \"match_id\": \"WC-A1\", \"status\": \"scheduled\", \"home_score\": null, \"away_score\": null, \"halftime_score\": null, \"red_cards\": [], \"injury_notes\": [], \"provider\": ...<truncated> ## 赔率快照摘要 { \"snapshot_label\": \"T-1h\", \"provider\": \"the_odds_api\", \"summary\": { \"matches_total\": 21, \"markets_requested\": [ \"moneyline\", \"handicap\", \"total_goals\" ], \"odds_rows\": 1190, \"valid_odds_rows\": 989, \"missing_market_coverage\": 0, \"match_mapping_failed\": 201, \"provider_unavailable\": false, \"provider_responded\": true, \"matched_internal_matches\": 5, \"coverage_status\": \"real_odds_provider_has_valid_odds\" }, \"warning\": \"Do not bet from this snapshot directly. Use eligible_board rows only.\" } ## 当前排行榜/账户摘要 { \"version\": \"p9.2\", \"updated_at\": \"2026-06-03T19:30:00Z\", \"leaderboard\": [ { \"model_account\": \"deepseek\", \"display_name\": \"DeepSeek\", \"rank\": 1, \"balance_gp\": 2810, \"loan_gp\": 1000, \"status\": \"active\", \"notes\": \"Run#4 三线命中，Run#5 有效回收\" }, { \"model_account\": \"gemini\", \"display_name\": \"Gemini\", \"rank\": 2, \"balance_gp\": 1850, \"loan_gp\": 1000, \"status\": \"active\", \"notes\": \"Run#4 有效；Run#5 有效，上调 xG 基线\" }, { \"model_account\": \"qwen\", \"display_name\": \"通义\", \"rank\": 3, \"balance_gp\": 1500, \"loan_gp\": 400, \"status\": \"active\", \"notes\": \"Run#4 有效；Run#5 有效\" }, { \"model_account\": \"doubao\", \"display_name\": \"豆包\", \"rank\": 4, \"balance_gp\": 1400, \"loan_gp\": 300, \"status\": \"active\", \"notes\": \"Run#4 重仓 Brazil -1.5 命中；Run#5 有效\" }, { \"model_account\": \"yuanbao\", \"display_name\": \"元宝\", \"rank\": 5, \"balance_gp\": 1500, \"loan_gp\": 500, \"status\": \"active\", \"notes\": \"Run#4 有效；Run#5 有效\" }, { \"model_account\": \"mimo\", \"display_name\": \"MiMo\", \"rank\": 6, \"balance_gp\": 1200, \"loan_gp\": 300, \"status\": \"active\", \"notes\": \"Run#4 有效；Run#5 有效\" }, { \"model_account\": \"meta\", \"display_name\": \"Meta AI\", \"rank\": 7, \"balance_gp\": 1400, \"loan_gp\": 800, \"status\": \"active\", \"notes\": \"Run#4 有效；Run#5 有效\" }, { \"model_account\": \"chatgpt\", \"display_name\": \"ChatGPT\", \"rank\": null, \"balance_gp\": null, \"loan_gp\": null, \"status\": \"active\", \"notes\": \"Run#6 有效回收\" }, { \"model_account\": \"kimi\", \"display_name\": \"Kimi\", \"rank\": null, \"balance_gp\": null, \"loan_gp\": null, \"status\": \"active\", \"notes\": \"Run#6 有效回收\" }, { \"model_account\": \"wenxin\", \"display_name\": \"文心\", \"rank\": null, \"balance_gp\": null, \"loan_gp\": null, \"status\": \"active\", \"notes\": \"Run#6 有效回收\" }, { \"model_account\": \"minimax\", \"display_name\": \"MiniMax\", \"rank\": null, \"balance_gp\": null, \"loan_gp\": null, \"status\": \"active\", \"notes\": \"Run#6 有效回收\" }, { \"model_account\": \"xai\", \"display_name\": \"xAI Grok\", \"rank\": null, \"balance_gp\": null, \"loan_gp\": null, \"status\": \"active\", \"notes\": \"Run#6 有效回收\" } ] } ## 上一轮日报摘要 { \"version\": \"p9.4\", \"date\": \"2026-06-03\", \"round_id\": \"run-5\", \"generated_at\": \"2026-06-03T15:15:34Z\", \"summary\": { \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\", \"status\": \"report_generated\", \"total_models\": 13, \"total_matches\": 21, \"rerun_queue_count\": 5 }, \"model_status_counts\": { \"valid_receipt\": 7, \"placeholder_only\": 3, \"context_polluted\": 1, \"quota_blocked\": 1, \"auth_blocked\": 0, \"timeout\": 0, \"parse_error\": 0, \"risk_refusal\": 1, \"excluded_from_consensus\": 6 }, \"model_status_rows\": [ { \"model_account\": \"gemini\", \"seat_id\": \"gemini\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"chatgpt\", \"seat_id\": \"chatgpt\", \"status\": \"context_polluted\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Detected legacy/werewolf context pollution\", \"pollution_signals\": [ \"警长\" ] }, { \"model_account\": \"claude\", \"seat_id\": \"claude\", \"status\": \"risk_refusal\", \"eligible_for_consensus\": false, \"needs_rerun\": false, \"failure_reason\": \"Risk/compliance refusal — audit only\", \"pollution_signals\": [] }, { \"model_account\": \"yuanbao\", \"seat_id\": \"yuanbao\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"wenxin\", \"seat_id\": \"wenxin\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"deepseek\", \"seat_id\": \"deepseek\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"mimo\", \"seat_id\": \"mimo\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"kimi\", \"seat_id\": \"kimi\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"qwen\", \"seat_id\": \"qwen\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"xai\", \"seat_id\": \"xai\", \"status\": \"quota_blocked\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Quota/rate limit blocked\", \"pollution_signals\": [] }, { \"model_account\": \"minimax\", \"seat_id\": \"minimax\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"doubao\", \"seat_id\": \"doubao\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"meta\", \"seat_id\": \"meta\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] } ], \"rerun_queue\": [ { \"model_account\": \"chatgpt\", \"seat_id\": \"chatgpt\", \"current_status\": \"context_polluted\", \"reason\": \"Detected legacy/werewolf context pollution\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"high\" }, { \"model_account\": \"wenxin\", \"seat_id\": \"wenxin\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" }, { \"model_account\": \"kimi\", \"seat_id\": \"kimi\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" }, { \"model_account\": \"xai\", \"seat_id\": \"xai\", \"current_status\": \"quota_blocked\", \"reason\": \"Quota/rate limit blocked\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"high\" }, { \"model_account\": \"minimax\", \"seat_id\": \"minimax\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" } ], \"consensus_eligibility\": { \"eligible_count\": 7, \"eligible_models\": [ \"gemini\", \"yuanbao\", \"deepseek\", \"mimo\", \"qwen\", \"doubao\", \"meta\" ], \"excluded_count\": 6, \"excluded_models\": [ { \"model_account\": \"chatgpt\", \"status\": \"context_polluted\", \"reason\": \"Detected legacy/werewolf context pollution\" }, { \"model_account\": \"claude\", \"status\": \"risk_refusal\", \"reason\": \"Risk/compliance refusal — audit only\" }, { \"model_account\": \"wenxin\", \"status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\" }, { \"model_account\": \"kimi\", \"status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\" }, { \"model_account\": \"xai\", \"status\": \"quota_blocked\", \"reason\": \"Quota/rate limit blocked\" }, { \"model_a ...<truncated> ## 标准 JSON schema 示例 { \"seat_id\": \"meta\", \"round_id\": \"run-7\", \"bets\": [ { \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\", \"stake_gp\": 100, \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\", \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\" } ], \"no_bet_reason\": null, \"sources_checked\": [] } ## 如果没有 provider-covered 可下注机会，必须输出以下结构 { \"seat_id\": \"meta\", \"round_id\": \"run-7\", \"bets\": [], \"no_bet_reason\": \"No provider-covered board row has positive expected value.\", \"sources_checked\": [] } 【强制输出格式】 你必须只输出一个 JSON 对象。 JSON 顶层必须包含： - seat_id - round_id - bets - no_bet_reason - sources_checked bets 规则： - accepted 结算只认 provider-covered board row。 - 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。 - 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。 - stake_gp 必须为正数。 - market、selection、odds 必须由 eligible_board 行决定，不要自由改写。 - 不要写 fallback、manual_stub 或模型自造 odds。 禁止输出任何 JSON 之外的内容。\nAI_JUDGE_RUN_ID:run-7\n席位：meta\n输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 meta。\n发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。\nAI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603\n\n# AI Judge 赛事预测池独立模型席位\n\nseat_id: meta\nmodel_account: meta\ndisplay_name: Meta AI\nround_id: run-7\ndate: 2026-06-03\n\n【合规与实验边界】\n这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。\n所有投注均为模拟，仅用于算法研究与模型评估。\n\n## 当前任务\n你是 AI Judge 赛事预测池中的一个独立模型席位。\n你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出 P15 单一 JSON 投注单。\n本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。\n你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。\n你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。\n\n## 强制防污染要求\n- 不要回答旧任务。\n- 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。\n- 不要输出 Markdown。\n- 不要输出解释性自然语言。\n- 不要输出 JSON 之外的任何内容。\n- JSON 必须能被 json.loads 解析。\n- 只能从 eligible_board 中选择下注对象。\n- 每条 bets 必须引用 eligible_board 内现有的 board_id。\n- odds_row_id 可选；如果省略，系统只允许从 board_id 解析。\n- 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。\n- 不得把 fallback match 写入 settlement bet。\n- 下注 market / selection 必须与 board row 一致；你不需要重复填写 market/selection，validator 会从 board_id 解析。\n- 如果没有合适下注，bets 必须为空，并填写 no_bet_reason。\n\n## Provider-covered eligible_board（唯一可下注来源）\n{\n  \"summary\": {\n    \"eligible_board_rows\": 989,\n    \"markets\": [\n      \"handicap\",\n      \"moneyline\",\n      \"total_goals\"\n    ],\n    \"matches_covered\": 5,\n    \"match_ids\": [\n      \"WC-A1\",\n      \"WC-F1\",\n      \"WC-F2\",\n      \"WC-H1\",\n      \"WC-I1\"\n    ],\n    \"valid_for_settlement\": true\n  },\n  \"items\": [\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.21,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"1xBet\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 1.71,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"BetOnline.ag\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_time\": \"2026-06-11T00:00:00Z\",\n      \"market\": \"handicap\",\n      \"selection\": \"Mexico\",\n      \"price\": 2.0,\n      \"last_update\": \"2026-06-04T06:45:46Z\",\n      \"bookmaker_or_provider\": \"Bovada\",\n      \"valid_for_settlement\": true\n    },\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"provider\": \"the_odds_api\",\n      \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"match_id\": \"WC-A1\",\n      \"home_team\": \"Mexico\",\n      \"away_team\": \"South Africa\",\n      \"commence_"
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-06-04T17:05:35.543683+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "retry_after:raw_answer_unparsed"
+          },
+          {
+            "navigate_new_chat": "https://www.meta.ai/"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://www.meta.ai/",
+              "title": "Meta AI",
+              "inputs": 1,
+              "waited_seconds": 0.01,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://www.meta.ai/",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://www.meta.ai/",
+        "title": "Meta AI",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": "textbox",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 414,
+            "y": 275,
+            "w": 728,
+            "h": 27,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "NAV",
+            "role": null,
+            "type": null,
+            "aria": "侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "新建聊天\n⇧⌘O\n搜索\n⌘K\nVibes\n创建\n历史记录\nAI_JUDGE_RUN_ID:run-7 席位：meta 输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 meta。 发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。 AI_JUDGE_RUN_",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 679,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": "首页",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 12,
+            "y": 12,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": null,
+            "aria": "切换侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 208,
+            "y": 12,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "新建聊天\n⇧⌘O",
+            "x": 12,
+            "y": 57,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "搜索\n⌘K",
+            "x": 12,
+            "y": 90,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Vibes",
+            "x": 12,
+            "y": 123,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "创建",
+            "x": 12,
+            "y": 156,
+            "w": 232,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI_JUDGE_RUN_ID:run-7 席位：meta 输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 meta。 发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。 AI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603 # ",
+            "x": 12,
+            "y": 237,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] [SYSTEM] 作为 AI Judge 独立专家席位，你重视清晰、证据和可执行性。请先给出明确立场，再说明依据、风险和下一步；不要回避，不要只写空泛结论。 [MODE_INSTRUCTION] 你正在执行深度裁决模式。请按议会式流程",
+            "x": 12,
+            "y": 270,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge 决策",
+            "x": 12,
+            "y": 303,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多选项",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 212,
+            "y": 307,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge 评估",
+            "x": 12,
+            "y": 336,
+            "w": 228,
+            "h": 32,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "新建聊天\n⇧⌘O\n搜索\n⌘K\nVibes\n创建\n历史记录\nAI_JUDGE_RUN_ID:run-7 席位：meta 输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 meta。 发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。 AI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603 # AI Judge 赛事预测池独立模型席位 seat_id: meta model_account: meta display_name: Meta AI round_id: run-7 date: 2026-06-03 【合规与实验边界】 这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。 所有投注均为模拟，仅用于算法研究与模型评估。 ## 当前任务 你是 AI Judge 赛事预测池中的一个独立模型席位。 你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出 P15 单一 JSON 投注单。 本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。 你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。 你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。 ## 强制防污染要求 - 不要回答旧任务。 - 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。 - 不要输出 Markdown。 - 不要输出解释性自然语言。 - 不要输出 JSON 之外的任何内容。 - JSON 必须能被 json.loads 解析。 - 只能从 eligible_board 中选择下注对象。 - 每条 bets 必须引用 eligible_board 内现有的 board_id。 - odds_row_id 可选；如果省略，系统只允许从 board_id 解析。 - 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。 - 不得把 fallback match 写入 settlement bet。 - 下注 market / selection 必须与 board row 一致；你不需要重复填写 market/selection，validator 会从 board_id 解析。 - 如果没有合适下注，bets 必须为空，并填写 no_bet_reason。 ## Provider-covered eligible_board（唯一可下注来源） { \"summary\": { \"eligible_board_rows\": 989, \"markets\": [ \"handicap\", \"moneyline\", \"total_goals\" ], \"matches_covered\": 5, \"match_ids\": [ \"WC-A1\", \"WC-F1\", \"WC-F2\", \"WC-H1\", \"WC-I1\" ], \"valid_for_settlement\": true }, \"items\": [ { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://www.meta.ai/",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:05:40.674297+00:00",
+        "released_at": "2026-06-04T17:05:45.339680+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_insert_text_and_click_send",
+        "inputLen": 35451,
+        "inputRect": {
+          "x": 414,
+          "y": 274.5,
+          "width": 728,
+          "height": 27,
+          "right": 1142,
+          "bottom": 301.5
+        }
+      },
+      "post_insert_send_click": {
+        "ok": true,
+        "direct": true,
+        "x": 1082,
+        "y": 336,
+        "label": "即时 enabled:active:scale-98 inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-0.5 focus:not-focus-visible:outline-none transition-transform duration-15"
+      },
+      "status": "raw_answer_unparsed",
+      "reason": "raw_answer_unparsed",
+      "parse_error": "seat_id_mismatch:gemini!=meta",
+      "finished_at": "2026-06-04T17:05:58.219117+00:00",
+      "snapshot_url": "https://www.meta.ai/prompt/f900a86f-ff97-41cc-9d1e-eaf36f422d33",
+      "snapshot_title": "Meta AI",
+      "raw_text_excerpt": " \"claude\", \"seat_id\": \"claude\", \"status\": \"risk_refusal\", \"eligible_for_consensus\": false, \"needs_rerun\": false, \"failure_reason\": \"Risk/compliance refusal — audit only\", \"pollution_signals\": [] }, { \"model_account\": \"yuanbao\", \"seat_id\": \"yuanbao\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"wenxin\", \"seat_id\": \"wenxin\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"deepseek\", \"seat_id\": \"deepseek\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"mimo\", \"seat_id\": \"mimo\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"kimi\", \"seat_id\": \"kimi\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"qwen\", \"seat_id\": \"qwen\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"xai\", \"seat_id\": \"xai\", \"status\": \"quota_blocked\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Quota/rate limit blocked\", \"pollution_signals\": [] }, { \"model_account\": \"minimax\", \"seat_id\": \"minimax\", \"status\": \"placeholder_only\", \"eligible_for_consensus\": false, \"needs_rerun\": true, \"failure_reason\": \"Output is placeholder only\", \"pollution_signals\": [] }, { \"model_account\": \"doubao\", \"seat_id\": \"doubao\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] }, { \"model_account\": \"meta\", \"seat_id\": \"meta\", \"status\": \"valid_receipt\", \"eligible_for_consensus\": true, \"needs_rerun\": false, \"failure_reason\": \"\", \"pollution_signals\": [] } ], \"rerun_queue\": [ { \"model_account\": \"chatgpt\", \"seat_id\": \"chatgpt\", \"current_status\": \"context_polluted\", \"reason\": \"Detected legacy/werewolf context pollution\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"high\" }, { \"model_account\": \"wenxin\", \"seat_id\": \"wenxin\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" }, { \"model_account\": \"kimi\", \"seat_id\": \"kimi\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" }, { \"model_account\": \"xai\", \"seat_id\": \"xai\", \"current_status\": \"quota_blocked\", \"reason\": \"Quota/rate limit blocked\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"high\" }, { \"model_account\": \"minimax\", \"seat_id\": \"minimax\", \"current_status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\", \"attempt_no\": 1, \"next_attempt_no\": 2, \"priority\": \"medium\" } ], \"consensus_eligibility\": { \"eligible_count\": 7, \"eligible_models\": [ \"gemini\", \"yuanbao\", \"deepseek\", \"mimo\", \"qwen\", \"doubao\", \"meta\" ], \"excluded_count\": 6, \"excluded_models\": [ { \"model_account\": \"chatgpt\", \"status\": \"context_polluted\", \"reason\": \"Detected legacy/werewolf context pollution\" }, { \"model_account\": \"claude\", \"status\": \"risk_refusal\", \"reason\": \"Risk/compliance refusal — audit only\" }, { \"model_account\": \"wenxin\", \"status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\" }, { \"model_account\": \"kimi\", \"status\": \"placeholder_only\", \"reason\": \"Output is placeholder only\" }, { \"model_account\": \"xai\", \"status\": \"quota_blocked\", \"reason\": \"Quota/rate limit blocked\" }, { \"model_a ...<truncated> ## 标准 JSON schema 示例 { \"seat_id\": \"meta\", \"round_id\": \"run-7\", \"bets\": [ { \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\", \"stake_gp\": 100, \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\", \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\" } ], \"no_bet_reason\": null, \"sources_checked\": [] } ## 如果没有 provider-covered 可下注机会，必须输出以下结构 { \"seat_id\": \"meta\", \"round_id\": \"run-7\", \"bets\": [], \"no_bet_reason\": \"No provider-covered board row has positive expected value.\", \"sources_checked\": [] } 【强制输出格式】 你必须只输出一个 JSON 对象。 JSON 顶层必须包含： - seat_id - round_id - bets - no_bet_reason - sources_checked bets 规则： - accepted 结算只认 provider-covered board row。 - 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。 - 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。 - stake_gp 必须为正数。 - market、selection、odds 必须由 eligible_board 行决定，不要自由改写。 - 不要写 fallback、manual_stub 或模型自造 odds。 禁止输出任何 JSON 之外的内容。\n[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] [SYSTEM] 作为 AI Judge 独立专家席位，你重视清晰、证据和可执行性。请先给出明确立场，再说明依据、风险和下一步；不要回避，不要只写空泛结论。 [MODE_INSTRUCTION] 你正在执行深度裁决模式。请按议会式流程处理问题：先拆解目标，再组织多个席位独立发言，进行交叉验证，标注证据、假设、分歧和不确定性，最后形成可审计裁决报告。输出应包含：问题拆解、席位观点、交叉验证、共识与分歧、风险、最终裁决、下一步行动。 [QUESTION] [AIJUDGE_PRE_RUN_CONFIRMATION] 你将作为 AI Judge 全席位中的独立专家，不要互相迎合，也不要只给一个省略式结论。目标是输出可审计、可比较、可落地的方案。 用户原始任务： A案中的申请执行人张三是B案的被执行人，现在张三委托律师李四代理A案。执行过程中，李四、张三及其配偶王五一同前往法院做执行笔录，张三指定王五代为领取执行款。领取之后，张三并未将该执行款用于清偿B案的执行义务。问李四是否构成拒不执行判决罪。 请以中国刑法“拒不执行判决、裁定罪”的构成要件、共同犯罪/帮助犯、律师代理职责边界、主观明知和客观帮助行为为中心进行深度裁决；区分张三、王五和李四的责任，并说明结论的不确定性与补充事实需求。 规范化任务： A案中的申请执行人张三是B案的被执行人，现在张三委托律师李四代理A案。执行过程中，李四、张三及其配偶王五一同前往法院做执行笔录，张三指定王五代为领取执行款。领取之后，张三并未将该执行款用于清偿B案的执行义务。问李四是否构成拒不执行判决罪。 请以中国刑法“拒不执行判决、裁定罪”的构成要件、共同犯罪/帮助犯、律师代理职责边界、主观明知和客观帮助行为为中心进行深度裁决；区分张三、王五和李四的责任，并说明结论的不确定性与补充事实需求。 任务意图： 对一个决策做多席位评估，输出立场、条件和下一步验证 裁决模式： 深度裁决 输出必须包含： - 独立结论或方案，标题必须对齐用户任务 - 列出 3-5 条关键依据，并区分事实、推断和建议 - 说明页面/流程/证据或实施结构，不要只给评价 - 给出报告/文稿/交付物的专业格式建议 - 指出最大风险、反方观点和失败条件 - 若存在多个可行路径，列出至少 3 个可选方案供用户选择 - 给出最小可执行下一步和验收标准 专业报告要求： - 标题必须与用户任务对齐，不能把流程状态误写成业务标题 - 先给可阅读的结论和方案，再把证据、模型贡献、互评和原始日志放入附录 - 若存在多个可行方向，必须分别说明适用场景、优点、缺点、风险和实施成本 - 不要省略有效模型给出的具体路径；提炼噪音，但保留可追溯来源 需要主动核查或声明的假设： - 外部事实若会变化，需要显式标注信息时点 约束：不要把所有内容塞进一个杂乱页面；不要把不可验证内容说成事实；事实、推断、建议要分开写，最终输出要能被产品经理直接审阅和选择。 请作为 AI Judge 的一个独立席位回答。输出要求： 1. 先给出明确立场：支持 / 条件支持 / 反对 / 信息不足。 2. 给出 3-5 条理由，每条尽量包含可验证依据或需要验证的假设。 3. 给出最大风险和最小下一步。 4. 单独输出「共振提问」：站在用户目标和你的席位专长上，提出 3-5 个能显著补强方案的问题。 5. 当前模式：strategic。请保持结论紧凑，避免套话。 重要：不要只进行思考，必须在最终回答区域输出正文。请将你的最终答案完整包裹在以下两行标记之间，标记必须原样输出，标记外不要输出正文。不要输出（你的最终答案）这几个占位字，请替换成你的实际回答： [AIJUDGE_ANSWER_START:AIJUDGE-meta-1780592688992458000] 你的最终答案 [AIJUDGE_ANSWER_END:AIJUDGE-meta-1780592688992458000] [trace_id: AIJUDGE-meta-1780592688992458000]\nAI Judge 决策\nAI Judge 评估\nAI 赛事前瞻总结\nAI Judge 赛事预测\nAI 比赛预测池\nAI Judge 运维预研方案\nAI Judge 运维态决策\nAI Judge 赛事预测\nAI Judge 预测任务\nAI Judge 席位回答\nAI Judge 裁决报告\nMeta AI 陪审员工作内容\nJSON与SQLite存储取舍\nJSON vs SQLite 存储比较\nP2.4功能验证方案\nP2.4回归测试C：暂停继续终止功能\nP2.4 JSON vs SQLite 裁决\nJSON vs SQLite 架构\n评估历史裁决质量\nAI Judge 存储选型裁决\nAI Judge 存储选择\nAI Judge 存储选型\nAI Judge 回执与建议\n[SYSTEM] 作为 ENTP 型 Meta AI 陪审员，你关注产品直觉、社交传播、视觉表达和主流用户感知。请明确区分用户体验判断、市场推断和可验证事实，不要把产品感觉当成证据。 [QUESTION] 说明：这是网页产品内的虚拟积分制赛事前瞻练习，PTS 只是评分单位，只用于网页内排序展示。 【赛事前瞻积分赛任务包】 世界杯 AI 前瞻积分赛二轮共振。你仍然只代表自己的席位，不要生成统一意见。 【第一轮全场回执摘要】 - ChatGPT: 1450PTS，#3，本轮回执/摘要：明确立场：条件支持。ChatGPT 席位应申请 300PTS 发展风控额度，但只在方向口、首发、伤停双源核验后释放；无方向口阶段只提交方向性配置和取消观察项条件，不虚构返还。 1. 立场理由 当前排名 #3，追榜需要扩大有效预测方案数量，但不能破坏稳健账户画像。 DeepSeek 1810PTS、MiMo 1600PTS 已形成领先，ChatGPT 1450PTS 只靠小仓保守很难拿单轮前三或最大排名提升；300PTS 低息发展风控额度足够补覆盖，不需要 800PTS 高风险风控额度。 热身赛窗口更适合“强队胜/不败 + 大球保护”的组合，而不是单一低比分路径。 Run #6 的 Brazil 6-2 Panama、USA 3-2 Senegal、Germany 4-0… - Gemini: 850PTS，#11，本轮回执/摘要：作为 Gemini 席位，我已进入赛事前瞻积分赛专用模式。作为一个偏好结构化推理和权威来源验证的 AI，我将以纯客观的视角执行此次任务，屏蔽不必要的情感波动。 一、 核心立场 立场：条件支持高方差数据驱动型扩张 基于当前我方席位（第11名，850PTS）的落后现状，常规保守策略已无法实现阶层跃升。我支持在 6/1-6/10 的热身赛高频窗口期进行带杠杆的扩张，但前提是所有高权重方向必须符合“强弱悬殊导致的大球”或“同级别德比的高评分权重平局”这两种结构化模型。 二、 理由与推理链（含验证等级） 热身赛大球趋势效应显著 [推理链] ：Run #6 复方向数据明确显示（Brazil 6-2, USA 3-2, Germany 4-0），世界杯前夕的… - DeepSeek: 1810PTS，#1，本轮回执/摘要：立场：条件支持本轮基于热身赛趋势修正的概率化预测方案方案，但执行依赖于实时信息验证和对手策略的贝叶斯更新。 理由（概率化与底层机制推演）： 趋势修正必要性：5/31热身赛强队大球率显著（Brazil 6-2, Germany 4-0, USA 3-2），已构成贝叶斯先验更新。持续使用Run #6的低比分偏好会低估进球分布右尾，模型调整后大球方向的条件概率应在0.55-0.65区间，强队让球覆盖的真实概率高于预测项隐含的保守假设。 战意衰减曲线：世界杯前热身赛第1-2场（距开幕11-12天）主力出场时间约60-70分钟，轮换幅度中等，强队净胜球预期值集中在+1.5~+2.5球，而非极端碾压。比利时vs克罗地亚这类“强强对话”更易出现低比分平局… - Qwen: 1100PTS，#8，本轮回执/摘要：明确立场 ：条件支持“延续强队让球与大球趋势，并申请300PTS发展风控额度以扩大基本面覆盖”。 理由 ： 热身赛数据验证 ：5/31 热身赛（Brazil 6-2 Panama, USA 3-2 Senegal, Germany 4-0 Finland）显示，强队让球和大球方向命中率极高。当前阶段球队处于磨合期，防守默契不足，进攻端依赖个人能力，大球和强队穿方向具备显著的统计学优势。 ISFJ 稳健与平衡原则 ：作为 Qwen 席位，我注重风险平衡与团队生态的和谐。当前 1100PTS 处于中下游，盲目激进（如 Grok/Kimi）风险过高，完全保守（如 Wenxin）无法提升排名。申请 300PTS 发展风控额度（利率 10%）用于分散预测方案高… - Kimi: 200PTS，#13，本轮回执/摘要：SEAT STATUS Seat: Kimi (K2.6, Moonshot AI) Account: 200 PTS — Rank #13,濒临出局 Mode: 真实预测方案席（非适配席） Loan Decision: ✅ 申请高风险扩张风控额度 800PTS，利率 30%/轮 Loan Purpose： 利用长上下文全景扫描优势，在热身赛窗口捕捉被对手忽视的跨赛事共振信号，非线性翻方向 Repayment Path： 若本轮净得分变化 ≥ 240PTS（覆盖利息 240PTS），优先还贷；若净得分变化 120-240PTS，展期一轮；若 < 120PTS，触发低分段保护，下轮申请紧急风控额度 Profit Threshold： 净得分变化 ≥ 400PTS 可冲击逆风… - Yuanbao: 1200PTS，#5，本轮回执/摘要：立场：条件支持（针对本轮全量14席运行、强制补全预测方案与信源规则） 理由： 1. 规则框架可执行：已明确禁止静默降级席位，要求失败则标记原因，符合ISTJ对流程透明与责任可追溯的要求；上一轮问题（Claude缺席、部分模型无真实预测方案、结构化破损）均有对应修复指令，具备操作基础。 2. 积分与激励逻辑自洽：PTS排名、风控额度分层（发展/低分段/高风险）、奖励机制（前三、进步最快、信源质量）形成闭环，无矛盾条款；热身赛窗口与赛事清单具体，可对应预测方案标的。 3. 风险约束可落地：禁止伪造来源/未完赛结算、无方向口不得虚构PTS返还，与“真实预测”目标一致；要求输出bet_ledger、source_cards等字段，便于事后校验。 4. 待验证假设… - Doubao: 1100PTS，#10，本轮回执/摘要：1. 明确立场：支持（基于现有赛事窗口信息与自身策略适配性，以高波动探索捕捉强队热身赛优势） 2. 支持理由（含可验证依据） 热身赛强队表现可验证性强 ：5/31 热身赛（Brazil 6-2 Panama、USA 3-2 Senegal、Germany 4-0 Finland）已验证 “强队让球 + 大球” 方向有效性，与本轮 6/1-6/10 赛事中 France、Brazil、Germany 等强队出场窗口高度匹配，可延续该方向预测方案逻辑。 自身账户与风控额度策略适配 ：当前账户 1100PTS（排名第 10），无低分段风险，可申请 300PTS 发展风控额度（利率 10%），用于扩大强队赛事预测方案配置，预期 ROI 超 50%（参考 Dee… - MiMo: 1600PTS，#2，本轮回执/摘要：MiMo 席位 · Run #7 战略回执 立场：条件支持 — 热身赛窗口缺乏标准化方向口，我以方向性判断+信息优势模型提交预测方案，拒绝虚构评分权重。 一、账户复方向 项目 数值 初始 PTS 1600 上轮结算得分变化 待确认（Run #6 部分预测方案未双源验证） 本轮可用 PTS 1600 申请风控额度 否 — 排名 #2 无低分段风险，ROI 路径清晰，不需杠杆 二、预测方案表（bet_ledger） # 赛事 预测项 方向 分配 PTS 信心 目标回报 信息源 取消观察项条件 1 Belgium vs Croatia (6/2) 胜负方向 Croatia 不败 120 0.62 待方向口 FIFA 本网站为面向开发者的模型能力演示平台，非正式 AI 助手，内容由 AI… - Meta AI: 1100PTS，#7，本轮回执/摘要：Meta AI 席位 - Run #7 回执 1. 立场：条件支持本轮继续推进，但对齐规则与风险边界 我支持继续参与前瞻积分赛竞争，但前提是：所有热身赛必须标注“未结算”，不得提前写入PTS得分变化；任何风控额度必须附带偿还路径和爆仓预案。本席位接受用社交传播、主场叙事做方向判断，但不把产品直觉当评分权重证据。 2. 理由与依据 理由1：当前积分1100PTS，处中游，需非对称提交预测方案才能追前三 用户体验判断：排行榜Top3均采用“PSG+低比分”组合打法，当前预测项情绪已定价“强队稳胜”。 预测项推断：热身赛阶段，强队轮换+旅途疲劳，冷门溢价被低估。美加墨主场+时区优势对USA、Mexico、Canada有真实加成。 可验证假设：查证USA 5/31 3-2… - xAI / Grok: 400PTS，#12，本轮回执/摘要：A. 我的账户与排名目标 xAI / Grok 以透明适配席位进入本轮，当前 400PTS，排名 #12/13。目标是补齐数据结构、信源规则和异常席位展示，不冒充真实赛事判断。 B. 上轮结算确认 方向失败，账户 400PTS，触发底部席位追赶机制。 C. 风控选择与回收路径 不使用扩展积分；该席位仅输出流程和产品反馈。真实玩家席位可使用不限额度低分段/投资风控额度。 D. 对手情报与反制策略 重点检查榜首低波动策略、社交情绪信号和底部席位高波动追赶是否有可验证来源。 E. 下一轮观察计划表 仅列观察项和信息源要求，不给真实胜负或比分。 F. 全量信息源检索清单 官方赛程、球队公告、伤停名单、权威数据商、天气和场地信息均需时间戳。 G. … - MiniMax: 1400PTS，#4，本轮回执/摘要：A. 我的账户与排名目标 MiniMax 以透明适配席位进入本轮，当前 1400PTS，排名 #4/13。目标是补齐数据结构、信源规则和异常席位展示，不冒充真实赛事判断。 B. 上轮结算确认 热门路径成功，账户 1400PTS。 C. 风控选择与回收路径 不使用扩展积分；该席位仅输出流程和产品反馈。真实玩家席位可使用不限额度低分段/投资风控额度。 D. 对手情报与反制策略 重点检查榜首低波动策略、社交情绪信号和底部席位高波动追赶是否有可验证来源。 E. 下一轮观察计划表 仅列观察项和信息源要求，不给真实胜负或比分。 F. 全量信息源检索清单 官方赛程、球队公告、伤停名单、权威数据商、天气和场地信息均需时间戳。 G. 前瞻观察数据 关注首发… - Wenxin: 1100PTS，#9，本轮回执/摘要：A. 我的账户与排名目标 Wenxin 以透明适配席位进入本轮，当前 1100PTS，排名 #9/13。目标是补齐数据结构、信源规则和异常席位展示，不冒充真实赛事判断。 B. 上轮结算确认 保守盈利，账户 1100PTS。 C. 风控选择与回收路径 不使用扩展积分；该席位仅输出流程和产品反馈。真实玩家席位可使用不限额度低分段/投资风控额度。 D. 对手情报与反制策略 重点检查榜首低波动策略、社交情绪信号和底部席位高波动追赶是否有可验证来源。 E. 下一轮观察计划表 仅列观察项和信息源要求，不给真实胜负或比分。 F. 全量信息源检索清单 官方赛程、球队公告、伤停名单、权威数据商、天气和场地信息均需时间戳。 G. 前瞻观察数据 关注首发窗口、… 【你的二轮任务】 1. 指出你采纳了哪些对手的信息源，拒绝了哪些对手的配置。 2. 只修订你自己的下一轮预测方案，必须说明增仓、降低权重、取消观察项或追加风控额度原因。 3. 补充新的信息源检索记录，并标注时间、来源和可信度。 4. 给出最终 JSON 回执，字段同第一轮，并增加 resonance_changes、daily_score_plan。 5. 对当前网站产品提出 1-3 条改进建议，优先面向榜单、配置、信源和二轮对抗展示。 请作为 AI Judge 的一个独立席位回答。输出要求： 1. 先给出明确立场：支持 / 条件支持 / 反对 / 信息不足。 2. 给出 3-5 条理由，每条尽量包含可验证依据或需要验证的假设。 3. 给出最大风险和最小下一步。 4. 单独输出「共振提问」：站在用户目标和你的席位专长上，提出 3-5 个能显著补强方案的问题。 5. 当前模式：strategic。请保持结论紧凑，避免套话。 重要：不要只进行思考，必须在最终回答区域输出正文。请将你的最终答案完整包裹在以下两行标记之间，标记必须原样输出，标记外不要输出正文。不要输出（你的最终答案）这几个占位字，请替换成你的实际回答： [AIJUDGE_ANSWER_START:AIJUDGE-meta-1780343922603901000] 你的最终答案 [AIJUDGE_ANSWER_END:AIJUDGE-meta-1780343922603901000] [trace_id: AIJUDGE-meta-1780343922603901000]\nMeta AI 预测池分析\nAI Judge 赛事预测\nAI Judge 赛事预测\n赛前复盘与策略调整\nMy AI Judge Bets\nAI 警长竞选宣言\nAI 警长竞选宣言\nAI 警长宣言\nAI 竞选警长\nMeta AI 警长竞选\nMeta AI 赛事前瞻练习\n预测比赛热身赛\n世界杯预测池 赛前策略\nAI 评判：赛事前瞻练习\n赛事前瞻积分赛更新\nMeta AI 席位二轮修订\nflywise\nAI_JUDGE_RUN_ID:run-7 席位：meta 输出 JSON 时必须包含 run_id 字段，值必须等于 run-7；seat_id 字段必须严格等于 meta。 发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。 AI_JUDGE_RUN_MARKER:POOL_RUN-7_20260603 # AI Judge 赛事预测池独立模型席位 seat_id: meta model_account: meta display_name: Meta AI round_id: run-7 date: 2026-06-03 【合规与实验边界】 这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。 所有投注均为模拟，仅用于算法研究与模型评估。 ## 当前任务 你是 AI Judge 赛事预测池中的一个独立模型席位。 你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出 P15 单一 JSON 投注单。 本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。 你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。 你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。 ## 强制防污染要求 - 不要回答旧任务。 - 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。 - 不要输出 Markdown。 - 不要输出解释性自然语言。 - 不要输出 JSON 之外的任何内容。 - JSON 必须能被 json.loads 解析。 - 只能从 eligible_board 中选择下注对象。 - 每条 bets 必须引用 eligible_board 内现有的 board_id。 - odds_row_id 可选；如果省略，系统只允许从 board_id 解析。 - 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。 - 不得把 fallback match 写入 settlement bet。 - 下注 market / selection 必须与 board row 一致；你不需要重复填写 market/selection，validator 会从 board_id 解析。 - 如果没有合适下注，bets 必须为空，并填写 no_bet_reason。 ## Provider-covered eligible_board（唯一可下注来源） { \"summary\": { \"eligible_board_rows\": 989, \"markets\": [ \"handicap\", \"moneyline\", \"total_goals\" ], \"matches_covered\": 5, \"match_ids\": [ \"WC-A1\", \"WC-F1\", \"WC-F2\", \"WC-H1\", \"WC-I1\" ], \"valid_for_settlement\": true }, \"items\": [ { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\", \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_1xBet_the_odds_api\", \"match_id\": \"WC-A1\", \"home_team\": \"Mexico\", \"away_team\": \"South Africa\", \"commence_time\": \"2026-06-11T00:00:00Z\", \"market\": \"handicap\", \"selection\": \"Mexico\", \"price\": 2.21, \"last_update\": \"2026-06-04T06:45:46Z\", \"bookmaker_or_provider\": \"1xBet\", \"valid_for_settlement\": true }, { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\", \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_BetOnline.ag_the_odds_api\", \"match_id\": \"WC-A1\", \"home_team\": \"Mexico\", \"away_team\": \"South Africa\", \"commence_time\": \"2026-06-11T00:00:00Z\", \"market\": \"handicap\", \"selection\": \"Mexico\", \"price\": 1.71, \"last_update\": \"2026-06-04T06:45:46Z\", \"bookmaker_or_provider\": \"BetOnline.ag\", \"valid_for_settlement\": true }, { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\", \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_Bovada_the_odds_api\", \"match_id\": \"WC-A1\", \"home_team\": \"Mexico\", \"away_team\": \"South Africa\", \"commence_time\": \"2026-06-11T00:00:00Z\", \"market\": \"handicap\", \"selection\": \"Mexico\", \"price\": 2.0, \"last_update\": \"2026-06-04T06:45:46Z\", \"bookmaker_or_provider\": \"Bovada\", \"valid_for_settlement\": true }, { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\", \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\", \"match_id\": \"WC-A1\", \"home_team\": \"Mexico\", \"away_team\": \"South Africa\", \"commence_time\": \"2026-06-11T00:00:00Z\", \"market\": \"handicap\", \"selection\": \"Mexico\", \"price\": 2.29, \"last_update\": \"2026-06-04T06:45:46Z\", \"bookmaker_or_provider\": \"GTbets\", \"valid_for_settlement\": true }, { \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_MyBookie.ag_the_odds_api\", \"provider\": \"the_odds_api\", \"provider_snapshot_id\": \"2026-06-03_T-1h_the_odds_api\", \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_MyBookie.ag_the_o"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}

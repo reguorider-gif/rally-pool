@@ -184,6 +184,16 @@ def _compact_json(value, max_chars=6000):
     return text
 
 
+def _is_real_model_output(path: Path) -> bool:
+    if not path.exists() or path.stat().st_size <= 50:
+        return False
+    try:
+        head = path.read_text(encoding="utf-8", errors="ignore")[:200]
+    except Exception:
+        return False
+    return not head.lstrip().startswith("[WAITING")
+
+
 def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
                   match_results, odds_snapshot, eligible_board, leaderboard, previous_report):
     """
@@ -195,37 +205,26 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
     seat_id = seat.get("seat_id") or model_account
     display_name = seat.get("display_name") or model_account
 
-    # ---------- JSON 示例通过 dict + json.dumps 生成 ----------
-    example_output = {
-        "model_account": model_account,
+    # ---------- P15 JSON 示例通过 dict + json.dumps 生成 ----------
+    no_bet_output = {
+        "seat_id": seat_id,
         "round_id": round_id,
-        "loan_decision": {"amount": 0, "reason": "No valid odds available."},
-        "bet_ledger": [],
-        "risk_rules": {"max_loss": 0, "stop_after_losses": 0},
-        "source_cards": [],
-        "betting_thought": "No valid bet because odds snapshot has no valid market coverage.",
+        "bets": [],
+        "no_bet_reason": "No provider-covered board row has positive expected value.",
+        "sources_checked": [],
     }
 
     strict_schema_example = {
-        "model_account": model_account,
+        "seat_id": seat_id,
         "round_id": round_id,
-        "loan_decision": {"amount": 0, "reason": ""},
-        "bet_ledger": [{
+        "bets": [{
             "board_id": f"{round_id}:EXAMPLE_PROVIDER_ODDS_ROW_ID",
-            "odds_row_id": "EXAMPLE_PROVIDER_ODDS_ROW_ID",
-            "provider": "the_odds_api",
-            "match_id": "WC-A1",
-            "market": "moneyline",
-            "selection": "Mexico",
-            "stake": 100,
-            "odds": 1.36,
-            "confidence": 0.6,
-            "reason": "",
-            "cancel_if": "",
+            "stake_gp": 100,
+            "rationale": "Board row selected from eligible_board only; market and selection match the provider row.",
+            "risk": "Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.",
         }],
-        "risk_rules": {"max_loss": 500, "stop_after_losses": 2},
-        "source_cards": [],
-        "betting_thought": "",
+        "no_bet_reason": None,
+        "sources_checked": [],
     }
 
     # ---------- 数据摘要 ----------
@@ -241,8 +240,8 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "summary": eligible_board.get("summary", {}) if isinstance(eligible_board, dict) else {},
         "items": board_items,
         "warning": (
-            "Only these provider-covered rows are eligible. Every bet_ledger item "
-            "must cite board_id or odds_row_id exactly."
+            "Only these provider-covered rows are eligible. Every bets item "
+            "must cite board_id exactly; odds_row_id is resolved from the board row."
         ),
     }, max_chars=18000)
     results_summary = _compact_json(match_results)
@@ -252,7 +251,7 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
 
     # ---------- 拼接 ----------
     lines = [
-        f"AI_JUDGE_RUN_MARKER:{run_marker}",
+        run_marker,
         "",
         "# AI Judge 赛事预测池独立模型席位",
         "",
@@ -266,7 +265,7 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "",
         "## 当前任务",
         "你是 AI Judge 赛事预测池中的一个独立模型席位。",
-        "你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出结构化 JSON 投注单。",
+        "你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出 P15 单一 JSON 投注单。",
         "本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。",
         "你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。",
         "你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。",
@@ -274,15 +273,17 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "## 强制防污染要求",
         "- 不要回答旧任务。",
         "- 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。",
-        "- 不要输出你的最终答案。",
         "- 不要输出 Markdown。",
         "- 不要输出解释性自然语言。",
         "- 不要输出 JSON 之外的任何内容。",
         "- JSON 必须能被 json.loads 解析。",
         "- 只能从 eligible_board 中选择下注对象。",
-        "- 每条 bet_ledger 必须引用 eligible_board 内现有的 board_id 或 odds_row_id。",
+        "- 每条 bets 必须引用 eligible_board 内现有的 board_id。",
+        "- odds_row_id 可选；如果省略，系统只允许从 board_id 解析。",
         "- 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。",
-        "- 如果没有合适的 provider-covered board row，bet_ledger 必须为空；可以把观察写入 betting_thought/source_cards。",
+        "- 不得把 fallback match 写入 settlement bet。",
+        "- 下注 market / selection 必须与 board row 一致；你不需要重复填写 market/selection，validator 会从 board_id 解析。",
+        "- 如果没有合适下注，bets 必须为空，并填写 no_bet_reason。",
         "",
         "## Provider-covered eligible_board（唯一可下注来源）",
         eligible_board_summary,
@@ -302,24 +303,24 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "## 标准 JSON schema 示例",
         json.dumps(strict_schema_example, ensure_ascii=False, indent=2),
         "",
-        "## 如果没有有效赔率或没有可下注机会，必须输出以下结构",
-        json.dumps(example_output, ensure_ascii=False, indent=2),
+        "## 如果没有 provider-covered 可下注机会，必须输出以下结构",
+        json.dumps(no_bet_output, ensure_ascii=False, indent=2),
         "",
         "【强制输出格式】",
         "你必须只输出一个 JSON 对象。",
         "JSON 顶层必须包含：",
-        "- model_account",
+        "- seat_id",
         "- round_id",
-        "- loan_decision",
-        "- bet_ledger",
-        "- risk_rules",
-        "- source_cards",
-        "- betting_thought",
+        "- bets",
+        "- no_bet_reason",
+        "- sources_checked",
         "",
-        "bet_ledger 规则：",
+        "bets 规则：",
         "- accepted 结算只认 provider-covered board row。",
-        "- 每条 bet_ledger 必须包含 board_id 或 odds_row_id；缺失会被 rejected_missing_provider_odds 拒收。",
-        "- market、selection、odds 必须与 eligible_board 行一致。",
+        "- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。",
+        "- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。",
+        "- stake_gp 必须为正数。",
+        "- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。",
         "- 不要写 fallback、manual_stub 或模型自造 odds。",
         "",
         "禁止输出任何 JSON 之外的内容。",
@@ -522,8 +523,28 @@ def cmd_run(args):
     print()
 
     if generate_prompts_only:
+        raw_dir = DATA_DIR / "model_outputs" / "raw" / round_id
+        raw_dir.mkdir(parents=True, exist_ok=True)
+        for m in model_accounts:
+            sid = m.get("seat_id", m.get("model_account", "unknown"))
+            placeholder_path = raw_dir / f"{sid}.txt"
+            if not placeholder_path.exists():
+                placeholder_path.write_text(
+                    f"[WAITING FOR P15 PROVIDER-COVERED MODEL OUTPUT]\nseat_id: {sid}\nround_id: {round_id}\n",
+                    encoding="utf-8"
+                )
+        readme_path = raw_dir / "README.md"
+        if not readme_path.exists():
+            readme_path.write_text(
+                "# P15 Provider-Covered Rerun Raw Outputs\n\n"
+                f"Round: `{round_id}`\n\n"
+                "Paste each active web seat's real raw response into `{seat_id}.txt`.\n"
+                "Do not fabricate, backfill old run outputs, or add board ids after the model answered.\n",
+                encoding="utf-8",
+            )
+        print(f"  ✅ Created raw output dropbox: {raw_dir}")
         print("PROMPTS GENERATED — 请手动将 prompt 发送给各模型，并保存原始输出到:")
-        print(f"  {DATA_DIR / 'model_outputs' / 'raw' / round_id}")
+        print(f"  {raw_dir}")
         print()
         print("完成后运行:")
         print(f"  python3 ops/ai_judge_daily_pool.py ingest --round {round_id} --input-dir data/pool/model_outputs/raw/{round_id}")
@@ -595,7 +616,7 @@ def cmd_ingest(args):
     for m in model_accounts:
         sid = m.get("seat_id", m.get("model_account", "unknown"))
         raw_path = input_dir / f"{sid}.txt"
-        found = raw_path.exists() and raw_path.stat().st_size > 50
+        found = _is_real_model_output(raw_path)
         bytes_count = raw_path.stat().st_size if raw_path.exists() else 0
         outputs.append({
             "model_account": m.get("model_account", sid),
@@ -670,7 +691,7 @@ def cmd_status(args):
     raw_dir = DATA_DIR / "model_outputs" / "raw" / round_id
     raw_count = 0
     if raw_dir.exists():
-        raw_count = len([p for p in raw_dir.glob("*.txt") if p.stat().st_size > 50])
+        raw_count = len([p for p in raw_dir.glob("*.txt") if _is_real_model_output(p)])
     raw_expected = prompts_expected
     print(f"raw_outputs: {raw_count}/{raw_expected}")
 

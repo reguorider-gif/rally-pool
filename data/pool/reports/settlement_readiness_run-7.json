@@ -1,0 +1,15 @@
+{
+  "version": "p14.0",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "generated_at": "2026-06-04T17:16:59Z",
+  "eligible_board_rows": 989,
+  "accepted_bets": 4,
+  "provider_covered_accepted_bets": 4,
+  "fallback_bets": 0,
+  "analysis_only_bets": 0,
+  "model_no_bet_count": 1,
+  "valid_for_settlement": true,
+  "blockers": []
+}

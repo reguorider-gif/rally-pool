@@ -1,0 +1,338 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "mimo",
+  "model_account": "mimo",
+  "ok": true,
+  "status": "answered",
+  "failure_reason": "answered",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": "data/pool/model_outputs/raw/run-7/mimo.txt",
+  "parsed": {
+    "seat_id": "mimo",
+    "round_id": "run-7",
+    "run_id": "run-7",
+    "bets": [
+      {
+        "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+        "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+        "stake_gp": 350,
+        "rationale": "Mexico handicap at GTbets 2.29 is an 11.7% overlay vs Pinnacle sharp line 2.05. Mexico as 2026 WC co-host has strong home-continent advantage, historically solid group-stage performers (advanced from group in every WC since 1994). South Africa's recent FIFA ranking and squad depth are inferior. The price discrepancy between GTbets 2.29 and Pinnacle 2.05 signals positive expected value on this selection.",
+        "risk": "Reduce or cancel if Mexico key players (Lozano, Álvarez, Gimenez) are ruled out pre-match. Monitor line movement — if Pinnacle drifts above 2.15 the edge compresses. Early kickoff in a potentially humid venue could slow tempo and reduce margin of victory."
+      }
+    ],
+    "no_bet_reason": null,
+    "deep_mode_status": "not_available",
+    "sources_checked": [
+      {
+        "source": "the_odds_api — Pinnacle sharp line reference",
+        "url": "eligible_board snapshot run-7:WC-A1_T-1h_handicap_Mexico_Pinnacle_the_odds_api",
+        "note": "Pinnacle Mexico handicap 2.05 used as no-vig baseline; GTbets 2.29 offers ~11.7% overlay indicating positive EV."
+      },
+      {
+        "source": "FIFA World Cup 2026 — Mexico co-host context",
+        "url": "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026",
+        "note": "Mexico is co-hosting 2026 WC. Historical data: Mexico has qualified from the group stage in 7 consecutive World Cups (1994–2018, missed 2022 round of 16 on GD). Home-continent advantage adds ~3-5% win probability per academic research (Pollard 2008)."
+      },
+      {
+        "source": "FIFA Rankings & squad depth comparison",
+        "url": "https://www.fifa.com/fifa-world-ranking/men?dateId=id13928",
+        "note": "Mexico typically ranked ~12-15 vs South Africa ~55-65. Liga MX provides Mexico deeper domestic talent pool; SA relies heavily on European-based players with less squad cohesion."
+      },
+      {
+        "source": "Odds discrepancy analysis across bookmakers",
+        "url": "eligible_board WC-A1 handicap rows",
+        "note": "Mexico handicap prices: GTbets 2.29 > 1xBet 2.21 > MyBookie 2.18 > Pinnacle 2.05 > Bovada 2.0 > BetOnline 1.71. The wide spread (1.71–2.29) indicates market disagreement on handicap margin, creating value at the high end."
+      },
+      {
+        "source": "Match schedule density — WC Group A",
+        "url": "eligible_board commence_time: 2026-06-11T00:00:00Z",
+        "note": "WC-A1 is the opening group match for both teams, meaning full-strength squads expected with no fatigue accumulation. This favors the stronger side (Mexico) to cover handicap."
+      }
+    ]
+  },
+  "response_chars": 39137,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T16:59:30.744519+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://aistudio.xiaomimimo.com/#/c"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://aistudio.xiaomimimo.com/#/c",
+              "title": "Xiaomi MiMo Studio",
+              "inputs": 1,
+              "waited_seconds": 0.01,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://aistudio.xiaomimimo.com/#/c",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://aistudio.xiaomimimo.com/#/c",
+        "title": "Xiaomi MiMo Studio",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "TEXTAREA",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": "有问题，尽管问，Shift + Enter 换行",
+            "text": "",
+            "x": 395,
+            "y": 562,
+            "w": 766,
+            "h": 32,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 22,
+            "y": 31,
+            "w": 153,
+            "h": 11,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "收起侧边栏",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 186,
+            "y": 20,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "新对话",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 218,
+            "y": 20,
+            "w": 32,
+            "h": 32,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "MiMo Claw",
+            "title": null,
+            "placeholder": null,
+            "text": "MiMo Claw\n免费体验",
+            "x": 14,
+            "y": 66,
+            "w": 234,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "MiMo Chat",
+            "title": null,
+            "placeholder": null,
+            "text": "MiMo Chat",
+            "x": 14,
+            "y": 110,
+            "w": 234,
+            "h": 36,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 192,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 228,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 264,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 300,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 336,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 372,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "role": null,
+            "type": "button",
+            "aria": "更多操作",
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 220,
+            "y": 408,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "MiMo Claw\n免费体验\nMiMo Chat\n\n历史记录\n\nAIJudge共振回答与技术方案\nAI Judge功能开发与运维决策\nAI Judge范式健康度评估\nMiMo世界杯预测池庄家局策略\nAIJudge共振追问与技术方案\nAI Judge版本演进与功能开发决策\n{\"run_id\":\"pool-run6-web-active-missing-rerun-2026\n{\"model_account\":\"mimo\",\"round_id\":\"run-6\",\"loan_d\n{\"model_account\":\"mimo\",\"round_id\":\"run-6\",\"loan_d\n{\"model_account\":\"mimo\",\"round_id\":\"run-6\",\"run_id\nAIJudge框架共振降级机制\nAI Judge深度裁决框架\nJSON与SQLite存储架构对比裁决\nJSON与SQLite存储架构取舍\n暂停继续终止功能验证\n暂停继续终止功能验证\n[AIJUDGE_ANSWER_START:AIJUDGE-mimo-178047\nJSON与SQLite存储架构选型裁决\n历史裁决质量审计框架\nAI Judge SQLite迁移方案\nAIJudge存储方案选型\nAIJudge本地存储方案选型\nAI Judge存储方案选型评估\nAI Judge世界杯预测池MiMo席位策略\n世界杯预测池热身赛投注策略\nAIJudge狼人杀警长投票分析\n狼人杀警长竞选逻辑\nAIJudge狼人杀警长竞选\nAI Judge竞选策略与风险分析\nINFJ陪审员AI警长竞选决策\n2245868177\nMiMo-V2.5-Pro\nNew\n\nAPI 服务\n陪您聊天、创作或脑洞大开，准备好探索无限可能\n您可以这样问\n如何5分钟快速整理房间？\n“无聊”的价值是什么？\n没有观众的艺术还算艺术吗？\n本网站为面向开发者的模型能力演示平台，非正式 AI 助手，内容由 AI 生成仅供参考。\n引用来源（0）"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://aistudio.xiaomimimo.com/#/c",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T16:59:34.054594+00:00",
+        "released_at": "2026-06-04T16:59:43.392156+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_insert_text_and_click_send",
+        "inputLen": 35448,
+        "inputRect": {
+          "x": 395,
+          "y": 562,
+          "width": 766,
+          "height": 32,
+          "right": 1161,
+          "bottom": 594
+        }
+      },
+      "post_insert_send_click": {
+        "ok": true,
+        "direct": true,
+        "x": 1147,
+        "y": 612,
+        "label": "inline-flex relative justify-center items-center outline-none select-none cursor-pointer rounded-full bg-black/90 dark:bg-white/90 text-white dark:text-black border border-transpar"
+      },
+      "status": "answered",
+      "reason": "answered",
+      "parse_error": null,
+      "finished_at": "2026-06-04T17:00:52.371929+00:00",
+      "snapshot_url": "https://aistudio.xiaomimimo.com/#/chat/9c61ffb33c30310b60f8d97abbef8025",
+      "snapshot_title": "Xiaomi MiMo Studio",
+      "raw_text_excerpt": "ult_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-008\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-009\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-010\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-011\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-012\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-013\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WC-A1\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\":\n...<truncated>\n\n## 赔率快照摘要\n{\n  \"snapshot_label\": \"T-1h\",\n  \"provider\": \"the_odds_api\",\n  \"summary\": {\n    \"matches_total\": 21,\n    \"markets_requested\": [\n      \"moneyline\",\n      \"handicap\",\n      \"total_goals\"\n    ],\n    \"odds_rows\": 1190,\n    \"valid_odds_rows\": 989,\n    \"missing_market_coverage\": 0,\n    \"match_mapping_failed\": 201,\n    \"provider_unavailable\": false,\n    \"provider_responded\": true,\n    \"matched_internal_matches\": 5,\n    \"coverage_status\": \"real_odds_provider_has_valid_odds\"\n  },\n  \"warning\": \"Do not bet from this snapshot directly. Use eligible_board rows only.\"\n}\n\n## 当前排行榜/账户摘要\n{\n  \"version\": \"p9.2\",\n  \"updated_at\": \"2026-06-03T19:30:00Z\",\n  \"leaderboard\": [\n    {\n      \"model_account\": \"deepseek\",\n      \"display_name\": \"DeepSeek\",\n      \"rank\": 1,\n      \"balance_gp\": 2810,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 三线命中，Run#5 有效回收\"\n    },\n    {\n      \"model_account\": \"gemini\",\n      \"display_name\": \"Gemini\",\n      \"rank\": 2,\n      \"balance_gp\": 1850,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效，上调 xG 基线\"\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"display_name\": \"通义\",\n      \"rank\": 3,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 400,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"display_name\": \"豆包\",\n      \"rank\": 4,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 重仓 Brazil -1.5 命中；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"display_name\": \"元宝\",\n      \"rank\": 5,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 500,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"display_name\": \"MiMo\",\n      \"rank\": 6,\n      \"balance_gp\": 1200,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"meta\",\n      \"display_name\": \"Meta AI\",\n      \"rank\": 7,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 800,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"display_name\": \"ChatGPT\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"display_name\": \"Kimi\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"display_name\": \"文心\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"display_name\": \"MiniMax\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"display_name\": \"xAI Grok\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    }\n  ]\n}\n\n## 上一轮日报摘要\n{\n  \"version\": \"p9.4\",\n  \"date\": \"2026-06-03\",\n  \"round_id\": \"run-5\",\n  \"generated_at\": \"2026-06-03T15:15:34Z\",\n  \"summary\": {\n    \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\",\n    \"status\": \"report_generated\",\n    \"total_models\": 13,\n    \"total_matches\": 21,\n    \"rerun_queue_count\": 5\n  },\n  \"model_status_counts\": {\n    \"valid_receipt\": 7,\n    \"placeholder_only\": 3,\n    \"context_polluted\": 1,\n    \"quota_blocked\": 1,\n    \"auth_blocked\": 0,\n    \"timeout\": 0,\n    \"parse_error\": 0,\n    \"risk_refusal\": 1,\n    \"excluded_from_consensus\": 6\n  },\n  \"model_status_rows\": [\n    {\n      \"model_account\": \"gemini\",\n      \"seat_id\": \"gemini\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"status\": \"context_polluted\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Detected legacy/werewolf context pollution\",\n      \"pollution_signals\": [\n        \"警长\"\n      ]\n    },\n    {\n      \"model_account\": \"claude\",\n      \"seat_id\": \"claude\",\n      \"status\": \"risk_refusal\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"Risk/compliance refusal — audit only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"seat_id\": \"yuanbao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"deepseek\",\n      \"seat_id\": \"deepseek\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"seat_id\": \"mimo\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"seat_id\": \"qwen\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"status\": \"quota_blocked\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Quota/rate limit blocked\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"seat_id\": \"doubao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"meta\",\n      \"seat_id\": \"meta\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    }\n  ],\n  \"rerun_queue\": [\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"current_status\": \"context_polluted\",\n      \"reason\": \"Detected legacy/werewolf context pollution\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"current_status\": \"quota_blocked\",\n      \"reason\": \"Quota/rate limit blocked\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    }\n  ],\n  \"consensus_eligibility\": {\n    \"eligible_count\": 7,\n    \"eligible_models\": [\n      \"gemini\",\n      \"yuanbao\",\n      \"deepseek\",\n      \"mimo\",\n      \"qwen\",\n      \"doubao\",\n      \"meta\"\n    ],\n    \"excluded_count\": 6,\n    \"excluded_models\": [\n      {\n        \"model_account\": \"chatgpt\",\n        \"status\": \"context_polluted\",\n        \"reason\": \"Detected legacy/werewolf context pollution\"\n      },\n      {\n        \"model_account\": \"claude\",\n        \"status\": \"risk_refusal\",\n        \"reason\": \"Risk/compliance refusal — audit only\"\n      },\n      {\n        \"model_account\": \"wenxin\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"kimi\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"xai\",\n        \"status\": \"quota_blocked\",\n        \"reason\": \"Quota/rate limit blocked\"\n      },\n      {\n        \"model_a\n...<truncated>\n\n## 标准 JSON schema 示例\n{\n  \"seat_id\": \"mimo\",\n  \"round_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\",\n      \"stake_gp\": 100,\n      \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\",\n      \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"sources_checked\": []\n}\n\n## 如果没有 provider-covered 可下注机会，必须输出以下结构\n{\n  \"seat_id\": \"mimo\",\n  \"round_id\": \"run-7\",\n  \"bets\": [],\n  \"no_bet_reason\": \"No provider-covered board row has positive expected value.\",\n  \"sources_checked\": []\n}\n\n【强制输出格式】\n你必须只输出一个 JSON 对象。\nJSON 顶层必须包含：\n- seat_id\n- round_id\n- bets\n- no_bet_reason\n- sources_checked\n\nbets 规则：\n- accepted 结算只认 provider-covered board row。\n- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。\n- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。\n- stake_gp 必须为正数。\n- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。\n- 不要写 fallback、manual_stub 或模型自造 odds。\n\n禁止输出任何 JSON 之外的内容。\nMiMo-V2.5-Pro\n已深度思考（用时 31.3 秒）\njson\njson\n{\n  \"seat_id\": \"mimo\",\n  \"round_id\": \"run-7\",\n  \"run_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"odds_row_id\": \"WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api\",\n      \"stake_gp\": 350,\n      \"rationale\": \"Mexico handicap at GTbets 2.29 is an 11.7% overlay vs Pinnacle sharp line 2.05. Mexico as 2026 WC co-host has strong home-continent advantage, historically solid group-stage performers (advanced from group in every WC since 1994). South Africa's recent FIFA ranking and squad depth are inferior. The price discrepancy between GTbets 2.29 and Pinnacle 2.05 signals positive expected value on this selection.\",\n      \"risk\": \"Reduce or cancel if Mexico key players (Lozano, Álvarez, Gimenez) are ruled out pre-match. Monitor line movement — if Pinnacle drifts above 2.15 the edge compresses. Early kickoff in a potentially humid venue could slow tempo and reduce margin of victory.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"deep_mode_status\": \"not_available\",\n  \"sources_checked\": [\n    {\n      \"source\": \"the_odds_api — Pinnacle sharp line reference\",\n      \"url\": \"eligible_board snapshot run-7:WC-A1_T-1h_handicap_Mexico_Pinnacle_the_odds_api\",\n      \"note\": \"Pinnacle Mexico handicap 2.05 used as no-vig baseline; GTbets 2.29 offers ~11.7% overlay indicating positive EV.\"\n    },\n    {\n      \"source\": \"FIFA World Cup 2026 — Mexico co-host context\",\n      \"url\": \"https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026\",\n      \"note\": \"Mexico is co-hosting 2026 WC. Historical data: Mexico has qualified from the group stage in 7 consecutive World Cups (1994–2018, missed 2022 round of 16 on GD). Home-continent advantage adds ~3-5% win probability per academic research (Pollard 2008).\"\n    },\n    {\n      \"source\": \"FIFA Rankings & squad depth comparison\",\n      \"url\": \"https://www.fifa.com/fifa-world-ranking/men?dateId=id13928\",\n      \"note\": \"Mexico typically ranked ~12-15 vs South Africa ~55-65. Liga MX provides Mexico deeper domestic talent pool; SA relies heavily on European-based players with less squad cohesion.\"\n    },\n    {\n      \"source\": \"Odds discrepancy analysis across bookmakers\",\n      \"url\": \"eligible_board WC-A1 handicap rows\",\n      \"note\": \"Mexico handicap prices: GTbets 2.29 > 1xBet 2.21 > MyBookie 2.18 > Pinnacle 2.05 > Bovada 2.0 > BetOnline 1.71. The wide spread (1.71–2.29) indicates market disagreement on handicap margin, creating value at the high end.\"\n    },\n    {\n      \"source\": \"Match schedule density — WC Group A\",\n      \"url\": \"eligible_board commence_time: 2026-06-11T00:00:00Z\",\n      \"note\": \"WC-A1 is the opening group match for both teams, meaning full-strength squads expected with no fatigue accumulation. This favors the stronger side (Mexico) to cover handicap.\"\n    }\n  ]\n}\n\n本网站为面向开发者的模型能力演示平台，非正式 AI 助手，内容由 AI 生成仅供参考。\n引用来源（0）"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}

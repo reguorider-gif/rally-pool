@@ -400,24 +400,30 @@ def step_ingest(args, run_state):
 def step_classify_model_output(args, run_state):
     outputs_found = run_state.get("ingest_outputs_found", 0)
     if outputs_found <= 0:
-        return {
-            "step": "classify_model_output",
-            "status": "skipped",
-            "command": "python3 ops/classify_model_output.py --round " + args.round_id,
-            "started_at": _now_iso(),
-            "finished_at": _now_iso(),
-            "duration_ms": 0,
-            "stdout_tail": "",
-            "stderr_tail": "",
-            "outputs": [],
-            "warnings": [],
-            "reason": "skipped_waiting_for_model_outputs: no ingested outputs to classify",
-        }
+        ingested_path = DATA_DIR / "model_outputs" / "ingested" / args.round_id / "index.json"
+        if not ingested_path.exists() and not args.dry_run:
+            return {
+                "step": "classify_model_output",
+                "status": "skipped",
+                "command": "python3 ops/classify_model_output.py --round " + args.round_id,
+                "started_at": _now_iso(),
+                "finished_at": _now_iso(),
+                "duration_ms": 0,
+                "stdout_tail": "",
+                "stderr_tail": "",
+                "outputs": [],
+                "warnings": [],
+                "reason": "skipped_waiting_for_model_outputs: no ingested index to classify",
+            }
 
     cmd = ["python3", str(SCRIPTS["classify_model_output"]), "--round", args.round_id]
     rc, out, err, dur = _run_cmd(cmd, dry_run=args.dry_run, timeout=60)
 
     status = "pass" if rc == 0 else "failed"
+    warnings_list = [] if rc == 0 else [f"returncode={rc}"]
+    if outputs_found <= 0 and rc == 0:
+        status = "pass_with_warnings"
+        warnings_list.append("classified_missing_outputs_for_p15_hold: no real web outputs were ingested")
 
     return {
         "step": "classify_model_output",
@@ -428,9 +434,13 @@ def step_classify_model_output(args, run_state):
         "duration_ms": dur,
         "stdout_tail": _tail(out),
         "stderr_tail": _tail(err),
-        "outputs": [f"data/pool/model_runs/{args.round_id}.json"] if status == "pass" else [],
-        "warnings": [] if rc == 0 else [f"returncode={rc}"],
-        "reason": "" if status == "pass" else f"failed: rc={rc}",
+        "outputs": [f"data/pool/model_runs/{args.round_id}.json"] if rc == 0 else [],
+        "warnings": warnings_list,
+        "reason": (
+            "classified_missing_outputs_for_p15_hold"
+            if status == "pass_with_warnings"
+            else ("" if status == "pass" else f"failed: rc={rc}")
+        ),
     }
 
 
@@ -451,12 +461,17 @@ def step_validate_model_outputs(args, run_state):
             "reason": f"skipped_no_classified_outputs: model_runs/{args.round_id}.json not found",
         }
 
-    # Also check if model_runs has actual outputs
+    # Also check if model_runs has actual outputs. For P15 we still run the
+    # validator when a classified "all missing/failed" ledger exists, so the
+    # frontend gets a concrete settlement-readiness HOLD file instead of a
+    # generic missing-file state.
     has_outputs = False
+    has_classified_ledger = False
     if not args.dry_run and model_runs_path.exists():
         try:
             mr = json.loads(model_runs_path.read_text(encoding="utf-8"))
             runs = mr.get("runs", [])
+            has_classified_ledger = len(runs) > 0
             has_outputs = any(r.get("status") in ("valid_receipt", "needs_rerun_placeholder", "needs_rerun_context_polluted", "quota_blocked", "audit_only_refusal", "risk_refusal") for r in runs)
         except Exception:
             pass
@@ -464,7 +479,7 @@ def step_validate_model_outputs(args, run_state):
     if args.dry_run:
         has_outputs = True  # assume has outputs for dry-run prediction
 
-    if not has_outputs:
+    if not has_outputs and not has_classified_ledger:
         return {
             "step": "validate_model_outputs",
             "status": "skipped",
@@ -487,6 +502,10 @@ def step_validate_model_outputs(args, run_state):
     rc, out, err, dur = _run_cmd(cmd, dry_run=args.dry_run, timeout=60)
 
     status = "pass" if rc == 0 else "failed"
+    warnings_list = [] if rc == 0 else [f"returncode={rc}"]
+    if rc == 0 and not has_outputs and has_classified_ledger:
+        status = "pass_with_warnings"
+        warnings_list.append("validated_failed_or_missing_web_seats_for_p15_hold")
 
     return {
         "step": "validate_model_outputs",
@@ -497,9 +516,16 @@ def step_validate_model_outputs(args, run_state):
         "duration_ms": dur,
         "stdout_tail": _tail(out),
         "stderr_tail": _tail(err),
-        "outputs": [],
-        "warnings": [] if rc == 0 else [f"returncode={rc}"],
-        "reason": "" if status == "pass" else f"failed: rc={rc}",
+        "outputs": [
+            f"data/pool/bet_receipts/{args.round_id}.json",
+            f"data/pool/reports/settlement_readiness_{args.round_id}.json",
+        ] if rc == 0 else [],
+        "warnings": warnings_list,
+        "reason": (
+            "validated_failed_or_missing_web_seats_for_p15_hold"
+            if status == "pass_with_warnings"
+            else ("" if status == "pass" else f"failed: rc={rc}")
+        ),
     }
 
 

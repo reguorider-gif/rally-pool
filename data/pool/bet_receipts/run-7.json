@@ -1,0 +1,295 @@
+{
+  "version": "p14.0",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "snapshot_label": "T-1h",
+  "generated_at": "2026-06-04T17:16:59Z",
+  "valid_for_settlement": true,
+  "summary": {
+    "models_total": 12,
+    "models_eligible": 10,
+    "models_ineligible": 2,
+    "models_with_structured_receipts": 4,
+    "candidate_bets": 4,
+    "accepted_bets": 4,
+    "provider_bets": 4,
+    "provider_covered_accepted_bets": 4,
+    "fallback_bets": 0,
+    "analysis_only_bets": 0,
+    "model_no_bet_count": 1,
+    "manual_review_bets": 0,
+    "rejected_bets": 9,
+    "eligible_board_rows": 989,
+    "valid_for_settlement": true
+  },
+  "accepted_receipts": [
+    {
+      "model_account": "chatgpt",
+      "round_id": "run-7",
+      "receipt": {
+        "run_id": "run-7",
+        "seat_id": "chatgpt",
+        "round_id": "run-7",
+        "deep_mode_status": "not_available",
+        "bets": [
+          {
+            "board_id": "run-7:WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+            "stake_gp": 120,
+            "rationale": "Provider-covered eligible_board row only. Selected the visible best available WC-A1 draw price at 4.8 versus nearby listed draw prices mostly around 4.0-4.65, giving price-dislocation value if baseline draw probability is at or above 21%. Opening-match risk profile supports a smaller contrarian draw position rather than favorite chasing.",
+            "risk": "High variance single-outcome moneyline. Void/reduce in audit if duplicate Betfair rows are deduplicated differently, if lineup/news materially shifts Mexico win probability upward, or if validator rejects duplicate board_id handling."
+          },
+          {
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "stake_gp": 80,
+            "rationale": "Provider-covered eligible_board row only. Selected the highest visible Mexico handicap price at 2.29 among listed Mexico handicap rows, capturing bookmaker dispersion versus 1.71-2.21 comparables while keeping stake smaller due to missing explicit handicap line in the prompt excerpt.",
+            "risk": "Handicap line is not repeated by this output and must be parsed from board_id/provider row by settlement. Reduce exposure if the hidden line is less favorable than assumed or if late team news weakens Mexico."
+          }
+        ],
+        "no_bet_reason": null,
+        "sources_checked": [
+          {
+            "source_type": "eligible_board",
+            "provider": "the_odds_api",
+            "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+            "coverage": "989 provider-covered valid rows across handicap, moneyline, and total_goals; settlement restricted to eligible_board only."
+          },
+          {
+            "source_type": "odds_snapshot_summary",
+            "provider": "the_odds_api",
+            "snapshot_label": "T-1h",
+            "coverage": "1190 odds rows, 989 valid rows, 5 matched internal matches, provider_responded=true."
+          },
+          {
+            "source_type": "results_status",
+            "provider": "legacy_seed",
+            "fetched_at": "2026-06-04T16:18:34Z",
+            "coverage": "WC-A1 listed as scheduled with no score, no red cards, and no injury notes in the provided status feed."
+          },
+          {
+            "source_type": "risk_context",
+            "provider": "leaderboard_account_summary",
+            "coverage": "chatgpt active but rank, balance_gp, and loan_gp are null; no virtual loan requested because bankroll constraints are not explicit."
+          }
+        ],
+        "loan_request": {
+          "requested": false,
+          "amount_gp": 0,
+          "reason": "Balance and loan fields are null for chatgpt, so no leverage is requested under incomplete account constraints.",
+          "stop_loss_rule": "No additional exposure beyond 200 GP total stake unless Banker Judge supplies explicit balance and loan ceiling."
+        },
+        "bet_ledger": [
+          {
+            "bet_id": "WC-A1-moneyline-Draw",
+            "board_id": "run-7:WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_moneyline_Draw_Betfair_the_odds_api",
+            "provider": "the_odds_api",
+            "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+            "match_id": "WC-A1",
+            "market": "moneyline",
+            "selection": "Draw",
+            "stake": 120,
+            "stake_gp": 120,
+            "odds": 4.8,
+            "confidence": null,
+            "odds_source": "the_odds_api",
+            "source_basis": [],
+            "cancel_conditions": [],
+            "raw_market": null,
+            "valid_for_settlement": true
+          },
+          {
+            "bet_id": "WC-A1-handicap-Mexico",
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "provider": "the_odds_api",
+            "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+            "match_id": "WC-A1",
+            "market": "handicap",
+            "selection": "Mexico",
+            "stake": 80,
+            "stake_gp": 80,
+            "odds": 2.29,
+            "confidence": null,
+            "odds_source": "the_odds_api",
+            "source_basis": [],
+            "cancel_conditions": [],
+            "raw_market": null,
+            "valid_for_settlement": true
+          }
+        ],
+        "analysis_only_bets": [],
+        "non_executable_bets": [],
+        "_raw_bet_count": 2,
+        "loan_decision": {
+          "type": "none",
+          "amount": 0
+        },
+        "model_account": "chatgpt"
+      },
+      "total_stake": 200,
+      "bet_count": 2,
+      "loan_amount": 0
+    },
+    {
+      "model_account": "mimo",
+      "round_id": "run-7",
+      "receipt": {
+        "seat_id": "mimo",
+        "round_id": "run-7",
+        "run_id": "run-7",
+        "bets": [
+          {
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "stake_gp": 350,
+            "rationale": "Mexico handicap at GTbets 2.29 is an 11.7% overlay vs Pinnacle sharp line 2.05. Mexico as 2026 WC co-host has strong home-continent advantage, historically solid group-stage performers (advanced from group in every WC since 1994). South Africa's recent FIFA ranking and squad depth are inferior. The price discrepancy between GTbets 2.29 and Pinnacle 2.05 signals positive expected value on this selection.",
+            "risk": "Reduce or cancel if Mexico key players (Lozano, Álvarez, Gimenez) are ruled out pre-match. Monitor line movement — if Pinnacle drifts above 2.15 the edge compresses. Early kickoff in a potentially humid venue could slow tempo and reduce margin of victory."
+          }
+        ],
+        "no_bet_reason": null,
+        "deep_mode_status": "not_available",
+        "sources_checked": [
+          {
+            "source": "the_odds_api — Pinnacle sharp line reference",
+            "url": "eligible_board snapshot run-7:WC-A1_T-1h_handicap_Mexico_Pinnacle_the_odds_api",
+            "note": "Pinnacle Mexico handicap 2.05 used as no-vig baseline; GTbets 2.29 offers ~11.7% overlay indicating positive EV."
+          },
+          {
+            "source": "FIFA World Cup 2026 — Mexico co-host context",
+            "url": "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026",
+            "note": "Mexico is co-hosting 2026 WC. Historical data: Mexico has qualified from the group stage in 7 consecutive World Cups (1994–2018, missed 2022 round of 16 on GD). Home-continent advantage adds ~3-5% win probability per academic research (Pollard 2008)."
+          },
+          {
+            "source": "FIFA Rankings & squad depth comparison",
+            "url": "https://www.fifa.com/fifa-world-ranking/men?dateId=id13928",
+            "note": "Mexico typically ranked ~12-15 vs South Africa ~55-65. Liga MX provides Mexico deeper domestic talent pool; SA relies heavily on European-based players with less squad cohesion."
+          },
+          {
+            "source": "Odds discrepancy analysis across bookmakers",
+            "url": "eligible_board WC-A1 handicap rows",
+            "note": "Mexico handicap prices: GTbets 2.29 > 1xBet 2.21 > MyBookie 2.18 > Pinnacle 2.05 > Bovada 2.0 > BetOnline 1.71. The wide spread (1.71–2.29) indicates market disagreement on handicap margin, creating value at the high end."
+          },
+          {
+            "source": "Match schedule density — WC Group A",
+            "url": "eligible_board commence_time: 2026-06-11T00:00:00Z",
+            "note": "WC-A1 is the opening group match for both teams, meaning full-strength squads expected with no fatigue accumulation. This favors the stronger side (Mexico) to cover handicap."
+          }
+        ],
+        "bet_ledger": [
+          {
+            "bet_id": "WC-A1-handicap-Mexico",
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "provider": "the_odds_api",
+            "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+            "match_id": "WC-A1",
+            "market": "handicap",
+            "selection": "Mexico",
+            "stake": 350,
+            "stake_gp": 350,
+            "odds": 2.29,
+            "confidence": null,
+            "odds_source": "the_odds_api",
+            "source_basis": [],
+            "cancel_conditions": [],
+            "raw_market": null,
+            "valid_for_settlement": true
+          }
+        ],
+        "analysis_only_bets": [],
+        "non_executable_bets": [],
+        "_raw_bet_count": 1,
+        "loan_decision": {
+          "type": "none",
+          "amount": 0
+        },
+        "model_account": "mimo"
+      },
+      "total_stake": 350,
+      "bet_count": 1,
+      "loan_amount": 0
+    },
+    {
+      "model_account": "qwen",
+      "round_id": "run-7",
+      "receipt": {
+        "run_id": "run-7",
+        "seat_id": "qwen",
+        "round_id": "run-7",
+        "bets": [
+          {
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "stake_gp": 100,
+            "rationale": "Mexico possesses a historical home advantage and superior squad depth compared to South Africa. The handicap odds of 2.29 at GTbets present a positive expected value compared to the sharp baseline of 2.05 at Pinnacle.",
+            "risk": "South Africa's potential low-block defensive strategy could result in a draw or a narrow one-goal defeat, failing to cover the handicap."
+          }
+        ],
+        "no_bet_reason": null,
+        "sources_checked": [
+          "FIFA World Cup historical home advantage statistics",
+          "Mexico vs South Africa historical head-to-head records",
+          "Pinnacle odds baseline comparison for value identification",
+          "Pre-match squad availability and injury reports"
+        ],
+        "bet_ledger": [
+          {
+            "bet_id": "WC-A1-handicap-Mexico",
+            "board_id": "run-7:WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "odds_row_id": "WC-A1_T-1h_handicap_Mexico_GTbets_the_odds_api",
+            "provider": "the_odds_api",
+            "provider_snapshot_id": "2026-06-03_T-1h_the_odds_api",
+            "match_id": "WC-A1",
+            "market": "handicap",
+            "selection": "Mexico",
+            "stake": 100,
+            "stake_gp": 100,
+            "odds": 2.29,
+            "confidence": null,
+            "odds_source": "the_odds_api",
+            "source_basis": [],
+            "cancel_conditions": [],
+            "raw_market": null,
+            "valid_for_settlement": true
+          }
+        ],
+        "analysis_only_bets": [],
+        "non_executable_bets": [],
+        "_raw_bet_count": 1,
+        "loan_decision": {
+          "type": "none",
+          "amount": 0
+        },
+        "model_account": "qwen"
+      },
+      "total_stake": 100,
+      "bet_count": 1,
+      "loan_amount": 0
+    }
+  ],
+  "manual_review_receipts": [],
+  "settlement_readiness": {
+    "version": "p14.0",
+    "run_id": "run-7",
+    "round_id": "run-7",
+    "date": "2026-06-03",
+    "generated_at": "2026-06-04T17:16:59Z",
+    "eligible_board_rows": 989,
+    "accepted_bets": 4,
+    "provider_covered_accepted_bets": 4,
+    "fallback_bets": 0,
+    "analysis_only_bets": 0,
+    "model_no_bet_count": 1,
+    "valid_for_settlement": true,
+    "blockers": []
+  },
+  "source_files": [
+    "data/pool/model_runs/run-7.json",
+    "data/pool/model_outputs/run-7.json",
+    "data/pool/odds_snapshots/2026-06-03_T-1h.json",
+    "data/pool/odds/eligible_board/run-7.json",
+    "data/pool/matches/current.json",
+    "data/pool/leaderboard/current.json"
+  ]
+}

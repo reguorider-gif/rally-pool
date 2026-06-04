@@ -1,0 +1,654 @@
+{
+  "version": "p15_fixed_cdp_web_collection.v1",
+  "run_id": "run-7",
+  "round_id": "run-7",
+  "date": "2026-06-03",
+  "seat": "kimi",
+  "model_account": "kimi",
+  "ok": true,
+  "status": "raw_answer_unparsed",
+  "failure_reason": "raw_answer_unparsed",
+  "method": "fixed_chrome_cdp_web_runner",
+  "raw_output_path": "data/pool/model_outputs/raw/run-7/kimi.txt",
+  "parsed": null,
+  "response_chars": 70000,
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-06-04T17:00:27.893242+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "run_start"
+          },
+          {
+            "navigate_new_chat": "https://www.kimi.com/"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://www.kimi.com/",
+              "title": "Kimi AI 官网 - K2.6 上线",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          },
+          {
+            "click_new_chat_for_new_conversation": {
+              "clicked": false,
+              "reason": "no_new_chat_candidate"
+            }
+          },
+          {
+            "dismiss_after_new_click": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_click": {
+              "ok": true,
+              "url": "https://www.kimi.com/",
+              "title": "Kimi AI 官网 - K2.6 上线",
+              "inputs": 1,
+              "waited_seconds": 0.01,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://www.kimi.com/",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://www.kimi.com/",
+        "title": "Kimi AI 官网 - K2.6 上线",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": "textbox",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 393,
+            "y": 264,
+            "w": 734,
+            "h": 60,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 16,
+            "y": 17,
+            "w": 28,
+            "h": 28,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "新建会话\n⌘\nK",
+            "x": 8,
+            "y": 62,
+            "w": 224,
+            "h": 46,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "PPT",
+            "x": 8,
+            "y": 120,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "文档",
+            "x": 8,
+            "y": 160,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "深度研究",
+            "x": 8,
+            "y": 200,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "网站",
+            "x": 8,
+            "y": 240,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "表格",
+            "x": 8,
+            "y": 280,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Agent 集群",
+            "x": 8,
+            "y": 320,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Kimi Code",
+            "x": 8,
+            "y": 360,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "DIV",
+            "role": "button",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 185,
+            "y": 408,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI陪审员自问自答",
+            "x": 36,
+            "y": 480,
+            "w": 181,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge 角色评估",
+            "x": 36,
+            "y": 520,
+            "w": 181,
+            "h": 40,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "新建会话\n⌘\nK\nPPT\n文档\n深度研究\n网站\n表格\nAgent 集群\nKimi Code\nKimi Claw\n历史会话\nAI陪审员自问自答\nAI Judge 角色评估\nAI Judge 健康评估\nAI预测池庄家\nAI Judge 独立审议\n查看全部\n获取应用程序\n登月者3096\n升级\n升级套餐\n\n\n\n\n输入“/” 可快捷使用技能\nAgent\nK2.6 快速\nKimi桌面端已就位\nAgent并行，处理本地文件，办公搭子已上线\nWebBridge 接入浏览器\n让 AI 像人一样使用浏览器\nKimi Claw 已就位！\n一键部署 OpenClaw，Kimi 24小时为你干活\nKimi桌面端已就位\nAgent并行，处理本地文件，办公搭子已上线"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://www.kimi.com/",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:00:31.776709+00:00",
+        "released_at": "2026-06-04T17:00:34.662904+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_cdp_enter_after_js_fill",
+        "inputLen": 35448,
+        "inputRect": {
+          "x": 392.5,
+          "y": 263.5,
+          "width": 734,
+          "height": 60,
+          "right": 1126.5,
+          "bottom": 323.5
+        }
+      },
+      "incomplete_json_repair": {
+        "started_at": "2026-06-04T17:00:51.269140+00:00",
+        "reason": "seat_id_mismatch:gemini!=kimi",
+        "send_lock": {
+          "entered_at": "2026-06-04T17:00:54.610858+00:00",
+          "released_at": "2026-06-04T17:00:56.906553+00:00"
+        },
+        "bring_to_front_for_repair": {
+          "ok": true
+        },
+        "preflight": {
+          "block": "",
+          "url": "https://www.kimi.com/chat/19e93945-b182-83b8-8000-0962e931e676?chat_enter_method=home",
+          "title": "AI Judge Kimi JSON - Kimi"
+        },
+        "send_result": {
+          "ok": true,
+          "method": "needs_cdp_enter_after_js_fill",
+          "inputLen": 209,
+          "inputRect": {
+            "x": 392.5,
+            "y": 527,
+            "width": 734,
+            "height": 60,
+            "right": 1126.5,
+            "bottom": 587
+          }
+        },
+        "js_enter_submit": {
+          "ok": true,
+          "tag": "DIV",
+          "text": "AI_JUDGE_RUN_ID:run-7席位：kimi上一条回答已经开始输出本轮 JSON，但没有闭合，系统无法回收。请不要重新展开长分析，不要 Markdown，不要创建文件，只补交一个完整中文 JSON 对象。必须包含字段：run_i",
+          "events": [
+            {
+              "type": "keydown",
+              "accepted": false
+            },
+            {
+              "type": "keypress",
+              "accepted": true
+            },
+            {
+              "type": "keyup",
+              "accepted": true
+            }
+          ]
+        },
+        "status": "raw_answer_unparsed",
+        "parse_error": "seat_id_mismatch:gemini!=kimi",
+        "finished_at": "2026-06-04T17:01:52.132182+00:00",
+        "raw_text_excerpt": "    {\n      \"model_account\": \"kimi\",\n      \"display_name\": \"Kimi\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"display_name\": \"文心\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"display_name\": \"MiniMax\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"display_name\": \"xAI Grok\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    }\n  ]\n}\n\n## 上一轮日报摘要\n{\n  \"version\": \"p9.4\",\n  \"date\": \"2026-06-03\",\n  \"round_id\": \"run-5\",\n  \"generated_at\": \"2026-06-03T15:15:34Z\",\n  \"summary\": {\n    \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\",\n    \"status\": \"report_generated\",\n    \"total_models\": 13,\n    \"total_matches\": 21,\n    \"rerun_queue_count\": 5\n  },\n  \"model_status_counts\": {\n    \"valid_receipt\": 7,\n    \"placeholder_only\": 3,\n    \"context_polluted\": 1,\n    \"quota_blocked\": 1,\n    \"auth_blocked\": 0,\n    \"timeout\": 0,\n    \"parse_error\": 0,\n    \"risk_refusal\": 1,\n    \"excluded_from_consensus\": 6\n  },\n  \"model_status_rows\": [\n    {\n      \"model_account\": \"gemini\",\n      \"seat_id\": \"gemini\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"status\": \"context_polluted\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Detected legacy/werewolf context pollution\",\n      \"pollution_signals\": [\n        \"警长\"\n      ]\n    },\n    {\n      \"model_account\": \"claude\",\n      \"seat_id\": \"claude\",\n      \"status\": \"risk_refusal\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"Risk/compliance refusal — audit only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"seat_id\": \"yuanbao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"deepseek\",\n      \"seat_id\": \"deepseek\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"seat_id\": \"mimo\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"seat_id\": \"qwen\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"status\": \"quota_blocked\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Quota/rate limit blocked\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"seat_id\": \"doubao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"meta\",\n      \"seat_id\": \"meta\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    }\n  ],\n  \"rerun_queue\": [\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"current_status\": \"context_polluted\",\n      \"reason\": \"Detected legacy/werewolf context pollution\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"current_status\": \"quota_blocked\",\n      \"reason\": \"Quota/rate limit blocked\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    }\n  ],\n  \"consensus_eligibility\": {\n    \"eligible_count\": 7,\n    \"eligible_models\": [\n      \"gemini\",\n      \"yuanbao\",\n      \"deepseek\",\n      \"mimo\",\n      \"qwen\",\n      \"doubao\",\n      \"meta\"\n    ],\n    \"excluded_count\": 6,\n    \"excluded_models\": [\n      {\n        \"model_account\": \"chatgpt\",\n        \"status\": \"context_polluted\",\n        \"reason\": \"Detected legacy/werewolf context pollution\"\n      },\n      {\n        \"model_account\": \"claude\",\n        \"status\": \"risk_refusal\",\n        \"reason\": \"Risk/compliance refusal — audit only\"\n      },\n      {\n        \"model_account\": \"wenxin\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"kimi\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"xai\",\n        \"status\": \"quota_blocked\",\n        \"reason\": \"Quota/rate limit blocked\"\n      },\n      {\n        \"model_a\n...<truncated>\n\n## 标准 JSON schema 示例\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\",\n      \"stake_gp\": 100,\n      \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\",\n      \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"sources_checked\": []\n}\n\n## 如果没有 provider-covered 可下注机会，必须输出以下结构\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [],\n  \"no_bet_reason\": \"No provider-covered board row has positive expected value.\",\n  \"sources_checked\": []\n}\n\n【强制输出格式】\n你必须只输出一个 JSON 对象。\nJSON 顶层必须包含：\n- seat_id\n- round_id\n- bets\n- no_bet_reason\n- sources_checked\n\nbets 规则：\n- accepted 结算只认 provider-covered board row。\n- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。\n- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。\n- stake_gp 必须为正数。\n- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。\n- 不要写 fallback、manual_stub 或模型自造 odds。\n\n禁止输出任何 JSON 之外的内容。\n编辑\n复制\n分享\ndeep_mode_status=not_available\n{\"run_id\":\"run-7\",\"seat_id\":\"kimi\",\"round_id\":\"run-7\",\"bets\":[{\"board_id\":\"run-7:WC-A1_T"
+      },
+      "status": "raw_answer_unparsed",
+      "reason": "incomplete_json_repair_failed",
+      "parse_error": "seat_id_mismatch:gemini!=kimi",
+      "finished_at": "2026-06-04T17:01:52.132325+00:00",
+      "snapshot_url": "https://www.kimi.com/chat/19e93945-b182-83b8-8000-0962e931e676?chat_enter_method=home",
+      "snapshot_title": "AI Judge Kimi JSON - Kimi",
+      "raw_text_excerpt": "    \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-002\",\n      \"status\": \"settled\",\n      \"home_score\": 6,\n      \"away_score\": 2,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-003\",\n      \"status\": \"settled\",\n      \"home_score\": 3,\n      \"away_score\": 2,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-004\",\n      \"status\": \"settled\",\n      \"home_score\": 4,\n      \"away_score\": 0,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-005\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-006\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-007\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-008\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-009\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-010\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-011\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-012\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-013\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WC-A1\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\":\n...<truncated>\n\n## 赔率快照摘要\n{\n  \"snapshot_label\": \"T-1h\",\n  \"provider\": \"the_odds_api\",\n  \"summary\": {\n    \"matches_total\": 21,\n    \"markets_requested\": [\n      \"moneyline\",\n      \"handicap\",\n      \"total_goals\"\n    ],\n    \"odds_rows\": 1190,\n    \"valid_odds_rows\": 989,\n    \"missing_market_coverage\": 0,\n    \"match_mapping_failed\": 201,\n    \"provider_unavailable\": false,\n    \"provider_responded\": true,\n    \"matched_internal_matches\": 5,\n    \"coverage_status\": \"real_odds_provider_has_valid_odds\"\n  },\n  \"warning\": \"Do not bet from this snapshot directly. Use eligible_board rows only.\"\n}\n\n## 当前排行榜/账户摘要\n{\n  \"version\": \"p9.2\",\n  \"updated_at\": \"2026-06-03T19:30:00Z\",\n  \"leaderboard\": [\n    {\n      \"model_account\": \"deepseek\",\n      \"display_name\": \"DeepSeek\",\n      \"rank\": 1,\n      \"balance_gp\": 2810,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 三线命中，Run#5 有效回收\"\n    },\n    {\n      \"model_account\": \"gemini\",\n      \"display_name\": \"Gemini\",\n      \"rank\": 2,\n      \"balance_gp\": 1850,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效，上调 xG 基线\"\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"display_name\": \"通义\",\n      \"rank\": 3,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 400,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"display_name\": \"豆包\",\n      \"rank\": 4,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 重仓 Brazil -1.5 命中；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"display_name\": \"元宝\",\n      \"rank\": 5,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 500,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"display_name\": \"MiMo\",\n      \"rank\": 6,\n      \"balance_gp\": 1200,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"meta\",\n      \"display_name\": \"Meta AI\",\n      \"rank\": 7,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 800,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"display_name\": \"ChatGPT\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"display_name\": \"Kimi\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"display_name\": \"文心\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"display_name\": \"MiniMax\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"display_name\": \"xAI Grok\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    }\n  ]\n}\n\n## 上一轮日报摘要\n{\n  \"version\": \"p9.4\",\n  \"date\": \"2026-06-03\",\n  \"round_id\": \"run-5\",\n  \"generated_at\": \"2026-06-03T15:15:34Z\",\n  \"summary\": {\n    \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\",\n    \"status\": \"report_generated\",\n    \"total_models\": 13,\n    \"total_matches\": 21,\n    \"rerun_queue_count\": 5\n  },\n  \"model_status_counts\": {\n    \"valid_receipt\": 7,\n    \"placeholder_only\": 3,\n    \"context_polluted\": 1,\n    \"quota_blocked\": 1,\n    \"auth_blocked\": 0,\n    \"timeout\": 0,\n    \"parse_error\": 0,\n    \"risk_refusal\": 1,\n    \"excluded_from_consensus\": 6\n  },\n  \"model_status_rows\": [\n    {\n      \"model_account\": \"gemini\",\n      \"seat_id\": \"gemini\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"status\": \"context_polluted\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Detected legacy/werewolf context pollution\",\n      \"pollution_signals\": [\n        \"警长\"\n      ]\n    },\n    {\n      \"model_account\": \"claude\",\n      \"seat_id\": \"claude\",\n      \"status\": \"risk_refusal\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"Risk/compliance refusal — audit only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"seat_id\": \"yuanbao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"deepseek\",\n      \"seat_id\": \"deepseek\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"seat_id\": \"mimo\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"seat_id\": \"qwen\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"status\": \"quota_blocked\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Quota/rate limit blocked\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"seat_id\": \"doubao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"meta\",\n      \"seat_id\": \"meta\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    }\n  ],\n  \"rerun_queue\": [\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"current_status\": \"context_polluted\",\n      \"reason\": \"Detected legacy/werewolf context pollution\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"current_status\": \"quota_blocked\",\n      \"reason\": \"Quota/rate limit blocked\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    }\n  ],\n  \"consensus_eligibility\": {\n    \"eligible_count\": 7,\n    \"eligible_models\": [\n      \"gemini\",\n      \"yuanbao\",\n      \"deepseek\",\n      \"mimo\",\n      \"qwen\",\n      \"doubao\",\n      \"meta\"\n    ],\n    \"excluded_count\": 6,\n    \"excluded_models\": [\n      {\n        \"model_account\": \"chatgpt\",\n        \"status\": \"context_polluted\",\n        \"reason\": \"Detected legacy/werewolf context pollution\"\n      },\n      {\n        \"model_account\": \"claude\",\n        \"status\": \"risk_refusal\",\n        \"reason\": \"Risk/compliance refusal — audit only\"\n      },\n      {\n        \"model_account\": \"wenxin\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"kimi\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"xai\",\n        \"status\": \"quota_blocked\",\n        \"reason\": \"Quota/rate limit blocked\"\n      },\n      {\n        \"model_a\n...<truncated>\n\n## 标准 JSON schema 示例\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\",\n      \"stake_gp\": 100,\n      \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\",\n      \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"sources_checked\": []\n}\n\n## 如果没有 provider-covered 可下注机会，必须输出以下结构\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [],\n  \"no_bet_reason\": \"No provider-covered board row has positive expected value.\",\n  \"sources_checked\": []\n}\n\n【强制输出格式】\n你必须只输出一个 JSON 对象。\nJSON 顶层必须包含：\n- seat_id\n- round_id\n- bets\n- no_bet_reason\n- sources_checked\n\nbets 规则：\n- accepted 结算只认 provider-covered board row。\n- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。\n- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。\n- stake_gp 必须为正数。\n- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。\n- 不要写 fallback、manual_stub 或模型自造 odds。\n\n禁止输出任何 JSON 之外的内容。\n复制\n分享\ndeep_mode_status=not_available\n{\"run_id\":\"run-7\",\"seat_id\":\"kimi\",\"round_id\":\"run-7\",\"bets\":[{\"board_id\":\"run-7:WC-A1_T-1h"
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-06-04T17:01:52.132524+00:00",
+      "new_conversation_lock": {
+        "ok": true,
+        "steps": [
+          {
+            "reason": "retry_after:incomplete_json_repair_failed"
+          },
+          {
+            "navigate_new_chat": "https://www.kimi.com/"
+          },
+          {
+            "dismiss_after_new_chat": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_chat": {
+              "ok": true,
+              "url": "https://www.kimi.com/",
+              "title": "Kimi AI 官网 - K2.6 上线",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          },
+          {
+            "click_new_chat_for_new_conversation": {
+              "clicked": false,
+              "reason": "no_new_chat_candidate"
+            }
+          },
+          {
+            "dismiss_after_new_click": {
+              "clicked": []
+            }
+          },
+          {
+            "wait_input_after_new_click": {
+              "ok": true,
+              "url": "https://www.kimi.com/",
+              "title": "Kimi AI 官网 - K2.6 上线",
+              "inputs": 1,
+              "waited_seconds": 0.0,
+              "dismisses": []
+            }
+          }
+        ],
+        "url": "https://www.kimi.com/",
+        "inputs": 1
+      },
+      "bring_to_front": {
+        "ok": true
+      },
+      "preflight": {
+        "url": "https://www.kimi.com/",
+        "title": "Kimi AI 官网 - K2.6 上线",
+        "block": "",
+        "inputs": [
+          {
+            "tag": "DIV",
+            "role": "textbox",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 393,
+            "y": 264,
+            "w": 734,
+            "h": 60,
+            "disabled": false
+          }
+        ],
+        "buttons": [
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 16,
+            "y": 17,
+            "w": 28,
+            "h": 28,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "新建会话\n⌘\nK",
+            "x": 8,
+            "y": 62,
+            "w": 224,
+            "h": 46,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "PPT",
+            "x": 8,
+            "y": 120,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "文档",
+            "x": 8,
+            "y": 160,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "深度研究",
+            "x": 8,
+            "y": 200,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "网站",
+            "x": 8,
+            "y": 240,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "表格",
+            "x": 8,
+            "y": 280,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Agent 集群",
+            "x": 8,
+            "y": 320,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "Kimi Code",
+            "x": 8,
+            "y": 360,
+            "w": 209,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "DIV",
+            "role": "button",
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "",
+            "x": 185,
+            "y": 408,
+            "w": 24,
+            "h": 24,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI Judge Kimi JSON",
+            "x": 36,
+            "y": 480,
+            "w": 181,
+            "h": 40,
+            "disabled": false
+          },
+          {
+            "tag": "A",
+            "role": null,
+            "type": null,
+            "aria": null,
+            "title": null,
+            "placeholder": null,
+            "text": "AI陪审员自问自答",
+            "x": 36,
+            "y": 520,
+            "w": 181,
+            "h": 40,
+            "disabled": false
+          }
+        ],
+        "body_excerpt": "新建会话\n⌘\nK\nPPT\n文档\n深度研究\n网站\n表格\nAgent 集群\nKimi Code\nKimi Claw\n历史会话\nAI Judge Kimi JSON\nAI陪审员自问自答\nAI Judge 角色评估\nAI Judge 健康评估\nAI预测池庄家\n查看全部\n获取应用程序\n登月者3096\n升级\n升级套餐\n\n\n\n\n输入“/” 可快捷使用技能\nAgent\nK2.6 快速\nKimi桌面端已就位\nAgent并行，处理本地文件，办公搭子已上线\nWebBridge 接入浏览器\n让 AI 像人一样使用浏览器\nKimi Claw 已就位！\n一键部署 OpenClaw，Kimi 24小时为你干活\nKimi桌面端已就位\nAgent并行，处理本地文件，办公搭子已上线"
+      },
+      "page_recovery": {
+        "ok": true,
+        "steps": [
+          {
+            "dismiss": {
+              "clicked": []
+            }
+          }
+        ],
+        "url": "https://www.kimi.com/",
+        "inputs": 1
+      },
+      "send_lock": {
+        "entered_at": "2026-06-04T17:01:55.785176+00:00",
+        "released_at": "2026-06-04T17:01:57.742543+00:00"
+      },
+      "bring_to_front_for_send": {
+        "ok": true
+      },
+      "deep_mode": {
+        "attempted": true,
+        "clicked": [],
+        "candidates": []
+      },
+      "send_result": {
+        "ok": true,
+        "method": "needs_cdp_enter_after_js_fill",
+        "inputLen": 35448,
+        "inputRect": {
+          "x": 392.5,
+          "y": 263.5,
+          "width": 734,
+          "height": 60,
+          "right": 1126.5,
+          "bottom": 323.5
+        }
+      },
+      "status": "raw_answer_unparsed",
+      "reason": "raw_answer_unparsed",
+      "parse_error": "seat_id_mismatch:gemini!=kimi",
+      "finished_at": "2026-06-04T17:02:13.619059+00:00",
+      "snapshot_url": "https://www.kimi.com/chat/19e93959-fc62-8ce2-8000-0962becb2f1f?chat_enter_method=home",
+      "snapshot_title": "AI 赛池单注 - Kimi",
+      "raw_text_excerpt": "\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-002\",\n      \"status\": \"settled\",\n      \"home_score\": 6,\n      \"away_score\": 2,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-003\",\n      \"status\": \"settled\",\n      \"home_score\": 3,\n      \"away_score\": 2,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-004\",\n      \"status\": \"settled\",\n      \"home_score\": 4,\n      \"away_score\": 0,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-005\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-006\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-007\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-008\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-009\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-010\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-011\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-012\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WARM-013\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\": \"legacy_seed\",\n      \"source_url\": \"\",\n      \"fetched_at\": \"2026-06-04T16:18:34Z\",\n      \"confidence\": 0.5,\n      \"result_state\": \"missing_or_not_finished\",\n      \"extra_time\": null,\n      \"penalties\": null\n    },\n    {\n      \"match_id\": \"WC-A1\",\n      \"status\": \"scheduled\",\n      \"home_score\": null,\n      \"away_score\": null,\n      \"halftime_score\": null,\n      \"red_cards\": [],\n      \"injury_notes\": [],\n      \"provider\":\n...<truncated>\n\n## 赔率快照摘要\n{\n  \"snapshot_label\": \"T-1h\",\n  \"provider\": \"the_odds_api\",\n  \"summary\": {\n    \"matches_total\": 21,\n    \"markets_requested\": [\n      \"moneyline\",\n      \"handicap\",\n      \"total_goals\"\n    ],\n    \"odds_rows\": 1190,\n    \"valid_odds_rows\": 989,\n    \"missing_market_coverage\": 0,\n    \"match_mapping_failed\": 201,\n    \"provider_unavailable\": false,\n    \"provider_responded\": true,\n    \"matched_internal_matches\": 5,\n    \"coverage_status\": \"real_odds_provider_has_valid_odds\"\n  },\n  \"warning\": \"Do not bet from this snapshot directly. Use eligible_board rows only.\"\n}\n\n## 当前排行榜/账户摘要\n{\n  \"version\": \"p9.2\",\n  \"updated_at\": \"2026-06-03T19:30:00Z\",\n  \"leaderboard\": [\n    {\n      \"model_account\": \"deepseek\",\n      \"display_name\": \"DeepSeek\",\n      \"rank\": 1,\n      \"balance_gp\": 2810,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 三线命中，Run#5 有效回收\"\n    },\n    {\n      \"model_account\": \"gemini\",\n      \"display_name\": \"Gemini\",\n      \"rank\": 2,\n      \"balance_gp\": 1850,\n      \"loan_gp\": 1000,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效，上调 xG 基线\"\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"display_name\": \"通义\",\n      \"rank\": 3,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 400,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"display_name\": \"豆包\",\n      \"rank\": 4,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 重仓 Brazil -1.5 命中；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"display_name\": \"元宝\",\n      \"rank\": 5,\n      \"balance_gp\": 1500,\n      \"loan_gp\": 500,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"display_name\": \"MiMo\",\n      \"rank\": 6,\n      \"balance_gp\": 1200,\n      \"loan_gp\": 300,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"meta\",\n      \"display_name\": \"Meta AI\",\n      \"rank\": 7,\n      \"balance_gp\": 1400,\n      \"loan_gp\": 800,\n      \"status\": \"active\",\n      \"notes\": \"Run#4 有效；Run#5 有效\"\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"display_name\": \"ChatGPT\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"display_name\": \"Kimi\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"display_name\": \"文心\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"display_name\": \"MiniMax\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"display_name\": \"xAI Grok\",\n      \"rank\": null,\n      \"balance_gp\": null,\n      \"loan_gp\": null,\n      \"status\": \"active\",\n      \"notes\": \"Run#6 有效回收\"\n    }\n  ]\n}\n\n## 上一轮日报摘要\n{\n  \"version\": \"p9.4\",\n  \"date\": \"2026-06-03\",\n  \"round_id\": \"run-5\",\n  \"generated_at\": \"2026-06-03T15:15:34Z\",\n  \"summary\": {\n    \"headline\": \"Run #5 Daily Report — 7 valid outputs, 5 models need rerun, 4 data gaps\",\n    \"status\": \"report_generated\",\n    \"total_models\": 13,\n    \"total_matches\": 21,\n    \"rerun_queue_count\": 5\n  },\n  \"model_status_counts\": {\n    \"valid_receipt\": 7,\n    \"placeholder_only\": 3,\n    \"context_polluted\": 1,\n    \"quota_blocked\": 1,\n    \"auth_blocked\": 0,\n    \"timeout\": 0,\n    \"parse_error\": 0,\n    \"risk_refusal\": 1,\n    \"excluded_from_consensus\": 6\n  },\n  \"model_status_rows\": [\n    {\n      \"model_account\": \"gemini\",\n      \"seat_id\": \"gemini\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"status\": \"context_polluted\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Detected legacy/werewolf context pollution\",\n      \"pollution_signals\": [\n        \"警长\"\n      ]\n    },\n    {\n      \"model_account\": \"claude\",\n      \"seat_id\": \"claude\",\n      \"status\": \"risk_refusal\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"Risk/compliance refusal — audit only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"yuanbao\",\n      \"seat_id\": \"yuanbao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"deepseek\",\n      \"seat_id\": \"deepseek\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"mimo\",\n      \"seat_id\": \"mimo\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"qwen\",\n      \"seat_id\": \"qwen\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"status\": \"quota_blocked\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Quota/rate limit blocked\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"status\": \"placeholder_only\",\n      \"eligible_for_consensus\": false,\n      \"needs_rerun\": true,\n      \"failure_reason\": \"Output is placeholder only\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"doubao\",\n      \"seat_id\": \"doubao\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    },\n    {\n      \"model_account\": \"meta\",\n      \"seat_id\": \"meta\",\n      \"status\": \"valid_receipt\",\n      \"eligible_for_consensus\": true,\n      \"needs_rerun\": false,\n      \"failure_reason\": \"\",\n      \"pollution_signals\": []\n    }\n  ],\n  \"rerun_queue\": [\n    {\n      \"model_account\": \"chatgpt\",\n      \"seat_id\": \"chatgpt\",\n      \"current_status\": \"context_polluted\",\n      \"reason\": \"Detected legacy/werewolf context pollution\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"wenxin\",\n      \"seat_id\": \"wenxin\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"kimi\",\n      \"seat_id\": \"kimi\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    },\n    {\n      \"model_account\": \"xai\",\n      \"seat_id\": \"xai\",\n      \"current_status\": \"quota_blocked\",\n      \"reason\": \"Quota/rate limit blocked\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"high\"\n    },\n    {\n      \"model_account\": \"minimax\",\n      \"seat_id\": \"minimax\",\n      \"current_status\": \"placeholder_only\",\n      \"reason\": \"Output is placeholder only\",\n      \"attempt_no\": 1,\n      \"next_attempt_no\": 2,\n      \"priority\": \"medium\"\n    }\n  ],\n  \"consensus_eligibility\": {\n    \"eligible_count\": 7,\n    \"eligible_models\": [\n      \"gemini\",\n      \"yuanbao\",\n      \"deepseek\",\n      \"mimo\",\n      \"qwen\",\n      \"doubao\",\n      \"meta\"\n    ],\n    \"excluded_count\": 6,\n    \"excluded_models\": [\n      {\n        \"model_account\": \"chatgpt\",\n        \"status\": \"context_polluted\",\n        \"reason\": \"Detected legacy/werewolf context pollution\"\n      },\n      {\n        \"model_account\": \"claude\",\n        \"status\": \"risk_refusal\",\n        \"reason\": \"Risk/compliance refusal — audit only\"\n      },\n      {\n        \"model_account\": \"wenxin\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"kimi\",\n        \"status\": \"placeholder_only\",\n        \"reason\": \"Output is placeholder only\"\n      },\n      {\n        \"model_account\": \"xai\",\n        \"status\": \"quota_blocked\",\n        \"reason\": \"Quota/rate limit blocked\"\n      },\n      {\n        \"model_a\n...<truncated>\n\n## 标准 JSON schema 示例\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [\n    {\n      \"board_id\": \"run-7:EXAMPLE_PROVIDER_ODDS_ROW_ID\",\n      \"stake_gp\": 100,\n      \"rationale\": \"Board row selected from eligible_board only; market and selection match the provider row.\",\n      \"risk\": \"Cancel or reduce if lineup, injury, weather, or odds movement invalidates the edge.\"\n    }\n  ],\n  \"no_bet_reason\": null,\n  \"sources_checked\": []\n}\n\n## 如果没有 provider-covered 可下注机会，必须输出以下结构\n{\n  \"seat_id\": \"kimi\",\n  \"round_id\": \"run-7\",\n  \"bets\": [],\n  \"no_bet_reason\": \"No provider-covered board row has positive expected value.\",\n  \"sources_checked\": []\n}\n\n【强制输出格式】\n你必须只输出一个 JSON 对象。\nJSON 顶层必须包含：\n- seat_id\n- round_id\n- bets\n- no_bet_reason\n- sources_checked\n\nbets 规则：\n- accepted 结算只认 provider-covered board row。\n- 每条 bets 必须包含 board_id；缺失会被 rejected_missing_provider_odds 拒收。\n- 可选 odds_row_id；如果填写，必须与 board_id 对应行一致。\n- stake_gp 必须为正数。\n- market、selection、odds 必须由 eligible_board 行决定，不要自由改写。\n- 不要写 fallback、manual_stub 或模型自造 odds。\n\n禁止输出任何 JSON 之外的内容。\n复制\n分享\n{\"seat_id\":\"kimi\",\"round_id\":\"run-7\",\"run_id\":\"run-7\",\"bets\":[{\"board_id\":\"run-7:WC-A1_T-1h_moneyline_Mexico_BetOnline.ag_the_odds_ap"
+    }
+  ],
+  "source_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-p15-run-7-20260604165930"
+}
