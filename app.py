@@ -37,6 +37,7 @@ try:
         get_ops_readiness,
         get_provider_status, get_odds_snapshots as pd_get_odds_snapshots, get_odds_snapshot as pd_get_odds_snapshot,
         get_provider_smoke, get_output_dropbox_report,
+        get_runtime_summary,
     )
     _HAS_POOL_API = True
     print("[app.py] pool_data loaded successfully")
@@ -635,6 +636,31 @@ def api_pool_frontend_archives():
         except Exception as e:
             print(f"[api_pool_frontend_archives] pool_data failed: {e}", file=sys.stderr)
     return {"version": "p9.2", "round_results": [], "run4_model_archive": [], "run5_model_archive": [], "run4_source_tasks": [], "ucl_bets": []}
+
+
+@app.get("/api/pool/runtime-summary")
+def api_pool_runtime_summary(round_id: str = "run-6", date: str = "2026-06-03"):
+    """返回预测池当前运行态与历史归档摘要。"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_runtime_summary(round_id=round_id, date=date)
+        except Exception as e:
+            print(f"[api_pool_runtime_summary] pool_data failed: {e}", file=sys.stderr)
+    return {
+        "version": "p14.0",
+        "generated_at": "",
+        "current_round": round_id,
+        "date": date,
+        "active_models_count": 0,
+        "active_models": [],
+        "current_ranking": [],
+        "provider": {"overall": "unavailable", "valid_odds_rows": 0},
+        "model_outputs": {"outputs_expected": 0, "outputs_found": 0, "outputs_missing": 0},
+        "betting": {"accepted_bets": 0, "accepted_receipts": 0, "gap": True},
+        "automation": {"pipeline_status": "unavailable", "data_gaps": [], "next_actions": []},
+        "archives": {"counts": {}, "round_results": [], "ucl_bets": [], "run4_model_archive": [], "run5_model_archive": []},
+    }
 
 
 # --- P12.0 Pipeline Runs API ---

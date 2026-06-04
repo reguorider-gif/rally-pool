@@ -1139,3 +1139,154 @@ def get_output_dropbox_report(round_id: str = None):
         "details":          {},
         "generated_at":    _now_iso(),
     }
+
+
+# ───────── P14.0 Runtime Summary ───────────────────────────────────────────
+
+def get_runtime_summary(round_id: str = None, date: str = None):
+    """
+    P14.0：返回预测池当前运行态 + 历史归档摘要。
+    这个接口专门给新版五页 UI 使用，避免首页只读 run-5 或隐藏旧档案后
+    让欧冠前哨、历史投注和 run-6 真实回收状态看起来“消失”。
+    """
+    round_id = round_id or "run-6"
+    date = date or "2026-06-03"
+
+    models = get_model_accounts()
+    leaderboard = get_leaderboard()
+    archives = get_frontend_archives() or {}
+    provider = get_provider_status()
+    provider_smoke = get_provider_smoke(round_id=round_id, date=date)
+    dropbox = get_output_dropbox_report(round_id=round_id)
+    ingested = get_ingested_outputs(round_id=round_id)
+    model_runs = get_model_runs(round_id=round_id)
+    receipts = get_bet_receipts(round_id=round_id)
+    settlements = get_settlement(round_id=round_id)
+    daily_report = get_daily_report(date=date, round_id=round_id) or {}
+    pipeline = get_pipeline_run(date=date, round_id=round_id)
+    pipeline_run = pipeline.get("pipeline_run") if isinstance(pipeline, dict) else None
+
+    model_list = models.get("models", []) if isinstance(models, dict) else []
+    leaderboard_rows = []
+    if isinstance(leaderboard, dict):
+        leaderboard_rows = leaderboard.get("leaderboard") or leaderboard.get("models") or []
+
+    ingested_outputs = []
+    if isinstance(ingested, dict):
+        ingested_outputs = ingested.get("outputs") or []
+
+    receipts_summary = receipts.get("summary", {}) if isinstance(receipts, dict) else {}
+    accepted_receipts = []
+    if isinstance(receipts, dict):
+        accepted_receipts = receipts.get("accepted_receipts") or receipts.get("receipts") or []
+
+    smoke_summary = provider_smoke.get("summary", {}) if isinstance(provider_smoke, dict) else {}
+    model_run_summary = model_runs.get("summary", {}) if isinstance(model_runs, dict) else {}
+    settlement_summary = settlements.get("summary", {}) if isinstance(settlements, dict) else {}
+    pipeline_summary = {}
+    if isinstance(pipeline_run, dict):
+        pipeline_summary = pipeline_run.get("summary", {})
+
+    round_results = archives.get("round_results", []) if isinstance(archives, dict) else []
+    ucl_bets = archives.get("ucl_bets", []) if isinstance(archives, dict) else []
+    run4_archive = archives.get("run4_model_archive", []) if isinstance(archives, dict) else []
+    run5_archive = archives.get("run5_model_archive", []) if isinstance(archives, dict) else []
+
+    zero_stake_receipts = 0
+    for receipt in accepted_receipts:
+        try:
+            if float(receipt.get("total_stake") or 0) == 0:
+                zero_stake_receipts += 1
+        except Exception:
+            pass
+
+    accepted_bets = receipts_summary.get("accepted_bets")
+    if accepted_bets is None:
+        accepted_bets = receipts_summary.get("candidate_bets", 0)
+
+    has_betting_gap = bool(
+        (accepted_bets or 0) == 0
+        and (dropbox.get("outputs_found") or len(ingested_outputs) or 0) > 0
+    )
+
+    data_gaps = daily_report.get("data_gaps", []) if isinstance(daily_report, dict) else []
+    next_actions = daily_report.get("next_actions", []) if isinstance(daily_report, dict) else []
+    if has_betting_gap:
+        next_actions = list(next_actions) + [{
+            "action": "regenerate_bet_receipts_with_real_odds",
+            "stage": "P14.0",
+            "blocking": True,
+            "reason": "run-6 has real model outputs and valid provider odds, but current receipts contain 0 accepted bets",
+        }]
+
+    return {
+        "version": "p14.0",
+        "generated_at": _now_iso(),
+        "current_round": round_id,
+        "date": date,
+        "active_models_count": len(model_list),
+        "active_models": [
+            {
+                "model_account": m.get("model_account"),
+                "display_name": m.get("display_name"),
+                "status": m.get("status"),
+            }
+            for m in model_list
+        ],
+        "current_ranking": leaderboard_rows[:12],
+        "provider": {
+            "overall": provider.get("overall") if isinstance(provider, dict) else "unknown",
+            "status": provider_smoke.get("status") if isinstance(provider_smoke, dict) else "unknown",
+            "configured": smoke_summary.get("configured", False),
+            "provider_responded": smoke_summary.get("provider_responded"),
+            "valid_odds_rows": smoke_summary.get("valid_odds_rows", 0),
+            "odds_rows": smoke_summary.get("odds_rows", 0),
+            "coverage_status": smoke_summary.get("coverage_status", "unknown"),
+        },
+        "model_outputs": {
+            "status": dropbox.get("status"),
+            "outputs_expected": dropbox.get("outputs_expected") or len(model_list),
+            "outputs_found": dropbox.get("outputs_found") or len(ingested_outputs),
+            "outputs_missing": dropbox.get("outputs_missing", 0),
+            "missing_models": dropbox.get("missing_models") or dropbox.get("missing_files") or [],
+            "ingested_models": [o.get("model_account") for o in ingested_outputs if o.get("model_account")],
+        },
+        "model_runs": {
+            "summary": model_run_summary,
+            "valid_receipt": model_run_summary.get("valid_receipt", 0),
+            "needs_rerun": model_run_summary.get("needs_rerun", 0),
+        },
+        "betting": {
+            "summary": receipts_summary,
+            "accepted_receipts": len(accepted_receipts),
+            "zero_stake_receipts": zero_stake_receipts,
+            "accepted_bets": accepted_bets or 0,
+            "valid_for_settlement": receipts.get("valid_for_settlement") if isinstance(receipts, dict) else False,
+            "gap": has_betting_gap,
+        },
+        "settlement": {
+            "status": settlements.get("settlement_status") if isinstance(settlements, dict) else "unknown",
+            "summary": settlement_summary,
+        },
+        "automation": {
+            "pipeline_status": pipeline_run.get("final_status") if isinstance(pipeline_run, dict) else "unknown",
+            "steps_passed": pipeline_summary.get("steps_passed", 0),
+            "steps_total": pipeline_summary.get("steps_total", 0),
+            "deploy_step": "skipped" if isinstance(pipeline_run, dict) else "unknown",
+            "data_gaps": data_gaps,
+            "next_actions": next_actions,
+        },
+        "archives": {
+            "updated_at": archives.get("updated_at") if isinstance(archives, dict) else "",
+            "counts": {
+                "round_results": len(round_results),
+                "ucl_bets": len(ucl_bets),
+                "run4_model_archive": len(run4_archive),
+                "run5_model_archive": len(run5_archive),
+            },
+            "round_results": round_results,
+            "ucl_bets": ucl_bets,
+            "run4_model_archive": run4_archive,
+            "run5_model_archive": run5_archive,
+        },
+    }

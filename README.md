@@ -12,6 +12,7 @@ tracks odds provider readiness, and publishes an auditable run report.
 - Current run: `run-6`
 - Active seats: 12
 - Run-6 status: 12/12 raw outputs recovered, 12/12 valid receipts, 0 rerun queue
+- Current betting gap: real odds are available, but run-6 has 0 accepted bets and needs receipt regeneration/review
 - Deployment target: Vercel production alias
 
 ## Product Overview
@@ -57,6 +58,8 @@ Run-6 verification:
 
 - Model output dropbox: 12/12, `ready_for_ingest`
 - Model runs: 12 valid receipts, 0 rerun, 0 quota/auth/timeout blockers
+- Odds provider smoke: `PASS_REAL_PROVIDER_HAS_VALID_ODDS`, 989 valid odds rows
+- Betting receipts: 3 zero-stake receipts, 0 accepted bets; not valid for settlement yet
 - Daily report: 12 valid outputs, 0 models need rerun
 - Pipeline: `final_status=pass`
 - Browser smoke: 5 views clickable, no console/page errors
@@ -82,7 +85,19 @@ Run-6 verification:
 - `GET /api/pool/daily-reports/2026-06-03/run-6` - daily report
 - `GET /api/pool/pipeline-runs/2026-06-03/run-6` - pipeline status
 - `GET /api/pool/provider-status` - odds provider readiness
+- `GET /api/pool/runtime-summary` - current run state plus restored historical archives
 - `GET /api/leaderboard` - public leaderboard data
+
+## Latest Repair Notes
+
+- Desktop client `/worldcup-pool` 404 was caused by a missing local
+  `worldcup_pool.html` file. The local runtime now bridges that entry to the
+  production dashboard.
+- The new five-page dashboard previously hid the legacy archive content without
+  rendering it in the new Run archive view. UCL final bets, historical match
+  results, and Run-5 model strategy archives are now surfaced in the new UI.
+- The dashboard now reads `run-6` daily report data and `/api/pool/runtime-summary`
+  instead of presenting stale run-5-only status.
 
 ## Local Development
 

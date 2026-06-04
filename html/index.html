@@ -293,6 +293,8 @@ main{padding:24px 28px;min-width:0}
     <div class="kpi-grid" id="dashboardKpi"></div>
     <div class="pool-section-hdr">📌 核心状态</div>
     <div id="dashboardStates"></div>
+    <div class="pool-section-hdr">🏛 运行感知</div>
+    <div id="dashboardAwareness"></div>
     <div class="pool-section-hdr">📋 数据缺口 <span class="badge-count" id="dgTitle"></span></div>
     <div id="dashboardGaps"></div>
     <div class="pool-section-hdr">▶ 下一步动作</div>
@@ -322,6 +324,12 @@ main{padding:24px 28px;min-width:0}
     <div id="archiveRun5"></div>
     <div class="pool-section-hdr">Run #6</div>
     <div id="archiveRun6"></div>
+    <div class="pool-section-hdr">⭐ 欧冠前哨结算</div>
+    <div id="archiveUclFinal"></div>
+    <div class="pool-section-hdr">📒 历史赛果 / 热身赛</div>
+    <div id="archiveRoundLedgerNew"></div>
+    <div class="pool-section-hdr">🧾 Run #5 模型原始策略摘要</div>
+    <div id="archiveRun5ModelsNew"></div>
   </div>
 
   <!-- 5) 系统健康页 -->
@@ -1150,6 +1158,7 @@ var PoolData = {
   providerStatus: null,
   providerSmoke: null,
   modelDropbox: null,
+  runtimeSummary: null,
   modelRuns: {}
 };
 
@@ -1210,6 +1219,73 @@ function statusBadge(status) {
   return '<span class="status-tag ' + cls + '">' + label + '</span>';
 }
 
+function htmlEscape(value) {
+  if (value == null) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function actionText(item) {
+  if (!item) return '';
+  if (typeof item === 'string') return item;
+  return item.action || item.reason || item.detail || item.label || JSON.stringify(item);
+}
+
+function renderDashboardAwareness() {
+  var el = document.getElementById('dashboardAwareness');
+  if (!el) return;
+  var rt = PoolData.runtimeSummary || {};
+  var provider = rt.provider || {};
+  var outputs = rt.model_outputs || {};
+  var betting = rt.betting || {};
+  var automation = rt.automation || {};
+  var archives = rt.archives || {};
+  var ranking = rt.current_ranking || [];
+  var roundResults = archives.round_results || [];
+
+  if (!rt.current_round) {
+    el.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">运行摘要不可用 — /api/pool/runtime-summary</span></div>';
+    return;
+  }
+
+  var topRanks = ranking.slice(0, 6).map(function(r) {
+    var gp = r.balance_gp == null ? '--' : r.balance_gp + 'GP';
+    return '<span class="badge">' + htmlEscape(r.display_name || r.model_account || '--') + ' · ' + gp + '</span>';
+  }).join('');
+  var previousRows = roundResults.slice(0, 4).map(function(r) {
+    return '<div class="archive-row"><div class="code">' + htmlEscape(r.code || '--') + '</div><div class="body"><strong>' + htmlEscape(r.match || '--') + '</strong><span>' + htmlEscape(r.note || '') + '</span></div><div class="status ' + htmlEscape(r.cls || 'good') + '">' + htmlEscape(r.status || '--') + '</div></div>';
+  }).join('');
+  var gapText = betting.gap
+    ? '模型原始回复与真实赔率已齐，但当前投注单仍是 0 个有效下注，需要基于真实赔率重新生成/复核 bet receipts。'
+    : '投注单已进入可结算链路。';
+
+  el.innerHTML =
+    '<div class="full-grid" style="margin-top:0">' +
+      '<div class="full-card"><h4>当前自动化链路</h4>' +
+        '<strong>' + htmlEscape(rt.current_round) + '</strong> · pipeline ' + htmlEscape(automation.pipeline_status || 'unknown') +
+        ' · ' + (automation.steps_passed || 0) + '/' + (automation.steps_total || 0) + ' steps' +
+        '<div class="drawer-copy" style="margin-top:8px">Provider: ' + htmlEscape(provider.status || provider.overall || 'unknown') + ' · valid_odds_rows ' + (provider.valid_odds_rows || 0) + ' / ' + (provider.odds_rows || 0) + '</div>' +
+      '</div>' +
+      '<div class="full-card"><h4>模型回收</h4>' +
+        '<strong>' + (outputs.outputs_found || 0) + '/' + (outputs.outputs_expected || 0) + '</strong> 个网页模型原始回复已保存。' +
+        '<div class="drawer-copy" style="margin-top:8px">有效模型回执：' + ((rt.model_runs && rt.model_runs.valid_receipt) || 0) + ' · 需补跑：' + ((rt.model_runs && rt.model_runs.needs_rerun) || 0) + '</div>' +
+      '</div>' +
+      '<div class="full-card"><h4>投注结果状态</h4>' +
+        '<strong>' + (betting.accepted_bets || 0) + '</strong> 个有效下注 · ' + (betting.accepted_receipts || 0) + ' 个 receipt · ' + (betting.zero_stake_receipts || 0) + ' 个零仓。' +
+        '<div class="drawer-copy" style="margin-top:8px">' + htmlEscape(gapText) + '</div>' +
+      '</div>' +
+      '<div class="full-card"><h4>当前排名记忆</h4>' +
+        '<div class="badge-row">' + topRanks + '</div>' +
+        '<div class="drawer-copy" style="margin-top:8px">下一轮提示词必须先复述上一晚赛果、当前 GP/排名、对手态势，再输出每场比赛分析、下注表、信源与风险边界。</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="archive-list" style="margin-top:10px">' + previousRows + '</div>';
+}
+
 // --- 1) 今日控制台 ---
 function renderDashboard() {
   var kpiEl = document.getElementById('dashboardKpi');
@@ -1227,31 +1303,37 @@ function renderDashboard() {
   var ingested = PoolData.ingestedOutputs || {};
   var rerun = PoolData.rerunAttempts || {};
   var daily = PoolData.dailyReports || {};
+  var runtime = PoolData.runtimeSummary || {};
+  var rtOutputs = runtime.model_outputs || {};
+  var rtProvider = runtime.provider || {};
+  var rtBetting = runtime.betting || {};
+  var rtSettlement = runtime.settlement || {};
 
   // KPI cards
-  var modelCount = (models.models && Array.isArray(models.models)) ? models.models.length : 13;
+  var modelCount = runtime.active_models_count || ((models.models && Array.isArray(models.models)) ? models.models.length : 12);
   var matchCount = (Array.isArray(matches) ? matches.length : 0) || 104;
-  var run5Bets = (receipts.summary && receipts.summary.accepted_bets != null) ? receipts.summary.accepted_bets : 0;
-  var run5SettleStatus = settlements.settlement_status || 'no_bets_to_settle';
-  var run5Profit = (settlements.summary && settlements.summary.total_profit != null) ? settlements.summary.total_profit : '--';
-  var run6Seats = manifest.seats_total || 13;
-  var run6Outputs = ingested.outputs_found || 0;
-  var run6Total = ingested.outputs_total || 13;
+  var run5Bets = (rtBetting.accepted_bets != null) ? rtBetting.accepted_bets : ((receipts.summary && receipts.summary.accepted_bets != null) ? receipts.summary.accepted_bets : 0);
+  var run5SettleStatus = rtSettlement.status || settlements.settlement_status || 'no_bets_to_settle';
+  var run5Profit = (rtSettlement.summary && rtSettlement.summary.total_profit != null) ? rtSettlement.summary.total_profit : ((settlements.summary && settlements.summary.total_profit != null) ? settlements.summary.total_profit : '--');
+  var run6Seats = manifest.seats_total || modelCount;
+  var run6Outputs = rtOutputs.outputs_found || ingested.outputs_found || 0;
+  var run6Total = rtOutputs.outputs_expected || ingested.outputs_total || modelCount;
   var run6State = (ingested.outputs_found != null) ? (ingested.outputs_found > 0 ? 'has_raw_outputs' : 'waiting_for_manual_ingest') : 'waiting_for_manual_ingest';
+  if (rtOutputs.status) run6State = rtOutputs.status;
   var run5RerunState = (rerun.summary && rerun.summary.state) ? rerun.summary.state : 'no_rerun_queue';
 
   kpiEl.innerHTML =
     '<div class="kpi-card blue"><div class="kpi-label">总模型数</div><div class="kpi-val">' + modelCount + '</div><div class="kpi-sub">席位池</div></div>' +
     '<div class="kpi-card"><div class="kpi-label">当前比赛</div><div class="kpi-val">' + matchCount + '</div><div class="kpi-sub">世界杯赛程</div></div>' +
-    '<div class="kpi-card green"><div class="kpi-label">Run #5 投注</div><div class="kpi-val">' + run5Bets + '</div><div class="kpi-sub">accepted bets</div></div>' +
-    '<div class="kpi-card gold"><div class="kpi-label">Run #5 结算</div><div class="kpi-val">' + run5Profit + '</div><div class="kpi-sub">' + run5SettleStatus + '</div></div>' +
+    '<div class="kpi-card ' + (run5Bets > 0 ? 'green' : 'gold') + '"><div class="kpi-label">Run #6 投注</div><div class="kpi-val">' + run5Bets + '</div><div class="kpi-sub">accepted bets</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">Run #6 结算</div><div class="kpi-val">' + run5Profit + '</div><div class="kpi-sub">' + run5SettleStatus + '</div></div>' +
     '<div class="kpi-card blue"><div class="kpi-label">Run #6</div><div class="kpi-val">' + run6Outputs + '/' + run6Total + '</div><div class="kpi-sub">' + run6State + '</div></div>' +
-    '<div class="kpi-card gold"><div class="kpi-label">Run #5 补跑</div><div class="kpi-val">' + (rerun.summary ? (rerun.summary.planned_attempts || '--') : '--') + '</div><div class="kpi-sub">' + run5RerunState + '</div></div>';
+    '<div class="kpi-card green"><div class="kpi-label">真实赔率</div><div class="kpi-val">' + (rtProvider.valid_odds_rows || 0) + '</div><div class="kpi-sub">valid odds rows</div></div>';
 
   // 阻塞状态卡
   if (blockerEl) {
     var provider = PoolData.providerStatus || {};
-    var provOk = provider.overall === 'ok' || provider.overall === 'configured';
+    var provOk = provider.overall === 'ok' || provider.overall === 'configured' || provider.overall === 'ready' || rtProvider.configured === true;
     var dropbox = PoolData.modelDropbox || {};
     var dropboxStatus = dropbox.status || 'unknown';
     var dropboxFound = dropbox.outputs_found || 0;
@@ -1280,7 +1362,7 @@ function renderDashboard() {
         '<div style="font-size:11px;color:var(--dim);margin-top:2px">' + desc + '</div></div></div>' +
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:11px">' +
         '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">赔率源</div><div style="font-weight:700;margin-top:2px">' + (provOk ? '✅ 已配置' : '⚠️ 未确认') + '</div></div>' +
-        '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">valid_odds_rows</div><div style="font-weight:700;margin-top:2px">957</div></div>' +
+        '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">valid_odds_rows</div><div style="font-weight:700;margin-top:2px">' + (rtProvider.valid_odds_rows || ((PoolData.providerSmoke && PoolData.providerSmoke.summary && PoolData.providerSmoke.summary.valid_odds_rows) || 0)) + '</div></div>' +
         '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">dropbox</div><div style="font-weight:700;margin-top:2px">' + statusBadge(dropboxStatus) + '</div></div>' +
       '</div></div>';
     blockerEl.innerHTML = blockerHtml;
@@ -1294,11 +1376,13 @@ function renderDashboard() {
       '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-5</span> ' + statusBadge(run5RerunState) + '</div>';
   }
 
+  renderDashboardAwareness();
+
   // Data gaps from daily report
   var gaps = (daily.data_gaps && Array.isArray(daily.data_gaps)) ? daily.data_gaps : [];
   dgTitle.textContent = '(' + gaps.length + ')';
   if (gaps.length === 0) {
-    gapsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无数据缺口报告 — API /api/pool/daily-reports/2026-06-03/run-5</span></div>';
+    gapsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无数据缺口报告 — API /api/pool/daily-reports/2026-06-03/run-6</span></div>';
   } else {
     gapsEl.innerHTML = gaps.map(function(g) {
       var txt = typeof g === 'string' ? g : (g.message || g.label || JSON.stringify(g));
@@ -1309,7 +1393,7 @@ function renderDashboard() {
   // Next actions
   var actions = (daily.next_actions && Array.isArray(daily.next_actions)) ? daily.next_actions : [];
   if (actions.length === 0) {
-    actionsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无下一步动作建议 — API /api/pool/daily-reports/2026-06-03/run-5</span></div>';
+    actionsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">暂无下一步动作建议 — API /api/pool/daily-reports/2026-06-03/run-6</span></div>';
   } else {
     actionsEl.innerHTML = actions.map(function(a) {
       var txt = typeof a === 'string' ? a : (a.action || a.label || JSON.stringify(a));
@@ -1517,6 +1601,65 @@ function renderMatchDetail() {
   }
 }
 // --- 4) Run 档案室 ---
+function renderHistoricalArchiveBlocks() {
+  var rt = PoolData.runtimeSummary || {};
+  var archives = rt.archives || {};
+  var uclEl = document.getElementById('archiveUclFinal');
+  var ledgerEl = document.getElementById('archiveRoundLedgerNew');
+  var run5ModelsEl = document.getElementById('archiveRun5ModelsNew');
+  var uclBets = archives.ucl_bets || [];
+  var roundResults = archives.round_results || [];
+  var run5Archive = archives.run5_model_archive || [];
+
+  if (uclEl) {
+    if (uclBets.length === 0) {
+      uclEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">欧冠前哨投注归档不可用 — frontend_archives.ucl_bets</span></div>';
+    } else {
+      var uclRows = uclBets.map(function(b) {
+        var stake = Number(b[2] || 0);
+        var payout = Number(b[3] || 0);
+        var roiText = stake > 0 ? Math.round((payout - stake) / stake * 100) + '%' : '--';
+        return '<tr><td class="h">' + htmlEscape(b[0]) + '</td><td>' + htmlEscape(b[1]) + '</td><td class="g">' + htmlEscape(b[2]) + '</td><td class="' + (payout >= stake ? 'gr' : '') + '">' + htmlEscape(b[3]) + '</td><td>' + roiText + '</td><td class="l">' + htmlEscape(b[4]) + '</td></tr>';
+      }).join('');
+      uclEl.innerHTML =
+        '<div class="ucl-spot" style="margin-top:0">' +
+          '<div class="eyebrow">Run #3 欧冠前哨已恢复</div>' +
+          '<div class="ucl-row"><div class="team">🇫🇷 巴黎圣日耳曼</div><div class="vs">1-1<br>巴黎点球胜</div><div class="team">🏴 阿森纳</div></div>' +
+          '<div class="meta">PSG 冠军 / 小 2.5 / 平局三条主线被同一赛果验证；历史口径保留原 13 席档案，当前运行口径为 12 个可采集席位。</div>' +
+          '<table class="mini-table"><tr><th>席位</th><th>投注</th><th>投入</th><th>返还</th><th>盈收比</th><th>分析</th></tr>' + uclRows + '</table>' +
+        '</div>';
+    }
+  }
+
+  if (ledgerEl) {
+    if (roundResults.length === 0) {
+      ledgerEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">历史赛果归档不可用 — frontend_archives.round_results</span></div>';
+    } else {
+      ledgerEl.innerHTML = '<div class="archive-list">' + roundResults.map(function(r) {
+        return '<div class="archive-row"><div class="code">' + htmlEscape(r.code || '--') + '</div><div class="body"><strong>' + htmlEscape(r.match || '--') + '</strong><span>' + htmlEscape(r.note || '') + '</span></div><div class="status ' + htmlEscape(r.cls || 'good') + '">' + htmlEscape(r.status || '--') + '</div></div>';
+      }).join('') + '</div>';
+    }
+  }
+
+  if (run5ModelsEl) {
+    if (run5Archive.length === 0) {
+      run5ModelsEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">Run #5 模型策略归档不可用 — frontend_archives.run5_model_archive</span></div>';
+    } else {
+      run5ModelsEl.innerHTML = run5Archive.map(function(item) {
+        var cls = item.cls || 'warn';
+        return '<div class="packet"><div class="head"><strong>' + htmlEscape(item.seat || '--') + '</strong><span class="rank ' + htmlEscape(cls) + '">' + htmlEscape(item.status || '--') + '</span></div>' +
+          '<div class="line"><b>贷款：</b>' + htmlEscape(item.loan || '--') + '</div>' +
+          '<div class="line"><b>仓位：</b>' + htmlEscape(item.stake || '--') + '</div>' +
+          '<div class="line"><b>下注：</b>' + htmlEscape(item.bets || '--') + '</div>' +
+          '<div class="line"><b>思考：</b>' + htmlEscape(item.thought || '--') + '</div>' +
+          '<div class="line"><b>信源：</b>' + htmlEscape(item.sources || '--') + '</div>' +
+          '<div class="line"><b>风险：</b>' + htmlEscape(item.risk || '--') + '</div>' +
+          '<div class="mini-tags"><span>Run #5</span><span>真实回收</span><span>历史档案</span><span class="' + htmlEscape(cls) + '">' + (cls === 'good' ? '可入共识' : cls === 'bad' ? '不入共识' : '待补跑') + '</span></div></div>';
+      }).join('');
+    }
+  }
+}
+
 function renderRunArchives() {
   var run5El = document.getElementById('archiveRun5');
   var run6El = document.getElementById('archiveRun6');
@@ -1559,6 +1702,7 @@ function renderRunArchives() {
     r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">操作</span> ' + dropbox.next_action + '</div>');
   }
   run6El.innerHTML = r6Lines.join('');
+  renderHistoricalArchiveBlocks();
 }
 
 // --- 5) 系统健康页 ---
@@ -1634,10 +1778,11 @@ async function renderSystemHealth() {
     '/api/pool/settlements/run-5',
     '/api/pool/run-manifests/run-6',
     '/api/pool/rerun-attempts/run-5',
-    '/api/pool/daily-reports/2026-06-03/run-5',
+    '/api/pool/daily-reports/2026-06-03/run-6',
     '/api/cron/pipeline-status',
     '/api/pool/ops-readiness',
-    '/api/pool/provider-status'
+    '/api/pool/provider-status',
+    '/api/pool/runtime-summary'
   ];
 
   apiEl.innerHTML = '<div class="health-grid">' + healthEndpoints.map(function(ep) {
@@ -1789,7 +1934,7 @@ async function renderSystemHealth() {
     fetchJson('/api/pool/bet-receipts/run-5'),
     fetchJson('/api/pool/bet-rejections/run-5'),
     fetchJson('/api/pool/settlements/run-5'),
-    fetchJson('/api/pool/daily-reports/2026-06-03/run-5'),
+    fetchJson('/api/pool/daily-reports/2026-06-03/run-6'),
     fetchJson('/api/pool/run-manifests/run-6'),
     fetchJson('/api/pool/ingested-outputs/run-6'),
     fetchJson('/api/pool/rerun-attempts/run-5'),
@@ -1801,7 +1946,8 @@ async function renderSystemHealth() {
     fetchJson('/api/pool/ops-readiness'),
     fetchJson('/api/pool/provider-status'),
     fetchJson('/api/pool/output-dropbox/run-6'),
-    fetchJson('/api/pool/provider-smoke/run-6/2026-06-03')
+    fetchJson('/api/pool/provider-smoke/run-6/2026-06-03'),
+    fetchJson('/api/pool/runtime-summary')
   ]);
 
   PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -1824,6 +1970,7 @@ async function renderSystemHealth() {
   PoolData.providerStatus = results[17] && results[17].status === 'fulfilled' ? results[17].value : null;
   PoolData.modelDropbox = results[18] && results[18].status === 'fulfilled' ? results[18].value : null;
   PoolData.providerSmoke = results[19] && results[19].status === 'fulfilled' ? results[19].value : null;
+  PoolData.runtimeSummary = results[20] && results[20].status === 'fulfilled' ? results[20].value : null;
 
   // Render Ops Readiness block
   var opsEl = document.getElementById('healthOpsReadiness');
