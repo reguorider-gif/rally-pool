@@ -1490,9 +1490,9 @@ function renderDashboard() {
   // 核心状态
   if (statesEl) {
     statesEl.innerHTML =
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-5</span> ' + statusBadge(run5SettleStatus) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6 结算</span> ' + statusBadge(run5SettleStatus) + '</div>' +
       '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6</span> ' + statusBadge(run6State) + '</div>' +
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-5</span> ' + statusBadge(run5RerunState) + '</div>';
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-6</span> ' + statusBadge(run5RerunState) + '</div>';
   }
 
   renderDashboardAwareness();
@@ -1548,7 +1548,7 @@ function renderModels() {
   var models = PoolData.models;
   var modelList = (models && models.models && Array.isArray(models.models)) ? models.models : [];
   var modelRuns = PoolData.modelRuns || {};
-  var run5 = modelRuns['run-5'] || {};
+  var run5 = modelRuns['run-6'] || {};
   var rejections = PoolData.betRejections || {};
   var dropbox = PoolData.modelDropbox || {};
   var rerun = PoolData.rerunAttempts || {};
@@ -1561,7 +1561,7 @@ function renderModels() {
 
   kpiEl.innerHTML =
     '<div class="kpi-card blue"><div class="kpi-label">总席位</div><div class="kpi-val">' + modelList.length + '</div><div class="kpi-sub">有效模型</div></div>' +
-    '<div class="kpi-card green"><div class="kpi-label">Run #5 有效</div><div class="kpi-val">' + validCount + '/' + modelList.length + '</div><div class="kpi-sub">valid_receipt</div></div>' +
+    '<div class="kpi-card green"><div class="kpi-label">Run #6 有效</div><div class="kpi-val">' + validCount + '/' + modelList.length + '</div><div class="kpi-sub">valid_receipt</div></div>' +
     '<div class="kpi-card red"><div class="kpi-label">需补跑</div><div class="kpi-val">' + needsRerun + '</div><div class="kpi-sub">needs_rerun</div></div>' +
     '<div class="kpi-card gold"><div class="kpi-label">Run #6 输出</div><div class="kpi-val">' + (dropbox.outputs_found || 0) + '/' + (dropbox.outputs_expected || 13) + '</div><div class="kpi-sub">' + (dropbox.status || 'unknown') + '</div></div>';
 
@@ -1791,7 +1791,7 @@ function renderRunArchives() {
   var dropbox = PoolData.modelDropbox || {};
   var providerSmoke = PoolData.providerSmoke || {};
   var modelRuns = PoolData.modelRuns || {};
-  var run5 = modelRuns['run-5'] || {};
+  var run5 = modelRuns['run-6'] || {};
   var r5summary = run5.summary || {};
 
   // Run #5 — 用 model-runs 和 bet-rejections 的实际数据
@@ -1895,10 +1895,10 @@ async function renderSystemHealth() {
     '/api/matches',
     '/api/pool/match-results/2026-06-03',
     '/api/pool/odds-snapshots/2026-06-03/T-1h/the_odds_api',
-    '/api/pool/bet-receipts/run-5',
-    '/api/pool/settlements/run-5',
+    '/api/pool/bet-receipts/run-6',
+    '/api/pool/settlements/run-6',
     '/api/pool/run-manifests/run-6',
-    '/api/pool/rerun-attempts/run-5',
+    '/api/pool/rerun-attempts/run-6',
     '/api/pool/daily-reports/2026-06-03/run-6',
     '/api/cron/pipeline-status',
     '/api/pool/ops-readiness',
@@ -2053,15 +2053,15 @@ async function renderSystemHealth() {
     fetchJson('/api/matches'),
     fetchJson('/api/pool/match-results/2026-06-03'),
     fetchJson('/api/pool/odds-snapshots/2026-06-03/T-1h'),
-    fetchJson('/api/pool/bet-receipts/run-5'),
-    fetchJson('/api/pool/bet-rejections/run-5'),
-    fetchJson('/api/pool/settlements/run-5'),
+    fetchJson('/api/pool/bet-receipts/run-6'),
+    fetchJson('/api/pool/bet-rejections/run-6'),
+    fetchJson('/api/pool/settlements/run-6'),
     fetchJson('/api/pool/daily-reports/2026-06-03/run-6'),
     fetchJson('/api/pool/run-manifests/run-6'),
     fetchJson('/api/pool/ingested-outputs/run-6'),
-    fetchJson('/api/pool/rerun-attempts/run-5'),
+    fetchJson('/api/pool/rerun-attempts/run-6'),
     fetchJson('/api/pool/data-health'),
-    fetchJson('/api/pool/model-runs/run-5'),
+    fetchJson('/api/pool/model-runs/run-6'),
     fetchJson('/api/pool/pipeline-runs'),
     fetchJson('/api/pool/pipeline-runs/2026-06-03/run-6'),
     fetchJson('/api/cron/pipeline-status'),
@@ -2084,7 +2084,7 @@ async function renderSystemHealth() {
   PoolData.ingestedOutputs = results[9].status === 'fulfilled' ? results[9].value : null;
   PoolData.rerunAttempts = results[10].status === 'fulfilled' ? results[10].value : null;
   PoolData.dataHealth = results[11].status === 'fulfilled' ? results[11].value : null;
-  if (results[12].status === 'fulfilled') PoolData.modelRuns['run-5'] = results[12].value;
+  if (results[12].status === 'fulfilled') PoolData.modelRuns['run-6'] = results[12].value;
   PoolData.pipelineRuns = results[13].status === 'fulfilled' ? results[13].value : null;
   PoolData.pipelineRun = results[14].status === 'fulfilled' ? results[14].value : null;
   PoolData.opsReadiness = results[16].status === 'fulfilled' ? results[16].value : null;
