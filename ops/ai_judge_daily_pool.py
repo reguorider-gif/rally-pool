@@ -58,6 +58,59 @@ def _read_json(relative_path, default=None):
         return default
 
 
+def _odds_snapshot_relpath(date_str, snapshot_label, provider):
+    if provider and provider != "manual_stub":
+        return f"odds_snapshots/{date_str}_{snapshot_label}_{provider}.json"
+    return f"odds_snapshots/{date_str}_{snapshot_label}.json"
+
+
+def _read_odds_snapshot(date_str, snapshot_label, provider="auto"):
+    """
+    读取 prompt 用赔率快照。
+    auto 模式优先采用真实 provider 快照，避免已配置真实赔率后仍把 manual_stub
+    的 valid_odds_rows=0 发给模型。
+    """
+    candidates = []
+    if provider and provider != "auto":
+        candidates.append(_odds_snapshot_relpath(date_str, snapshot_label, provider))
+    else:
+        index = _read_json("odds_snapshots/index.json", default={}) or {}
+        indexed = []
+        for snap in index.get("snapshots", []):
+            if snap.get("date") != date_str or snap.get("snapshot_label") != snapshot_label:
+                continue
+            rel = snap.get("path", "").replace("data/pool/", "")
+            if not rel:
+                continue
+            provider_name = snap.get("provider", "")
+            provider_rank = 1 if provider_name and provider_name != "manual_stub" else 0
+            indexed.append((provider_rank, snap.get("valid_odds_rows", 0), rel))
+        for _, _, rel in sorted(indexed, reverse=True):
+            candidates.append(rel)
+        candidates.append(_odds_snapshot_relpath(date_str, snapshot_label, "the_odds_api"))
+        candidates.append(_odds_snapshot_relpath(date_str, snapshot_label, "manual_stub"))
+
+    seen = set()
+    for rel in candidates:
+        if rel in seen:
+            continue
+        seen.add(rel)
+        data = _read_json(rel, default=None)
+        if not isinstance(data, dict):
+            continue
+        summary = data.get("summary") or {}
+        if provider == "auto":
+            if data.get("provider") != "manual_stub" and (summary.get("valid_odds_rows", 0) > 0 or data.get("odds")):
+                return rel, data
+            if data.get("provider") == "manual_stub" and not any("_the_odds_api" in c for c in candidates[:1]):
+                return rel, data
+        else:
+            return rel, data
+
+    fallback = _odds_snapshot_relpath(date_str, snapshot_label, "manual_stub")
+    return fallback, _read_json(fallback, default={}) or {}
+
+
 def _write_json(relative_path, data, indent=2):
     """安全写入 JSON 文件"""
     full_path = DATA_DIR / relative_path
@@ -181,10 +234,13 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "## 当前任务",
         "你是 AI Judge 赛事预测池中的一个独立模型席位。",
         "你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。",
+        "本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。",
+        "你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。",
+        "你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。",
         "",
         "## 强制防污染要求",
         "- 不要回答旧任务。",
-        "- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。",
+        "- 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。",
         "- 不要输出你的最终答案。",
         "- 不要输出 Markdown。",
         "- 不要输出解释性自然语言。",
@@ -355,12 +411,12 @@ def cmd_run(args):
         "created_at": _now_iso(),
         "mode": "generate_prompts_only" if generate_prompts_only else "full_run",
         "snapshot_label": snapshot_label,
+        "odds_provider": args.odds_provider,
         "seats_total": seats_total,
         "seats": seats_list,
         "source_files": [
             f"matches/current.json",
             f"match_results/{date_str}.json",
-            f"odds_snapshots/{date_str}_{snapshot_label}.json",
             "leaderboard/current.json",
             f"daily_reports/{date_str}_run-5.json",
         ],
@@ -373,9 +429,18 @@ def cmd_run(args):
     # Step 2: 预加载数据源（只加载一次，传给所有 prompt）
     matches_data = _read_json("matches/current.json", default={})
     match_results_data = _read_json(f"match_results/{date_str}.json", default={})
-    odds_data = _read_json(f"odds_snapshots/{date_str}_{snapshot_label}.json", default={})
+    odds_relpath, odds_data = _read_odds_snapshot(date_str, snapshot_label, provider=args.odds_provider)
     leaderboard_data = _read_json("leaderboard/current.json", default={})
     prev_report_data = _read_json(f"daily_reports/{date_str}_run-5.json", default={})
+    manifest["source_files"].insert(2, odds_relpath)
+    _write_json(f"run_manifests/{round_id}.json", manifest)
+    odds_summary = odds_data.get("summary", {}) if isinstance(odds_data, dict) else {}
+    print(
+        "  ✅ Prompt odds snapshot: "
+        f"{odds_relpath} "
+        f"(provider={odds_data.get('provider') if isinstance(odds_data, dict) else 'unknown'}, "
+        f"valid_odds_rows={odds_summary.get('valid_odds_rows', 0)})"
+    )
 
     # Step 3: 生成每个模型的 prompt
     prompts_dir = DATA_DIR / "prompts" / round_id
@@ -602,6 +667,8 @@ def main():
     run_parser.add_argument("--date", required=True, help="比赛日期 YYYY-MM-DD")
     run_parser.add_argument("--round", required=True, help="轮次 ID, e.g. run-6")
     run_parser.add_argument("--snapshot-label", default=DEFAULT_SNAPSHOT_LABEL, help="赔率快照标签")
+    run_parser.add_argument("--odds-provider", default="auto",
+                            help="Prompt 用赔率 provider: auto | manual_stub | the_odds_api")
     run_parser.add_argument("--seats", default=None, help="逗号分隔的 seat_id 列表")
     run_parser.add_argument("--dry-run", action="store_true", help="Dry run，不写文件")
     run_parser.add_argument("--generate-prompts-only", action="store_true", help="只生成 prompt")

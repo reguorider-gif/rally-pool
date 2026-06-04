@@ -22,6 +22,7 @@ P12.0 一键流水线 — 串联 P10.0–P11.1 全部子脚本
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -62,6 +63,7 @@ STEPS_ORDER = [
     "rerun_failed_seats",
     "generate_daily_report",
     "check_data_health",
+    "post_run_guardrails",
     "deploy",
 ]
 
@@ -99,6 +101,28 @@ def _tail(s, n=500):
     if not s:
         return ""
     return s[-n:] if len(s) > n else s
+
+
+def _resolve_odds_provider(provider):
+    if provider == "auto":
+        return "the_odds_api" if os.environ.get("THE_ODDS_API_KEY") else "manual_stub"
+    return provider
+
+
+def _odds_snapshot_path(date, snapshot_label, provider):
+    if provider and provider != "manual_stub":
+        return DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}_{provider}.json"
+    return DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}.json"
+
+
+def _load_json(path, default=None):
+    if not Path(path).exists():
+        return default
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
 
 
 # ── 步骤执行函数 ──────────────────────────────────────────────────────────────
@@ -188,19 +212,51 @@ def step_sync_results(args, run_state):
 
 
 def step_sync_odds_snapshots(args, run_state):
-    provider = "manual_stub"
+    provider = _resolve_odds_provider(args.odds_provider)
+    run_state["odds_provider"] = provider
+    output_path = _odds_snapshot_path(args.date, "T-1h", provider)
+    output_file = str(output_path.relative_to(ROOT_DIR))
+    if args.reuse_existing_odds:
+        exists = output_path.exists() if not args.dry_run else True
+        snapshot = _load_json(output_path, default={}) if exists and not args.dry_run else {}
+        summary = snapshot.get("summary", {}) if isinstance(snapshot, dict) else {}
+        run_state["valid_odds_rows"] = summary.get("valid_odds_rows", 0)
+        status = "pass" if exists else "failed"
+        return {
+            "step": "sync_odds_snapshots",
+            "status": status,
+            "command": f"reuse existing {output_file}",
+            "started_at": _now_iso(),
+            "finished_at": _now_iso(),
+            "duration_ms": 0,
+            "stdout_tail": f"reused={exists}\nprovider={provider}\nvalid_odds_rows={run_state.get('valid_odds_rows', 0)}",
+            "stderr_tail": "",
+            "outputs": [output_file] if status == "pass" else [],
+            "warnings": [] if status == "pass" else [f"missing_existing_odds_snapshot={output_file}"],
+            "reason": "" if status == "pass" else "existing odds snapshot missing",
+        }
+
     cmd = [
         "python3", str(SCRIPTS["sync_odds_snapshots"]),
         "--date", args.date,
         "--snapshot-label", "T-1h",
         "--provider", provider,
     ]
+    if provider != "manual_stub":
+        cmd.append("--save-raw")
+    if args.strict_real_provider and provider != "manual_stub":
+        cmd.append("--strict-real-provider")
     rc, out, err, dur = _run_cmd(cmd, dry_run=args.dry_run, timeout=60)
 
-    output_file = f"data/pool/odds_snapshots/{args.date}_T-1h.json"
-    exists = (DATA_DIR / "odds_snapshots" / f"{args.date}_T-1h.json").exists() if not args.dry_run else True
+    exists = output_path.exists() if not args.dry_run else True
+    snapshot = _load_json(output_path, default={}) if exists and not args.dry_run else {}
+    summary = snapshot.get("summary", {}) if isinstance(snapshot, dict) else {}
+    run_state["valid_odds_rows"] = summary.get("valid_odds_rows", 0)
 
     status = "pass" if rc == 0 and exists else "failed"
+    warnings_list = [] if rc == 0 else [f"returncode={rc}"] + ([err] if err else [])
+    if status == "pass" and provider == "manual_stub":
+        warnings_list.append("odds_provider_manual_stub: no real odds provider used for prompt generation")
 
     return {
         "step": "sync_odds_snapshots",
@@ -212,7 +268,7 @@ def step_sync_odds_snapshots(args, run_state):
         "stdout_tail": _tail(out),
         "stderr_tail": _tail(err),
         "outputs": [output_file] if status == "pass" else [],
-        "warnings": [] if rc == 0 else [f"returncode={rc}"] + ([err] if err else []),
+        "warnings": warnings_list,
         "reason": "" if status == "pass" else f"failed: rc={rc}",
     }
 
@@ -222,6 +278,7 @@ def step_generate_prompts(args, run_state):
         "python3", str(SCRIPTS["ai_judge_daily_pool"]), "run",
         "--date", args.date,
         "--round", args.round_id,
+        "--odds-provider", _resolve_odds_provider(args.odds_provider),
         "--generate-prompts-only",
     ]
     rc, out, err, dur = _run_cmd(cmd, dry_run=args.dry_run, timeout=60)
@@ -237,7 +294,7 @@ def step_generate_prompts(args, run_state):
     return {
         "step": "generate_prompts",
         "status": status,
-        "command": f"python3 ops/ai_judge_daily_pool.py run --date {args.date} --round {args.round_id} --generate-prompts-only",
+        "command": f"python3 ops/ai_judge_daily_pool.py run --date {args.date} --round {args.round_id} --odds-provider {_resolve_odds_provider(args.odds_provider)} --generate-prompts-only",
         "started_at": _now_iso(),
         "finished_at": _now_iso(),
         "duration_ms": dur,
@@ -544,8 +601,99 @@ def step_check_data_health(args, run_state):
     }
 
 
+def step_post_run_guardrails(args, run_state):
+    """最后一道事实护栏：真实赔率存在时，0 有效下注不能算完成。"""
+    provider = run_state.get("odds_provider") or _resolve_odds_provider(args.odds_provider)
+    real_path = _odds_snapshot_path(args.date, "T-1h", "the_odds_api")
+    chosen_path = _odds_snapshot_path(args.date, "T-1h", provider)
+    real_snapshot = _load_json(real_path, default={}) or {}
+    chosen_snapshot = _load_json(chosen_path, default={}) or {}
+    real_summary = real_snapshot.get("summary", {}) if isinstance(real_snapshot, dict) else {}
+    chosen_summary = chosen_snapshot.get("summary", {}) if isinstance(chosen_snapshot, dict) else {}
+    real_valid = int(real_summary.get("valid_odds_rows") or 0)
+    chosen_valid = int(chosen_summary.get("valid_odds_rows") or 0)
+
+    bet_receipts = _load_json(DATA_DIR / "bet_receipts" / f"{args.round_id}.json", default={}) or {}
+    br_summary = bet_receipts.get("summary", {}) if isinstance(bet_receipts, dict) else {}
+    accepted_bets = int(br_summary.get("accepted_bets") or 0)
+    candidate_bets = int(br_summary.get("candidate_bets") or 0)
+
+    report = _load_json(DATA_DIR / "daily_reports" / f"{args.date}_{args.round_id}.json", default={}) or {}
+    blocking_gaps = [
+        g for g in report.get("data_gaps", [])
+        if g.get("blocking") is True or g.get("blocks")
+    ] if isinstance(report, dict) else []
+
+    prompt_dir = DATA_DIR / "prompts" / args.round_id
+    stale_prompt_count = 0
+    if prompt_dir.exists():
+        for p in prompt_dir.glob("*.md"):
+            text = p.read_text(encoding="utf-8", errors="ignore")
+            if '"provider": "manual_stub"' in text and '"valid_odds_rows": 0' in text:
+                stale_prompt_count += 1
+
+    warnings_list = []
+    blockers = []
+    if provider == "manual_stub":
+        warnings_list.append("manual_stub_provider_used: daily model prompts were not backed by real odds")
+    if stale_prompt_count:
+        warnings_list.append(f"stale_zero_odds_prompts={stale_prompt_count}")
+    if blocking_gaps:
+        warnings_list.append(f"daily_report_blocking_gaps={len(blocking_gaps)}")
+
+    if real_valid > 0 and accepted_bets == 0:
+        blockers.append(
+            "real_odds_present_but_no_accepted_bets: regenerate prompts with real odds and recollect web model outputs"
+        )
+    elif chosen_valid <= 0 and provider != "manual_stub":
+        blockers.append("real_provider_selected_but_no_valid_odds_rows")
+
+    status = "blocked" if blockers else ("pass_with_warnings" if warnings_list else "pass")
+    reason = "; ".join(blockers) if blockers else ("; ".join(warnings_list) if warnings_list else "")
+    if blockers:
+        run_state["hard_blocked"] = True
+
+    stdout = (
+        f"provider={provider}\n"
+        f"chosen_valid_odds_rows={chosen_valid}\n"
+        f"real_valid_odds_rows={real_valid}\n"
+        f"accepted_bets={accepted_bets}\n"
+        f"candidate_bets={candidate_bets}\n"
+        f"stale_zero_odds_prompts={stale_prompt_count}\n"
+        f"blocking_gaps={len(blocking_gaps)}\n"
+    )
+
+    return {
+        "step": "post_run_guardrails",
+        "status": status,
+        "command": "inspect odds/prompts/bet_receipts/daily_report",
+        "started_at": _now_iso(),
+        "finished_at": _now_iso(),
+        "duration_ms": 0,
+        "stdout_tail": _tail(stdout),
+        "stderr_tail": "",
+        "outputs": [],
+        "warnings": warnings_list,
+        "reason": reason,
+    }
+
+
 def step_deploy(args, run_state):
     """可选的 Vercel 部署步骤。"""
+    if run_state.get("hard_blocked"):
+        return {
+            "step": "deploy",
+            "status": "skipped",
+            "command": "vercel --prod (--blocked by post_run_guardrails)",
+            "started_at": _now_iso(),
+            "finished_at": _now_iso(),
+            "duration_ms": 0,
+            "stdout_tail": "",
+            "stderr_tail": "",
+            "outputs": [],
+            "warnings": [],
+            "reason": "post_run_guardrails blocked this run; deploy skipped",
+        }
     if not args.deploy:
         return {
             "step": "deploy",
@@ -595,6 +743,7 @@ STEP_FUNCTIONS = {
     "rerun_failed_seats":     step_rerun_failed_seats,
     "generate_daily_report":  step_generate_daily_report,
     "check_data_health":      step_check_data_health,
+    "post_run_guardrails":    step_post_run_guardrails,
     "deploy":                 step_deploy,
 }
 
@@ -607,6 +756,7 @@ def run_pipeline(args):
     print(f"  date:       {args.date}")
     print(f"  round_id:   {args.round_id}")
     print(f"  dry_run:    {args.dry_run}")
+    print(f"  odds_provider: {_resolve_odds_provider(args.odds_provider)}")
     print(f"  skip_browser: {args.skip_browser}")
     print(f"  continue_on_warning: {args.continue_on_warning}")
     print(f"  deploy:     {args.deploy}")
@@ -765,7 +915,7 @@ def _build_next_actions(steps, final_status, args):
     has_no_rerun = any("skipped_no_rerun_queue" in s.get("reason", "") for s in steps)
 
     if has_waiting:
-        actions.append("waiting_for_manual_ingest: run-6 需要人工将模型原始输出放入 data/pool/model_outputs/raw/run-6/ 后重新运行 pipeline")
+        actions.append(f"waiting_for_manual_ingest: {args.round_id} 需要将模型原始输出放入 data/pool/model_outputs/raw/{args.round_id}/ 后重新运行 pipeline")
     if has_no_classify and not has_waiting:
         actions.append("re-run pipeline: classify_model_output step was skipped, re-run after raw outputs exist")
     if has_no_bets:
@@ -777,6 +927,8 @@ def _build_next_actions(steps, final_status, args):
         actions.append("pipeline completed successfully — ready for P12.1 scheduled/CI integration")
     elif final_status == "pass_with_warnings":
         actions.append("pipeline completed with warnings — review warnings above and re-run after manual steps complete")
+    elif final_status == "blocked":
+        actions.append(f"rerun_web_models_with_real_odds: 将 data/pool/prompts/{args.round_id}/*.md 重新发送给 12 个网页模型，保存到 data/pool/model_outputs/raw/{args.round_id}/ 后重新运行 pipeline")
 
     # Check for the daily report
     dr_step = next((s for s in steps if s["step"] == "generate_daily_report"), None)
@@ -798,10 +950,10 @@ def _generate_markdown(data, args):
     lines = []
     lines.append(f"# AI Judge Pipeline Run — {args.date} / {args.round_id}")
     lines.append("")
-    lines.append(f"**Version:** {data['version']}  ")
-    lines.append(f"**Generated:** {data['generated_at']}  ")
-    lines.append(f"**Final Status:** {data['final_status']}  ")
-    lines.append(f"**Dry Run:** {data['dry_run']}  ")
+    lines.append(f"**Version:** {data['version']}")
+    lines.append(f"**Generated:** {data['generated_at']}")
+    lines.append(f"**Final Status:** {data['final_status']}")
+    lines.append(f"**Dry Run:** {data['dry_run']}")
     lines.append("")
 
     # 1. 结论
@@ -815,7 +967,7 @@ def _generate_markdown(data, args):
         for w in data.get("warnings", []):
             if "waiting_for_manual_ingest" in str(w).lower():
                 lines.append("")
-                lines.append(f"> **run-6 当前等待人工模型输出，不是 pipeline 失败。**")
+                lines.append(f"> **{args.round_id} 当前等待人工模型输出，不是 pipeline 失败。**")
                 lines.append("> 人工将模型原始输出放入 `data/pool/model_outputs/raw/run-6/` 后重新运行 pipeline 即可。")
                 break
     elif data["final_status"] == "blocked":
@@ -921,6 +1073,12 @@ Examples:
     )
     parser.add_argument("--date", required=True, help="Pipeline date (YYYY-MM-DD)")
     parser.add_argument("--round", required=True, dest="round_id", help="Round ID (e.g. run-6)")
+    parser.add_argument("--odds-provider", default="auto",
+                        help="Odds provider for pipeline prompts: auto | manual_stub | the_odds_api")
+    parser.add_argument("--reuse-existing-odds", action="store_true",
+                        help="Reuse an existing odds snapshot instead of fetching during this run")
+    parser.add_argument("--strict-real-provider", action="store_true",
+                        help="Fail odds sync if the selected real provider is not configured")
     parser.add_argument("--dry-run", action="store_true", help="Dry run — 不写任何文件")
     parser.add_argument("--skip-browser", action="store_true", default=True, help="跳过浏览器采集 (默认启用)")
     parser.add_argument("--continue-on-warning", action="store_true", default=True, help="遇到 warning/blocker 继续执行 (默认启用)")

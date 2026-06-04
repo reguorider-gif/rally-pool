@@ -15,10 +15,13 @@ date: 2026-06-03
 ## 当前任务
 你是 AI Judge 赛事预测池中的一个独立模型席位。
 你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。
+本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。
+你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。
+你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。
 
 ## 强制防污染要求
 - 不要回答旧任务。
-- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。
+- 不要回答狼人杀、警长投票、守卫、平民、预言家等无关任务。
 - 不要输出你的最终答案。
 - 不要输出 Markdown。
 - 不要输出解释性自然语言。
@@ -40,7 +43,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 2.1,
       "odds_draw": 3.2,
@@ -63,7 +66,7 @@ date: 2026-06-03
       "away_score": 2,
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 1.15,
       "odds_draw": 7.0,
@@ -86,7 +89,7 @@ date: 2026-06-03
       "away_score": 2,
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 2.0,
       "odds_draw": 3.3,
@@ -109,7 +112,7 @@ date: 2026-06-03
       "away_score": 0,
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 1.25,
       "odds_draw": 5.5,
@@ -130,7 +133,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 2.3,
       "odds_draw": 3.2,
@@ -151,7 +154,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 2.2,
       "odds_draw": 3.3,
@@ -172,7 +175,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 1.3,
       "odds_draw": 5.0,
@@ -193,7 +196,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 12.0,
       "odds_draw": 6.0,
@@ -214,7 +217,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 2.8,
       "odds_draw": 3.2,
@@ -235,7 +238,7 @@ date: 2026-06-03
       "status": "scheduled",
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "odds_home": 1.1,
       "odds_draw": 8.0,
@@ -253,7 +256,7 @@ date: 2026-06-03
   "version": "p10.0",
   "date": "2026-06-03",
   "provider": "legacy_seed",
-  "fetched_at": "2026-06-04T07:37:24Z",
+  "fetched_at": "2026-06-04T09:27:51Z",
   "source_policy": "legacy_seed_no_external_fetch",
   "summary": {
     "total": 21,
@@ -272,7 +275,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -288,7 +291,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "finished",
       "extra_time": null,
@@ -304,7 +307,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "finished",
       "extra_time": null,
@@ -320,7 +323,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "finished",
       "extra_time": null,
@@ -336,7 +339,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -352,7 +355,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -368,7 +371,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -384,7 +387,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -400,7 +403,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -416,7 +419,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -432,7 +435,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -448,7 +451,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -464,7 +467,7 @@ date: 2026-06-03
       "injury_notes": [],
       "provider": "legacy_seed",
       "source_url": "",
-      "fetched_at": "2026-06-04T07:37:24Z",
+      "fetched_at": "2026-06-04T09:27:51Z",
       "confidence": 0.5,
       "result_state": "missing_or_not_finished",
       "extra_time": null,
@@ -484,7 +487,7 @@ date: 2026-06-03
 ## 赔率快照摘要
 {
   "snapshot_label": "T-1h",
-  "provider": "manual_stub",
+  "provider": "the_odds_api",
   "summary": {
     "matches_total": 21,
     "markets_requested": [
@@ -492,14 +495,14 @@ date: 2026-06-03
       "handicap",
       "total_goals"
     ],
-    "odds_rows": 147,
-    "valid_odds_rows": 0,
-    "missing_market_coverage": 63,
-    "match_mapping_failed": 0,
+    "odds_rows": 1190,
+    "valid_odds_rows": 989,
+    "missing_market_coverage": 0,
+    "match_mapping_failed": 201,
     "provider_unavailable": false,
-    "provider_responded": false,
-    "matched_internal_matches": 21,
-    "coverage_status": "odds_snapshots_present_but_missing_market_coverage"
+    "provider_responded": true,
+    "matched_internal_matches": 5,
+    "coverage_status": "real_odds_provider_has_valid_odds"
   },
   "warning": "If valid_odds_rows is 0, do not invent odds. Use empty bet_ledger."
 }
@@ -578,8 +581,8 @@ date: 2026-06-03
       "rank": null,
       "balance_gp": null,
       "loan_gp": null,
-      "status": "needs_rerun_context_polluted",
-      "notes": "Run#5 上下文污染，需补跑"
+      "status": "active",
+      "notes": "Run#6 有效回收"
     },
     {
       "model_account": "kimi",
@@ -587,8 +590,8 @@ date: 2026-06-03
       "rank": null,
       "balance_gp": null,
       "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
+      "status": "active",
+      "notes": "Run#6 有效回收"
     },
     {
       "model_account": "wenxin",
@@ -596,8 +599,8 @@ date: 2026-06-03
       "rank": null,
       "balance_gp": null,
       "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
+      "status": "active",
+      "notes": "Run#6 有效回收"
     },
     {
       "model_account": "minimax",
@@ -605,8 +608,8 @@ date: 2026-06-03
       "rank": null,
       "balance_gp": null,
       "loan_gp": null,
-      "status": "needs_rerun_placeholder",
-      "notes": "Run#5 占位输出，需补跑"
+      "status": "active",
+      "notes": "Run#6 有效回收"
     },
     {
       "model_account": "xai",
@@ -614,8 +617,8 @@ date: 2026-06-03
       "rank": null,
       "balance_gp": null,
       "loan_gp": null,
-      "status": "needs_rerun",
-      "notes": "Run#6 待补跑"
+      "status": "active",
+      "notes": "Run#6 有效回收"
     }
   ]
 }

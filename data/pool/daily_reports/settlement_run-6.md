@@ -62,5 +62,5 @@ profit 和 ROI 不应计算为 0，而应标记为 **null** / **not_applicable**
 - `data/pool/model_accounts/current.json`
 
 ---
-*生成时间: 2026-06-04T07:37:25Z*
+*生成时间: 2026-06-04T09:27:51Z*
 *版本: p10.3*

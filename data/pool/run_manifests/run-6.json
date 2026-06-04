@@ -3,9 +3,10 @@
   "round_id": "run-6",
   "date": "2026-06-03",
   "run_marker": "AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603",
-  "created_at": "2026-06-04T07:37:24.977812+00:00",
+  "created_at": "2026-06-04T09:27:51.380388+00:00",
   "mode": "generate_prompts_only",
   "snapshot_label": "T-1h",
+  "odds_provider": "the_odds_api",
   "seats_total": 12,
   "seats": [
     {
@@ -108,7 +109,7 @@
   "source_files": [
     "matches/current.json",
     "match_results/2026-06-03.json",
-    "odds_snapshots/2026-06-03_T-1h.json",
+    "odds_snapshots/2026-06-03_T-1h_the_odds_api.json",
     "leaderboard/current.json",
     "daily_reports/2026-06-03_run-5.json"
   ]

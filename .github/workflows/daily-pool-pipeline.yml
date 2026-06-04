@@ -11,6 +11,10 @@ on:
         description: "Round id, e.g. run-6"
         required: true
         default: "run-6"
+      odds_provider:
+        description: "Odds provider for prompt generation"
+        required: true
+        default: "the_odds_api"
       deploy:
         description: "Deploy to Vercel after committing generated files"
         required: true
@@ -29,7 +33,9 @@ jobs:
       PYTHONDONTWRITEBYTECODE: "1"
       PIPELINE_DATE: ${{ github.event.inputs.date || '2026-06-03' }}
       PIPELINE_ROUND: ${{ github.event.inputs.round || 'run-6' }}
+      ODDS_PROVIDER: ${{ github.event.inputs.odds_provider || 'the_odds_api' }}
       SHOULD_DEPLOY: ${{ github.event.inputs.deploy || 'false' }}
+      THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
 
     steps:
       - name: Checkout
@@ -59,6 +65,8 @@ jobs:
           python3 ops/run_daily_pool_pipeline.py \
             --date "$PIPELINE_DATE" \
             --round "$PIPELINE_ROUND" \
+            --odds-provider "$ODDS_PROVIDER" \
+            --strict-real-provider \
             --skip-browser \
             --continue-on-warning
 

@@ -1211,13 +1211,25 @@ def get_runtime_summary(round_id: str = None, date: str = None):
 
     data_gaps = daily_report.get("data_gaps", []) if isinstance(daily_report, dict) else []
     next_actions = daily_report.get("next_actions", []) if isinstance(daily_report, dict) else []
+    pipeline_next_actions = pipeline_run.get("next_actions", []) if isinstance(pipeline_run, dict) else []
+    pipeline_blockers = pipeline_run.get("blockers", []) if isinstance(pipeline_run, dict) else []
     if has_betting_gap:
         next_actions = list(next_actions) + [{
             "action": "regenerate_bet_receipts_with_real_odds",
             "stage": "P14.0",
             "blocking": True,
-            "reason": "run-6 has real model outputs and valid provider odds, but current receipts contain 0 accepted bets",
+            "reason": f"{round_id} has real model outputs and valid provider odds, but current receipts contain 0 accepted bets",
         }]
+    for action in pipeline_next_actions:
+        if isinstance(action, dict):
+            next_actions.append(action)
+        else:
+            next_actions.append({
+                "action": "pipeline_next_action",
+                "stage": "P12.0",
+                "blocking": pipeline_run.get("final_status") == "blocked" if isinstance(pipeline_run, dict) else False,
+                "reason": str(action),
+            })
 
     return {
         "version": "p14.0",
@@ -1274,6 +1286,8 @@ def get_runtime_summary(round_id: str = None, date: str = None):
             "steps_total": pipeline_summary.get("steps_total", 0),
             "deploy_step": "skipped" if isinstance(pipeline_run, dict) else "unknown",
             "data_gaps": data_gaps,
+            "pipeline_blockers": pipeline_blockers,
+            "pipeline_next_actions": pipeline_next_actions,
             "next_actions": next_actions,
         },
         "archives": {
