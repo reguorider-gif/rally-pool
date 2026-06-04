@@ -1,11 +1,9 @@
+.git/
 .venv/
 __pycache__/
 *.pyc
 *.db
 *.db-journal
-*.bak
 .env
 node_modules/
-.vercel/
-.vercel
 data/pool/model_outputs/simulated/
