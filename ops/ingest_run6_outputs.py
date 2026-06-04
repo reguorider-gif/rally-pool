@@ -21,16 +21,28 @@ DROPBOX_REPORTS_DIR = DATA_DIR / "model_outputs" / "dropbox_reports"
 DROPBOX_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
+def load_expected_models() -> list[str]:
+    accounts_path = DATA_DIR / "model_accounts" / "current.json"
+    if not accounts_path.exists():
+        return [
+            "chatgpt", "deepseek", "doubao", "gemini",
+            "kimi", "meta", "mimo", "minimax",
+            "qwen", "wenxin", "xai", "yuanbao",
+        ]
+    data = json.loads(accounts_path.read_text(encoding="utf-8"))
+    return [
+        str(item.get("model_account") or item.get("seat_id"))
+        for item in data.get("models", [])
+        if item.get("model_account") or item.get("seat_id")
+    ]
+
+
 def check_dropbox(round_id: str, input_dir: Path = None) -> dict:
     """检查模型输出投喂目录状态。"""
     if input_dir is None:
         input_dir = DATA_DIR / "model_outputs" / "raw" / round_id
 
-    expected_models = [
-        "chatgpt", "claude", "deepseek", "doubao",
-        "gemini", "kimi", "meta", "mimo",
-        "minimax", "qwen", "wenxin", "xai", "yuanbao",
-    ]
+    expected_models = load_expected_models()
 
     found_files = []
     missing_files = []

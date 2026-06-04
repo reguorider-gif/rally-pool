@@ -1,29 +1,28 @@
 {
   "version": "p13.0",
-  "generated_at": "2026-06-03T22:17:41.888177+00:00",
+  "generated_at": "2026-06-04T07:37:52.592395+00:00",
   "round_id": "run-6",
-  "outputs_expected": 13,
-  "outputs_found": 0,
-  "outputs_missing": 13,
-  "found_files": [],
-  "missing_files": [
-    "chatgpt",
-    "claude",
-    "deepseek",
-    "doubao",
+  "outputs_expected": 12,
+  "outputs_found": 12,
+  "outputs_missing": 0,
+  "found_files": [
     "gemini",
-    "kimi",
-    "meta",
-    "mimo",
-    "minimax",
-    "qwen",
+    "chatgpt",
+    "yuanbao",
     "wenxin",
+    "deepseek",
+    "mimo",
+    "kimi",
+    "qwen",
     "xai",
-    "yuanbao"
+    "minimax",
+    "doubao",
+    "meta"
   ],
+  "missing_files": [],
   "empty_files": [],
   "mismatched_files": [],
-  "status": "waiting_for_manual_ingest",
-  "message": "No model outputs found. Drop raw model outputs as <model_account>.txt into the raw dir.",
-  "next_action": "# drop model output .txt files into data/pool/model_outputs/raw/run-6/"
+  "status": "ready_for_ingest",
+  "message": "All 12 model outputs found. Ready for ingest.",
+  "next_action": "python3 ops/ai_judge_daily_pool.py ingest --round run-6"
 }

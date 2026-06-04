@@ -1,0 +1,189 @@
+搜索
+
+元宝
+
+全部收藏
+
+分组
+
+分组示例
+
+聊天
+对话参数与未知信息确认
+AI Judge 角色反思与回答
+AI Judge对Hello的裁决方案
+AI Judge 深度裁决报告解析
+AI Judge 深度裁决报告摘要
+AI Judge 独立席位反问与回答
+P2.4回归测试C功能验证裁决
+AI Judge 独立席位共振提问反思
+回归测试存储架构取舍分析
+历史裁决质量评估报告要点
+AI Judge 独立席位执行方案讨论
+AI Judge 决策评估：JSON 与 SQLite
+AI Judge 独立席位反思问答
+AI Judge 决策评估：JSON 与 SQLite 选择
+AI Judge 赛事预测池模式分析
+AI Judge 赛事预测池模式解析
+AI Judge 模型狼人杀竞赛发言分析
+ISTJ陪审员对警长投票的考量
+ISTJ陪审员视角下的警长竞选分析
+AI Judge模型狼人杀竞赛策略与评分说明
+AI Judge 模型狼人杀竞赛规则说明
+ISTJ陪审员视角下的警长投票决策
+ISTJ陪审员AI Judge决策逻辑
+ISTJ陪审员模式下的警长竞选判断
+ISTJ陪审员竞选警长决策分析
+AIJudge预测池账户策略分析
+ISTJ型陪审员狼人杀警长竞选分析
+世界杯预测池多模型赛事预测复盘
+AI Judge与ISTJ陪审员对话分析
+ISTJ陪审员在狼人杀中的决策分析
+AIJUDGE赛事预测池规则说明
+世界杯预测席位策略与目标
+AI Judge 赛事预测池规则说明
+世界杯AI预测池席位策略讨论
+AI预测池庄家规则与策略说明
+AI Judge与ISTJ陪审员视角对比
+狼人阵营策略分析与发言
+AI Judge 模型狼人杀发言分析
+分析Claude预言家报查杀逻辑漏洞
+狼人Yuanbao猎杀Doubao决策分析
+前往下载中心
+
+tanking
+
+元宝
+AI_JUDGE_RUN_ID:pool-run6-web-20260604
+席位：yuanbao
+输出 JSON 时必须包含 run_id 字段，值必须等于 pool-run6-web-20260604；seat_id 字段必须严格等于 yuanbao。
+发送前请开启网页里的深思/深度思考/推理/专家模式；如果页面没有这个按钮，请在回答中明确写 deep_mode_status=not_available，并按深度分析标准回答。
+请只输出中文 JSON，不要 Markdown，不要创建文件。如果你无法联网或无法确认来源，请写入 unknowns 和 evidence_gaps，不要编来源。
+AI_JUDGE_RUN_MARKER:AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603
+
+# AI Judge 赛事预测池独立模型席位
+
+seat_id: yuanbao
+model_account: yuanbao
+display_name: 元宝
+round_id: run-6
+date: 2026-06-03
+
+【合规与实验边界】
+这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。
+所有投注均为模拟，仅用于算法研究与模型评估。
+
+## 当前任务
+你是 AI Judge 赛事预测池中的一个独立模型席位。
+你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。
+
+## 强制防污染要求
+- 不要回答旧任务。
+- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。
+- 不要输出你的最终答案。
+- 不要输出 Markdown。
+- 不要输出解释性自然语言。
+- 不要输出 JSON 之外的任何内容。
+- JSON 必须能被 json.loads 解析。
+
+## 可用比赛摘要
+{
+  "matches_total": 21,
+  "sample_matches": [
+    {
+      "match_id": "WARM-001",
+      "date": "2026-05-28",
+      "home_team": "Egypt",
+      "home_flag": "🇪",
+      "away_team": "Russia",
+      "away_flag": "🇷",
+      "competition": "friendly",
+      "status": "scheduled",
+      "provider": "legacy_seed",
+      "source_url": "",
+      "fetched_at": "2026-06-03T23:18:59Z",
+      "confidence": 0.5,
+      "odds_home": 2.1,
+      "odds_draw": 3.2,
+      "odds_away": 3.5,
+      "prob_home": 0.48,
+      "prob_draw": 0.31,
+      "prob_away": 0.21,
+      "kickoff_at": "2026-05-28T00:00:00Z"
+    },
+    {
+      "match_id": "WARM-002",
+      "date": "2026-05-31",
+      "home_team": "Brazil",
+      "home_flag": "🇧",
+      "away_team": "Panama",
+      "away_flag": "🇵",
+      "competition": "friendly",
+      "status": "settled",
+      "home_score": 6,
+      "away_score": 2,
+      "provider": "legacy_seed",
+      "source_url": "",
+      "fetched_at": "2026-06-03T23:18:59Z",
+      "confidence": 0.5,
+      "odds_home": 1.15,
+      "odds_draw": 7.0,
+      "odds_away": 15.0,
+      "prob_home": 0.87,
+      "prob_draw": 0.09,
+      "prob_away": 0.04,
+      "kickoff_at": "2026-05-31T00:00:00Z"
+    },
+    {
+      "match_id": "WARM-003",
+      "date": "2026-05-31",
+      "home_team": "USA",
+      "home_flag": "🇺",
+      "away_team": "Senegal",
+      "away_flag": "🇸",
+      "competition": "friendly",
+      "status": "settled",
+      "home_score": 3,
+      "away_score": 2,
+      "provider": "legacy_seed",
+      "source_url": "",
+      "fetched_at": "2026-06-03T23:18:59Z",
+      "confidence": 0.5,
+      "odds_home": 2.0,
+      "odds_draw": 3.3,
+      "odds_away": 3.8,
+      "prob_home": 0.5,
+      "prob_draw": 0.3,
+      "prob_away": 0.26,
+      "kickoff_at": "2026-05-31T00:00:00Z"
+    },
+    {
+      "match_id": "WARM-004",
+      "date": "2026-05-31",
+      "home_team": "Germany",
+      "home_flag": "🇩",
+      "away_team": "Finland",
+      "away_flag": "🇫",
+      "competition": "friendly",
+      "status": "settled",
+      "home_score": 4,
+      "away_score": 0,
+      "provider": "legacy_seed",
+      "source_url": "",
+      "fetched_at": "2026-06-03T23:18:59Z",
+      "confidence": 0.5,
+      "odds_home": 1.25,
+      "odds_draw": 5.5,
+      "odds_away": 12.0,
+      "prob_home": 0.8,
+
+展开
+{"run_id":"pool-run6-web-20260604","seat_id":"yuanbao","deep_mode_status":"not_available","unknowns":["赛程完整性与实时数据来源未验证","赔率与概率是否含庄家抽水未确认","球队阵容、伤病、天气等信息缺失"],"evidence_gaps":["无第三方权威数据源交叉验证","历史交锋与近期状态数据不足","比赛结果真实性无法核验"],"bets":[{"match_id":"WARM-001","market":"1X2","selection":"home","stake":10,"odds":2.1,"ev":0.008,"confidence":0.48},{"match_id":"WARM-002","market":"1X2","selection":"home","stake":20,"odds":1.15,"ev":0.0005,"confidence":0.87},{"match_id":"WARM-003","market":"1X2","selection":"home","stake":15,"odds":2.0,"ev":0.0,"confidence":0.5},{"match_id":"WARM-004","market":"1X2","selection":"home","stake":18,"odds":1.25,"ev":0.0,"confidence":0.8}]}
+
+
+
+
+深度思考
+工具
+安装电脑版
+内容由AI生成，仅供参考

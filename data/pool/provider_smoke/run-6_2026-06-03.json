@@ -2,18 +2,25 @@
   "version": "p13.0",
   "round_id": "run-6",
   "date": "2026-06-03",
-  "status": "BLOCKED_PROVIDER_NOT_CONFIGURED",
+  "status": "PASS_REAL_PROVIDER_HAS_VALID_ODDS",
   "summary": {
     "provider": "the_odds_api",
-    "configured": false,
-    "provider_responded": null,
-    "matched_internal_matches": 0,
-    "valid_odds_rows": 0,
-    "coverage_status": "real_odds_provider_not_configured"
+    "configured": true,
+    "provider_responded": true,
+    "matched_internal_matches": 5,
+    "valid_odds_rows": 989,
+    "coverage_status": "real_odds_provider_has_valid_odds",
+    "odds_rows": 1190,
+    "missing_market_coverage": 0,
+    "match_mapping_failed": 201,
+    "markets_requested": [
+      "moneyline",
+      "handicap",
+      "total_goals"
+    ]
   },
   "blocks": [],
-  "warnings": [
-    "THE_ODDS_API_KEY is not set"
-  ],
-  "generated_at": "2026-06-03T22:17:41.887822+00:00"
+  "warnings": [],
+  "generated_at": "2026-06-04T06:45:46.544276+00:00",
+  "raw_snapshot_path": "data/pool/provider_smoke/raw/run-6_2026-06-03_the_odds_api.json"
 }

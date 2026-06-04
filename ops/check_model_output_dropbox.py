@@ -11,8 +11,8 @@ P13.0 Model Output Dropbox Checker — 检查 run-6 模型输出投喂目录状�
 
 状态枚举:
   - waiting_for_manual_ingest : 0 个文件
-  - partial_outputs_found      : 1–12 个文件
-  - ready_for_ingest          : 13 个文件（完整）
+  - partial_outputs_found      : 1–N-1 个文件
+  - ready_for_ingest          : N 个当前活跃模型文件（完整）
 """
 
 import argparse
@@ -113,7 +113,7 @@ def check_dropbox(round_id: str, to_json: bool = False):
         "empty_files":      empty,
         "mismatched_files": mismatched,
         "status":           status,
-        "message":          _status_message(status, n_found, len(accounts)),
+        "message":          _status_message(status, n_found, len(accounts), round_id),
         "next_action":      _next_action(status, round_id, missing),
     }
 
@@ -140,7 +140,7 @@ def check_dropbox(round_id: str, to_json: bool = False):
     return result
 
 
-def _status_message(status: str, found: int, expected: int) -> str:
+def _status_message(status: str, found: int, expected: int, round_id: str) -> str:
     if status == "waiting_for_manual_ingest":
         return (
             f"No model outputs found. "
@@ -153,7 +153,7 @@ def _status_message(status: str, found: int, expected: int) -> str:
         )
     return (
         f"All {expected} model outputs found. "
-        f"Ready to run: python3 ops/ai_judge_daily_pool.py ingest --round {expected}"
+        f"Ready to run: python3 ops/ai_judge_daily_pool.py ingest --round {round_id}"
     )
 
 

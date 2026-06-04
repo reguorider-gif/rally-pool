@@ -25,6 +25,21 @@ HTML_FILE = ROOT / "html" / "index.html"
 APP_FILE = ROOT / "app.py"
 
 
+def load_current_model_ids():
+    path = DATA / "model_accounts" / "current.json"
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    return [
+        str(item.get("model_account") or item.get("seat_id"))
+        for item in data.get("models", [])
+        if item.get("model_account") or item.get("seat_id")
+    ]
+
+
 def check_file(relative_path, expect_count_fn=None, warn_on_count=None):
     """检查单个文件：存在性 + JSON 解析 + 记录数"""
     full = DATA / relative_path
@@ -78,11 +93,12 @@ def main():
     has_error = False
     has_warning = False
     results = []
+    current_model_count = len(load_current_model_ids()) or 13
 
     # --- 关键文件检查 ---
     checks = [
-        ("model_accounts/current.json", lambda d: len(d.get("models", [])), 13, True, True),
-        ("leaderboard/current.json", lambda d: len(d.get("leaderboard", [])), 13, True, True),
+        ("model_accounts/current.json", lambda d: len(d.get("models", [])), current_model_count, True, True),
+        ("leaderboard/current.json", lambda d: len(d.get("leaderboard", [])), current_model_count, True, True),
         ("matches/current.json", lambda d: len(d.get("matches", [])), 21, True, True),
         ("archives/index.json", lambda d: len(d.get("rounds", [])), 2, True, False),
         ("archives/run-4.json", lambda d: 1, 1, True, False),
@@ -189,11 +205,11 @@ def main():
             else:
                 print(f"  ✅ {name}: 无硬编码定义")
 
-        # 检查 fetch 调用
-        if "fetch('/api/pool/frontend-archives')" in html_content or 'fetch("/api/pool/frontend-archives")' in html_content:
-            print(f"  ✅ fetch('/api/pool/frontend-archives'): 存在")
+        # 检查 fetch 调用 (支持直接路径或 API_BASE + 路径)
+        if "/api/pool/frontend-archives" in html_content:
+            print(f"  ✅ /api/pool/frontend-archives: 存在 (可能通过 API_BASE)")
         else:
-            print(f"  ❌ fetch('/api/pool/frontend-archives'): 缺失")
+            print(f"  ❌ /api/pool/frontend-archives: 缺失")
             has_error = True
     else:
         print(f"  ⚠️ html/index.html not found")
@@ -805,8 +821,8 @@ def main():
             mf = json.loads(manifest_path.read_text(encoding="utf-8"))
             seats_mf = mf.get("seats_total", -1)
             print(f"  ✅ data/pool/run_manifests/run-6.json: exists (seats_total={seats_mf})")
-            if seats_mf != 13:
-                print(f"  ❌ seats_total={seats_mf}, expected 13")
+            if seats_mf != current_model_count:
+                print(f"  ❌ seats_total={seats_mf}, expected {current_model_count}")
                 has_error = True
         except Exception:
             print(f"  ❌ data/pool/run_manifests/run-6.json: parse failed")
@@ -819,10 +835,10 @@ def main():
     if prompts_dir.exists():
         md_files = sorted(prompts_dir.glob("*.md"))
         prompt_count = len(md_files)
-        if prompt_count == 13:
+        if prompt_count == current_model_count:
             print(f"  ✅ data/pool/prompts/run-6/: {prompt_count} prompts")
         else:
-            print(f"  ❌ prompt count={prompt_count}, expected 13")
+            print(f"  ❌ prompt count={prompt_count}, expected {current_model_count}")
             has_error = True
 
         all_prompts_ok = 0
@@ -865,15 +881,21 @@ def main():
             of = ig.get("outputs_found", -1)
             om = ig.get("outputs_missing", -1)
             print(f"  ✅ ingested/run-6/index.json: total={ot}, found={of}, missing={om}")
-            if ot != 13:
-                print(f"  ❌ outputs_total={ot}, expected 13")
+            if ot != current_model_count:
+                print(f"  ❌ outputs_total={ot}, expected {current_model_count}")
                 has_error = True
-            if of != 0:
-                print(f"  ❌ outputs_found={of}, expected 0 (no raw outputs yet)")
+            if of < 0 or of > ot:
+                print(f"  ❌ outputs_found={of}, expected 0..{ot}")
                 has_error = True
-            if om != 13:
-                print(f"  ❌ outputs_missing={om}, expected 13")
+            if om != ot - of:
+                print(f"  ❌ outputs_missing={om}, expected {ot - of}")
                 has_error = True
+            if of == 0:
+                print(f"  ✅ state detail: waiting_for_manual_ingest")
+            elif of < ot:
+                print(f"  ✅ state detail: partial_outputs_found ({of}/{ot})")
+            else:
+                print(f"  ✅ state detail: ready_for_ingest")
         except Exception:
             print(f"  ❌ ingested/run-6/index.json: parse failed")
             has_error = True
@@ -890,8 +912,10 @@ def main():
     elif raw_files_found == 0 and not ingested_path.exists():
         print(f"  ⚠️ state: waiting_for_manual_ingest (ingest not yet run)")
         has_warning = True
+    elif raw_files_found < current_model_count:
+        print(f"  ✅ state: partial_outputs_found ({raw_files_found}/{current_model_count}, pipeline can run partial validation)")
     else:
-        print(f"  ⚠️ state: has raw outputs, ready for pipeline")
+        print(f"  ✅ state: ready_for_pipeline")
 
     print()
 

@@ -12,6 +12,7 @@ P10.1 the_odds_api_provider — The Odds API integration.
 import json
 import os
 import time
+from urllib.parse import urlencode
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -63,6 +64,8 @@ class TheOddsApiProvider:
     def __init__(self):
         self.api_key = os.environ.get("THE_ODDS_API_KEY", "")
         self.base_url = "https://api.the-odds-api.com/v4"
+        self.regions = os.environ.get("THE_ODDS_API_REGIONS", "us,uk,eu,au")
+        self.sport_key = os.environ.get("THE_ODDS_API_SPORT_KEY", "soccer_fifa_world_cup")
 
     def is_available(self) -> bool:
         return bool(self.api_key)
@@ -93,12 +96,14 @@ class TheOddsApiProvider:
         if not self.is_available():
             return []
 
-        url = (
-            f"{self.base_url}/sports/{sport_key}/odds"
-            f"?apiKey={self.api_key}"
-            f"&markets={market_key}"
-            f"&oddsFormat=decimal"
-        )
+        query = urlencode({
+            "apiKey": self.api_key,
+            "regions": self.regions,
+            "markets": market_key,
+            "oddsFormat": "decimal",
+            "dateFormat": "iso",
+        })
+        url = f"{self.base_url}/sports/{sport_key}/odds?{query}"
 
         try:
             req = urllib.request.Request(url)
@@ -124,7 +129,7 @@ class TheOddsApiProvider:
             return []  # caller writes provider_unavailable gap
 
         rows = []
-        sport_key = "soccer_fifa_wc"  # FIFA World Cup 2026
+        sport_key = self.sport_key  # FIFA World Cup 2026
 
         for market in markets:
             api_market = MARKET_MAP.get(market)

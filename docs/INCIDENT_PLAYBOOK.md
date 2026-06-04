@@ -252,7 +252,7 @@ Pipeline run 显示 ingest step 为 `skipped`，原因为 `waiting_for_manual_in
 
 ### 影响
 
-- run-6 的 13 个模型输出未标准化
+- run-6 的 12 个当前活跃模型输出未标准化
 - 下游 classify/validate/settle/rerun steps 全部 skipped
 - 这是**正常 warning，不是故障**
 
@@ -272,13 +272,13 @@ python3 -m json.tool data/pool/pipeline_runs/2026-06-03_run-6.json | grep -A5 in
 
 **Step 2：准备模型输出**
 
-将 13 个模型的原始输出放入：
+将 12 个当前活跃模型的原始输出放入：
 
 ```bash
 data/pool/model_outputs/raw/run-6/<model_name>.txt
 ```
 
-每个文件命名格式：`<model_name>.txt`（例如 `chatgpt.txt`、`claude.txt`）
+每个文件命名格式：`<model_name>.txt`（例如 `chatgpt.txt`、`gemini.txt`）
 
 **Step 3：执行 ingest**
 
@@ -298,7 +298,7 @@ ingest 之后的步骤（classify/validate/settle/rerun/daily_report）会自动
 
 ### 当前状态
 
-- run-6 的 13 个模型输出正在等待人工投喂
+- run-6 的 12 个当前活跃模型输出正在等待人工投喂
 - 这是设计上的 feature，不是 bug
 - ingest 完成后系统即可恢复正常流程
 

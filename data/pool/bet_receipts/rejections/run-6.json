@@ -1,0 +1,87 @@
+{
+  "version": "p10.2",
+  "round_id": "run-6",
+  "date": "2026-06-03",
+  "generated_at": "2026-06-04T07:37:25Z",
+  "summary": {
+    "rejected_models": 9,
+    "rejected_bets": 9,
+    "reason_counts": {
+      "loan_amount_invalid": 8,
+      "no_structured_bet_receipt": 1
+    }
+  },
+  "rejections": [
+    {
+      "model_account": "gemini",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "yuanbao",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "wenxin",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "mimo",
+      "stage": "receipt_extraction",
+      "reason_code": "no_structured_bet_receipt",
+      "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "kimi",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "qwen",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "minimax",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "doubao",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "meta",
+      "stage": "validation",
+      "reason_code": "loan_amount_invalid",
+      "reason": "Bet receipt validation failed: loan_amount_invalid",
+      "bet_errors": [],
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    }
+  ]
+}

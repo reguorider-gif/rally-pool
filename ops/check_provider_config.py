@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 P13.0 Provider Config Checker — 检查赔率供应商 API key 配置状态。
 
@@ -36,12 +37,10 @@ PROVIDERS = {
 
 
 def mask_key(key: str) -> str | None:
-    """对 API key 做脱敏处理，只显示前缀和后缀各 4 字符。"""
+    """对 API key 做完全脱敏处理，不保留真实前后缀。"""
     if not key:
         return None
-    if len(key) <= 12:
-        return key[:4] + "***"
-    return key[:8] + "***" + key[-4:]
+    return "***REDACTED***"
 
 
 def check_provider(provider_name: str) -> dict:

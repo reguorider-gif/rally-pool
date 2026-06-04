@@ -25,7 +25,7 @@ AI Judge 赛事预测池（Prediction Pool）是一个 AI 模型足球赛果预�
 | 组件 | 位置 | 角色 |
 |---|---|---|
 | **GitHub Actions** | `.github/workflows/daily-pool-pipeline.yml` | 主调度器，执行 pipeline、commit 生成文件、可选 Vercel 部署 |
-| **Vercel** | `rally-pool.vercel.app` | Web API + 前端托管，提供 `/api/pool/*` 和静态 HTML |
+| **Vercel** | `pool-app-one.vercel.app` | Web API + 前端托管，提供 `/api/pool/*` 和静态 HTML |
 | **Vercel Cron** | `vercel.json` crons 配置 | 轻量探针，只读读取最新 pipeline 状态 |
 | **本地 ops 脚本** | `ops/run_daily_pool_pipeline.py` | 开发者本地运行和调试 |
 | **数据文件** | `data/pool/` | 所有预测池数据，包含 matches/odds/bets/settlements/reports 等 |

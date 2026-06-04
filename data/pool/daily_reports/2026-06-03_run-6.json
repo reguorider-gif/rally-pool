@@ -2,16 +2,16 @@
   "version": "p9.4",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-03T22:17:50Z",
+  "generated_at": "2026-06-04T07:37:25Z",
   "summary": {
-    "headline": "run-6 Daily Report — 0 valid outputs, 0 models need rerun, 4 data gaps",
+    "headline": "run-6 Daily Report — 12 valid outputs, 0 models need rerun, 4 data gaps",
     "status": "report_generated",
-    "total_models": 0,
+    "total_models": 12,
     "total_matches": 21,
     "rerun_queue_count": 0
   },
   "model_status_counts": {
-    "valid_receipt": 0,
+    "valid_receipt": 12,
     "placeholder_only": 0,
     "context_polluted": 0,
     "quota_blocked": 0,
@@ -21,11 +21,219 @@
     "risk_refusal": 0,
     "excluded_from_consensus": 0
   },
-  "model_status_rows": [],
+  "model_status_rows": [
+    {
+      "model_account": "gemini",
+      "seat_id": "gemini",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "chatgpt",
+      "seat_id": "chatgpt",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "yuanbao",
+      "seat_id": "yuanbao",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "wenxin",
+      "seat_id": "wenxin",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "deepseek",
+      "seat_id": "deepseek",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "投票淘汰",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "mimo",
+      "seat_id": "mimo",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "kimi",
+      "seat_id": "kimi",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "qwen",
+      "seat_id": "qwen",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "投票淘汰",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "xai",
+      "seat_id": "xai",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "minimax",
+      "seat_id": "minimax",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "doubao",
+      "seat_id": "doubao",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    },
+    {
+      "model_account": "meta",
+      "seat_id": "meta",
+      "status": "valid_receipt",
+      "eligible_for_consensus": true,
+      "needs_rerun": false,
+      "failure_reason": "",
+      "pollution_signals": [
+        "狼人杀",
+        "警长",
+        "守卫",
+        "平民",
+        "预言家",
+        "Grand Judge"
+      ]
+    }
+  ],
   "rerun_queue": [],
   "consensus_eligibility": {
-    "eligible_count": 0,
-    "eligible_models": [],
+    "eligible_count": 12,
+    "eligible_models": [
+      "gemini",
+      "chatgpt",
+      "yuanbao",
+      "wenxin",
+      "deepseek",
+      "mimo",
+      "kimi",
+      "qwen",
+      "xai",
+      "minimax",
+      "doubao",
+      "meta"
+    ],
     "excluded_count": 0,
     "excluded_models": []
   },
@@ -33,41 +241,43 @@
     "total_stake": null,
     "max_single_match_risk": null,
     "loan_used": null,
-    "status": "missing_bet_receipts_or_settlements",
-    "note": "Cannot compute risk without bet_receipts and settlements"
+    "status": "no_bets_to_settle",
+    "note": "Settlement exists but no bets to settle — risk is not applicable"
   },
   "data_gaps": [
     {
-      "gap": "real_provider_smoke_blocked_not_configured",
-      "severity": "medium",
+      "gap": "real_provider_smoke_has_valid_odds",
+      "severity": "info",
       "blocking": false,
       "stage": "P13.0A",
-      "detail": "Real odds provider API key is not configured. Set THE_ODDS_API_KEY to enable."
+      "detail": "Real odds provider snapshot has 989 valid odds rows."
     },
     {
-      "gap": "missing_settlements",
-      "severity": "high",
-      "blocks": "P10.3 settlement",
-      "note": "data/pool/settlements/run-6.json not found"
+      "gap": "settlements_present_but_no_bets_to_settle",
+      "severity": "info",
+      "blocking": false,
+      "stage": "P10.3",
+      "detail": "Settlement file exists but no bets were available to settle (accepted_bets=0)."
     },
     {
-      "gap": "model_outputs_waiting_for_manual_ingest",
-      "severity": "medium",
+      "gap": "model_outputs_ready_for_ingest",
+      "severity": "info",
       "blocking": false,
       "stage": "P13.0B",
-      "detail": "No model outputs found in /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6. status=waiting_for_manual_ingest"
+      "detail": "All 12 model outputs found. status=ready_for_ingest"
     },
     {
-      "gap": "missing_bet_receipts",
+      "gap": "bet_receipts_present_but_no_valid_bets",
       "severity": "high",
-      "blocks": "P10.3 settlement, risk summary",
-      "note": "No bet receipt files in data/pool/bet_receipts/"
+      "blocking": true,
+      "stage": "P10.2",
+      "detail": "Bet receipts exist but 0 accepted bets. Models lack structured receipts or odds coverage is missing."
     }
   ],
   "next_actions": [
     {
-      "action": "settle_pool_round",
-      "reason": "Settlements missing; needed for ROI and leaderboard update",
+      "action": "settle_pool_round_after_rerun",
+      "reason": "Settlement exists but no bets to settle — re-run after models produce structured receipts",
       "stage": "P10.3",
       "blocking": false
     },
@@ -80,9 +290,12 @@
   ],
   "generated_files": [],
   "source_files": [
+    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/odds_snapshots/2026-06-03_T-1h_the_odds_api.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/odds_snapshots/2026-06-03_T-1h.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/odds_snapshots/index.json",
+    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/settlements/run-6.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/match_results/2026-06-03.json",
+    "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/run-6.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/index.json",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/run-5.json"
   ]

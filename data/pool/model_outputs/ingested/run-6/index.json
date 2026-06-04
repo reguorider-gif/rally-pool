@@ -1,102 +1,95 @@
 {
   "version": "p11.0",
   "round_id": "run-6",
-  "ingested_at": "2026-06-03T22:17:50.319938+00:00",
+  "ingested_at": "2026-06-04T07:37:25.033085+00:00",
   "input_dir": "data/pool/model_outputs/raw/run-6",
-  "outputs_total": 13,
-  "outputs_found": 0,
-  "outputs_missing": 13,
+  "outputs_total": 12,
+  "outputs_found": 12,
+  "outputs_missing": 0,
   "outputs": [
     {
       "model_account": "gemini",
       "seat_id": "gemini",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/gemini.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 20550
     },
     {
       "model_account": "chatgpt",
       "seat_id": "chatgpt",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/chatgpt.txt",
-      "found": false,
-      "bytes": 0
-    },
-    {
-      "model_account": "claude",
-      "seat_id": "claude",
-      "raw_output_path": "data/pool/model_outputs/raw/run-6/claude.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 25420
     },
     {
       "model_account": "yuanbao",
       "seat_id": "yuanbao",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/yuanbao.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 6372
     },
     {
       "model_account": "wenxin",
       "seat_id": "wenxin",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/wenxin.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 5473
     },
     {
       "model_account": "deepseek",
       "seat_id": "deepseek",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/deepseek.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 28513
     },
     {
       "model_account": "mimo",
       "seat_id": "mimo",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/mimo.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 25205
     },
     {
       "model_account": "kimi",
       "seat_id": "kimi",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/kimi.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 9666
     },
     {
       "model_account": "qwen",
       "seat_id": "qwen",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/qwen.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 7757
     },
     {
       "model_account": "xai",
       "seat_id": "xai",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/xai.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 26590
     },
     {
       "model_account": "minimax",
       "seat_id": "minimax",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/minimax.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 5112
     },
     {
       "model_account": "doubao",
       "seat_id": "doubao",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/doubao.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 5109
     },
     {
       "model_account": "meta",
       "seat_id": "meta",
       "raw_output_path": "data/pool/model_outputs/raw/run-6/meta.txt",
-      "found": false,
-      "bytes": 0
+      "found": true,
+      "bytes": 19046
     }
   ]
 }

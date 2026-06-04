@@ -4,14 +4,13 @@
   "models": [
     {"model_account": "gemini",   "display_name": "Gemini",    "seat_id": "gemini",   "icon_color": "#4285F4", "icon_letter": "G",  "status": "active", "notes": ""},
     {"model_account": "chatgpt",  "display_name": "ChatGPT",   "seat_id": "chatgpt",  "icon_color": "#10A37F", "icon_letter": "C",  "status": "active", "notes": ""},
-    {"model_account": "claude",   "display_name": "Claude",    "seat_id": "claude",   "icon_color": "#1E40AF", "icon_letter": "Cl", "status": "active", "notes": ""},
     {"model_account": "yuanbao",  "display_name": "\u5143\u5b9d",       "seat_id": "yuanbao",  "icon_color": "#F59E0B", "icon_letter": "Y",  "status": "active", "notes": ""},
     {"model_account": "wenxin",   "display_name": "\u6587\u5fc3",       "seat_id": "wenxin",   "icon_color": "#3B82F6", "icon_letter": "W",  "status": "active", "notes": ""},
     {"model_account": "deepseek", "display_name": "DeepSeek",  "seat_id": "deepseek", "icon_color": "#2563EB", "icon_letter": "D",  "status": "active", "notes": ""},
     {"model_account": "mimo",     "display_name": "MiMo",      "seat_id": "mimo",     "icon_color": "#059669", "icon_letter": "M",  "status": "active", "notes": ""},
     {"model_account": "kimi",     "display_name": "Kimi",      "seat_id": "kimi",     "icon_color": "#6366F1", "icon_letter": "K",  "status": "active", "notes": ""},
     {"model_account": "qwen",     "display_name": "\u901a\u4e49",       "seat_id": "qwen",     "icon_color": "#D97706", "icon_letter": "Q",  "status": "active", "notes": ""},
-    {"model_account": "xai",      "display_name": "xAI",       "seat_id": "xai",      "icon_color": "#7C3AED", "icon_letter": "X",  "status": "active", "notes": "Run #5 quota blocked; Grok free limit reached"},
+    {"model_account": "xai",      "display_name": "xAI",       "seat_id": "xai",      "icon_color": "#7C3AED", "icon_letter": "X",  "status": "active", "notes": "Run #6 valid receipt"},
     {"model_account": "minimax",  "display_name": "MiniMax",   "seat_id": "minimax",  "icon_color": "#EC4899", "icon_letter": "MM", "status": "active", "notes": ""},
     {"model_account": "doubao",   "display_name": "\u8c46\u5305",       "seat_id": "doubao",   "icon_color": "#EF4444", "icon_letter": "\u8c46", "status": "active", "notes": ""},
     {"model_account": "meta",     "display_name": "Meta AI",   "seat_id": "meta",     "icon_color": "#0668E1", "icon_letter": "M",  "status": "active", "notes": ""}

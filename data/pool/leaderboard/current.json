@@ -9,11 +9,10 @@
     {"model_account": "yuanbao", "display_name": "元宝", "rank": 5, "balance_gp": 1500, "loan_gp": 500, "status": "active", "notes": "Run#4 有效；Run#5 有效"},
     {"model_account": "mimo", "display_name": "MiMo", "rank": 6, "balance_gp": 1200, "loan_gp": 300, "status": "active", "notes": "Run#4 有效；Run#5 有效"},
     {"model_account": "meta", "display_name": "Meta AI", "rank": 7, "balance_gp": 1400, "loan_gp": 800, "status": "active", "notes": "Run#4 有效；Run#5 有效"},
-    {"model_account": "claude", "display_name": "Claude", "rank": null, "balance_gp": null, "loan_gp": 300, "status": "audit_only", "notes": "Run#4 有效；Run#5 风险审计，不计入投注共识"},
-    {"model_account": "chatgpt", "display_name": "ChatGPT", "rank": null, "balance_gp": null, "loan_gp": null, "status": "needs_rerun_context_polluted", "notes": "Run#5 上下文污染，需补跑"},
-    {"model_account": "kimi", "display_name": "Kimi", "rank": null, "balance_gp": null, "loan_gp": null, "status": "needs_rerun_placeholder", "notes": "Run#5 占位输出，需补跑"},
-    {"model_account": "wenxin", "display_name": "文心", "rank": null, "balance_gp": null, "loan_gp": null, "status": "needs_rerun_placeholder", "notes": "Run#5 占位输出，需补跑"},
-    {"model_account": "minimax", "display_name": "MiniMax", "rank": null, "balance_gp": null, "loan_gp": null, "status": "needs_rerun_placeholder", "notes": "Run#5 占位输出，需补跑"},
-    {"model_account": "xai", "display_name": "xAI Grok", "rank": null, "balance_gp": null, "loan_gp": null, "status": "quota_blocked", "notes": "Run#4 缺席；Run#5 额度阻断"}
+    {"model_account": "chatgpt", "display_name": "ChatGPT", "rank": null, "balance_gp": null, "loan_gp": null, "status": "active", "notes": "Run#6 有效回收"},
+    {"model_account": "kimi", "display_name": "Kimi", "rank": null, "balance_gp": null, "loan_gp": null, "status": "active", "notes": "Run#6 有效回收"},
+    {"model_account": "wenxin", "display_name": "文心", "rank": null, "balance_gp": null, "loan_gp": null, "status": "active", "notes": "Run#6 有效回收"},
+    {"model_account": "minimax", "display_name": "MiniMax", "rank": null, "balance_gp": null, "loan_gp": null, "status": "active", "notes": "Run#6 有效回收"},
+    {"model_account": "xai", "display_name": "xAI Grok", "rank": null, "balance_gp": null, "loan_gp": null, "status": "active", "notes": "Run#6 有效回收"}
   ]
 }

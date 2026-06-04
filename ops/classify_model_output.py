@@ -31,9 +31,9 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data" / "pool"
 
-# ---------- 13 个模型席位 ----------
+# ---------- 当前活跃模型席位 fallback ----------
 MODEL_SEATS = [
-    "gemini", "chatgpt", "claude", "yuanbao", "wenxin",
+    "gemini", "chatgpt", "yuanbao", "wenxin",
     "deepseek", "mimo", "kimi", "qwen", "xai",
     "minimax", "doubao", "meta",
 ]
@@ -108,7 +108,7 @@ def classify_model(model_account, record, round_id, verbose=False):
     """
     # 提取可分析文本
     raw_text_parts = []
-    for key in ["bets", "thought", "source", "risk", "loan", "stake"]:
+    for key in ["raw_text", "bets", "thought", "source", "risk", "loan", "stake"]:
         val = record.get(key, "")
         if val and val not in ("not recovered", "0", "placeholder only", "declined betting loan", "No position table or JSON betting receipt."):
             raw_text_parts.append(str(val))
@@ -117,6 +117,8 @@ def classify_model(model_account, record, round_id, verbose=False):
     pollution_signals_in_record = record.get("pollution_signals", [])
 
     raw_text = " ".join(raw_text_parts)
+    parsed_json = record.get("parsed_json")
+    has_current_parsed_json = isinstance(parsed_json, dict)
 
     # 检查原始 status 字段作为辅助线索
     legacy_status = record.get("status", "")
@@ -124,6 +126,11 @@ def classify_model(model_account, record, round_id, verbose=False):
     # 检查 eligible 和 needs_rerun 字段
     eligible = record.get("eligible_for_consensus", None)
     needs_rerun = record.get("needs_rerun", None)
+    is_valid_recovered = (
+        eligible is True
+        and needs_rerun is False
+        and legacy_status in ("valid_recovered", "valid_receipt")
+    )
 
     # 逐步判定
     detected_pollution = _find_matched_signals(raw_text, CONTEXT_POLLUTED_SIGNALS)
@@ -150,8 +157,28 @@ def classify_model(model_account, record, round_id, verbose=False):
     eligible_for_consensus = True
     needs_rerun_flag = False
 
-    # 1. context_polluted — 最高优先级（污染是严重问题）
-    if detected_pollution or "context_polluted" in legacy_status:
+    if has_current_parsed_json or is_valid_recovered:
+        status = "valid_receipt"
+        failure_reason = ""
+        eligible_for_consensus = True
+        needs_rerun_flag = False
+
+    # 1. 硬阻断优先于页面历史污染词
+    elif detected_quota or "quota_blocked" in legacy_status or "account_quota_limit" in legacy_status:
+        status = "quota_blocked"
+        failure_reason = "Quota/rate limit blocked"
+        eligible_for_consensus = False
+        needs_rerun_flag = True
+
+    # 2. auth_blocked
+    elif detected_auth or "auth_blocked" in legacy_status or "no_visible_input" in legacy_status:
+        status = "auth_blocked"
+        failure_reason = "Authentication/login required"
+        eligible_for_consensus = False
+        needs_rerun_flag = True
+
+    # 3. context_polluted
+    elif detected_pollution or "context_polluted" in legacy_status:
         status = "context_polluted"
         failure_reason = "Detected legacy/werewolf context pollution"
         eligible_for_consensus = False
@@ -162,20 +189,6 @@ def classify_model(model_account, record, round_id, verbose=False):
             )
             if not detected_pollution:
                 detected_pollution = ["werewolf_context"]
-
-    # 2. quota_blocked
-    elif detected_quota or "quota_blocked" in legacy_status:
-        status = "quota_blocked"
-        failure_reason = "Quota/rate limit blocked"
-        eligible_for_consensus = False
-        needs_rerun_flag = True
-
-    # 3. auth_blocked
-    elif detected_auth:
-        status = "auth_blocked"
-        failure_reason = "Authentication/login required"
-        eligible_for_consensus = False
-        needs_rerun_flag = True
 
     # 4. timeout
     elif detected_timeout or (legacy_status == "timeout"):
@@ -200,31 +213,18 @@ def classify_model(model_account, record, round_id, verbose=False):
 
     # 7. 尝试 JSON 解析
     else:
-        # 检查是否有有效回收特征
-        is_valid = (
-            record.get("eligible_for_consensus") is True
-            and record.get("needs_rerun") is False
-            and record.get("status", "") in ("valid_recovered", "valid_receipt")
-        )
-
-        if is_valid:
-            status = "valid_receipt"
-            failure_reason = ""
-            eligible_for_consensus = True
-            needs_rerun_flag = False
+        # 有内容但无法归类的 → parse_error
+        if raw_text.strip():
+            status = "parse_error"
+            failure_reason = "Content present but no valid receipt structure"
+            eligible_for_consensus = False
+            needs_rerun_flag = True
         else:
-            # 有内容但无法归类的 → parse_error
-            if raw_text.strip():
-                status = "parse_error"
-                failure_reason = "Content present but no valid receipt structure"
-                eligible_for_consensus = False
-                needs_rerun_flag = True
-            else:
-                # 无内容 → timeout
-                status = "timeout"
-                failure_reason = "No content recovered"
-                eligible_for_consensus = False
-                needs_rerun_flag = True
+            # 无内容 → timeout
+            status = "timeout"
+            failure_reason = "No content recovered"
+            eligible_for_consensus = False
+            needs_rerun_flag = True
 
     # 尊重原始 record 中的 eligible/needs_rerun 字段（如果有显式设置）
     if eligible is not None and not eligible:
@@ -268,7 +268,7 @@ def classify_model(model_account, record, round_id, verbose=False):
         "model_account": model_account,
         "seat_id": record.get("seat_id", model_account),
         "raw_text": raw_text,
-        "parsed_json": None,
+        "parsed_json": parsed_json if isinstance(parsed_json, dict) else None,
         "schema_valid": status == "valid_receipt",
         "parse_errors": [] if status == "valid_receipt" else [failure_reason],
         "pollution_signals": all_pollution_signals,
@@ -288,6 +288,8 @@ def load_round_data(round_id, input_path=None):
     """
     加载指定 round 的模型输出数据。
     优先从 data/pool/archives/{round_id}.json 读取。
+    如果 archive 不存在，则读取 P13 投喂链路生成的
+    data/pool/model_outputs/ingested/{round_id}/index.json。
     """
     if input_path:
         path = Path(input_path)
@@ -295,13 +297,106 @@ def load_round_data(round_id, input_path=None):
         path = DATA_DIR / "archives" / f"{round_id}.json"
 
     if not path.exists():
-        print(f"[ERROR] Archive file not found: {path}", file=sys.stderr)
-        sys.exit(1)
+        ingested_path = DATA_DIR / "model_outputs" / "ingested" / round_id / "index.json"
+        if not ingested_path.exists():
+            print(f"[ERROR] Archive file not found: {path}", file=sys.stderr)
+            print(f"[ERROR] Ingested index not found: {ingested_path}", file=sys.stderr)
+            sys.exit(1)
+        return load_ingested_round_data(round_id, ingested_path)
 
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     return data
+
+
+def load_ingested_round_data(round_id, ingested_path):
+    """把 P13 raw/dropbox ingest 结果适配成 classify 的 archive-like 输入。"""
+    with open(ingested_path, "r", encoding="utf-8") as f:
+        ingested = json.load(f)
+
+    provenance_path = DATA_DIR / "model_outputs" / "provenance" / round_id / "web_collection_sync.json"
+    blocked_map = {}
+    source_file_map = {}
+    if provenance_path.exists():
+        try:
+            provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+            for item in provenance.get("rows", []):
+                seat = item.get("seat_id")
+                source_file = item.get("source_file")
+                if seat and source_file:
+                    source_file_map[seat] = source_file
+            for item in provenance.get("blocked", []):
+                seat = item.get("seat_id")
+                if seat:
+                    blocked_map[seat] = item
+        except (json.JSONDecodeError, OSError):
+            blocked_map = {}
+
+    model_records = {}
+    for item in ingested.get("outputs", []):
+        model = item.get("model_account") or item.get("seat_id")
+        if not model:
+            continue
+        raw_path = ROOT_DIR / item.get("raw_output_path", "")
+        if item.get("found") and raw_path.exists():
+            raw_text = raw_path.read_text(encoding="utf-8")
+            parsed_json = None
+            source_file = source_file_map.get(model)
+            if source_file:
+                try:
+                    web_record = json.loads(Path(source_file).read_text(encoding="utf-8"))
+                    if isinstance(web_record.get("parsed"), dict):
+                        parsed_json = web_record.get("parsed")
+                except (json.JSONDecodeError, OSError):
+                    parsed_json = None
+            model_records[model] = {
+                "seat_id": item.get("seat_id", model),
+                "status": "valid_recovered",
+                "raw_text": raw_text,
+                "parsed_json": parsed_json,
+                "bets": raw_text,
+                "thought": "",
+                "source": str(raw_path.relative_to(ROOT_DIR)),
+                "risk": "",
+                "loan": "",
+                "stake": "",
+                "eligible_for_consensus": True,
+                "needs_rerun": False,
+            }
+            continue
+
+        blocked = blocked_map.get(model, {})
+        reason = str(blocked.get("failure_reason") or "timeout")
+        status = "timeout"
+        if "quota" in reason or "account_quota_limit" in reason:
+            status = "quota_blocked"
+        elif "login" in reason or "auth" in reason or "no_visible_input" in reason:
+            status = "auth_blocked"
+        attempts = blocked.get("attempts") or []
+        body_excerpt = ""
+        if attempts:
+            body_excerpt = str(attempts[-1].get("body_excerpt") or "")
+        model_records[model] = {
+            "seat_id": item.get("seat_id", model),
+            "status": status,
+            "raw_text": f"{reason}\n{body_excerpt}".strip(),
+            "bets": reason,
+            "thought": body_excerpt,
+            "source": str(provenance_path.relative_to(ROOT_DIR)) if provenance_path.exists() else str(ingested_path.relative_to(ROOT_DIR)),
+            "risk": "",
+            "loan": "",
+            "stake": "",
+            "eligible_for_consensus": False,
+            "needs_rerun": True,
+        }
+
+    return {
+        "version": "p13.0_ingested_adapter",
+        "round_id": round_id,
+        "model_records": model_records,
+        "source_path": str(ingested_path.relative_to(ROOT_DIR)),
+    }
 
 
 def load_model_accounts():
@@ -330,18 +425,13 @@ def run_classify(round_id, input_path=None, output_dir=None, dry_run=False, verb
     archive_data = load_round_data(round_id, input_path)
     model_records = archive_data.get("model_records", {})
 
-    # 获取完整模型列表（确保 13 个席位都在）
+    # 获取完整模型列表（以当前活跃席位为准）
     model_accounts = load_model_accounts()
     model_account_names = [m["model_account"] for m in model_accounts]
     if not model_account_names:
         model_account_names = MODEL_SEATS[:]
 
-    # 合并：确保所有 13 个席位都被处理
-    all_models = set(model_account_names) | set(model_records.keys())
-    # 保持顺序：先 model_accounts 中的，再 record 中多出来的
-    ordered_models = [m for m in model_account_names if m in all_models]
-    for m in sorted(all_models - set(ordered_models)):
-        ordered_models.append(m)
+    ordered_models = model_account_names[:]
 
     # 分类
     runs = []

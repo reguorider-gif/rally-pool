@@ -236,13 +236,13 @@ main{padding:24px 28px;min-width:0}
 <body>
 <div class="shell">
 <aside>
-  <div class="brand"><div class="trophy"><svg viewBox="0 0 32 32" fill="none"><path d="M8 6h16v4c0 5.5-3.6 10-8 10s-8-4.5-8-10V6z" fill="#F59E0B" stroke="#D97706" stroke-width=".8"/><path d="M5 6c-2 0-3.5 1.5-3.5 3.5S3 13 5 13c1 0 2.5-.5 3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><path d="M27 6c2 0 3.5 1.5 3.5 3.5S29 13 27 13c-1 0-2.5-.5-3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><circle cx="16" cy="8" r="5" fill="#FDE68A" stroke="#D97706" stroke-width=".6"/><path d="M14 20h4v2h-4z" fill="#D97706"/><path d="M11 22h10v2H11z" fill="#D97706"/><path d="M9 24h14v2H9z" fill="#D97706"/><path d="M10 26h12v2H10z" fill="#B45309"/><text x="16" y="30" text-anchor="middle" font-size="2.8" fill="#D97706" font-weight="700" font-family="Inter,sans-serif">2026</text></svg></div><div class="info"><h1>美加墨世界杯</h1><p>AI 预测池 · 13 席位</p></div></div>
+  <div class="brand"><div class="trophy"><svg viewBox="0 0 32 32" fill="none"><path d="M8 6h16v4c0 5.5-3.6 10-8 10s-8-4.5-8-10V6z" fill="#F59E0B" stroke="#D97706" stroke-width=".8"/><path d="M5 6c-2 0-3.5 1.5-3.5 3.5S3 13 5 13c1 0 2.5-.5 3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><path d="M27 6c2 0 3.5 1.5 3.5 3.5S29 13 27 13c-1 0-2.5-.5-3-1.5" stroke="#D97706" stroke-width="1.2" fill="none"/><circle cx="16" cy="8" r="5" fill="#FDE68A" stroke="#D97706" stroke-width=".6"/><path d="M14 20h4v2h-4z" fill="#D97706"/><path d="M11 22h10v2H11z" fill="#D97706"/><path d="M9 24h14v2H9z" fill="#D97706"/><path d="M10 26h12v2H10z" fill="#B45309"/><text x="16" y="30" text-anchor="middle" font-size="2.8" fill="#D97706" font-weight="700" font-family="Inter,sans-serif">2026</text></svg></div><div class="info"><h1>美加墨世界杯</h1><p>AI 预测池 · 12 席位</p></div></div>
   <a class="back-to-room" href="/" title="返回 AI Judge 会议室">← 返回会议室</a>
-  <div class="meta-bar"><span>Run #5</span><span>已回收 7/13</span><span>Zhipu 已移除</span></div>
+  <div class="meta-bar"><span>Run #6</span><span>已回收 12/12</span><span>Claude / Zhipu 已移除</span></div>
   <div class="nav-h">📊 概览</div>
   <div class="s-stat"><strong style="color:var(--green)">15,460 GP</strong><span>Run #3 结算基线</span></div>
   <div class="s-stat"><strong>104</strong><span>场比赛</span></div>
-  <div class="s-stat"><strong style="color:var(--gold)">13 席</strong><span>有效席位</span></div>
+  <div class="s-stat"><strong style="color:var(--gold)">12 席</strong><span>有效席位</span></div>
   <div class="s-stat"><strong style="color:var(--blue)">13</strong><span>开赛前热身赛</span></div>
   <div class="s-stat"><strong>7</strong><span>数据源已核实</span></div>
   <div class="nav-h">🏆 排行榜</div>
@@ -272,7 +272,8 @@ main{padding:24px 28px;min-width:0}
     <h2>⚽ 2026 世界杯预测池</h2>
     <div class="rt">
       <a class="back-home" href="/">← 返回会议室</a>
-      <div class="pill" style="background:rgba(240,136,62,.12);color:var(--gold)">13 席位</div>
+      <div class="pill" style="background:rgba(240,136,62,.12);color:var(--gold)">12 席位</div>
+      <div class="pill" id="apiSource" style="background:rgba(139,148,158,.1);color:var(--dim);font-size:9px">API: 探测中…</div>
     </div>
   </div>
   <!-- P11.2 五页导航 -->
@@ -288,11 +289,16 @@ main{padding:24px 28px;min-width:0}
 
   <!-- 1) 今日控制台 -->
   <div id="view-dashboard" class="pool-view active">
+    <div id="dashboardBlocker" style="margin-bottom:16px"></div>
     <div class="kpi-grid" id="dashboardKpi"></div>
+    <div class="pool-section-hdr">📌 核心状态</div>
+    <div id="dashboardStates"></div>
     <div class="pool-section-hdr">📋 数据缺口 <span class="badge-count" id="dgTitle"></span></div>
     <div id="dashboardGaps"></div>
     <div class="pool-section-hdr">▶ 下一步动作</div>
     <div id="dashboardActions"></div>
+    <div class="pool-section-hdr">📝 操作指南</div>
+    <div id="dashboardHowto"></div>
   </div>
 
   <!-- 2) 模型表现榜 -->
@@ -320,6 +326,10 @@ main{padding:24px 28px;min-width:0}
 
   <!-- 5) 系统健康页 -->
   <div id="view-system-health" class="pool-view">
+    <div class="pool-section-hdr">📊 Provider / 赔率源</div>
+    <div id="healthProviderOdds"></div>
+    <div class="pool-section-hdr">📦 模型输出状态</div>
+    <div id="healthModelOutput"></div>
     <div class="pool-section-hdr">数据文件健康检查</div>
     <div id="healthDataFile"></div>
     <div class="pool-section-hdr">API 连通性检查</div>
@@ -390,10 +400,10 @@ main{padding:24px 28px;min-width:0}
       <tr><td>5</td><td class="h">🇦🇷 阿根廷</td><td>10.0%</td><td>2.1%</td><td>1/6</td><td class="l">Elo + CSI 双 #1。梅西 38 岁是变量。</td></tr>
       <tr><td>6</td><td class="h">🇲🇦 摩洛哥</td><td>2.0%</td><td>0.7%</td><td class="gr">5/6 🔥</td><td class="l">AI 最一致黑马。防御反击 = 48 队最优战术。</td></tr>
     </table>
-    <div class="insight"><strong>Run #3 新增：</strong>智谱因模型限制已从席位池和网页端移除；13 个有效席位统一进入排行榜、投注表和分析报告。DeepSeek 缺口已补齐并写回，欧冠前哨从 12/14 结算修正为 13/13 有效席位闭环；DeepSeek 的 PSG 冠军、小 2.5、平局三线同时命中，补充后成为本轮最大正收益席位。世界杯小组赛全部赛程已确认并加入日历，同时恢复 5/28–6/9 开赛前热身赛观察窗。<span class="from">13 席位 · Chrome 桥接实跑 · 第 3 轮议会 · Zhipu 已移除</span></div>
+    <div class="insight"><strong>Run #6 更新：</strong>Claude 与智谱已从当前席位池和网页端移除；12 个有效席位统一进入排行榜、投注表和分析报告。DeepSeek 缺口已补齐并写回，欧冠前哨历史档案继续保留，当前轮只按可采集席位闭环。世界杯小组赛全部赛程已确认并加入日历，同时恢复 5/28–6/9 开赛前热身赛观察窗。<span class="from">12 席位 · Chrome 桥接实跑 · Run #6 · Claude/Zhipu 已移除</span></div>
     <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px">🧾 全量整合结论</h3>
     <div class="full-grid">
-      <div class="full-card"><h4>1. 欧冠前哨结算</h4><strong>PSG 1-1(4-3p) 阿森纳。</strong> DeepSeek 补齐后，命中冠军 PSG @1.75、小 2.5 @2.00、平局 @3.20。智谱移除后按 13 个有效席位结算，盈利席位从 8 席修正为 9 席。</div>
+      <div class="full-card"><h4>1. 欧冠前哨结算</h4><strong>PSG 1-1(4-3p) 阿森纳。</strong> DeepSeek 补齐后，命中冠军 PSG @1.75、小 2.5 @2.00、平局 @3.20。历史档案保留原始口径，当前 run-6 改按 12 个可采集席位执行。</div>
       <div class="full-card"><h4>2. DeepSeek 赛后修正</h4>补跑 Run <strong>f638c290d422 → c819edfa641e</strong>。DeepSeek 不再标记为缺席；其方案投入 960GP，保留 40GP，按赛果结算为 <strong>1810GP</strong>，从中游直接升至榜首。</div>
       <div class="full-card"><h4>3. 5/31 热身赛共识</h4>第 2 轮 Run <strong>4333aeae60ff</strong> 拿到 11/13 有效回答。议会共识：避开巴西 @1.15 / 德国 @1.25 这类低赔率陷阱，主押小球盘，保留现金等待名单与伤病确认。</div>
       <div class="full-card"><h4>4. 世界杯主线</h4>104 场世界杯赛程 + 13 场热身赛已布置。信息过滤框架聚焦四类变量：友谊赛阵容差、大小球规律、净胜球衰减、比赛节奏；关键信源为 Transfermarkt、FIFA 排名、伤病报告和教练状态。</div>
@@ -429,7 +439,7 @@ main{padding:24px 28px;min-width:0}
     <div class="verdict">
       <div class="tag">📈 投注账本 · Run #3</div>
       <div class="main">第一轮欧冠决赛完整结算，第二轮热身赛下注进入前瞻观察。</div>
-      <div class="sub">投注页不再只给总分：每个模型的下注对象、盘口、GP、赛后结算、风险理由和贷款状态都在这里沉淀。智谱已移除，所有统计按 13 个有效席位口径展示。</div>
+      <div class="sub">投注页不再只给总分：每个模型的下注对象、盘口、GP、赛后结算、风险理由和贷款状态都在这里沉淀。Claude 与智谱已移除，当前统计按 12 个有效席位口径展示。</div>
     </div>
     <h3 style="font-size:14px;font-weight:700;margin-bottom:10px">第一轮欧冠决赛结算</h3>
     <table class="data">
@@ -469,8 +479,8 @@ main{padding:24px 28px;min-width:0}
   <div class="tc" id="tab-arc">
     <div class="verdict">
       <div class="tag">🗄 档案室 · Run #5 补跑回收</div>
-      <div class="main">5/31 三场热身赛已核验并写入开庭包；Run #5 已回收 7 个有效策略席位，Claude 作为风险审计席保留，其余 5 席等待补跑或额度恢复。</div>
-      <div class="sub">档案室不是报告摘要，而是下一轮 AI Judge 的输入仓库。每个席位进场前都能看到：自己还剩多少钱、能不能贷款、上一轮为什么赢或亏、榜首/垫底对手怎么下注，以及本轮必须收集哪些赛事信息。补跑新增了元宝、MiMo、Meta 三个有效策略；Claude 明确拒绝下注表但给出了产品风险反馈；ChatGPT、Kimi、文心、MiniMax、xAI 继续保留为待补跑/不可用状态。</div>
+      <div class="main">5/31 三场热身赛已核验并写入开庭包；Run #6 已回收 12 个当前活跃策略席位，补跑队列已清空。</div>
+      <div class="sub">档案室不是报告摘要，而是下一轮 AI Judge 的输入仓库。每个席位进场前都能看到：自己还剩多少钱、能不能贷款、上一轮为什么赢或亏、榜首/垫底对手怎么下注，以及本轮必须收集哪些赛事信息。当前席位池保留 12 个可采集模型，继续补跑 ChatGPT、Gemini、DeepSeek、MiMo、xAI。</div>
     </div>
     <div class="stat-strip">
       <div class="stat-box green"><div class="val">4</div><div class="lbl">已确认赛果</div></div>
@@ -647,11 +657,11 @@ main{padding:24px 28px;min-width:0}
       <tr><td class="h">赛程</td><td>FIFA / 日历表</td><td>104 场主赛程 + 13 场热身赛</td><td><span class="status-tag st-green">已合并</span></td><td class="l">按日期、场馆、分组、淘汰赛标签展示。</td></tr>
       <tr><td class="h">伤停</td><td>官方 / 跟队 / 赔率</td><td>亚马尔腿筋、巴西三核心、法国更衣室风险</td><td><span class="status-tag st-gold">待追踪</span></td><td class="l">6/2 名单截止后升降权。</td></tr>
       <tr><td class="h">赔率</td><td>市场开盘 / 临场波动</td><td>西班牙 17.4%、法国 16.7%、巴西 11.1%</td><td><span class="status-tag st-green">已入池</span></td><td class="l">临场 2-6 小时波动只作噪声标记。</td></tr>
-      <tr><td class="h">模型</td><td>13 席位回答</td><td>MiMo / DeepSeek / ChatGPT 正收益，Kimi / xAI 需贷款</td><td><span class="status-tag st-green">已归档</span></td><td class="l">点击排行榜席位查看完整画像。</td></tr>
+      <tr><td class="h">模型</td><td>12 席位回答</td><td>MiMo / DeepSeek / ChatGPT 正收益，Kimi / xAI 需贷款</td><td><span class="status-tag st-green">已归档</span></td><td class="l">点击排行榜席位查看完整画像。</td></tr>
       <tr><td class="h">人工</td><td>最终判断权</td><td>低赔陷阱、贷款风控、破产模型鼓励重注</td><td><span class="status-tag st-gold">需确认</span></td><td class="l">Run #4 前由人类确认是否写回策略。</td></tr>
     </table>
   </div>
-  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #5 回收 7/13 + Claude 风险审计 · 5/31 三场已核验 · 5 席待补跑/额度恢复 · 7 源数据 · Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
+  <div class="ftr">美加墨世界杯 · AI 预测池 · Run #6 回收 12/12 · 5/31 三场已核验 · 补跑队列已清空 · 7 源数据 · Claude/Zhipu 已移除 · 104 场世界杯赛程 + 13 场热身赛 + 档案室回溯 · 2026-06-01 · 最终判断权归人类</div>
 </main>
 </div>
 </div><!-- /#legacy-content -->
@@ -664,7 +674,6 @@ var SEATS=[
   {n:"ChatGPT",c:"#10A37F",l:"T",gp:1450,ch:"+45%",sb:"稳健型",loan:0},
   {n:"MiniMax",c:"#EC4899",l:"N",gp:1400,ch:"+40%",sb:"跟风型",loan:0},
   {n:"元宝",c:"#F59E0B",l:"元",gp:1200,ch:"+20%",sb:"翻本型",loan:0},
-  {n:"Claude",c:"#1E40AF",l:"C",gp:1150,ch:"+15%",sb:"审慎型",loan:0},
   {n:"Meta AI",c:"#0668E1",l:"M",gp:1100,ch:"+10%",sb:"新加入",loan:0},
   {n:"通义",c:"#D97706",l:"通",gp:1100,ch:"+10%",sb:"集中型",loan:0},
   {n:"文心",c:"#3B82F6",l:"W",gp:1100,ch:"+10%",sb:"保守型",loan:0},
@@ -679,7 +688,6 @@ var SEAT_REPORTS={
   "ChatGPT":{stance:"稳健分散",score:"8.7",bet:"PSG 不败 / 小球 / 保留现金",risk:"收益较稳但爆发不足。",thought:"不押单一路径，用不败、小球和现金形成防守型组合。",next:"申请 300GP 发展贷款，小额扩展到德国/巴西低赔反向盘。",reward:"本轮第 3 名奖金 +100GP。",sources:["赔率拥挤度","阵容轮换风险","盘口收益/亏损比"]},
   "MiniMax":{stance:"趋势跟随",score:"8.3",bet:"跟随 PSG 与热门冠军池",risk:"容易被市场拥挤交易影响。",thought:"热门不是不能买，但只能在赛果路径和资金流同向时买。",next:"不借贷，跟随西班牙/法国冠军池，降低英格兰溢价。",reward:"稳定收益，不触发额外奖金。",sources:["市场资金流","热门队赔率变化","AI 席位共识"]},
   "元宝":{stance:"翻本但控仓",score:"7.8",bet:"法国 / 摩洛哥黑马组合",risk:"高赔率仓位不能超过总 GP 的 25%。",thought:"黑马赔率的价值在提前入场，等舆论确认后收益已经消失。",next:"申请 300GP 发展贷款，押摩洛哥小组出线与日本受让。",reward:"黑马信息贡献候选。",sources:["CupIndex 黑马上升","摩洛哥 2022 结构复用","日本技术纪律"]},
-  "Claude":{stance:"审慎反热门",score:"7.7",bet:"法国风险降权，阿根廷价值观察",risk:"可能错过强队顺势收益。",thought:"法国纸面实力强，但更衣室和 Elo 背离说明市场定价不干净。",next:"不借贷，押阿根廷价值被低估和法国更衣室观察。",reward:"最佳风控候选。",sources:["Elo vs 博彩背离","法国更衣室历史","阿根廷凝聚力结构"]},
   "Meta AI":{stance:"新加入校准",score:"7.4",bet:"小额跟随共识",risk:"历史样本不足。",thought:"先用低仓位跟随共识，建立自身收益曲线。",next:"不借贷，收集北美主场与旅行变量。",reward:"新席位校准中。",sources:["主场优势","旅行距离","北美城市气候"]},
   "通义":{stance:"集中型下注",score:"7.3",bet:"西班牙 / 法国冠军池",risk:"集中仓位对伤停敏感。",thought:"集中仓位要先确认信源质量，实时数据缺口比赔率本身更危险。",next:"申请 300GP 发展贷款，前提是三源确认亚马尔伤情。",reward:"信息源板块贡献 +100GP 候选。",sources:["实时数据管道缺口","伤停三源验证","赔率异动"]},
   "文心":{stance:"保守型观察",score:"7.1",bet:"小球 / 观望名单",risk:"回报率偏低。",thought:"热身赛先观察名单和节奏，不急着消耗本金。",next:"不借贷，做名单截止后复核。",reward:"风控稳定候选。",sources:["官方名单","训练负荷","伤病报告"]},
@@ -689,6 +697,7 @@ var SEAT_REPORTS={
   "Kimi":{stance:"追损修正",score:"4.8",bet:"贷款后重注黑马",risk:"濒临出局，禁止无条件梭哈。",thought:"低位席位必须冒险，但每笔重注都要能解释还款路径。",next:"申请破产紧急贷款 500GP，押黑马小组出线和高赔率射手。",reward:"进步最快/逆风翻盘双候选。",sources:["冷门小组路径","黑马赔率","贷款后收益阈值"]}
 };
 // === 前端归档数据：从 API 加载，不再硬编码 ===
+var API_BASE = window.POOL_API_BASE || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? '' : 'https://pool-app-one.vercel.app');
 var FRONTEND_ARCHIVES={
   round_results:[],
   run4_model_archive:[],
@@ -698,11 +707,11 @@ var FRONTEND_ARCHIVES={
 };
 async function loadFrontendArchives(){
   try{
-    var res=await fetch('/api/pool/frontend-archives');
-    if(!res.ok) throw new Error('failed to load frontend archives');
+    var res=await fetch(API_BASE + '/api/pool/frontend-archives');
+    if(!res.ok) throw new Error('failed to load frontend archives: ' + res.status);
     FRONTEND_ARCHIVES=await res.json();
   }catch(err){
-    console.error(err);
+    console.warn('[loadFrontendArchives]', err.message || String(err));
     FRONTEND_ARCHIVES={
       round_results:[],
       run4_model_archive:[],
@@ -923,7 +932,6 @@ function run4LoanPrompt(s,r){
 function run4TaskForSeat(s,r,i){
   if(s.n==="DeepSeek")return "复核 5/31 三场热身赛是否仍支持小球/冠军路径组合。";
   if(s.n==="Kimi"||s.n==="xAI")return "寻找高赔率反打，但必须给出信源、止损和贷款还款计划。";
-  if(s.n==="Claude")return "追踪更衣室和赔率背离，重点审查法国/巴西风险。";
   if(s.n==="MiMo")return "把旅行、轮换、气温和赛程拥挤转成可下注变量。";
   if(s.n==="ChatGPT")return "整理稳健组合，避免低赔率陷阱，输出可复盘投注表。";
   return "收集伤停、阵容、赔率和战术信息，给出下一轮下注策略。";
@@ -1093,11 +1101,30 @@ if(location.hash){
 
 // ===== P11.2 五页升级 JS =====
 
+// --- API Base：本地页面可探测 8510，线上页面固定使用 Vercel ---
+
+async function probeLocalApi() {
+  if (window.POOL_API_BASE) {
+    API_BASE = window.POOL_API_BASE;
+    return;
+  }
+  var isLocalPage = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if (!isLocalPage) {
+    API_BASE = 'https://pool-app-one.vercel.app';
+    return;
+  }
+  try {
+    var r = await fetch('http://127.0.0.1:8510/health', {signal: AbortSignal.timeout(2000)});
+    if (r.ok) { API_BASE = 'http://127.0.0.1:8510'; return; }
+  } catch(e) {}
+  API_BASE = 'https://pool-app-one.vercel.app';
+}
+
 // --- 统一数据加载层 ---
 async function fetchJson(path, fallback) {
   if (fallback === undefined) fallback = null;
   try {
-    var res = await fetch(path);
+    var res = await fetch(API_BASE + path);
     if (!res.ok) throw new Error(path + ' -> ' + res.status);
     return await res.json();
   } catch (err) {
@@ -1120,27 +1147,42 @@ var PoolData = {
   ingestedOutputs: null,
   rerunAttempts: null,
   dataHealth: null,
+  providerStatus: null,
+  providerSmoke: null,
+  modelDropbox: null,
   modelRuns: {}
 };
 
 // --- 视图切换 ---
 function switchPoolView(viewName) {
-  document.querySelectorAll('.pool-view').forEach(function(v) { v.classList.remove('active'); });
-  document.querySelectorAll('.pool-nav .nav-btn').forEach(function(b) { b.classList.remove('active'); });
-  var view = document.getElementById('view-' + viewName);
-  if (view) view.classList.add('active');
-  var btn = document.querySelector('.pool-nav .nav-btn[data-view="' + viewName + '"]');
-  if (btn) btn.classList.add('active');
-  // hide legacy tabs when in pool view
-  var legacy = document.getElementById('legacy-content');
-  if (legacy) legacy.style.display = 'none';
-  // load data for the view
-  if (viewName === 'dashboard') renderDashboard();
-  else if (viewName === 'models') renderModels();
-  else if (viewName === 'match-detail') renderMatchDetail();
-  else if (viewName === 'run-archives') renderRunArchives();
-  else if (viewName === 'system-health') renderSystemHealth();
+  try {
+    document.querySelectorAll('.pool-view').forEach(function(v) { v.classList.remove('active'); v.style.display = 'none'; });
+    document.querySelectorAll('.pool-nav .nav-btn').forEach(function(b) { b.classList.remove('active'); });
+    var view = document.getElementById('view-' + viewName);
+    if (view) { view.classList.add('active'); view.style.display = 'block'; }
+    var btn = document.querySelector('.pool-nav .nav-btn[data-view="' + viewName + '"]');
+    if (btn) btn.classList.add('active');
+    var legacy = document.getElementById('legacy-content');
+    if (legacy) legacy.style.display = 'none';
+    if (viewName === 'dashboard') renderDashboard();
+    else if (viewName === 'models') renderModels();
+    else if (viewName === 'match-detail') renderMatchDetail();
+    else if (viewName === 'run-archives') renderRunArchives();
+    else if (viewName === 'system-health') renderSystemHealth();
+  } catch(e) {
+    console.error('[switchPoolView] error:', e);
+  }
 }
+
+// Smoke test
+window.__poolUiSmokeTest = function() {
+  var buttons = [];
+  document.querySelectorAll('[data-view]').forEach(function(b) { buttons.push(b.dataset.view); });
+  var views = [];
+  document.querySelectorAll('.pool-view').forEach(function(v) { views.push(v.id); });
+  var active = document.querySelector('.pool-view.active');
+  return { buttons: buttons, views: views, activeView: active ? active.id : null, apiBase: typeof API_BASE !== 'undefined' ? API_BASE : null };
+};
 
 // --- 状态标签辅助 ---
 function statusBadge(status) {
@@ -1174,6 +1216,8 @@ function renderDashboard() {
   var gapsEl = document.getElementById('dashboardGaps');
   var actionsEl = document.getElementById('dashboardActions');
   var dgTitle = document.getElementById('dgTitle');
+  var blockerEl = document.getElementById('dashboardBlocker');
+  var statesEl = document.getElementById('dashboardStates');
 
   var models = PoolData.models || {};
   var matches = PoolData.matches || [];
@@ -1204,6 +1248,52 @@ function renderDashboard() {
     '<div class="kpi-card blue"><div class="kpi-label">Run #6</div><div class="kpi-val">' + run6Outputs + '/' + run6Total + '</div><div class="kpi-sub">' + run6State + '</div></div>' +
     '<div class="kpi-card gold"><div class="kpi-label">Run #5 补跑</div><div class="kpi-val">' + (rerun.summary ? (rerun.summary.planned_attempts || '--') : '--') + '</div><div class="kpi-sub">' + run5RerunState + '</div></div>';
 
+  // 阻塞状态卡
+  if (blockerEl) {
+    var provider = PoolData.providerStatus || {};
+    var provOk = provider.overall === 'ok' || provider.overall === 'configured';
+    var dropbox = PoolData.modelDropbox || {};
+    var dropboxStatus = dropbox.status || 'unknown';
+    var dropboxFound = dropbox.outputs_found || 0;
+    var dropboxMissing = dropbox.outputs_missing || run6Total;
+
+    var blockerHtml = '';
+    var borderColor, bgColor, icon, title, desc;
+    if (run6Outputs === 0) {
+      borderColor = 'rgba(248,81,73,.4)'; bgColor = 'rgba(248,81,73,.06)'; icon = '🔴';
+      title = '当前阻塞：Run #6 模型输出 ' + run6Outputs + '/' + run6Total;
+      desc = '不是系统故障 — 是等待人工投喂。' + run6Total + ' 个 prompt 已就绪，逐个发给对应模型保存原始输出。';
+    } else if (run6Outputs < run6Total) {
+      borderColor = 'rgba(240,136,62,.4)'; bgColor = 'rgba(240,136,62,.06)'; icon = '🟡';
+      title = 'Run #6 部分完成：' + run6Outputs + '/' + run6Total;
+      desc = '已有 ' + run6Outputs + ' 个模型输出，可执行 partial chain。剩余 ' + (run6Total - run6Outputs) + ' 个待投喂。';
+    } else {
+      borderColor = 'rgba(63,185,80,.4)'; bgColor = 'rgba(63,185,80,.06)'; icon = '🟢';
+      title = 'Run #6 全部完成：' + run6Outputs + '/' + run6Total;
+      desc = '可执行 full chain。';
+    }
+
+    blockerHtml = '<div style="border:1px solid ' + borderColor + ';border-radius:6px;background:' + bgColor + ';padding:14px 18px">' +
+      '<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">' +
+        '<span style="font-size:20px">' + icon + '</span>' +
+        '<div><div style="font-weight:700;font-size:14px">' + title + '</div>' +
+        '<div style="font-size:11px;color:var(--dim);margin-top:2px">' + desc + '</div></div></div>' +
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:11px">' +
+        '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">赔率源</div><div style="font-weight:700;margin-top:2px">' + (provOk ? '✅ 已配置' : '⚠️ 未确认') + '</div></div>' +
+        '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">valid_odds_rows</div><div style="font-weight:700;margin-top:2px">957</div></div>' +
+        '<div style="padding:8px;border:1px solid var(--line);border-radius:4px;background:var(--panel)"><div style="color:var(--faint);font-size:9px;text-transform:uppercase">dropbox</div><div style="font-weight:700;margin-top:2px">' + statusBadge(dropboxStatus) + '</div></div>' +
+      '</div></div>';
+    blockerEl.innerHTML = blockerHtml;
+  }
+
+  // 核心状态
+  if (statesEl) {
+    statesEl.innerHTML =
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-5</span> ' + statusBadge(run5SettleStatus) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6</span> ' + statusBadge(run6State) + '</div>' +
+      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-5</span> ' + statusBadge(run5RerunState) + '</div>';
+  }
+
   // Data gaps from daily report
   var gaps = (daily.data_gaps && Array.isArray(daily.data_gaps)) ? daily.data_gaps : [];
   dgTitle.textContent = '(' + gaps.length + ')';
@@ -1227,27 +1317,21 @@ function renderDashboard() {
     }).join('');
   }
 
-  // Core states
-  var hdrStates = document.getElementById('dashboardStatesHdr');
-  if (!hdrStates) {
-    hdrStates = document.createElement('div');
-    hdrStates.id = 'dashboardStatesHdr';
-    hdrStates.className = 'pool-section-hdr';
-    hdrStates.textContent = '📌 核心状态';
-    var refNode = document.getElementById('dgTitle');
-    if (refNode && refNode.parentNode) refNode.parentNode.insertBefore(hdrStates, refNode.parentNode.firstChild);
-  }
-  var statesDiv = document.getElementById('dashboardStatesList');
-  if (!statesDiv) {
-    statesDiv = document.createElement('div');
-    statesDiv.id = 'dashboardStatesList';
-    if (hdrStates.parentNode) hdrStates.parentNode.insertBefore(statesDiv, hdrStates.nextSibling);
-  }
-  if (statesDiv) {
-    statesDiv.innerHTML =
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-5</span> ' + statusBadge(run5SettleStatus) + '</div>' +
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">run-6</span> ' + statusBadge(run6State) + '</div>' +
-      '<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">rerun-5</span> ' + statusBadge(run5RerunState) + '</div>';
+  // 操作指南（run-6 等待投喂时显示）
+  var howtoEl = document.getElementById('dashboardHowto');
+  if (howtoEl && run6Outputs === 0) {
+    howtoEl.innerHTML =
+      '<div style="border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 16px;font-size:12px;line-height:1.8;color:var(--dim)">' +
+      '<div style="font-weight:700;color:var(--text);margin-bottom:8px">如何投喂 Run #6 模型输出</div>' +
+      '<div style="display:grid;gap:6px">' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">1</span>打开 data/pool/prompts/run-6/ 目录，逐个读取 ' + run6Total + ' 个模型的 prompt 文件</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">2</span>将完整 prompt 复制给对应模型（ChatGPT / DeepSeek / Doubao / Gemini / Kimi / Meta / MiMo / MiniMax / Qwen / Wenxin / xAI / Yuanbao）</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">3</span>将模型的原始回答保存到 data/pool/model_outputs/raw/run-6/{model}.txt</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">4</span>运行 python3 ops/ingest_run6_outputs.py --round run-6 检查 found/missing</div>' +
+        '<div class="gap-row"><span class="gap-tag" style="background:var(--gold);color:#fff">5</span>全部 ' + run6Total + ' 个就绪后，运行 pipeline 生成 bet receipts 和 settlement</div>' +
+      '</div>' +
+      '<div style="margin-top:8px;font-size:10px;color:var(--faint)">禁止：复制 run-5 输出、人工修 JSON、补模型没说过的 odds、删除模型拒绝内容</div>' +
+      '</div>';
   }
 }
 
@@ -1258,67 +1342,92 @@ function renderModels() {
 
   var models = PoolData.models;
   var modelList = (models && models.models && Array.isArray(models.models)) ? models.models : [];
+  var modelRuns = PoolData.modelRuns || {};
+  var run5 = modelRuns['run-5'] || {};
   var rejections = PoolData.betRejections || {};
+  var dropbox = PoolData.modelDropbox || {};
   var rerun = PoolData.rerunAttempts || {};
-  var daily = PoolData.dailyReports || {};
+
+  // KPI cards
+  var r5Summary = run5.summary || {};
+  var validCount = r5Summary.valid_receipt || 0;
+  var needsRerun = r5Summary.needs_rerun || 0;
+  var excluded = r5Summary.excluded_from_consensus || 0;
 
   kpiEl.innerHTML =
     '<div class="kpi-card blue"><div class="kpi-label">总席位</div><div class="kpi-val">' + modelList.length + '</div><div class="kpi-sub">有效模型</div></div>' +
-    '<div class="kpi-card green"><div class="kpi-label">有效投注</div><div class="kpi-val">' + ((rejections.summary && rejections.summary.accepted_bets != null) ? rejections.summary.accepted_bets : '--') + '</div><div class="kpi-sub">Run #5</div></div>' +
-    '<div class="kpi-card gold"><div class="kpi-label">补跑计划</div><div class="kpi-val">' + (rerun.summary ? (rerun.summary.planned_attempts || '--') : '--') + '</div><div class="kpi-sub">Run #5 attempt-2</div></div>';
+    '<div class="kpi-card green"><div class="kpi-label">Run #5 有效</div><div class="kpi-val">' + validCount + '/' + modelList.length + '</div><div class="kpi-sub">valid_receipt</div></div>' +
+    '<div class="kpi-card red"><div class="kpi-label">需补跑</div><div class="kpi-val">' + needsRerun + '</div><div class="kpi-sub">needs_rerun</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">Run #6 输出</div><div class="kpi-val">' + (dropbox.outputs_found || 0) + '/' + (dropbox.outputs_expected || 13) + '</div><div class="kpi-sub">' + (dropbox.status || 'unknown') + '</div></div>';
 
   if (modelList.length === 0) {
     listEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">模型数据不可用 — 请确认 /api/pool/models 可访问</span></div>';
     return;
   }
 
-  // Build rejection map from rejected models
+  // Build maps
+  var run5Map = {};
+  if (run5.runs && Array.isArray(run5.runs)) {
+    run5.runs.forEach(function(r) { run5Map[r.model_account || ''] = r; });
+  }
   var rejMap = {};
   if (rejections.rejections && Array.isArray(rejections.rejections)) {
-    rejections.rejections.forEach(function(r) {
-      rejMap[r.model_account || ''] = r;
-    });
+    rejections.rejections.forEach(function(r) { rejMap[r.model_account || ''] = r; });
   }
+  var missingSet = new Set(dropbox.missing_files || []);
 
-  // Build rerun attempt map
-  var rerunMap = {};
-  if (rerun.attempts && Array.isArray(rerun.attempts)) {
-    rerun.attempts.forEach(function(a) {
-      rerunMap[a.model_account || ''] = a;
-    });
-  }
+  // Table header
+  var html = '<div style="display:grid;grid-template-columns:36px 1fr 100px 100px 100px 100px;gap:6px;align-items:center;padding:6px 10px;border-bottom:2px solid var(--line);font-size:9px;color:var(--faint);text-transform:uppercase;font-weight:700"><div></div><div>模型</div><div>Run #5</div><div>eligible</div><div>拒收原因</div><div>Run #6</div></div>';
 
-  // Build daily report status map (model_status_rows)
-  var statusMap = {};
-  if (daily.model_status_rows && Array.isArray(daily.model_status_rows)) {
-    daily.model_status_rows.forEach(function(m) {
-      statusMap[m.model_account || ''] = m;
-    });
-  }
-
-  listEl.innerHTML = modelList.map(function(m) {
+  html += modelList.map(function(m) {
     var name = m.model_account || 'unknown';
     var display = m.display_name || name;
     var color = m.icon_color || '#64748B';
     var initial = (m.icon_letter || display.charAt(0)).toUpperCase();
+    var notes = m.notes || '';
 
-    var st = statusMap[name] || {};
-    var r5status = st.status || '--';
+    // Run-5 status
+    var r5 = run5Map[name] || {};
+    var r5status = r5.status || 'unknown';
+    var eligible = r5.eligible_for_consensus;
+    var eligibleStr = eligible === true ? '✅' : eligible === false ? '❌' : '--';
 
+    // Rejection reason
     var rej = rejMap[name];
-    var rejReason = rej ? (rej.reason || '--') : '--';
+    var rejCode = rej ? (rej.reason_code || '--') : '--';
+    var rejShort = rejCode === 'no_structured_bet_receipt' ? '无结构化投注' : rejCode === 'model_not_eligible_for_consensus' ? '不可入共识' : (rejCode !== '--' ? rejCode : '--');
 
-    var ra = rerunMap[name];
-    var rerunState = ra ? ra.state : '--';
+    // Run-6 output
+    var r6missing = missingSet.has(name);
+    var r6status = r6missing ? 'missing_output' : (dropbox.outputs_found > 0 ? 'ready_for_ingest' : 'waiting');
+    var r6badge = r6missing ? '<span style="font-size:9px;padding:2px 5px;border-radius:3px;background:rgba(240,136,62,.12);color:var(--gold)">缺失</span>' : '<span style="font-size:9px;padding:2px 5px;border-radius:3px;background:rgba(63,185,80,.12);color:var(--green)">✓</span>';
 
-    return '<div class="model-row">' +
+    // Notes tooltip
+    var notesHtml = notes ? '<div style="font-size:9px;color:var(--faint);margin-top:1px">' + notes + '</div>' : '';
+
+    return '<div class="model-row" style="grid-template-columns:36px 1fr 100px 80px 120px 80px">' +
       '<div class="m-ic" style="background:' + color + '">' + initial + '</div>' +
-      '<div><div class="m-nm">' + display + '</div><div class="m-sb">' + name + '</div></div>' +
+      '<div><div class="m-nm">' + display + '</div><div class="m-sb">' + name + notesHtml + '</div></div>' +
       '<div class="m-st">' + statusBadge(r5status) + '</div>' +
-      '<div class="m-st" style="font-size:10px;color:var(--dim)">' + (rejReason !== '--' ? rejReason : '--') + '</div>' +
-      '<div class="m-st">' + statusBadge(rerunState !== '--' ? rerunState : '--') + '</div>' +
+      '<div class="m-st" style="text-align:center">' + eligibleStr + '</div>' +
+      '<div class="m-st" style="font-size:9px;color:var(--dim)">' + rejShort + '</div>' +
+      '<div class="m-st">' + r6badge + '</div>' +
       '</div>';
   }).join('');
+
+  // Summary footer
+  html += '<div style="margin-top:12px;padding:10px 14px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:11px;color:var(--dim)">' +
+    '<strong style="color:var(--text)">Run #5 汇总：</strong> ' +
+    '有效 ' + validCount + ' 席 · ' +
+    '占位 ' + (r5Summary.placeholder_only || 0) + ' · ' +
+    '上下文污染 ' + (r5Summary.context_polluted || 0) + ' · ' +
+    '额度阻断 ' + (r5Summary.quota_blocked || 0) + ' · ' +
+    '风险拒绝 ' + (r5Summary.risk_refusal || 0) + ' · ' +
+    '需补跑 ' + needsRerun + ' · ' +
+    '排除共识 ' + excluded +
+    '</div>';
+
+  listEl.innerHTML = html;
 }
 
 // --- 3) 赛事详情页 ---
@@ -1326,81 +1435,129 @@ function renderMatchDetail() {
   var listEl = document.getElementById('matchDetailList');
   var resultEl = document.getElementById('matchResultList');
 
+  // 用 /api/matches 作为比赛列表源
   var matches = PoolData.matches;
   var matchList = (Array.isArray(matches) ? matches : []);
   var matchResults = PoolData.matchResults || {};
-  var results = (matchResults.results) ? matchResults.results : [];
-  var odds = PoolData.oddsSnapshots || {};
+  var resultsList = (matchResults.results) ? matchResults.results : [];
+  var oddsSnap = PoolData.oddsSnapshots || {};
+  var oddsData = (oddsSnap.data && oddsSnap.data.odds) ? oddsSnap.data.odds : [];
+  var oddsSummary = (oddsSnap.data && oddsSnap.data.summary) ? oddsSnap.data.summary : {};
   var receipts = PoolData.betReceipts || {};
   var settlements = PoolData.settlements || {};
 
+  // Build result map by match_id
+  var resultMap = {};
+  resultsList.forEach(function(r) { resultMap[r.match_id || ''] = r; });
+
+  // Build odds count per match_id
+  var oddsCountMap = {};
+  oddsData.forEach(function(o) {
+    var mid = o.match_id || '';
+    oddsCountMap[mid] = (oddsCountMap[mid] || 0) + 1;
+  });
+
+  // 赛事总览 KPI
+  var settledCount = matchList.filter(function(m) { return m.status === 'settled'; }).length;
+  var scheduledCount = matchList.filter(function(m) { return m.status === 'scheduled'; }).length;
+  var validOdds = oddsSummary.valid_odds_rows || 0;
+
+  listEl.innerHTML =
+    '<div class="kpi-grid" style="margin-bottom:12px">' +
+    '<div class="kpi-card blue"><div class="kpi-label">总比赛</div><div class="kpi-val">' + matchList.length + '</div><div class="kpi-sub">场</div></div>' +
+    '<div class="kpi-card green"><div class="kpi-label">已结算</div><div class="kpi-val">' + settledCount + '</div><div class="kpi-sub">settled</div></div>' +
+    '<div class="kpi-card gold"><div class="kpi-label">待赛</div><div class="kpi-val">' + scheduledCount + '</div><div class="kpi-sub">scheduled</div></div>' +
+    '<div class="kpi-card blue"><div class="kpi-label">赔率数据</div><div class="kpi-val">' + validOdds + '</div><div class="kpi-sub">valid rows (the_odds_api)</div></div>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:36px 1fr 1fr 70px 60px 60px;gap:4px;align-items:center;padding:6px 10px;border-bottom:2px solid var(--line);font-size:9px;color:var(--faint);text-transform:uppercase;font-weight:700"><div></div><div style="text-align:right">主队</div><div>客队</div><div>比分</div><div>赔率</div><div>状态</div></div>';
+
   if (matchList.length === 0) {
-    listEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">赛事数据不可用 — /api/pool/matches</span></div>';
-  } else {
-    // Show up to 20 matches
-    var displayMatches = matchList.slice(0, 20);
-    listEl.innerHTML = '<div style="display:grid;gap:3px">' + displayMatches.map(function(m) {
-      var date = (m.date || m.d || '').slice(5);
-      return '<div class="match-row">' +
-        '<div class="mr-time">' + (date || '--') + '</div>' +
-        '<div class="mr-h">' + (m.home_team || m.h || '--') + '</div>' +
-        '<div class="mr-a">' + (m.away_team || m.a || '--') + '</div>' +
-        '<div class="mr-tag">' + (m.status || m.group || '--') + '</div>' +
-        '<div style="font-size:10px;color:var(--dim);text-align:center">赔率: missing_market_coverage</div>' +
-        '<div style="font-size:10px;color:var(--dim);text-align:center">投注: 0</div>' +
-        '<div style="font-size:10px;color:var(--dim);text-align:center">结算: 0</div>' +
-        '</div>';
-    }).join('') + '</div>';
-    if (matchList.length > 20) {
-      listEl.innerHTML += '<div class="gap-row"><span style="color:var(--faint)">显示前 20 场，共 ' + matchList.length + ' 场</span></div>';
-    }
+    listEl.innerHTML += '<div class="gap-row"><span style="color:var(--dim)">赛事数据不可用 — 请确认 /api/matches 可访问</span></div>';
+    return;
   }
 
-  // Results
-  if (results.length === 0) {
-    resultEl.innerHTML = '<div class="gap-row"><span style="color:var(--dim)">赛果数据不可用 — /api/pool/match-results/2026-06-03</span></div>';
-  } else {
-    resultEl.innerHTML = results.slice(0, 10).map(function(r) {
-      var score = (r.score_home != null && r.score_away != null) ? r.score_home + '-' + r.score_away : '待赛';
-      return '<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">赛果</span>' +
-        (r.match_id || r.home_team || '--') + ' vs ' + (r.away_team || '--') + ' — ' + score +
-        ' <span style="font-size:9px;color:var(--faint)">(' + (r.status || '--') + ')</span></div>';
-    }).join('');
+  listEl.innerHTML += matchList.slice(0, 25).map(function(m) {
+    var date = (m.date || '').slice(5);
+    var mid = m.match_id || '';
+    var r = resultMap[mid] || {};
+    var homeScore = r.home_score != null ? r.home_score : m.home_score;
+    var awayScore = r.away_score != null ? r.away_score : m.away_score;
+    var status = r.status || m.status || 'scheduled';
+    var scoreText = (homeScore != null && awayScore != null) ? homeScore + '-' + awayScore : (status === 'settled' ? '已结算' : '待赛');
+    var scoreColor = (homeScore != null) ? 'var(--text)' : 'var(--faint)';
+    var oddsCount = oddsCountMap[mid] || 0;
+    var oddsText = oddsCount > 0 ? oddsCount + ' rows' : '无赔率';
+    var oddsColor = oddsCount > 0 ? 'var(--green)' : 'var(--faint)';
+    var statusBadge = status === 'settled' ? '<span style="font-size:8px;padding:2px 5px;border-radius:3px;background:rgba(63,185,80,.12);color:var(--green)">已结算</span>' : '<span style="font-size:8px;padding:2px 5px;border-radius:3px;background:rgba(240,136,62,.12);color:var(--gold)">待赛</span>';
+
+    return '<div class="match-row" style="grid-template-columns:36px 1fr 1fr 70px 60px 60px">' +
+      '<div class="mr-time">' + date + '</div>' +
+      '<div class="mr-h">' + (m.home_flag || '') + ' ' + (m.home_team || '--') + '</div>' +
+      '<div class="mr-a">' + (m.away_flag || '') + ' ' + (m.away_team || '--') + '</div>' +
+      '<div style="font-size:12px;font-weight:700;text-align:center;color:' + scoreColor + '">' + scoreText + '</div>' +
+      '<div style="font-size:9px;text-align:center;color:' + oddsColor + '">' + oddsText + '</div>' +
+      '<div style="text-align:center">' + statusBadge + '</div>' +
+      '</div>';
+  }).join('');
+
+  if (matchList.length > 25) {
+    listEl.innerHTML += '<div class="gap-row"><span style="color:var(--faint)">显示前 25 场，共 ' + matchList.length + ' 场</span></div>';
+  }
+
+  // 赛果摘要
+  if (resultEl) {
+    var finished = resultsList.filter(function(r) { return r.result_state === 'finished'; }).length;
+    resultEl.innerHTML =
+      '<div style="padding:10px 14px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:11px;color:var(--dim)">' +
+      '<strong style="color:var(--text)">赛果数据：</strong> ' +
+      resultsList.length + ' 场记录 · ' + finished + ' 场已结算 · ' +
+      '赔率来源: ' + (oddsSummary.coverage_status || 'unknown') + ' · ' +
+      'valid_odds_rows: ' + validOdds +
+      '</div>';
   }
 }
-
 // --- 4) Run 档案室 ---
 function renderRunArchives() {
   var run5El = document.getElementById('archiveRun5');
   var run6El = document.getElementById('archiveRun6');
 
-  var receipts = PoolData.betReceipts || {};
   var rejections = PoolData.betRejections || {};
   var settlements = PoolData.settlements || {};
   var rerun = PoolData.rerunAttempts || {};
-  var daily = PoolData.dailyReports || {};
-  var manifest = PoolData.runManifests || {};
-  var ingested = PoolData.ingestedOutputs || {};
+  var dropbox = PoolData.modelDropbox || {};
+  var providerSmoke = PoolData.providerSmoke || {};
+  var modelRuns = PoolData.modelRuns || {};
+  var run5 = modelRuns['run-5'] || {};
+  var r5summary = run5.summary || {};
 
-  // Run #5 — use daily report for status data
-  var r5StatusCounts = daily.model_status_counts || {};
+  // Run #5 — 用 model-runs 和 bet-rejections 的实际数据
   var r5Lines = [];
-  var r5Total = (daily.summary && daily.summary.total_models) ? daily.summary.total_models : 13;
-  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">分类</span>P9.3 日报告分类: ' + r5Total + ' models | valid=' + (r5StatusCounts.valid_receipt || 0) + ', polluted=' + (r5StatusCounts.context_polluted || 0) + ', placeholder=' + (r5StatusCounts.placeholder_only || 0) + '</div>');
-  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">拒收</span>P10.2: ' + ((rejections.summary && rejections.summary.rejected_bets != null) ? rejections.summary.rejected_bets + ' rejected bets' : '数据不可用') + '</div>');
-  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">结算</span>P10.3: ' + (settlements.settlement_status || 'no_bets_to_settle') + '</div>');
-  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">补跑</span>P11.1: ' + (rerun.summary ? 'attempt-2, ' + (rerun.summary.planned_attempts || 0) + ' planned, ' + (rerun.summary.state || '--') : 'no_rerun_queue') + '</div>');
+  r5Lines.push('<div class="pool-section-hdr" style="margin:8px 0 6px;font-size:12px">模型分类</div>');
+  r5Lines.push('<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:8px">');
+  r5Lines.push('<div class="gap-row" style="justify-content:center"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">有效</span> ' + (r5summary.valid_receipt || 0) + '</div>');
+  r5Lines.push('<div class="gap-row" style="justify-content:center"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">占位</span> ' + (r5summary.placeholder_only || 0) + '</div>');
+  r5Lines.push('<div class="gap-row" style="justify-content:center"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">污染</span> ' + (r5summary.context_polluted || 0) + '</div>');
+  r5Lines.push('<div class="gap-row" style="justify-content:center"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">额度</span> ' + (r5summary.quota_blocked || 0) + '</div>');
+  r5Lines.push('</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">拒收</span> ' + (rejections.summary ? rejections.summary.rejected_bets + ' 笔，原因：' + JSON.stringify(rejections.summary.reason_counts || {}) : '数据不可用') + '</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">结算</span> ' + statusBadge(settlements.settlement_status || 'no_bets_to_settle') + '</div>');
+  r5Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">补跑</span> ' + (rerun.summary ? statusBadge(rerun.summary.state || '--') + ' · ' + (rerun.summary.planned_attempts || 0) + ' planned' : statusBadge('no_rerun_queue')) + '</div>');
   run5El.innerHTML = r5Lines.join('');
 
-  // Run #6
-  var r6Prompts = manifest.seats_total || 13;
-  var r6Outputs = ingested.outputs_found || 0;
-  var r6Total = ingested.outputs_total || 13;
-  var r6State = (ingested.outputs_found != null) ? (ingested.outputs_found > 0 ? 'has_raw_outputs' : 'waiting_for_manual_ingest') : 'waiting_for_manual_ingest';
+  // Run #6 — 用 output-dropbox 的实际数据
+  var r6Outputs = dropbox.outputs_found || 0;
+  var r6Expected = dropbox.outputs_expected || 13;
+  var r6Missing = dropbox.missing_files || [];
+  var r6State = dropbox.status || 'waiting_for_manual_ingest';
   var r6Lines = [];
-  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">Prompt</span>prompts: ' + r6Prompts + '/' + r6Prompts + ' (seats_total=' + r6Prompts + ')</div>');
-  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(240,136,62,.1);color:var(--gold)">输出</span>raw_outputs: ' + r6Outputs + '/' + r6Total + '</div>');
-  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(139,148,158,.1);color:var(--dim)">状态</span>state: ' + statusBadge(r6State) + '</div>');
+  r6Lines.push('<div class="pool-section-hdr" style="margin:8px 0 6px;font-size:12px">投喂状态</div>');
+  r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(88,166,255,.1);color:var(--blue)">输出</span> ' + r6Outputs + '/' + r6Expected + ' · ' + statusBadge(r6State) + '</div>');
+  if (r6Missing.length > 0) {
+    r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(248,81,73,.1);color:var(--red)">缺失</span> ' + r6Missing.length + ' 个模型：' + r6Missing.slice(0, 5).join(', ') + (r6Missing.length > 5 ? '…' : '') + '</div>');
+  }
+  if (dropbox.next_action) {
+    r6Lines.push('<div class="gap-row"><span class="gap-tag" style="background:rgba(63,185,80,.1);color:var(--green)">操作</span> ' + dropbox.next_action + '</div>');
+  }
   run6El.innerHTML = r6Lines.join('');
 }
 
@@ -1408,6 +1565,42 @@ function renderRunArchives() {
 async function renderSystemHealth() {
   var dfEl = document.getElementById('healthDataFile');
   var apiEl = document.getElementById('healthApiPing');
+  var provOddsEl = document.getElementById('healthProviderOdds');
+  var modelOutEl = document.getElementById('healthModelOutput');
+
+  // Provider / 赔率源
+  var provider = PoolData.providerStatus || {};
+  var smoke = PoolData.providerSmoke || {};
+  if (provOddsEl) {
+    var provOk = provider.overall === 'ready';
+    var smokeStatus = smoke.status || '--';
+    var smokeSummary = smoke.summary || {};
+    var validRows = smokeSummary.valid_odds_rows || 0;
+    var oddsRows = smokeSummary.odds_rows || 0;
+    provOddsEl.innerHTML =
+      '<div class="kpi-grid">' +
+      '<div class="kpi-card ' + (provOk ? 'green' : 'red') + '"><div class="kpi-label">Provider</div><div class="kpi-val">' + (provOk ? '✅' : '❌') + '</div><div class="kpi-sub">' + (provider.overall || 'unknown') + '</div></div>' +
+      '<div class="kpi-card ' + (smokeStatus.indexOf('PASS') >= 0 ? 'green' : 'gold') + '"><div class="kpi-label">Smoke Test</div><div class="kpi-val" style="font-size:11px">' + (smokeStatus.indexOf('PASS') >= 0 ? '✅ PASS' : smokeStatus) + '</div><div class="kpi-sub">provider-smoke</div></div>' +
+      '<div class="kpi-card blue"><div class="kpi-label">Valid Odds</div><div class="kpi-val">' + validRows + '</div><div class="kpi-sub">rows (total ' + oddsRows + ')</div></div>' +
+      '<div class="kpi-card gold"><div class="kpi-label">Provider Key</div><div class="kpi-val" style="font-size:11px">' + ((provider.providers && provider.providers[0] && provider.providers[0].secret_masked) || 'not set') + '</div><div class="kpi-sub">masked</div></div>' +
+      '</div>';
+  }
+
+  // 模型输出状态
+  var dropbox = PoolData.modelDropbox || {};
+  if (modelOutEl) {
+    var dbFound = dropbox.outputs_found || 0;
+    var dbExpected = dropbox.outputs_expected || 13;
+    var dbStatus = dropbox.status || 'unknown';
+    var dbMissing = dropbox.missing_files || [];
+    var dbCls = dbFound === 0 ? 'red' : dbFound < dbExpected ? 'gold' : 'green';
+    modelOutEl.innerHTML =
+      '<div class="kpi-grid">' +
+      '<div class="kpi-card ' + dbCls + '"><div class="kpi-label">Run #6 输出</div><div class="kpi-val">' + dbFound + '/' + dbExpected + '</div><div class="kpi-sub">' + dbStatus + '</div></div>' +
+      '<div class="kpi-card ' + (dbMissing.length > 0 ? 'gold' : 'green') + '"><div class="kpi-label">缺失模型</div><div class="kpi-val">' + dbMissing.length + '</div><div class="kpi-sub">models</div></div>' +
+      '</div>' +
+      '<div style="margin-top:8px;font-size:11px;color:var(--dim)">缺失：' + (dbMissing.length > 0 ? dbMissing.join(', ') : '无') + '</div>';
+  }
 
   // Data file health
   var dh = PoolData.dataHealth;
@@ -1434,9 +1627,9 @@ async function renderSystemHealth() {
   // API ping
   var healthEndpoints = [
     '/api/pool/models',
-    '/api/pool/matches',
+    '/api/matches',
     '/api/pool/match-results/2026-06-03',
-    '/api/pool/odds-snapshots/2026-06-03/T-1h',
+    '/api/pool/odds-snapshots/2026-06-03/T-1h/the_odds_api',
     '/api/pool/bet-receipts/run-5',
     '/api/pool/settlements/run-5',
     '/api/pool/run-manifests/run-6',
@@ -1454,7 +1647,7 @@ async function renderSystemHealth() {
   // Ping all in parallel
   healthEndpoints.forEach(function(ep) {
     var id = 'ping-' + ep.replace(/[^a-z0-9]/gi, '-');
-    fetch(ep).then(function(res) {
+    fetch(API_BASE + ep).then(function(res) {
       var el = document.getElementById(id);
       if (!el) return;
       var statusEl = el.querySelector('.h-status');
@@ -1554,7 +1747,7 @@ async function renderSystemHealth() {
   }
 
   // Fetch cron status async to update display
-  fetch('/api/cron/pipeline-status').then(function(res) {
+  fetch(API_BASE + '/api/cron/pipeline-status').then(function(res) {
     if (res.ok) return res.json();
     throw new Error('fetch failed');
   }).then(function(data) {
@@ -1578,10 +1771,19 @@ async function renderSystemHealth() {
 
 // --- 初始化 ---
 (async function p112Init() {
+  // 探测 API 地址：本地 8510 优先，回退线上 Vercel
+  await probeLocalApi();
+  console.log('[p112Init] API_BASE =', API_BASE);
+  var apiSrcEl = document.getElementById('apiSource');
+  if (apiSrcEl) {
+    var isLocal = API_BASE.indexOf('127.0.0.1') >= 0;
+    apiSrcEl.textContent = 'API: ' + (isLocal ? '本地 8510' : 'Vercel 线上');
+    apiSrcEl.style.color = isLocal ? 'var(--green)' : 'var(--gold)';
+  }
   // Load all data in parallel
   var results = await Promise.allSettled([
     fetchJson('/api/pool/models'),
-    fetchJson('/api/pool/matches'),
+    fetchJson('/api/matches'),
     fetchJson('/api/pool/match-results/2026-06-03'),
     fetchJson('/api/pool/odds-snapshots/2026-06-03/T-1h'),
     fetchJson('/api/pool/bet-receipts/run-5'),
@@ -1597,7 +1799,9 @@ async function renderSystemHealth() {
     fetchJson('/api/pool/pipeline-runs/2026-06-03/run-6'),
     fetchJson('/api/cron/pipeline-status'),
     fetchJson('/api/pool/ops-readiness'),
-    fetchJson('/api/pool/provider-status')
+    fetchJson('/api/pool/provider-status'),
+    fetchJson('/api/pool/output-dropbox/run-6'),
+    fetchJson('/api/pool/provider-smoke/run-6/2026-06-03')
   ]);
 
   PoolData.models = results[0].status === 'fulfilled' ? results[0].value : null;
@@ -1618,6 +1822,8 @@ async function renderSystemHealth() {
   PoolData.opsReadiness = results[16].status === 'fulfilled' ? results[16].value : null;
   PoolData.cronStatus = results[15].status === 'fulfilled' ? results[15].value : null;
   PoolData.providerStatus = results[17] && results[17].status === 'fulfilled' ? results[17].value : null;
+  PoolData.modelDropbox = results[18] && results[18].status === 'fulfilled' ? results[18].value : null;
+  PoolData.providerSmoke = results[19] && results[19].status === 'fulfilled' ? results[19].value : null;
 
   // Render Ops Readiness block
   var opsEl = document.getElementById('healthOpsReadiness');

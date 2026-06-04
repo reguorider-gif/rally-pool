@@ -1,0 +1,283 @@
+New task
+Search
+Skills
+Scheduled
+Assets
+Connect Mobile
+More
+MaxHermes
+MaxClaw
+Recents
+AI裁判预测池输出
+AI Judge共振自问
+Hello Greeting
+AI Judge 独立席位共振追问
+JSON与SQLite存储架构对比
+AI Judge 深度裁决反思
+More
+Agents Team
+General
+Coder
+Verifier
+Archived
+刘威迪
+AI裁判预测池输出
+
+AI_JUDGE_RUN_ID:pool-run6-web-20260604
+
+席位：minimax
+
+输出 JSON 时必须包含 run_id 字段，值必须等于 pool-run6-web-20260604；seat_id 字段必须严格等于 minimax。
+
+MiniMax 特别要求：不要启动 Skills/文件/任务流程，不要操作网页，只在当前聊天正文直接输出 JSON。如果无法开启深度模式，deep_mode_status 写 not_available。
+
+请只输出中文 JSON，不要 Markdown，不要创建文件。如果你无法联网或无法确认来源，请写入 unknowns 和 evidence_gaps，不要编来源。
+
+AI_JUDGE_RUN_MARKER:AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603
+
+
+
+# AI Judge 赛事预测池独立模型席位
+
+
+
+seat_id: minimax
+
+model_account: minimax
+
+display_name: MiniMax
+
+round_id: run-6
+
+date: 2026-06-03
+
+
+
+【合规与实验边界】
+
+这是虚拟 GP 预测研究，不涉及真钱下注，不构成现实博彩建议。
+
+所有投注均为模拟，仅用于算法研究与模型评估。
+
+
+
+## 当前任务
+
+你是 AI Judge 赛事预测池中的一个独立模型席位。
+
+你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。
+
+
+
+## 强制防污染要求
+
+- 不要回答旧任务。
+
+- 不要回答狼人杀、警长投票、守卫、平民、预言家、Grand Judge 等无关任务。
+
+- 不要输出你的最终答案。
+
+- 不要输出 Markdown。
+
+- 不要输出解释性自然语言。
+
+- 不要输出 JSON 之外的任何内容。
+
+- JSON 必须能被 json.loads 解析。
+
+
+
+## 可用比赛摘要
+
+{
+
+  "matches_total": 21,
+
+  "sample_matches": [
+
+    {
+
+      "match_id": "WARM-001",
+
+      "date": "2026-05-28",
+
+      "home_team": "Egypt",
+
+      "home_flag": "🇪",
+
+      "away_team": "Russia",
+
+      "away_flag": "🇷",
+
+      "competition": "friendly",
+
+      "status": "scheduled",
+
+      "provider": "legacy_seed",
+
+      "source_url": "",
+
+      "fetched_at": "2026-06-03T23:18:59Z",
+
+      "confidence": 0.5,
+
+      "odds_home": 2.1,
+
+      "odds_draw": 3.2,
+
+      "odds_away": 3.5,
+
+      "prob_home": 0.48,
+
+      "prob_draw": 0.31,
+
+      "prob_away": 0.21,
+
+      "kickoff_at": "2026-05-28T00:00:00Z"
+
+    },
+
+    {
+
+      "match_id": "WARM-002",
+
+      "date": "2026-05-31",
+
+      "home_team": "Brazil",
+
+      "home_flag": "🇧",
+
+      "away_team": "Panama",
+
+      "away_flag": "🇵",
+
+      "competition": "friendly",
+
+      "status": "settled",
+
+      "home_score": 6,
+
+      "away_score": 2,
+
+      "provider": "legacy_seed",
+
+      "source_url": "",
+
+      "fetched_at": "2026-06-03T23:18:59Z",
+
+      "confidence": 0.5,
+
+      "odds_home": 1.15,
+
+      "odds_draw": 7.0,
+
+      "odds_away": 15.0,
+
+      "prob_home": 0.87,
+
+      "prob_draw": 0.09,
+
+      "prob_away": 0.04,
+
+      "kickoff_at": "2026-05-31T00:00:00Z"
+
+    },
+
+    {
+
+      "match_id": "WARM-003",
+
+      "date": "2026-05-31",
+
+      "home_team": "USA",
+
+      "home_flag": "🇺",
+
+      "away_team": "Senegal",
+
+      "away_flag": "🇸",
+
+      "competition": "friendly",
+
+      "status": "settled",
+
+      "home_score": 3,
+
+      "away_score": 2,
+
+      "provider": "legacy_seed",
+
+      "source_url": "",
+
+      "fetched_at": "2026-06-03T23:18:59Z",
+
+      "confidence": 0.5,
+
+      "odds_home": 2.0,
+
+      "odds_draw": 3.3,
+
+      "odds_away": 3.8,
+
+      "prob_home": 0.5,
+
+      "prob_draw": 0.3,
+
+      "prob_away": 0.26,
+
+      "kickoff_at": "2026-05-31T00:00:00Z"
+
+    },
+
+    {
+
+      "match_id": "WARM-004",
+
+      "date": "2026-05-31",
+
+      "home_team": "Germany",
+
+      "home_flag": "🇩",
+
+      "away_team": "Finland",
+
+      "away_flag": "🇫",
+
+      "competition": "friendly",
+
+      "status": "settled",
+
+      "home_score": 4,
+
+      "away_score": 0,
+
+      "provider": "legacy_seed",
+
+      "source_url": "",
+
+      "fetched_at": "2026-06-03T23:18:59Z",
+
+      "confidence": 0.5,
+
+      "odds_home": 1.25,
+
+      "odds_draw": 5.5,
+
+      "odds_away": 12.0,
+
+      "prob_home": 0.8,
+
+View All
+14:52
+
+{"run_id":"pool-run6-web-20260604","seat_id":"minimax","deep_mode_status":"not_available","unknowns":["完整赛程与赛果数据未提供(只看到 sample 前 4 场片段)","资金/风控约束(最大注数、最大单注、最大赔率、最小概率阈值)未给出","本赛事是模拟虚拟 GP,无现实博彩或权威赔率源可联网核验","provider=legacy_seed,无 source_url,所有 odds/prob 来自种子数据,真实来源不可考"],"evidence_gaps":["无法联网核验各场比赛的真实赔率与伤停信息","无近期交锋数据、无 ELO/球队状态、无场地与天气","confidence 全部为 0.5,未提供模型不确定性分解","已 settled 的比赛(WARM-002/003/004)按指令不能下注,可用池子更小"],"picks":[]}
+
+14:52
+
+
+
+
+Agent Team
+MiniMax-M3
+Progress
+Track progress on longer tasks.

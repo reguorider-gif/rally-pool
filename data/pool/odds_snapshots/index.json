@@ -1,7 +1,20 @@
 {
   "version": "p13.0",
-  "updated_at": "2026-06-03T22:17:50Z",
+  "updated_at": "2026-06-04T07:37:24Z",
   "snapshots": [
+    {
+      "date": "2026-06-03",
+      "snapshot_label": "T-1h",
+      "provider": "the_odds_api",
+      "path": "data/pool/odds_snapshots/2026-06-03_T-1h_the_odds_api.json",
+      "odds_rows": 1190,
+      "valid_odds_rows": 989,
+      "missing_market_coverage": 0,
+      "coverage_status": "real_odds_provider_has_valid_odds",
+      "provider_unavailable": false,
+      "provider_responded": true,
+      "matched_internal_matches": 5
+    },
     {
       "date": "2026-06-03",
       "snapshot_label": "T-1h",

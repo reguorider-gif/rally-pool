@@ -73,6 +73,25 @@ def load_json(path: Path, default=None, verbose=False):
         return default
 
 
+def select_odds_snapshot_path(odds_snap_paths: list, date_str: str = "") -> Path | None:
+    """Select the best odds snapshot, preferring real provider data for the report date."""
+    candidates = []
+    for p in odds_snap_paths:
+        path = Path(p)
+        if path.name == "index.json" or path.suffix != ".json":
+            continue
+        if date_str and not path.name.startswith(f"{date_str}_"):
+            continue
+        snap = load_json(path, default={}, verbose=False)
+        provider = snap.get("provider", "")
+        provider_rank = 1 if provider and provider != "manual_stub" else 0
+        candidates.append((provider_rank, path.stat().st_mtime, path))
+
+    if not candidates:
+        return None
+    return max(candidates, key=lambda item: (item[0], item[1]))[2]
+
+
 def count_by_status(runs_data: dict) -> dict:
     """从 model_runs 统计各状态数量。"""
     counts = {s: 0 for s in ALL_STATUSES}
@@ -106,7 +125,12 @@ def build_model_status_rows(runs_data: dict) -> list:
     return rows
 
 
-def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "") -> list:
+def detect_data_gaps(
+    required_data: dict,
+    optional_data: dict,
+    round_id: str = "",
+    date_str: str = "",
+) -> list:
     """检测数据缺口。"""
     gaps = []
     # 必需文件缺失（已在调用处处理，这里检测内容缺口）
@@ -122,9 +146,7 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
             "detail": "No odds snapshot files found for report date.",
         })
     else:
-        # odds_snap_paths 是字符串列表，转为 Path 后取最新
-        snap_paths = [Path(p) for p in odds_snap_paths]
-        latest_snap_path = max(snap_paths, key=lambda p: p.stat().st_mtime) if snap_paths else None
+        latest_snap_path = select_odds_snapshot_path(odds_snap_paths, date_str)
         valid_odds_rows = 0
         coverage_status = "unknown"
         provider_unavailable = False
@@ -149,7 +171,9 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
                         valid_odds_rows += 1
             # 判断 coverage_status
             provider_name = snap.get("provider", "manual_stub")
-            if provider_unavailable or (not os.environ.get("THE_ODDS_API_KEY")):
+            if provider_unavailable or (
+                provider_name == "manual_stub" and not os.environ.get("THE_ODDS_API_KEY")
+            ):
                 coverage_status = "real_odds_provider_not_configured"
             elif valid_odds_rows <= 0:
                 if provider_name == "manual_stub":
@@ -370,6 +394,23 @@ def detect_data_gaps(required_data: dict, optional_data: dict, round_id: str = "
 def generate_next_actions(rerun_queue: list, data_gaps: list) -> list:
     """根据数据自动生成 next_actions。"""
     actions = []
+    waiting_outputs = any(
+        g.get("gap") in (
+            "model_outputs_waiting_for_manual_ingest",
+            "model_outputs_partial_found",
+            "model_outputs_dropbox_missing",
+        )
+        for g in data_gaps
+    )
+    missing_bet_receipts = any(g.get("gap") == "missing_bet_receipts" for g in data_gaps)
+
+    if waiting_outputs:
+        actions.append({
+            "action": "collect_run6_model_outputs",
+            "reason": "run-6 raw model outputs are required before ingest/classify/validate can produce bet receipts",
+            "stage": "P13.0B",
+            "blocking": False,
+        })
     # 1. 补跑队列不为空
     if rerun_queue:
         actions.append({
@@ -413,12 +454,20 @@ def generate_next_actions(rerun_queue: list, data_gaps: list) -> list:
         })
     # 4. 结算状态（P10.3 四态）
     if any(g["gap"] == "missing_settlements" for g in data_gaps):
-        actions.append({
-            "action": "settle_pool_round",
-            "reason": "Settlements missing; needed for ROI and leaderboard update",
-            "stage": "P10.3",
-            "blocking": False,
-        })
+        if waiting_outputs or missing_bet_receipts:
+            actions.append({
+                "action": "settle_pool_round_after_bet_receipts",
+                "reason": "Settlements are missing, but bet receipts do not exist yet; run settlement only after model outputs are ingested and validated",
+                "stage": "P10.3",
+                "blocking": False,
+            })
+        else:
+            actions.append({
+                "action": "settle_pool_round",
+                "reason": "Settlements missing; needed for ROI and leaderboard update",
+                "stage": "P10.3",
+                "blocking": False,
+            })
     elif any(g["gap"] == "settlements_present_but_no_bets_to_settle" for g in data_gaps):
         actions.append({
             "action": "settle_pool_round_after_rerun",
@@ -517,7 +566,7 @@ def generate_json_report(date_str: str, round_id: str,
     # 数据缺口
     bet_receipts_exist  = bool(optional_data.get("bet_receipts", []))
     settlements_exist   = bool(optional_data.get("settlements"))
-    data_gaps = detect_data_gaps(required_data, optional_data, round_id)
+    data_gaps = detect_data_gaps(required_data, optional_data, round_id, date_str)
 
     # 共识准入
     consensus = build_consensus_eligibility(runs_data)

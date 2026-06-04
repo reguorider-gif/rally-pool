@@ -1,26 +1,20 @@
 {
   "version": "p13.0",
-  "generated_at": "2026-06-03T22:16:41.451811+00:00",
-  "overall": "ready_with_warnings",
+  "generated_at": "2026-06-04T07:50:41.339121+00:00",
+  "overall": "ready",
   "providers": [
     {
       "provider": "the_odds_api",
       "env_var": "THE_ODDS_API_KEY",
-      "configured": false,
-      "status": "not_configured",
-      "secret_masked": null,
+      "configured": true,
+      "status": "configured",
+      "secret_masked": "***REDACTED***",
       "api_base": "https://api.the-odds-api.com/v4",
       "doc_url": "https://the-odds-api.com/",
-      "message": "THE_ODDS_API_KEY is not set. Please run: export THE_ODDS_API_KEY=<your_key>",
-      "next_action": "export THE_ODDS_API_KEY=<your_key>"
+      "message": "THE_ODDS_API_KEY is configured (masked).",
+      "next_action": "ready_for_smoke_test"
     }
   ],
   "blockers": [],
-  "warnings": [
-    {
-      "code": "provider_not_configured",
-      "provider": "the_odds_api",
-      "message": "THE_ODDS_API_KEY is not set."
-    }
-  ]
+  "warnings": []
 }

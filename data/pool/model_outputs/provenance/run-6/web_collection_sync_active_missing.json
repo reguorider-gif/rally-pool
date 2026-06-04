@@ -1,0 +1,77 @@
+{
+  "run_id": "run-6",
+  "web_run_dir": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604",
+  "total": 5,
+  "saved_raw_outputs": 5,
+  "blocked_or_missing": 0,
+  "saved": [
+    {
+      "seat_id": "chatgpt",
+      "status": "answered",
+      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/chatgpt.txt",
+      "bytes": 25420
+    },
+    {
+      "seat_id": "deepseek",
+      "status": "answered",
+      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/deepseek.txt",
+      "bytes": 28513
+    },
+    {
+      "seat_id": "gemini",
+      "status": "raw_answer_unparsed",
+      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/gemini.txt",
+      "bytes": 20550
+    },
+    {
+      "seat_id": "mimo",
+      "status": "raw_answer_unparsed",
+      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/mimo.txt",
+      "bytes": 25205
+    },
+    {
+      "seat_id": "xai",
+      "status": "answered",
+      "path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6/xai.txt",
+      "bytes": 26590
+    }
+  ],
+  "blocked": [],
+  "rows": [
+    {
+      "seat_id": "chatgpt",
+      "status": "answered",
+      "failure_reason": "answered",
+      "raw_text_len": 23921,
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/chatgpt.json"
+    },
+    {
+      "seat_id": "deepseek",
+      "status": "answered",
+      "failure_reason": "answered",
+      "raw_text_len": 25284,
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/deepseek.json"
+    },
+    {
+      "seat_id": "gemini",
+      "status": "raw_answer_unparsed",
+      "failure_reason": "raw_answer_unparsed",
+      "raw_text_len": 19409,
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/gemini.json"
+    },
+    {
+      "seat_id": "mimo",
+      "status": "raw_answer_unparsed",
+      "failure_reason": "raw_answer_unparsed",
+      "raw_text_len": 23674,
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/mimo.json"
+    },
+    {
+      "seat_id": "xai",
+      "status": "answered",
+      "failure_reason": "answered",
+      "raw_text_len": 25257,
+      "source_file": "/Users/audimacmini/Documents/Playground/.omx/judge-runs/pool-run6-web-active-missing-rerun-20260604/round-1/xai.json"
+    }
+  ]
+}

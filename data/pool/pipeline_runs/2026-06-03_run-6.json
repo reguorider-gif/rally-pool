@@ -2,26 +2,26 @@
   "version": "p12.0",
   "date": "2026-06-03",
   "round_id": "run-6",
-  "generated_at": "2026-06-03T22:17:50.435424+00:00",
-  "final_status": "pass_with_warnings",
+  "generated_at": "2026-06-04T07:37:25.548763+00:00",
+  "final_status": "pass",
   "dry_run": false,
   "skip_browser": true,
   "summary": {
     "steps_total": 13,
-    "steps_passed": 7,
-    "steps_skipped": 6,
+    "steps_passed": 12,
+    "steps_skipped": 1,
     "steps_failed": 0,
     "steps_blocked": 0,
     "blockers": 0,
-    "warnings": 1
+    "warnings": 0
   },
   "steps": [
     {
       "step": "preflight",
       "status": "pass",
       "command": "all scripts present",
-      "started_at": "2026-06-03T22:17:50.100826+00:00",
-      "finished_at": "2026-06-03T22:17:50.101000+00:00",
+      "started_at": "2026-06-04T07:37:24.695467+00:00",
+      "finished_at": "2026-06-04T07:37:24.695654+00:00",
       "duration_ms": 0,
       "stdout_tail": "",
       "stderr_tail": "",
@@ -42,9 +42,9 @@
       "step": "sync_matches",
       "status": "pass",
       "command": "python3 ops/sync_matches.py --date 2026-06-03 --days 14",
-      "started_at": "2026-06-03T22:17:50.150109+00:00",
-      "finished_at": "2026-06-03T22:17:50.150132+00:00",
-      "duration_ms": 48,
+      "started_at": "2026-06-04T07:37:24.813832+00:00",
+      "finished_at": "2026-06-04T07:37:24.813893+00:00",
+      "duration_ms": 118,
       "stdout_tail": "sync_matches\ndate:     2026-06-03\ndays:     14\nprovider: legacy_seed\nmatches:  21\nwritten:  data/pool/matches/snapshots/2026-06-03.json\nupdated_current: true\ndry_run:  false\n",
       "stderr_tail": "",
       "outputs": [
@@ -57,9 +57,9 @@
       "step": "sync_results",
       "status": "pass",
       "command": "python3 ops/sync_results.py --date 2026-06-03",
-      "started_at": "2026-06-03T22:17:50.185821+00:00",
-      "finished_at": "2026-06-03T22:17:50.185842+00:00",
-      "duration_ms": 35,
+      "started_at": "2026-06-04T07:37:24.871317+00:00",
+      "finished_at": "2026-06-04T07:37:24.871391+00:00",
+      "duration_ms": 57,
       "stdout_tail": "sync_results\ndate:     2026-06-03\nprovider: legacy_seed\nresults:  21\nfinished: 3\nmissing_or_not_finished: 18\nwritten:  data/pool/match_results/2026-06-03.json\ndry_run:  false\n",
       "stderr_tail": "",
       "outputs": [
@@ -72,9 +72,9 @@
       "step": "sync_odds_snapshots",
       "status": "pass",
       "command": "python3 ops/sync_odds_snapshots.py --date 2026-06-03 --snapshot-label T-1h --provider manual_stub",
-      "started_at": "2026-06-03T22:17:50.234641+00:00",
-      "finished_at": "2026-06-03T22:17:50.234666+00:00",
-      "duration_ms": 48,
+      "started_at": "2026-06-04T07:37:24.930006+00:00",
+      "finished_at": "2026-06-04T07:37:24.930026+00:00",
+      "duration_ms": 58,
       "stdout_tail": "te:           2026-06-03\n  snapshot_label: T-1h\n  provider:       manual_stub\n  matches:        21\n  markets:        moneyline,handicap,total_goals\n  dry_run:        False\n  save_raw:       False\n  strict_real:    False\n  odds_rows:      147\n  valid_odds:     0\n  missing_cov:    63\n  coverage:       odds_snapshots_present_but_missing_market_coverage\n  provider_resp:  False\n  matched_matches: 21\n  [write] data/pool/odds_snapshots/2026-06-03_T-1h.json\n  [write] data/pool/odds_snapshots/index.json\n",
       "stderr_tail": "",
       "outputs": [
@@ -87,92 +87,96 @@
       "step": "generate_prompts",
       "status": "pass",
       "command": "python3 ops/ai_judge_daily_pool.py run --date 2026-06-03 --round run-6 --generate-prompts-only",
-      "started_at": "2026-06-03T22:17:50.289189+00:00",
-      "finished_at": "2026-06-03T22:17:50.289210+00:00",
-      "duration_ms": 54,
-      "stdout_tail": "ser: true\n\n  ✅ Generated: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/run_manifests/run-6.json\n  ✅ Generated 13 prompts in /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/prompts/run-6\n\nPROMPTS GENERATED — 请手动将 prompt 发送给各模型，并保存原始输出到:\n  /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6\n\n完成后运行:\n  python3 ops/ai_judge_daily_pool.py ingest --round run-6 --input-dir data/pool/model_outputs/raw/run-6\n",
+      "started_at": "2026-06-04T07:37:24.992190+00:00",
+      "finished_at": "2026-06-04T07:37:24.992212+00:00",
+      "duration_ms": 61,
+      "stdout_tail": "ser: true\n\n  ✅ Generated: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/run_manifests/run-6.json\n  ✅ Generated 12 prompts in /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/prompts/run-6\n\nPROMPTS GENERATED — 请手动将 prompt 发送给各模型，并保存原始输出到:\n  /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6\n\n完成后运行:\n  python3 ops/ai_judge_daily_pool.py ingest --round run-6 --input-dir data/pool/model_outputs/raw/run-6\n",
       "stderr_tail": "",
       "outputs": [
-        "data/pool/prompts/run-6/ (13 prompts)"
+        "data/pool/prompts/run-6/ (12 prompts)"
       ],
       "warnings": [],
       "reason": ""
     },
     {
       "step": "ingest",
-      "status": "skipped",
+      "status": "pass",
       "command": "python3 ops/ai_judge_daily_pool.py ingest --round run-6 --input-dir data/pool/model_outputs/raw/run-6",
-      "started_at": "2026-06-03T22:17:50.326040+00:00",
-      "finished_at": "2026-06-03T22:17:50.326049+00:00",
-      "duration_ms": 36,
-      "stdout_tail": "i_judge_daily_pool ingest\nround_id: run-6\ninput_dir: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6\n\n  ✅ Ingested: 0/13 outputs found\n  ✅ Missing: 13\n  ✅ Written to: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/ingested/run-6/index.json\n\n未检测到原始输出。\n状态: waiting_for_manual_ingest\n\n请保存模型原始输出到:\n  /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/raw/run-6\n然后重新运行 ingest 命令。\n",
+      "started_at": "2026-06-04T07:37:25.264976+00:00",
+      "finished_at": "2026-06-04T07:37:25.264996+00:00",
+      "duration_ms": 272,
+      "stdout_tail": "puts.py\" --round run-6 --date 2026-06-03 --snapshot-label T-1h\n  ✅ validate 完成\n\nStep 3: settle_pool_round.py\n  执行: python3 \"/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/ops/settle_pool_round.py\" --round run-6 --date 2026-06-03 --snapshot-label T-1h\n  ✅ settle 完成\n\nStep 4: generate_daily_pool_report.py\n  执行: python3 \"/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/ops/generate_daily_pool_report.py\" --date 2026-06-03 --round run-6\n  ✅ report 完成\n\n=== Pipeline 完成 ===\n",
       "stderr_tail": "",
       "outputs": [],
-      "warnings": [
-        "waiting_for_manual_ingest: no raw model outputs found"
-      ],
-      "reason": "waiting_for_manual_ingest: all 13 outputs missing, run-6 not failed — waiting for human to place model outputs"
+      "warnings": [],
+      "reason": ""
     },
     {
       "step": "classify_model_output",
-      "status": "skipped",
+      "status": "pass",
       "command": "python3 ops/classify_model_output.py --round run-6",
-      "started_at": "2026-06-03T22:17:50.326072+00:00",
-      "finished_at": "2026-06-03T22:17:50.326073+00:00",
-      "duration_ms": 0,
-      "stdout_tail": "",
+      "started_at": "2026-06-04T07:37:25.322703+00:00",
+      "finished_at": "2026-06-04T07:37:25.322744+00:00",
+      "duration_ms": 57,
+      "stdout_tail": "Written: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_runs/run-6.json\nWritten: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json\nWritten: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/rerun_queue/run-6.json\n",
       "stderr_tail": "",
-      "outputs": [],
+      "outputs": [
+        "data/pool/model_runs/run-6.json"
+      ],
       "warnings": [],
-      "reason": "skipped_waiting_for_model_outputs: no ingested outputs to classify"
+      "reason": ""
     },
     {
       "step": "validate_model_outputs",
-      "status": "skipped",
+      "status": "pass",
       "command": "python3 ops/validate_model_outputs.py --round run-6 --date 2026-06-03",
-      "started_at": "2026-06-03T22:17:50.326101+00:00",
-      "finished_at": "2026-06-03T22:17:50.326103+00:00",
-      "duration_ms": 0,
-      "stdout_tail": "",
+      "started_at": "2026-06-04T07:37:25.374206+00:00",
+      "finished_at": "2026-06-04T07:37:25.374224+00:00",
+      "duration_ms": 51,
+      "stdout_tail": "run:        False\n  verbose:        False\n  models_total:   12\n  eligible:       12/12\n  structured:     11\n  accepted_bets:  0\n  manual_review:  0\n  rejected:       9\n  [write] /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/run-6.json\n  [write] /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/rejections/run-6.json\n  [write] /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/bet_receipts/index.json\n",
       "stderr_tail": "",
       "outputs": [],
       "warnings": [],
-      "reason": "skipped_no_classified_outputs: model_runs/run-6.json not found"
+      "reason": ""
     },
     {
       "step": "settle_pool_round",
-      "status": "skipped",
+      "status": "pass",
       "command": "python3 ops/settle_pool_round.py --round run-6 --date 2026-06-03",
-      "started_at": "2026-06-03T22:17:50.326120+00:00",
-      "finished_at": "2026-06-03T22:17:50.326121+00:00",
-      "duration_ms": 0,
-      "stdout_tail": "",
+      "started_at": "2026-06-04T07:37:25.413255+00:00",
+      "finished_at": "2026-06-04T07:37:25.413283+00:00",
+      "duration_ms": 38,
+      "stdout_tail": "settle_pool_round\nround_id: run-6\ndate: 2026-06-03\naccepted_bets: 0\ndry_run: False\nsettlement_status: no_bets_to_settle\n  ✓ settlements/run-6.json written\n  ✓ settlements/index.json updated\n  ✓ daily_reports/settlement_run-6.md written\n",
       "stderr_tail": "",
-      "outputs": [],
+      "outputs": [
+        "data/pool/settlements/run-6.json"
+      ],
       "warnings": [],
-      "reason": "skipped_no_bet_receipts: bet_receipts/run-6.json not found"
+      "reason": ""
     },
     {
       "step": "rerun_failed_seats",
-      "status": "skipped",
-      "command": "python3 ops/rerun_failed_seats.py --round run-6",
-      "started_at": "2026-06-03T22:17:50.326132+00:00",
-      "finished_at": "2026-06-03T22:17:50.326133+00:00",
-      "duration_ms": 0,
-      "stdout_tail": "",
+      "status": "pass",
+      "command": "python3 ops/rerun_failed_seats.py --round run-6 --generate-prompts-only --skip-browser",
+      "started_at": "2026-06-04T07:37:25.454595+00:00",
+      "finished_at": "2026-06-04T07:37:25.454617+00:00",
+      "duration_ms": 41,
+      "stdout_tail": "round_id: run-6\nstate: empty_rerun_queue\naction: no failed seats to rerun\n",
       "stderr_tail": "",
-      "outputs": [],
+      "outputs": [
+        "data/pool/rerun_attempts/run-6.json"
+      ],
       "warnings": [],
-      "reason": "skipped_no_rerun_queue: rerun_queue/run-6.json not found"
+      "reason": ""
     },
     {
       "step": "generate_daily_report",
       "status": "pass",
       "command": "python3 ops/generate_daily_pool_report.py --date 2026-06-03 --round run-6",
-      "started_at": "2026-06-03T22:17:50.369657+00:00",
-      "finished_at": "2026-06-03T22:17:50.369720+00:00",
-      "duration_ms": 41,
-      "stdout_tail": "✅ Report generated:\n   JSON: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/daily_reports/2026-06-03_run-6.json\n   MD:   /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/daily_reports/2026-06-03_run-6.md\n   total_models:      0\n   valid_receipt:     0\n   rerun_queue_count: 0\n   data_gaps:         4\n",
+      "started_at": "2026-06-04T07:37:25.507464+00:00",
+      "finished_at": "2026-06-04T07:37:25.507484+00:00",
+      "duration_ms": 52,
+      "stdout_tail": "✅ Report generated:\n   JSON: /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/daily_reports/2026-06-03_run-6.json\n   MD:   /Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/daily_reports/2026-06-03_run-6.md\n   total_models:      12\n   valid_receipt:     12\n   rerun_queue_count: 0\n   data_gaps:         4\n",
       "stderr_tail": "",
       "outputs": [
         "data/pool/daily_reports/2026-06-03_run-6.json",
@@ -185,10 +189,10 @@
       "step": "check_data_health",
       "status": "pass",
       "command": "python3 ops/check_pool_data_health.py",
-      "started_at": "2026-06-03T22:17:50.435352+00:00",
-      "finished_at": "2026-06-03T22:17:50.435374+00:00",
-      "duration_ms": 65,
-      "stdout_tail": "/model_outputs/raw/run-6/README.md: exists\n  ✅ dropbox_check.json: exists\n  ✅ dropbox status = waiting_for_manual_ingest (allowed)\n  ✅ app.py contains /api/pool/provider-status\n  ✅ app.py contains provider-specific odds snapshot route\n  ✅ No API keys detected in tracked files\n  ✅ provider the_odds_api not configured — recorded as warning (not system failure)\n\n=== Summary ===\n  All files exist:   True\n  All JSON valid:    True\n  Has hard error:    False\n  Has warning:       False\n\n✅ CHECK PASSED\n",
+      "started_at": "2026-06-04T07:37:25.548709+00:00",
+      "finished_at": "2026-06-04T07:37:25.548727+00:00",
+      "duration_ms": 41,
+      "stdout_tail": "ovider_status/latest.json: exists\n  ✅ ops/check_model_output_dropbox.py: exists\n  ✅ data/pool/model_outputs/raw/run-6/README.md: exists\n  ✅ dropbox_check.json: exists\n  ✅ dropbox status = ready_for_ingest (allowed)\n  ✅ app.py contains /api/pool/provider-status\n  ✅ app.py contains provider-specific odds snapshot route\n  ✅ No API keys detected in tracked files\n\n=== Summary ===\n  All files exist:   True\n  All JSON valid:    True\n  Has hard error:    False\n  Has warning:       False\n\n✅ CHECK PASSED\n",
       "stderr_tail": "",
       "outputs": [],
       "warnings": [],
@@ -198,8 +202,8 @@
       "step": "deploy",
       "status": "skipped",
       "command": "vercel --prod (--deploy not set)",
-      "started_at": "2026-06-03T22:17:50.435403+00:00",
-      "finished_at": "2026-06-03T22:17:50.435404+00:00",
+      "started_at": "2026-06-04T07:37:25.548747+00:00",
+      "finished_at": "2026-06-04T07:37:25.548748+00:00",
       "duration_ms": 0,
       "stdout_tail": "",
       "stderr_tail": "",
@@ -209,9 +213,7 @@
     }
   ],
   "blockers": [],
-  "warnings": [
-    "waiting_for_manual_ingest: no raw model outputs found"
-  ],
+  "warnings": [],
   "generated_files": [
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/ops/sync_matches.py",
     "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/ops/sync_results.py",
@@ -226,15 +228,15 @@
     "data/pool/matches/snapshots/2026-06-03.json",
     "data/pool/match_results/2026-06-03.json",
     "data/pool/odds_snapshots/2026-06-03_T-1h.json",
-    "data/pool/prompts/run-6/ (13 prompts)",
+    "data/pool/prompts/run-6/ (12 prompts)",
+    "data/pool/model_runs/run-6.json",
+    "data/pool/settlements/run-6.json",
+    "data/pool/rerun_attempts/run-6.json",
     "data/pool/daily_reports/2026-06-03_run-6.json",
     "data/pool/daily_reports/2026-06-03_run-6.md"
   ],
   "next_actions": [
-    "waiting_for_manual_ingest: run-6 需要人工将模型原始输出放入 data/pool/model_outputs/raw/run-6/ 后重新运行 pipeline",
-    "no bet receipts: bet_receipts/run-6.json 尚未生成, 等待模型输出分类后生成",
-    "no rerun queue: run-6 目前没有需要补跑的模型",
-    "pipeline completed with warnings — review warnings above and re-run after manual steps complete",
+    "pipeline completed successfully — ready for P12.1 scheduled/CI integration",
     "deploy: run with --deploy to push to Vercel, or run 'vercel --prod' manually"
   ]
 }

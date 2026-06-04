@@ -3,10 +3,10 @@
   "round_id": "run-6",
   "date": "2026-06-03",
   "run_marker": "AI_JUDGE_RUN_MARKER:POOL_RUN-6_20260603",
-  "created_at": "2026-06-03T22:17:50.274681+00:00",
+  "created_at": "2026-06-04T07:37:24.977812+00:00",
   "mode": "generate_prompts_only",
   "snapshot_label": "T-1h",
-  "seats_total": 13,
+  "seats_total": 12,
   "seats": [
     {
       "model_account": "gemini",
@@ -22,14 +22,6 @@
       "display_name": "ChatGPT",
       "prompt_path": "prompts/run-6/chatgpt.md",
       "raw_output_path": "model_outputs/raw/run-6/chatgpt.txt",
-      "status": "prompt_generated"
-    },
-    {
-      "model_account": "claude",
-      "seat_id": "claude",
-      "display_name": "Claude",
-      "prompt_path": "prompts/run-6/claude.md",
-      "raw_output_path": "model_outputs/raw/run-6/claude.txt",
       "status": "prompt_generated"
     },
     {

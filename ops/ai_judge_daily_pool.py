@@ -67,7 +67,7 @@ def _write_json(relative_path, data, indent=2):
 
 
 def _load_model_accounts():
-    """加载 13 个模型席位"""
+    """加载当前活跃模型席位"""
     data = _read_json("model_accounts/current.json", default=None)
     if data and "models" in data:
         return data["models"]
@@ -75,7 +75,6 @@ def _load_model_accounts():
     return [
         {"model_account": "gemini", "display_name": "Gemini", "seat_id": "gemini"},
         {"model_account": "chatgpt", "display_name": "ChatGPT", "seat_id": "chatgpt"},
-        {"model_account": "claude", "display_name": "Claude", "seat_id": "claude"},
         {"model_account": "yuanbao", "display_name": "元宝", "seat_id": "yuanbao"},
         {"model_account": "wenxin", "display_name": "文心", "seat_id": "wenxin"},
         {"model_account": "deepseek", "display_name": "DeepSeek", "seat_id": "deepseek"},
@@ -547,7 +546,7 @@ def cmd_status(args):
     prompt_count = 0
     if prompts_dir.exists():
         prompt_count = len(list(prompts_dir.glob("*.md")))
-    prompts_expected = 13
+    prompts_expected = len(_load_model_accounts())
     print(f"prompts: {prompt_count}/{prompts_expected}")
 
     # 检查 raw outputs

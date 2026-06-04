@@ -16,19 +16,19 @@
 
 ```
 data/pool/model_outputs/raw/run-6/
-├── DeepSeek-V3.2.txt
-├── Qwen3-235B-A22B.txt
-├── GLM-4.5.txt
-├── Hunyuan-2.0.txt
-├── Ernie-5.0.txt
-├── ByteDance-Seed.txt
-├── Moonshot-K2.5.txt
-├── MiniMax-M1.txt
-├── Yi-Lightning-3.0.txt
-├── Baidu-DeepSeek.txt
-├── Step-3.5.txt
-├── SenseNova-Nova.txt
-└── InternLM-3.0.txt
+├── chatgpt.txt
+├── claude.txt
+├── deepseek.txt
+├── doubao.txt
+├── gemini.txt
+├── kimi.txt
+├── meta.txt
+├── mimo.txt
+├── minimax.txt
+├── qwen.txt
+├── wenxin.txt
+├── xai.txt
+└── yuanbao.txt
 ```
 
 ## 内容要求

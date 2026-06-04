@@ -1,5 +1,7 @@
 # AI Judge 预测池日常操作 Checklist
 
+当前生产 URL：`https://pool-app-one.vercel.app`
+
 ---
 
 ## 每日检查（Daily）

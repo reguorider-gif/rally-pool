@@ -72,6 +72,12 @@ def is_eligible_model(run: dict) -> bool:
 
 def load_odds_snapshot(date: str, snapshot_label: str) -> dict:
     """Load odds snapshot, return empty dict on failure."""
+    provider_specific = DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}_the_odds_api.json"
+    if provider_specific.exists():
+        data = load_json(provider_specific)
+        summary = data.get("summary") or data.get("data", {}).get("summary") or {}
+        if summary.get("valid_odds_rows", 0) > 0 or data.get("odds"):
+            return data
     p = DATA_DIR / "odds_snapshots" / f"{date}_{snapshot_label}.json"
     if p.exists():
         return load_json(p)
