@@ -40,6 +40,7 @@ SCRIPTS = {
     "sync_matches":           OPS_DIR / "sync_matches.py",
     "sync_results":           OPS_DIR / "sync_results.py",
     "sync_odds_snapshots":    OPS_DIR / "sync_odds_snapshots.py",
+    "generate_eligible_board": OPS_DIR / "generate_eligible_board.py",
     "ai_judge_daily_pool":    OPS_DIR / "ai_judge_daily_pool.py",
     "classify_model_output":  OPS_DIR / "classify_model_output.py",
     "validate_model_outputs": OPS_DIR / "validate_model_outputs.py",
@@ -55,6 +56,7 @@ STEPS_ORDER = [
     "sync_matches",
     "sync_results",
     "sync_odds_snapshots",
+    "generate_eligible_board",
     "generate_prompts",
     "ingest",
     "classify_model_output",
@@ -273,6 +275,42 @@ def step_sync_odds_snapshots(args, run_state):
     }
 
 
+def step_generate_eligible_board(args, run_state):
+    provider = _resolve_odds_provider(args.odds_provider)
+    cmd = [
+        "python3", str(SCRIPTS["generate_eligible_board"]),
+        "--date", args.date,
+        "--round", args.round_id,
+        "--snapshot-label", "T-1h",
+        "--provider", provider,
+    ]
+    rc, out, err, dur = _run_cmd(cmd, dry_run=args.dry_run, timeout=60)
+    output_file = f"data/pool/odds/eligible_board/{args.round_id}.json"
+    board_path = DATA_DIR / "odds" / "eligible_board" / f"{args.round_id}.json"
+    board = _load_json(board_path, default={}) if board_path.exists() and not args.dry_run else {}
+    rows = int((board.get("summary", {}) if isinstance(board, dict) else {}).get("eligible_board_rows") or 0)
+    run_state["eligible_board_rows"] = rows
+
+    status = "pass" if rc == 0 and (rows > 0 or args.dry_run) else "failed"
+    warnings_list = [] if rc == 0 else [f"returncode={rc}"]
+    if rc == 0 and rows == 0:
+        warnings_list.append("eligible_board_empty")
+
+    return {
+        "step": "generate_eligible_board",
+        "status": status,
+        "command": f"python3 ops/generate_eligible_board.py --date {args.date} --round {args.round_id} --snapshot-label T-1h --provider {provider}",
+        "started_at": _now_iso(),
+        "finished_at": _now_iso(),
+        "duration_ms": dur,
+        "stdout_tail": _tail(out),
+        "stderr_tail": _tail(err),
+        "outputs": [output_file] if status == "pass" else [],
+        "warnings": warnings_list + ([err] if err and status == "failed" else []),
+        "reason": "" if status == "pass" else "eligible board generation failed or produced 0 rows",
+    }
+
+
 def step_generate_prompts(args, run_state):
     cmd = [
         "python3", str(SCRIPTS["ai_judge_daily_pool"]), "run",
@@ -340,7 +378,7 @@ def step_ingest(args, run_state):
 
     reason = ""
     if outputs_found == 0 and status != "failed":
-        reason = "waiting_for_manual_ingest: all 13 outputs missing, run-6 not failed — waiting for human to place model outputs"
+        reason = "waiting_for_manual_ingest: all 12 outputs missing, run-6 not failed — waiting for human to place model outputs"
 
     run_state["ingest_outputs_found"] = outputs_found
 
@@ -615,7 +653,13 @@ def step_post_run_guardrails(args, run_state):
 
     bet_receipts = _load_json(DATA_DIR / "bet_receipts" / f"{args.round_id}.json", default={}) or {}
     br_summary = bet_receipts.get("summary", {}) if isinstance(bet_receipts, dict) else {}
+    readiness = _load_json(DATA_DIR / "reports" / f"settlement_readiness_{args.round_id}.json", default={}) or {}
     accepted_bets = int(br_summary.get("accepted_bets") or 0)
+    provider_covered_accepted_bets = int(
+        readiness.get("provider_covered_accepted_bets")
+        or br_summary.get("provider_covered_accepted_bets")
+        or 0
+    )
     candidate_bets = int(br_summary.get("candidate_bets") or 0)
 
     report = _load_json(DATA_DIR / "daily_reports" / f"{args.date}_{args.round_id}.json", default={}) or {}
@@ -641,9 +685,9 @@ def step_post_run_guardrails(args, run_state):
     if blocking_gaps:
         warnings_list.append(f"daily_report_blocking_gaps={len(blocking_gaps)}")
 
-    if real_valid > 0 and accepted_bets == 0:
+    if real_valid > 0 and provider_covered_accepted_bets == 0:
         blockers.append(
-            "real_odds_present_but_no_accepted_bets: regenerate prompts with real odds and recollect web model outputs"
+            "real_odds_present_but_no_provider_covered_accepted_bets: regenerate provider-covered prompts and recollect web model outputs"
         )
     elif chosen_valid <= 0 and provider != "manual_stub":
         blockers.append("real_provider_selected_but_no_valid_odds_rows")
@@ -658,7 +702,9 @@ def step_post_run_guardrails(args, run_state):
         f"chosen_valid_odds_rows={chosen_valid}\n"
         f"real_valid_odds_rows={real_valid}\n"
         f"accepted_bets={accepted_bets}\n"
+        f"provider_covered_accepted_bets={provider_covered_accepted_bets}\n"
         f"candidate_bets={candidate_bets}\n"
+        f"eligible_board_rows={readiness.get('eligible_board_rows', run_state.get('eligible_board_rows', 0))}\n"
         f"stale_zero_odds_prompts={stale_prompt_count}\n"
         f"blocking_gaps={len(blocking_gaps)}\n"
     )
@@ -735,6 +781,7 @@ STEP_FUNCTIONS = {
     "sync_matches":           step_sync_matches,
     "sync_results":           step_sync_results,
     "sync_odds_snapshots":    step_sync_odds_snapshots,
+    "generate_eligible_board": step_generate_eligible_board,
     "generate_prompts":       step_generate_prompts,
     "ingest":                 step_ingest,
     "classify_model_output":  step_classify_model_output,

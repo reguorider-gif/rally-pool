@@ -157,11 +157,10 @@ def init_db():
         conn.commit()
 
 # === 初始化席位 ===
-EXCLUDED_SEAT_IDS = {"zhipu"}
+EXCLUDED_SEAT_IDS = {"claude", "zhipu"}
 SEATS = [
     {"id": "gemini",   "name": "Gemini",    "color": "#4285F4", "letter": "G"},
     {"id": "chatgpt",  "name": "ChatGPT",   "color": "#10A37F", "letter": "C"},
-    {"id": "claude",   "name": "Claude",     "color": "#1E40AF", "letter": "Cl"},
     {"id": "yuanbao",  "name": "元宝",       "color": "#F59E0B", "letter": "Y"},
     {"id": "wenxin",   "name": "文心",       "color": "#3B82F6", "letter": "W"},
     {"id": "deepseek", "name": "DeepSeek",   "color": "#2563EB", "letter": "D"},

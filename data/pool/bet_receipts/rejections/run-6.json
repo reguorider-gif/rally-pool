@@ -1,13 +1,15 @@
 {
-  "version": "p10.2",
+  "version": "p14.0",
   "round_id": "run-6",
   "date": "2026-06-03",
-  "generated_at": "2026-06-04T10:26:22Z",
+  "generated_at": "2026-06-04T16:18:34Z",
   "summary": {
-    "rejected_models": 11,
-    "rejected_bets": 11,
+    "rejected_models": 12,
+    "rejected_bets": 12,
+    "analysis_only_bets": 7,
     "reason_counts": {
-      "no_structured_bet_receipt": 11
+      "no_structured_bet_receipt": 11,
+      "analysis_only_missing_provider_odds": 1
     }
   },
   "rejections": [
@@ -16,6 +18,343 @@
       "stage": "receipt_extraction",
       "reason_code": "no_structured_bet_receipt",
       "reason": "No structured bet receipt JSON found in model output (parsed_json empty, raw_text contains no valid JSON receipt).",
+      "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
+    },
+    {
+      "model_account": "chatgpt",
+      "stage": "provider_coverage",
+      "reason_code": "analysis_only_missing_provider_odds",
+      "reason": "No provider-covered bet references an eligible board_id and odds_row_id.",
+      "analysis_only_bets": [
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": "WARM-007",
+          "market": "France win OR France draw-no-bet",
+          "selection": null,
+          "stake_gp": 220,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b01",
+            "match": "France v Cote d'Ivoire",
+            "date": "2026-06-04",
+            "market": "France win OR France draw-no-bet",
+            "target_min_odds": 1.35,
+            "stake_gp": 220,
+            "confidence": 0.66,
+            "source_basis": [
+              "ESPN match page confirms fixture and H2H context",
+              "public schedule lists France v Ivory Coast on Jun 4"
+            ],
+            "cancel_conditions": [
+              "France rotates more than 7 starters",
+              "target odds below 1.25",
+              "key attacking absence confirmed pre-match"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": "WARM-008",
+          "market": "Spain win",
+          "selection": null,
+          "stake_gp": 180,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b02",
+            "match": "Spain v Iraq",
+            "date": "2026-06-04",
+            "market": "Spain win",
+            "target_min_odds": 1.28,
+            "stake_gp": 180,
+            "confidence": 0.64,
+            "source_basis": [
+              "public schedule lists Spain v Iraq on Jun 4"
+            ],
+            "cancel_conditions": [
+              "Spain fields experimental U23-heavy XI",
+              "odds below 1.18",
+              "weather or venue disruption"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": null,
+          "market": "Under 3.0 goals",
+          "selection": null,
+          "stake_gp": 120,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b03",
+            "match": "Sweden v Greece",
+            "date": "2026-06-04",
+            "market": "Under 3.0 goals",
+            "target_min_odds": 1.55,
+            "stake_gp": 120,
+            "confidence": 0.57,
+            "source_basis": [
+              "public schedule lists Sweden v Greece on Jun 4"
+            ],
+            "cancel_conditions": [
+              "both teams announce high-tempo attacking XI",
+              "line drops to under 2.25",
+              "odds below 1.45"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": null,
+          "market": "Canada draw-no-bet",
+          "selection": null,
+          "stake_gp": 160,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b04",
+            "match": "Canada v Republic of Ireland",
+            "date": "2026-06-05",
+            "market": "Canada draw-no-bet",
+            "target_min_odds": 1.55,
+            "stake_gp": 160,
+            "confidence": 0.58,
+            "source_basis": [
+              "public schedule lists Canada v Ireland on Jun 5"
+            ],
+            "cancel_conditions": [
+              "Canada rests core attackers",
+              "Ireland confirms stronger XI than expected",
+              "odds below 1.42"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": null,
+          "market": "Under 2.75 goals",
+          "selection": null,
+          "stake_gp": 100,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b05",
+            "match": "Haiti v Peru",
+            "date": "2026-06-05",
+            "market": "Under 2.75 goals",
+            "target_min_odds": 1.6,
+            "stake_gp": 100,
+            "confidence": 0.55,
+            "source_basis": [
+              "Haiti World Cup qualification context",
+              "public schedule lists Haiti v Peru on Jun 5"
+            ],
+            "cancel_conditions": [
+              "Haiti lineup is highly attacking",
+              "Peru starts full offensive XI",
+              "odds below 1.50"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": "WARM-011",
+          "market": "Brazil win + optional under 4.5 combo only if odds acceptable",
+          "selection": null,
+          "stake_gp": 220,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b06",
+            "match": "Brazil v Egypt",
+            "date": "2026-06-06",
+            "market": "Brazil win + optional under 4.5 combo only if odds acceptable",
+            "target_min_odds": 1.45,
+            "stake_gp": 220,
+            "confidence": 0.62,
+            "source_basis": [
+              "Road to 26 listing confirms Brazil v Egypt on Jun 6"
+            ],
+            "cancel_conditions": [
+              "Brazil full rotation",
+              "Egypt first XI stronger than expected with Brazil backups",
+              "odds below 1.32"
+            ]
+          }
+        },
+        {
+          "status": "analysis_only",
+          "valid_for_settlement": false,
+          "reason_code": "analysis_only_missing_provider_odds",
+          "match_id": "WARM-009",
+          "market": "Both teams to score OR over 2.25 goals",
+          "selection": null,
+          "stake_gp": 120,
+          "raw_bet": {
+            "bet_id": "chatgpt-r6-b07",
+            "match": "USA v Germany",
+            "date": "2026-06-06",
+            "market": "Both teams to score OR over 2.25 goals",
+            "target_min_odds": 1.7,
+            "stake_gp": 120,
+            "confidence": 0.54,
+            "source_basis": [
+              "public schedule lists USA v Germany on Jun 6"
+            ],
+            "cancel_conditions": [
+              "one side rotates into defensive B-team",
+              "line moves to over 3.0",
+              "odds below 1.58"
+            ]
+          }
+        }
+      ],
+      "non_executable_bets": [
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b01",
+            "match": "France v Cote d'Ivoire",
+            "date": "2026-06-04",
+            "market": "France win OR France draw-no-bet",
+            "target_min_odds": 1.35,
+            "stake_gp": 220,
+            "confidence": 0.66,
+            "source_basis": [
+              "ESPN match page confirms fixture and H2H context",
+              "public schedule lists France v Ivory Coast on Jun 4"
+            ],
+            "cancel_conditions": [
+              "France rotates more than 7 starters",
+              "target odds below 1.25",
+              "key attacking absence confirmed pre-match"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b02",
+            "match": "Spain v Iraq",
+            "date": "2026-06-04",
+            "market": "Spain win",
+            "target_min_odds": 1.28,
+            "stake_gp": 180,
+            "confidence": 0.64,
+            "source_basis": [
+              "public schedule lists Spain v Iraq on Jun 4"
+            ],
+            "cancel_conditions": [
+              "Spain fields experimental U23-heavy XI",
+              "odds below 1.18",
+              "weather or venue disruption"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b03",
+            "match": "Sweden v Greece",
+            "date": "2026-06-04",
+            "market": "Under 3.0 goals",
+            "target_min_odds": 1.55,
+            "stake_gp": 120,
+            "confidence": 0.57,
+            "source_basis": [
+              "public schedule lists Sweden v Greece on Jun 4"
+            ],
+            "cancel_conditions": [
+              "both teams announce high-tempo attacking XI",
+              "line drops to under 2.25",
+              "odds below 1.45"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b04",
+            "match": "Canada v Republic of Ireland",
+            "date": "2026-06-05",
+            "market": "Canada draw-no-bet",
+            "target_min_odds": 1.55,
+            "stake_gp": 160,
+            "confidence": 0.58,
+            "source_basis": [
+              "public schedule lists Canada v Ireland on Jun 5"
+            ],
+            "cancel_conditions": [
+              "Canada rests core attackers",
+              "Ireland confirms stronger XI than expected",
+              "odds below 1.42"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b05",
+            "match": "Haiti v Peru",
+            "date": "2026-06-05",
+            "market": "Under 2.75 goals",
+            "target_min_odds": 1.6,
+            "stake_gp": 100,
+            "confidence": 0.55,
+            "source_basis": [
+              "Haiti World Cup qualification context",
+              "public schedule lists Haiti v Peru on Jun 5"
+            ],
+            "cancel_conditions": [
+              "Haiti lineup is highly attacking",
+              "Peru starts full offensive XI",
+              "odds below 1.50"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b06",
+            "match": "Brazil v Egypt",
+            "date": "2026-06-06",
+            "market": "Brazil win + optional under 4.5 combo only if odds acceptable",
+            "target_min_odds": 1.45,
+            "stake_gp": 220,
+            "confidence": 0.62,
+            "source_basis": [
+              "Road to 26 listing confirms Brazil v Egypt on Jun 6"
+            ],
+            "cancel_conditions": [
+              "Brazil full rotation",
+              "Egypt first XI stronger than expected with Brazil backups",
+              "odds below 1.32"
+            ]
+          }
+        },
+        {
+          "reason": "analysis_only_missing_provider_odds",
+          "bet": {
+            "bet_id": "chatgpt-r6-b07",
+            "match": "USA v Germany",
+            "date": "2026-06-06",
+            "market": "Both teams to score OR over 2.25 goals",
+            "target_min_odds": 1.7,
+            "stake_gp": 120,
+            "confidence": 0.54,
+            "source_basis": [
+              "public schedule lists USA v Germany on Jun 6"
+            ],
+            "cancel_conditions": [
+              "one side rotates into defensive B-team",
+              "line moves to over 3.0",
+              "odds below 1.58"
+            ]
+          }
+        }
+      ],
       "source_path": "/Users/audimacmini/Documents/Playground/.omx/ai-judge/pool-app/data/pool/model_outputs/run-6.json"
     },
     {

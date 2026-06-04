@@ -11,6 +11,7 @@ from fastapi.responses import HTMLResponse
 from pathlib import Path
 import uvicorn
 import sys
+import json
 
 # 优先从 server.py 导入原有函数
 from server import (
@@ -28,6 +29,7 @@ try:
         get_model_health, get_daily_reports, get_daily_report, get_odds_snapshots, get_odds_snapshot,
         get_match_results, get_match_result, get_match_snapshots,
         get_bet_receipts, get_bet_receipt, get_bet_rejections,
+        get_settlement_readiness,
         get_settlements, get_settlement,
         get_run_manifests, get_run_manifest, get_ingested_outputs,
         get_rerun_attempts, get_rerun_attempt, get_ingested_rerun_outputs,
@@ -350,9 +352,9 @@ async def api_pool_output_dropbox(round_id: str):
         "version":          "p13.0",
         "round_id":         round_id,
         "status":           "waiting_for_manual_ingest",
-        "outputs_expected": 13,
+        "outputs_expected": 12,
         "outputs_found":    0,
-        "outputs_missing":  13,
+        "outputs_missing":  12,
         "missing_models":   [],
         "empty_files":     [],
         "invalid_names":   [],
@@ -399,6 +401,29 @@ async def api_pool_bet_rejections(round_id: str):
         except Exception as e:
             print(f"[api_pool_bet_rejections] pool_data failed: {e}", file=sys.stderr)
     return {"round_id": round_id, "rejections": [], "warning": "pool_data unavailable"}
+
+
+@app.get("/api/pool/settlement-readiness/{round_id}")
+async def api_pool_settlement_readiness(round_id: str):
+    """返回 P14 provider-covered settlement readiness 红绿灯。"""
+    ensure_init()
+    if _HAS_POOL_API:
+        try:
+            return get_settlement_readiness(round_id=round_id)
+        except Exception as e:
+            print(f"[api_pool_settlement_readiness] pool_data failed: {e}", file=sys.stderr)
+    return {
+        "version": "p14.0",
+        "run_id": round_id,
+        "round_id": round_id,
+        "eligible_board_rows": 0,
+        "accepted_bets": 0,
+        "provider_covered_accepted_bets": 0,
+        "fallback_bets": 0,
+        "analysis_only_bets": 0,
+        "valid_for_settlement": False,
+        "blockers": ["pool_data unavailable"],
+    }
 
 
 # --- P10.3 Settlements API ---

@@ -164,68 +164,93 @@ def _fallback_moneyline_odds(match: dict, selection: str) -> float | None:
     return None
 
 
-def _normalize_bet(raw_bet: dict, matches_map: dict, odds_snapshot: dict) -> tuple:
+def _normalize_bet(raw_bet: dict, matches_map: dict, odds_snapshot: dict,
+                   eligible_board: dict) -> tuple:
     """Normalize common web-model bet JSON into the internal bet_ledger shape."""
     if not isinstance(raw_bet, dict):
-        return None, "bet_not_object"
+        return None, "bet_not_object", _analysis_only_bet(raw_bet, "bet_not_object", matches_map)
 
-    match_id = raw_bet.get("match_id")
-    match = matches_map.get(match_id) if match_id else None
-    if match is None:
-        match = _match_from_label(str(raw_bet.get("match") or raw_bet.get("fixture") or ""), matches_map)
-        match_id = match.get("match_id") if match else None
+    by_board, by_odds = _eligible_maps(eligible_board)
+    board_id = raw_bet.get("board_id")
+    odds_row_id = raw_bet.get("odds_row_id")
+    board_row = by_board.get(board_id) if board_id else None
+    if board_row is None and odds_row_id:
+        board_row = by_odds.get(odds_row_id)
+
+    if board_row is None:
+        reason = "rejected_missing_provider_odds" if (board_id or odds_row_id) else "analysis_only_missing_provider_odds"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+
+    if board_row.get("provider") in ("fallback", "manual_stub", ""):
+        reason = "provider_fallback_not_settleable"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+
+    if board_row.get("valid_for_settlement") is not True:
+        reason = "provider_row_not_valid_for_settlement"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+
+    match_id = board_row.get("match_id")
+    match = matches_map.get(match_id)
     if match is None or not match_id:
-        return None, "match_not_mapped"
+        reason = "eligible_board_match_not_mapped"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
 
-    raw_market = str(raw_bet.get("market") or raw_bet.get("selection") or "")
+    raw_market = str(raw_bet.get("market") or "")
     market = raw_bet.get("market_type") or raw_bet.get("market_key") or raw_bet.get("market")
-    if market not in VALID_MARKETS:
+    if market and market not in VALID_MARKETS:
         market = _market_from_text(raw_market)
+    if market and market != board_row.get("market"):
+        reason = "market_mismatch_provider_odds"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+    market = board_row.get("market")
 
     selection = raw_bet.get("selection")
-    if not selection or not isinstance(selection, str):
+    if selection and isinstance(selection, str):
+        if _norm(selection) != _norm(str(board_row.get("selection") or "")):
+            reason = "selection_mismatch_provider_odds"
+            return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+    elif raw_market:
         selection = _selection_from_market_text(raw_market, match)
-    if not selection:
-        return None, "selection_not_mapped"
+        if selection and _norm(selection) != _norm(str(board_row.get("selection") or "")):
+            reason = "selection_mismatch_provider_odds"
+            return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
+    selection = board_row.get("selection")
 
-    stake = raw_bet.get("stake")
-    if stake is None:
-        stake = raw_bet.get("stake_gp")
+    stake = _stake_from_raw(raw_bet)
     if not isinstance(stake, (int, float)) or stake <= 0:
-        return None, "stake_not_mapped"
+        reason = "invalid_stake"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
 
-    odds_val = raw_bet.get("odds")
-    odds_source = raw_bet.get("odds_source") or ""
-    provider_row = find_odds_match(odds_snapshot, match_id, market, selection)
-    if provider_row:
-        odds_val = provider_row.get("odds")
-        odds_source = "the_odds_api"
-    elif not isinstance(odds_val, (int, float)) or odds_val <= 1:
-        fallback = _fallback_moneyline_odds(match, selection) if market == "moneyline" else None
-        if isinstance(fallback, (int, float)) and fallback > 1:
-            odds_val = fallback
-            odds_source = "matches_current_fallback"
-        else:
-            return None, "odds_not_mapped"
+    odds_val = board_row.get("price")
+    if not isinstance(odds_val, (int, float)) or odds_val <= 1:
+        reason = "invalid_provider_odds"
+        return None, reason, _analysis_only_bet(raw_bet, reason, matches_map)
 
     normalized = {
         "bet_id": raw_bet.get("bet_id") or f"{match_id}-{market}-{selection}",
+        "board_id": board_row.get("board_id"),
+        "odds_row_id": board_row.get("odds_row_id"),
+        "provider": board_row.get("provider"),
+        "provider_snapshot_id": board_row.get("provider_snapshot_id"),
         "match_id": match_id,
         "market": market,
         "selection": selection,
         "stake": stake,
+        "stake_gp": stake,
         "odds": odds_val,
         "confidence": raw_bet.get("confidence"),
-        "odds_source": odds_source or "model_supplied",
+        "odds_source": board_row.get("provider"),
         "source_basis": raw_bet.get("source_basis", []),
         "cancel_conditions": raw_bet.get("cancel_conditions", []),
         "raw_market": raw_bet.get("market"),
+        "valid_for_settlement": True,
     }
-    return normalized, ""
+    return normalized, "", None
 
 
 def normalize_receipt(receipt: dict, model_account: str, round_id: str,
-                      matches_map: dict, odds_snapshot: dict) -> dict:
+                      matches_map: dict, odds_snapshot: dict,
+                      eligible_board: dict) -> dict:
     """Bridge model-facing receipt variants into the validator schema."""
     normalized = dict(receipt)
     raw_bets = receipt.get("bet_ledger")
@@ -233,16 +258,21 @@ def normalize_receipt(receipt: dict, model_account: str, round_id: str,
         raw_bets = receipt.get("bets")
 
     skipped = []
+    analysis_only = []
     bet_ledger = []
     if isinstance(raw_bets, list):
         for raw_bet in raw_bets:
-            bet, reason = _normalize_bet(raw_bet, matches_map, odds_snapshot)
+            bet, reason, analysis_bet = _normalize_bet(raw_bet, matches_map, odds_snapshot, eligible_board)
             if bet:
                 bet_ledger.append(bet)
             else:
                 skipped.append({"reason": reason, "bet": raw_bet})
+                if analysis_bet:
+                    analysis_only.append(analysis_bet)
         normalized["bet_ledger"] = bet_ledger
+        normalized["analysis_only_bets"] = analysis_only
         normalized["non_executable_bets"] = skipped
+        normalized["_raw_bet_count"] = len(raw_bets)
 
     if "loan_decision" not in normalized:
         amount = normalized.get("investment_loan", normalized.get("loan_amount", 0))
@@ -281,6 +311,60 @@ def load_odds_snapshot(date: str, snapshot_label: str) -> dict:
     return {"odds": [], "summary": {}}
 
 
+def load_eligible_board(round_id: str) -> dict:
+    """Load P14 provider-covered eligible board for this round."""
+    path = DATA_DIR / "odds" / "eligible_board" / f"{round_id}.json"
+    if path.exists():
+        return load_json(path)
+    return {
+        "version": "p14.0",
+        "round_id": round_id,
+        "summary": {"eligible_board_rows": 0, "markets": [], "valid_for_settlement": False},
+        "items": [],
+    }
+
+
+def _eligible_maps(eligible_board: dict) -> tuple[dict, dict]:
+    by_board = {}
+    by_odds = {}
+    for item in eligible_board.get("items", []):
+        if not isinstance(item, dict):
+            continue
+        if item.get("board_id"):
+            by_board[item["board_id"]] = item
+        if item.get("odds_row_id"):
+            by_odds[item["odds_row_id"]] = item
+    return by_board, by_odds
+
+
+def _stake_from_raw(raw_bet: dict):
+    stake = raw_bet.get("stake")
+    if stake is None:
+        stake = raw_bet.get("stake_gp")
+    return stake
+
+
+def _analysis_only_bet(raw_bet: dict, reason: str, matches_map: dict) -> dict:
+    """Preserve a non-settleable model idea without letting it enter accepted bets."""
+    match = None
+    match_id = raw_bet.get("match_id") if isinstance(raw_bet, dict) else None
+    if match_id:
+        match = matches_map.get(match_id)
+    if match is None and isinstance(raw_bet, dict):
+        match = _match_from_label(str(raw_bet.get("match") or raw_bet.get("fixture") or ""), matches_map)
+        match_id = match.get("match_id") if match else match_id
+    return {
+        "status": "analysis_only",
+        "valid_for_settlement": False,
+        "reason_code": reason,
+        "match_id": match_id,
+        "market": raw_bet.get("market") if isinstance(raw_bet, dict) else None,
+        "selection": raw_bet.get("selection") if isinstance(raw_bet, dict) else None,
+        "stake_gp": _stake_from_raw(raw_bet) if isinstance(raw_bet, dict) else None,
+        "raw_bet": raw_bet,
+    }
+
+
 def find_odds_match(odds_snapshot: dict, match_id: str, market: str,
                     selection: str) -> dict | None:
     """Find a valid odds row matching match_id + market + selection."""
@@ -303,9 +387,10 @@ def find_odds_match(odds_snapshot: dict, match_id: str, market: str,
 
 
 def validate_bet_ledger(bet: dict, matches_map: dict, odds_snapshot: dict,
-                        verbose: bool = False) -> list:
+                        eligible_board: dict, verbose: bool = False) -> list:
     """Validate a single bet ledger entry. Returns list of error reason_codes (empty = valid)."""
     errors = []
+    by_board, by_odds = _eligible_maps(eligible_board)
 
     # match_id check
     mid = bet.get("match_id")
@@ -335,6 +420,34 @@ def validate_bet_ledger(bet: dict, matches_map: dict, odds_snapshot: dict,
     if not isinstance(odds_val, (int, float)) or odds_val <= 1:
         errors.append("invalid_odds")
 
+    # provider-covered board checks
+    board_id = bet.get("board_id")
+    odds_row_id = bet.get("odds_row_id")
+    board_row = by_board.get(board_id) if board_id else None
+    if board_row is None and odds_row_id:
+        board_row = by_odds.get(odds_row_id)
+    if not board_id and not odds_row_id:
+        errors.append("rejected_missing_provider_odds")
+    elif board_row is None:
+        errors.append("rejected_missing_provider_odds")
+    else:
+        if board_row.get("provider") in ("fallback", "manual_stub", "", None):
+            errors.append("provider_fallback_not_settleable")
+        if board_row.get("odds_row_id") != odds_row_id:
+            errors.append("odds_row_id_mismatch")
+        if board_row.get("market") != market:
+            errors.append("market_mismatch_provider_odds")
+        if _norm(str(board_row.get("selection") or "")) != _norm(str(selection or "")):
+            errors.append("selection_mismatch_provider_odds")
+        if board_row.get("match_id") != mid:
+            errors.append("match_mismatch_provider_odds")
+        if board_row.get("valid_for_settlement") is not True:
+            errors.append("provider_row_not_valid_for_settlement")
+        price = board_row.get("price")
+        if isinstance(price, (int, float)) and isinstance(odds_val, (int, float)):
+            if abs(float(price) - float(odds_val)) > 0.0001:
+                errors.append("odds_mismatch_provider_row")
+
     # confidence check
     conf = bet.get("confidence")
     if conf is not None:
@@ -343,8 +456,6 @@ def validate_bet_ledger(bet: dict, matches_map: dict, odds_snapshot: dict,
 
     # odds snapshot matching (only if bet passed field checks)
     if not errors and mid and market and selection:
-        if bet.get("odds_source") == "matches_current_fallback":
-            return errors
         match = find_odds_match(odds_snapshot, mid, market, selection)
         if match is None:
             # Check if market coverage even exists for this match+market
@@ -380,6 +491,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     rerun_data = load_json(DATA_DIR / "rerun_queue" / f"{round_id}.json")
     matches_data = load_json(DATA_DIR / "matches" / "current.json")
     odds_snapshot = load_odds_snapshot(date, snapshot_label)
+    eligible_board = load_eligible_board(round_id)
     leaderboard_data = load_json(DATA_DIR / "leaderboard" / "current.json")
 
     # Build maps
@@ -390,6 +502,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     models_total = runs_data.get("summary", {}).get("total", len(runs_map))
 
     print(f"  models_total:   {models_total}")
+    print(f"  eligible_board: {eligible_board.get('summary', {}).get('eligible_board_rows', 0)} rows")
 
     # ── Per-model processing ──
     accepted_receipts = []
@@ -399,6 +512,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     eligible_count = 0
     structured_count = 0
     candidate_bets = 0
+    analysis_only_bets = 0
 
     for output_entry in outputs_data.get("outputs", []):
         ma = output_entry.get("model_account", "unknown")
@@ -417,7 +531,7 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         candidates.extend(parse_bet_receipt(raw))
         receipt = select_bet_receipt(candidates)
         if receipt is not None:
-            receipt = normalize_receipt(receipt, ma, round_id, matches_map, odds_snapshot)
+            receipt = normalize_receipt(receipt, ma, round_id, matches_map, odds_snapshot, eligible_board)
             if verbose:
                 print(f"  {ma}: selected betting receipt from {len(candidates)} JSON block(s)")
 
@@ -465,12 +579,33 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
                 "source_path": str(DATA_DIR / "model_outputs" / f"{round_id}.json"),
             })
             continue
+        analysis_only = receipt.get("analysis_only_bets", [])
+        if isinstance(analysis_only, list):
+            analysis_only_bets += len(analysis_only)
+        candidate_bets += int(receipt.get("_raw_bet_count") or len(bet_ledger))
+
+        if len(bet_ledger) == 0:
+            skipped = receipt.get("non_executable_bets", [])
+            reason_codes = sorted({
+                s.get("reason", "rejected_missing_provider_odds")
+                for s in skipped
+                if isinstance(s, dict)
+            }) or ["rejected_missing_provider_odds"]
+            rejections.append({
+                "model_account": ma,
+                "stage": "provider_coverage",
+                "reason_code": ",".join(reason_codes),
+                "reason": "No provider-covered bet references an eligible board_id and odds_row_id.",
+                "analysis_only_bets": analysis_only,
+                "non_executable_bets": skipped,
+                "source_path": str(DATA_DIR / "model_outputs" / f"{round_id}.json"),
+            })
+            continue
 
         all_errors = []
         bet_errors = []
         for bet in bet_ledger:
-            candidate_bets += 1
-            errs = validate_bet_ledger(bet, matches_map, odds_snapshot, verbose)
+            errs = validate_bet_ledger(bet, matches_map, odds_snapshot, eligible_board, verbose)
             bet_errors.append({"bet": bet, "errors": errs})
             all_errors.extend(errs)
 
@@ -548,14 +683,18 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         1
         for r in accepted_receipts
         for bet in r.get("receipt", {}).get("bet_ledger", [])
-        if bet.get("odds_source") == "the_odds_api"
+        if bet.get("provider") not in ("fallback", "manual_stub", None, "")
+        and bet.get("odds_row_id")
+        and bet.get("board_id")
     )
     fallback_bets = sum(
         1
-        for r in accepted_receipts
-        for bet in r.get("receipt", {}).get("bet_ledger", [])
-        if bet.get("odds_source") == "matches_current_fallback"
+        for rj in rejections
+        for bet in rj.get("analysis_only_bets", [])
+        if isinstance(bet, dict)
     )
+    provider_covered_accepted_bets = provider_bets
+    valid_for_settlement = provider_covered_accepted_bets > 0
 
     # Count rejection reasons
     reason_counts = {}
@@ -573,10 +712,13 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "candidate_bets": candidate_bets,
         "accepted_bets": accepted_bets,
         "provider_bets": provider_bets,
+        "provider_covered_accepted_bets": provider_covered_accepted_bets,
         "fallback_bets": fallback_bets,
+        "analysis_only_bets": analysis_only_bets,
         "manual_review_bets": manual_review_bets,
         "rejected_bets": rejected_bets,
-        "valid_for_settlement": accepted_bets > 0,
+        "eligible_board_rows": eligible_board.get("summary", {}).get("eligible_board_rows", 0),
+        "valid_for_settlement": valid_for_settlement,
     }
 
     print(f"  eligible:       {eligible_count}/{models_total}")
@@ -585,21 +727,47 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     print(f"  manual_review:  {manual_review_bets}")
     print(f"  rejected:       {rejected_bets}")
 
+    blockers = []
+    if summary["eligible_board_rows"] <= 0:
+        blockers.append("eligible_board_empty")
+    if provider_covered_accepted_bets <= 0:
+        blockers.append("no_provider_covered_accepted_bets")
+    if accepted_bets != provider_covered_accepted_bets:
+        blockers.append("accepted_bets_not_provider_covered")
+
+    settlement_readiness = {
+        "version": "p14.0",
+        "run_id": round_id,
+        "round_id": round_id,
+        "date": date,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "eligible_board_rows": summary["eligible_board_rows"],
+        "accepted_bets": accepted_bets,
+        "provider_covered_accepted_bets": provider_covered_accepted_bets,
+        "fallback_bets": fallback_bets,
+        "analysis_only_bets": analysis_only_bets,
+        "valid_for_settlement": valid_for_settlement,
+        "blockers": blockers,
+    }
+
     # Build bet receipts output
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     bet_receipt_file = {
-        "version": "p10.2",
+        "version": "p14.0",
         "round_id": round_id,
         "date": date,
         "snapshot_label": snapshot_label,
         "generated_at": now,
+        "valid_for_settlement": valid_for_settlement,
         "summary": summary,
         "accepted_receipts": accepted_receipts,
         "manual_review_receipts": manual_review_receipts,
+        "settlement_readiness": settlement_readiness,
         "source_files": [
             f"data/pool/model_runs/{round_id}.json",
             f"data/pool/model_outputs/{round_id}.json",
             f"data/pool/odds_snapshots/{date}_{snapshot_label}.json",
+            f"data/pool/odds/eligible_board/{round_id}.json",
             f"data/pool/matches/current.json",
             f"data/pool/leaderboard/current.json",
         ],
@@ -607,13 +775,14 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
 
     # Build rejections output
     rejections_file = {
-        "version": "p10.2",
+        "version": "p14.0",
         "round_id": round_id,
         "date": date,
         "generated_at": now,
         "summary": {
             "rejected_models": len(set(rj["model_account"] for rj in rejections)),
             "rejected_bets": rejected_bets,
+            "analysis_only_bets": analysis_only_bets,
             "reason_counts": reason_counts,
         },
         "rejections": rejections,
@@ -635,9 +804,12 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
         "path": f"data/pool/bet_receipts/{round_id}.json",
         "rejections_path": f"data/pool/bet_receipts/rejections/{round_id}.json",
         "accepted_bets": accepted_bets,
+        "provider_covered_accepted_bets": provider_covered_accepted_bets,
+        "fallback_bets": fallback_bets,
+        "analysis_only_bets": analysis_only_bets,
         "manual_review_bets": manual_review_bets,
         "rejected_bets": rejected_bets,
-        "valid_for_settlement": accepted_bets > 0,
+        "valid_for_settlement": valid_for_settlement,
     }
 
     # Update or append round in index
@@ -658,11 +830,14 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
 
     bet_dir = DATA_DIR / "bet_receipts"
     rej_dir = bet_dir / "rejections"
+    readiness_dir = DATA_DIR / "reports"
     bet_dir.mkdir(parents=True, exist_ok=True)
     rej_dir.mkdir(parents=True, exist_ok=True)
+    readiness_dir.mkdir(parents=True, exist_ok=True)
 
     out_br = bet_dir / f"{round_id}.json"
     out_rj = rej_dir / f"{round_id}.json"
+    out_ready = readiness_dir / f"settlement_readiness_{round_id}.json"
 
     with open(out_br, "w", encoding="utf-8") as f:
         json.dump(bet_receipt_file, f, ensure_ascii=False, indent=2)
@@ -671,6 +846,10 @@ def run_validation(round_id: str, date: str, snapshot_label: str,
     with open(out_rj, "w", encoding="utf-8") as f:
         json.dump(rejections_file, f, ensure_ascii=False, indent=2)
     print(f"  [write] {out_rj}")
+
+    with open(out_ready, "w", encoding="utf-8") as f:
+        json.dump(settlement_readiness, f, ensure_ascii=False, indent=2)
+    print(f"  [write] {out_ready}")
 
     with open(idx_path, "w", encoding="utf-8") as f:
         json.dump(index_file, f, ensure_ascii=False, indent=2)

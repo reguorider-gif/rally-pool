@@ -1,6 +1,6 @@
 {
   "version": "p10.3",
-  "updated_at": "2026-06-04T10:26:22Z",
+  "updated_at": "2026-06-04T16:18:34Z",
   "rounds": [
     {
       "round_id": "run-5",
@@ -16,8 +16,8 @@
       "round_id": "run-6",
       "date": "2026-06-03",
       "path": "data/pool/settlements/run-6.json",
-      "settlement_status": "manual_review",
-      "accepted_bets": 3,
+      "settlement_status": "no_bets_to_settle",
+      "accepted_bets": 0,
       "settled_bets": 0,
       "valid_for_leaderboard_update": false,
       "roi": null

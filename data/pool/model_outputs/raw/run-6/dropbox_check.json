@@ -1,28 +1,28 @@
 {
   "version": "p13.0",
-  "generated_at": "2026-06-04T07:37:52.592395+00:00",
+  "generated_at": "2026-06-04T16:17:55.953090+00:00",
   "round_id": "run-6",
   "outputs_expected": 12,
   "outputs_found": 12,
   "outputs_missing": 0,
   "found_files": [
-    "gemini",
     "chatgpt",
-    "yuanbao",
-    "wenxin",
     "deepseek",
-    "mimo",
-    "kimi",
-    "qwen",
-    "xai",
-    "minimax",
     "doubao",
-    "meta"
+    "gemini",
+    "kimi",
+    "meta",
+    "mimo",
+    "minimax",
+    "qwen",
+    "wenxin",
+    "xai",
+    "yuanbao"
   ],
   "missing_files": [],
   "empty_files": [],
   "mismatched_files": [],
   "status": "ready_for_ingest",
-  "message": "All 12 model outputs found. Ready for ingest.",
-  "next_action": "python3 ops/ai_judge_daily_pool.py ingest --round run-6"
+  "message": "All 12 model outputs found. Ready to run: python3 ops/ai_judge_daily_pool.py ingest --round run-6",
+  "next_action": "python3 ops/ai_judge_daily_pool.py ingest --round run-6 --input-dir data/pool/model_outputs/raw/run-6"
 }

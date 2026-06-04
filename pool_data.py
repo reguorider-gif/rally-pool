@@ -476,6 +476,28 @@ def get_bet_rejections(round_id: str = None):
     }
 
 
+def get_settlement_readiness(round_id: str = None):
+    """
+    P14.0：读取 provider-covered settlement readiness 红绿灯。
+    """
+    round_id = round_id or "run-6"
+    data = _read_json(f"reports/settlement_readiness_{round_id}.json", default=None)
+    if data:
+        return data
+    return {
+        "version": "p14.0",
+        "run_id": round_id,
+        "round_id": round_id,
+        "eligible_board_rows": 0,
+        "accepted_bets": 0,
+        "provider_covered_accepted_bets": 0,
+        "fallback_bets": 0,
+        "analysis_only_bets": 0,
+        "valid_for_settlement": False,
+        "blockers": ["settlement_readiness_file_missing"],
+    }
+
+
 # ────────── P10.3 Settlements ───────────────────────────────────────────────
 
 def get_settlements(round_id: str = None):
@@ -1128,9 +1150,9 @@ def get_output_dropbox_report(round_id: str = None):
         "version":          "p13.0",
         "round_id":         round_id,
         "status":           "waiting_for_manual_ingest",
-        "outputs_expected":  13,
+        "outputs_expected":  12,
         "outputs_found":    0,
-        "outputs_missing":  13,
+        "outputs_missing":  12,
         "missing_models":   [],
         "empty_files":     [],
         "invalid_names":   [],
@@ -1161,6 +1183,7 @@ def get_runtime_summary(round_id: str = None, date: str = None):
     ingested = get_ingested_outputs(round_id=round_id)
     model_runs = get_model_runs(round_id=round_id)
     receipts = get_bet_receipts(round_id=round_id)
+    readiness = get_settlement_readiness(round_id=round_id)
     settlements = get_settlement(round_id=round_id)
     daily_report = get_daily_report(date=date, round_id=round_id) or {}
     pipeline = get_pipeline_run(date=date, round_id=round_id)
@@ -1205,7 +1228,7 @@ def get_runtime_summary(round_id: str = None, date: str = None):
         accepted_bets = receipts_summary.get("candidate_bets", 0)
 
     has_betting_gap = bool(
-        (accepted_bets or 0) == 0
+        (readiness.get("provider_covered_accepted_bets", 0) or 0) == 0
         and (dropbox.get("outputs_found") or len(ingested_outputs) or 0) > 0
     )
 
@@ -1273,9 +1296,14 @@ def get_runtime_summary(round_id: str = None, date: str = None):
             "accepted_receipts": len(accepted_receipts),
             "zero_stake_receipts": zero_stake_receipts,
             "accepted_bets": accepted_bets or 0,
-            "valid_for_settlement": receipts.get("valid_for_settlement") if isinstance(receipts, dict) else False,
+            "provider_covered_accepted_bets": readiness.get("provider_covered_accepted_bets", 0),
+            "fallback_bets": readiness.get("fallback_bets", receipts_summary.get("fallback_bets", 0)),
+            "analysis_only_bets": readiness.get("analysis_only_bets", receipts_summary.get("analysis_only_bets", 0)),
+            "eligible_board_rows": readiness.get("eligible_board_rows", receipts_summary.get("eligible_board_rows", 0)),
+            "valid_for_settlement": readiness.get("valid_for_settlement", False),
             "gap": has_betting_gap,
         },
+        "settlement_readiness": readiness,
         "settlement": {
             "status": settlements.get("settlement_status") if isinstance(settlements, dict) else "unknown",
             "summary": settlement_summary,

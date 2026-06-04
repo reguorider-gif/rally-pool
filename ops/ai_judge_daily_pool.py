@@ -29,6 +29,13 @@ from pathlib import Path
 # ---------- 项目根目录 ----------
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data" / "pool"
+sys.path.insert(0, str(ROOT_DIR))
+
+try:
+    from ops.generate_eligible_board import build_eligible_board, write_eligible_board
+except Exception:  # pragma: no cover - script fallback for unusual import contexts
+    build_eligible_board = None
+    write_eligible_board = None
 
 # ---------- 默认 snapshot label ----------
 DEFAULT_SNAPSHOT_LABEL = "T-1h"
@@ -119,6 +126,25 @@ def _write_json(relative_path, data, indent=2):
         json.dump(data, f, ensure_ascii=False, indent=indent)
 
 
+def _load_or_generate_eligible_board(round_id, date_str, snapshot_label, provider):
+    """Load P14 eligible board, generating it from provider odds when possible."""
+    rel = f"odds/eligible_board/{round_id}.json"
+    data = _read_json(rel, default=None)
+    if isinstance(data, dict) and data.get("items"):
+        return rel, data
+    if build_eligible_board is None or write_eligible_board is None:
+        return rel, {"version": "p14.0", "round_id": round_id, "items": [], "summary": {"eligible_board_rows": 0}}
+    provider_name = provider if provider and provider != "auto" else "the_odds_api"
+    board = build_eligible_board(
+        round_id=round_id,
+        date=date_str,
+        snapshot_label=snapshot_label,
+        provider=provider_name,
+    )
+    write_eligible_board(board)
+    return rel, board
+
+
 def _load_model_accounts():
     """加载当前活跃模型席位"""
     data = _read_json("model_accounts/current.json", default=None)
@@ -159,7 +185,7 @@ def _compact_json(value, max_chars=6000):
 
 
 def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
-                  matches, match_results, odds_snapshot, leaderboard, previous_report):
+                  match_results, odds_snapshot, eligible_board, leaderboard, previous_report):
     """
     为单个模型构建专属 prompt。
     使用 json.dumps() 输出 JSON 示例，用 "\\n".join(lines) 拼接文本，
@@ -185,11 +211,14 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "round_id": round_id,
         "loan_decision": {"amount": 0, "reason": ""},
         "bet_ledger": [{
-            "match_id": "WARM-002",
+            "board_id": f"{round_id}:EXAMPLE_PROVIDER_ODDS_ROW_ID",
+            "odds_row_id": "EXAMPLE_PROVIDER_ODDS_ROW_ID",
+            "provider": "the_odds_api",
+            "match_id": "WC-A1",
             "market": "moneyline",
-            "selection": "Brazil",
+            "selection": "Mexico",
             "stake": 100,
-            "odds": 1.85,
+            "odds": 1.36,
             "confidence": 0.6,
             "reason": "",
             "cancel_if": "",
@@ -200,18 +229,22 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
     }
 
     # ---------- 数据摘要 ----------
-    matches_list = matches.get("matches", []) if isinstance(matches, dict) else (matches if isinstance(matches, list) else [])
     odds_summary_data = {
         "snapshot_label": odds_snapshot.get("snapshot_label") if isinstance(odds_snapshot, dict) else None,
         "provider": odds_snapshot.get("provider") if isinstance(odds_snapshot, dict) else None,
         "summary": odds_snapshot.get("summary") if isinstance(odds_snapshot, dict) else {},
-        "warning": "If valid_odds_rows is 0, do not invent odds. Use empty bet_ledger.",
+        "warning": "Do not bet from this snapshot directly. Use eligible_board rows only.",
     }
 
-    matches_summary = _compact_json({
-        "matches_total": len(matches_list),
-        "sample_matches": matches_list[:10],
-    })
+    board_items = eligible_board.get("items", []) if isinstance(eligible_board, dict) else []
+    eligible_board_summary = _compact_json({
+        "summary": eligible_board.get("summary", {}) if isinstance(eligible_board, dict) else {},
+        "items": board_items,
+        "warning": (
+            "Only these provider-covered rows are eligible. Every bet_ledger item "
+            "must cite board_id or odds_row_id exactly."
+        ),
+    }, max_chars=18000)
     results_summary = _compact_json(match_results)
     odds_summary = _compact_json(odds_summary_data)
     leaderboard_summary = _compact_json(leaderboard)
@@ -233,7 +266,7 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "",
         "## 当前任务",
         "你是 AI Judge 赛事预测池中的一个独立模型席位。",
-        "你必须基于给定赛程、赛果状态、赔率快照、资金/风控约束，输出结构化 JSON 投注单。",
+        "你必须基于给定 eligible_board、赛果状态、资金/风控约束，输出结构化 JSON 投注单。",
         "本轮有一个 Banker Judge（虚拟庄家/法官）在管理比赛池：它会根据排行榜、当前筹码、昨日营收、贷款额度和风控规则评估你的表现。",
         "你的目标是在合规的虚拟 GP 研究范围内提升排名；如果排名压力需要，可以申请虚拟贷款，但必须说明贷款用途、预期回报和止损规则。",
         "你还必须主动补充赛事资讯来源到 source_cards，例如伤停、首发、赛程密度、赔率异动、主客场、天气、新闻或统计页；不要把空 source_cards 当作默认答案。",
@@ -246,9 +279,13 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "- 不要输出解释性自然语言。",
         "- 不要输出 JSON 之外的任何内容。",
         "- JSON 必须能被 json.loads 解析。",
+        "- 只能从 eligible_board 中选择下注对象。",
+        "- 每条 bet_ledger 必须引用 eligible_board 内现有的 board_id 或 odds_row_id。",
+        "- 不得自由编写不存在于 eligible_board 的比赛、盘口或赔率。",
+        "- 如果没有合适的 provider-covered board row，bet_ledger 必须为空；可以把观察写入 betting_thought/source_cards。",
         "",
-        "## 可用比赛摘要",
-        matches_summary,
+        "## Provider-covered eligible_board（唯一可下注来源）",
+        eligible_board_summary,
         "",
         "## 赛果状态摘要",
         results_summary,
@@ -278,6 +315,12 @@ def _build_prompt(seat, round_id, date_str, run_marker, snapshot_label,
         "- risk_rules",
         "- source_cards",
         "- betting_thought",
+        "",
+        "bet_ledger 规则：",
+        "- accepted 结算只认 provider-covered board row。",
+        "- 每条 bet_ledger 必须包含 board_id 或 odds_row_id；缺失会被 rejected_missing_provider_odds 拒收。",
+        "- market、selection、odds 必须与 eligible_board 行一致。",
+        "- 不要写 fallback、manual_stub 或模型自造 odds。",
         "",
         "禁止输出任何 JSON 之外的内容。",
     ]
@@ -430,16 +473,25 @@ def cmd_run(args):
     matches_data = _read_json("matches/current.json", default={})
     match_results_data = _read_json(f"match_results/{date_str}.json", default={})
     odds_relpath, odds_data = _read_odds_snapshot(date_str, snapshot_label, provider=args.odds_provider)
+    board_relpath, eligible_board = _load_or_generate_eligible_board(round_id, date_str, snapshot_label, args.odds_provider)
     leaderboard_data = _read_json("leaderboard/current.json", default={})
     prev_report_data = _read_json(f"daily_reports/{date_str}_run-5.json", default={})
     manifest["source_files"].insert(2, odds_relpath)
+    manifest["source_files"].insert(3, board_relpath)
     _write_json(f"run_manifests/{round_id}.json", manifest)
     odds_summary = odds_data.get("summary", {}) if isinstance(odds_data, dict) else {}
+    board_summary = eligible_board.get("summary", {}) if isinstance(eligible_board, dict) else {}
     print(
         "  ✅ Prompt odds snapshot: "
         f"{odds_relpath} "
         f"(provider={odds_data.get('provider') if isinstance(odds_data, dict) else 'unknown'}, "
         f"valid_odds_rows={odds_summary.get('valid_odds_rows', 0)})"
+    )
+    print(
+        "  ✅ Provider-covered eligible board: "
+        f"{board_relpath} "
+        f"(rows={board_summary.get('eligible_board_rows', 0)}, "
+        f"markets={','.join(board_summary.get('markets', []))})"
     )
 
     # Step 3: 生成每个模型的 prompt
@@ -453,9 +505,9 @@ def cmd_run(args):
             date_str=date_str,
             run_marker=run_marker,
             snapshot_label=snapshot_label,
-            matches=matches_data,
             match_results=match_results_data,
             odds_snapshot=odds_data,
+            eligible_board=eligible_board,
             leaderboard=leaderboard_data,
             previous_report=prev_report_data,
         )

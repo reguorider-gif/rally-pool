@@ -1,7 +1,7 @@
 {
   "version": "p11.0",
   "round_id": "run-6",
-  "ingested_at": "2026-06-04T10:26:17.863950+00:00",
+  "ingested_at": "2026-06-04T16:18:34.433630+00:00",
   "input_dir": "data/pool/model_outputs/raw/run-6",
   "outputs_total": 12,
   "outputs_found": 12,

@@ -1,6 +1,6 @@
 {
   "version": "p10.2",
-  "updated_at": "2026-06-04T10:26:22Z",
+  "updated_at": "2026-06-04T16:18:34Z",
   "rounds": [
     {
       "round_id": "run-5",
@@ -17,10 +17,13 @@
       "date": "2026-06-03",
       "path": "data/pool/bet_receipts/run-6.json",
       "rejections_path": "data/pool/bet_receipts/rejections/run-6.json",
-      "accepted_bets": 3,
+      "accepted_bets": 0,
+      "provider_covered_accepted_bets": 0,
+      "fallback_bets": 7,
+      "analysis_only_bets": 7,
       "manual_review_bets": 0,
-      "rejected_bets": 11,
-      "valid_for_settlement": true
+      "rejected_bets": 12,
+      "valid_for_settlement": false
     }
   ]
 }
